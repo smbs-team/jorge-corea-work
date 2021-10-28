@@ -1,0 +1,45 @@
+parameters:
+  - name: folder
+    type: string
+    default: "SeniorsPortal"
+  - name: isFullBuild
+    type: boolean
+    default: true
+  - name: forceBuild
+    type: string
+    default: "False"
+  - name: deploymentEnv
+    type: string
+    default: ""
+  - name: deploy
+    type: boolean
+    default: false
+  - name: npmCommands
+    type: object
+    default: ["install", "run build"]
+
+steps:
+  - task: PowerShell@2
+    condition: and(ne(${{parameters.isFullBuild}}, True), ne(${{parameters.forceBuild}}, 'True'))
+    name: TargetFolderChanged${{parameters.folder}}
+    inputs:
+      targetType: "filePath"
+      filePath: "AzurePipes/Script/CheckIfFolderModifiedGit.ps1"
+      arguments: -folder 'PTASPortals/Source/${{parameters.folder}}/*'
+  - script: "copy /D /Y .env.production.${{parameters.deploymentEnv}} .env.production"
+    condition: or(or(eq(variables['TargetFolderChanged${{parameters.folder}}.FolderChanged'], 'True'), ${{parameters.isFullBuild}}), eq(${{parameters.forceBuild}}, 'True'))
+    workingDirectory: "$(Build.SourcesDirectory)/PTASPortals/Source/${{parameters.folder}}"
+  - ${{ each npmCommand in parameters.npmCommands }}:
+      - task: Npm@1
+        condition: or(or(eq(variables['TargetFolderChanged${{parameters.folder}}.FolderChanged'], 'True'), ${{parameters.isFullBuild}}), eq(${{parameters.forceBuild}}, 'True'))
+        inputs:
+          command: "custom"
+          customCommand: ${{ npmCommand }}
+          workingDir: "$(Build.SourcesDirectory)/PTASPortals/Source/${{parameters.folder}}"
+
+  - task: CopyFiles@2
+    condition: and(or(or(eq(variables['TargetFolderChanged${{parameters.folder}}.FolderChanged'], 'True'), ${{parameters.isFullBuild}}), eq(${{parameters.forceBuild}}, 'True')), ${{parameters.deploy}})
+    displayName: Stage Build Files
+    inputs:
+      sourceFolder: "$(Build.SourcesDirectory)/PTASPortals/Source/${{parameters.folder}}/build"
+      targetFolder: "$(Build.ArtifactStagingDirectory)/Portals/${{parameters.folder}}"

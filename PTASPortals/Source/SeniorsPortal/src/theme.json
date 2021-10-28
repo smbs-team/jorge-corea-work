@@ -1,0 +1,21 @@
+{
+  "palette": {
+    "primary": {
+      "light": "",
+      "main": "",
+      "dark": ""
+    },
+    "secondary": {
+      "light": "",
+      "main": "",
+      "dark": ""
+    },
+    "error": {
+      "light": "#d28e00",
+      "main": "#d20000"
+    },
+    "success": {
+      "main": "#43a047"
+    }
+  }
+}

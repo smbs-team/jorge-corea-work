@@ -1,0 +1,61 @@
+.VersionTypeBg {
+  &-frozen {
+    background-color: #c9f1fd !important;
+  }
+  &-adjustments {
+    background-color: #3fc510 !important;
+  }
+  &-whatif {
+    background-color: #ffc700 !important;
+  }
+}
+
+.ProjectDetail {
+  &-header {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-right: 24px;
+    border-bottom: 1px solid gray;
+    label {
+      border: 0;
+    }
+  }
+  &-versionType {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: bold;
+    &.frozen {
+      color: #c9f1fd !important;
+    }
+    &.adjustments {
+      color: #3fc510 !important;
+    }
+    &.whatif {
+      color: #ffc700 !important;
+    }
+  }
+}
+
+.Models-button {
+  background-color: #fff;
+  border: none;
+  color: #000;
+  font-family: Cabin, Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  padding: 6px 16px;
+}
+.FilterSwitch {
+  .MuiSwitch-track {
+    background-color: #7ea000;
+    opacity: 0.38;
+  }
+  .MuiSwitch-colorSecondary.Mui-checked {
+    color: #7ea000;
+  }
+  .MuiSwitch-colorSecondary.Mui-checked + .MuiSwitch-track {
+    background-color: #7ea000;
+    opacity: 0.5;
+  }
+}

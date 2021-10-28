@@ -1,0 +1,24 @@
+parameters:
+- name: folder
+  type: string 
+  default: "Authentication"
+- name: isFullBuild
+  type: boolean
+  default: True
+- name: deploy
+  type: boolean
+  default: true
+
+steps:
+    - task: CopyFiles@2
+      condition: and(or(eq(variables['TargetFolderChanged${{parameters.folder}}.FolderChanged'], 'True'), ${{parameters.isFullBuild}}), ${{parameters.deploy}})
+      displayName: "Stage Build Files: ${{parameters.folder}}"
+      inputs:
+        contents: "${{parameters.folder}}/**/bin/**"
+        targetFolder: "$(Build.ArtifactStagingDirectory)/${{parameters.folder}}"
+    - task: PublishBuildArtifacts@1
+      condition: and(or(eq(variables['TargetFolderChanged${{parameters.folder}}.FolderChanged'], 'True'), ${{parameters.isFullBuild}}), ${{parameters.deploy}})
+      displayName: Publish Net Drop
+      inputs:
+        pathToPublish: "$(Build.ArtifactStagingDirectory)/${{parameters.folder}}"
+        artifactName: "${{parameters.folder}}NetDrop"

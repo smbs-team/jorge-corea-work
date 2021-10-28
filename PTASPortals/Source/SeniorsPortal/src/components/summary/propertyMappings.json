@@ -1,0 +1,62 @@
+{
+  "1040ezwages": { "property": "fezLine1Wages", "type": "currency" },
+  "1040eztaxinterest": { "property": "fezTaxableInterest", "type": "currency" },
+  "1040ezunemployment": {
+    "property": "fezLine3Unemployment",
+    "type": "currency"
+  },
+  "incomegifts": { "property": "fezGiftsFromFamily", "type": "currency" },
+  "incomecountries": {
+    "property": "fezIncomeOtherCountries",
+    "type": "currency"
+  },
+  "incomeexpenses": {
+    "property": "fezExpensesPaidByFamily",
+    "type": "currency"
+  },
+  "incomedshs": { "property": "fezDSHSPublicAssistance", "type": "currency" },
+  "10402018wages": { "property": "f20181040Line1Wages", "type": "currency" },
+  "10402018taxexinterest": {
+    "property": "f20181040Line2TaxExemptInterest",
+    "type": "currency"
+  },
+  "10402018taxinterest": {
+    "property": "f20181040Line2bTaxableInterest",
+    "type": "currency"
+  },
+  "10402018dividends": {
+    "property": "f20181040Line3aDividends",
+    "type": "currency"
+  },
+  "10402018irapensions": {
+    "property": "f20181040Line4aIras",
+    "type": "currency"
+  },
+  "10402018irapensionstax": {
+    "property": "f20181040Line4bIrasTaxable",
+    "type": "currency"
+  },
+  "10402018ssbenefits": {
+    "property": "f20181040Line5aSocialSecurity",
+    "type": "currency"
+  },
+  "10402018totalincome": {
+    "property": "f20181040Line6TotalIncome",
+    "type": "currency"
+  },
+  "10402018adjgrossincome": {
+    "property": "f20181040Line7AdjustedGrossIncome",
+    "type": "currency"
+  },
+  "expenseassistedliving ": {
+    "property": " expenses.assistedLiving",
+    "type": "currency"
+  },
+  "expensesinhome": { "property": "inHomeCare", "type": "currency" },
+  "expensepres": {
+    "property": "nonReimbursedPrescriptions",
+    "type": "currency"
+  },
+  "expensemedicareplan": { "property": "approvedMedicare", "type": "currency" },
+  "medicareplanid ": { "property": "medicalPlan", "type": "lookup" }
+}

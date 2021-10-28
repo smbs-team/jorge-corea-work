@@ -1,0 +1,29 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AdminRoles": "System Administrator;Assessment Admin",
+    "SQLServerConnectionString": "Server=tcp:ptas-sbox-dbserver.database.windows.net,1433;Initial Catalog=PTAS-SBOX-stagingdb;Persist Security Info=False;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;",
+    "SQLServerDataConnectionString": "Server=tcp:ptas-sbox-dbserver.database.windows.net,1433;Initial Catalog=ptas-sbox-stagingdb;Persist Security Info=False;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;",
+    "StorageConnectionString": "DefaultEndpointsProtocol=https;AccountName=ptassboxstorage;AccountKey=;EndpointSuffix=core.windows.net",
+    "PremiumStorageConnectionString": "DefaultEndpointsProtocol=https;AccountName=ptassboxstorage;AccountKey=;EndpointSuffix=core.windows.net",
+    "DynamicsODataUri": "https://ptas-dev.crm9.dynamics.com",
+    "DynamicsApiRoute": "/api/data/v9.1/",
+    "DynamicsAuthUri": "https://login.windows.net/KC1.onmicrosoft.com",
+    "DynamicsClientSecret": "",
+    "DynamicsClientId": "404b9b8b-5315-4ef3-859d-37352a12b2da",
+    "AzureSignalRConnectionString": "Endpoint=https://ptas-dev-signalr.service.signalr.net;AccessKey=;Version=1.0;",
+    "SignalRHubEndpoint": "https://ptas-sbox-customsearchesfunctions.azurewebsites.net/v2/api/workerhub",
+    "MapServerStorageSharePath": "C:\\MapServer\\map-share",
+    "OgrConnectionString": "MSSQL:server=tcp:ptas-sbox-dbserver.database.windows.net;uid=dbadmin;pwd=;database=PTAS-SBOX-stagingdb",
+    "JobQueueSuffix": "",
+    "AllowCoordinatorToExit": true,
+    "APPINSIGHTS_INSTRUMENTATIONKEY": "4733a3d0-7ecf-4922-abd2-a8911996bffd",
+    "OrganizationId": "8dcf1c09-56fb-4cdd-af75-54b14b04349b",
+    "OrganizationName": "org7ff68ed4",
+    "LogDynamicSqlStatementsInDb": false,
+    "SyncMobileStorageSharePath": "C:\\SyncMobile\\"
+  },
+  "Host": {
+    "CORS": "*"
+  }
+}

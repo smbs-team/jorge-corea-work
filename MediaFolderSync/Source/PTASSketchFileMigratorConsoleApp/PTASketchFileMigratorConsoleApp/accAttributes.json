@@ -1,0 +1,202 @@
+{
+    "value": [
+        {
+            "value": "Miscellaneous improvement",
+            "attributevalue": 8,
+            "drawingId": "MI",
+            "type": "ptas_resaccessorytype"
+        },
+        {
+            "value": "Parking - carport",
+            "attributevalue": 2,
+            "drawingId": "PC",
+            "type": "ptas_resaccessorytype"
+        },
+        {
+            "value": "Parking - detached garage",
+            "attributevalue": 1,
+            "drawingId": "DG",
+            "type": "ptas_resaccessorytype"
+        },
+        {
+            "value": "Paving - concrete",
+            "attributevalue": 3,
+            "drawingId": "PVC",
+            "type": "ptas_resaccessorytype"
+        },
+        {
+            "value": "Pool - concrete",
+            "attributevalue": 6,
+            "drawingId": "PLC",
+            "type": "ptas_resaccessorytype"
+        },
+        {
+            "value": "Pool - plastic or fiberglass",
+            "attributevalue": 7,
+            "drawingId": "PLP",
+            "type": "ptas_resaccessorytype"
+        },
+        {
+            "value": "Canopies",
+            "attributevalue": 33,
+            "drawingId": "CAN",
+            "type": "ptas_commaccessorytype"
+        },
+        {
+            "value": "Car wash",
+            "attributevalue": 38,
+            "drawingId": "CW",
+            "type": "ptas_commaccessorytype"
+        },
+        {
+            "value": "Carport",
+            "attributevalue": 22,
+            "drawingId": "CP",
+            "type": "ptas_commaccessorytype"
+        },
+        {
+            "value": "Fencing",
+            "attributevalue": 36,
+            "drawingId": "FG",
+            "type": "ptas_commaccessorytype"
+        },
+        {
+            "value": "Flat-valued single family residence",
+            "attributevalue": 39,
+            "drawingId": "SFR",
+            "type": "ptas_commaccessorytype"
+        },
+        {
+            "value": "Golf course improvements",
+            "attributevalue": 40,
+            "drawingId": "GCI",
+            "type": "ptas_commaccessorytype"
+        },
+        {
+            "value": "Jacuzzi",
+            "attributevalue": 27,
+            "drawingId": "JZ",
+            "type": "ptas_commaccessorytype"
+        },
+        {
+            "value": "Kiosks",
+            "attributevalue": 34,
+            "drawingId": "KO",
+            "type": "ptas_commaccessorytype"
+        },
+        {
+            "value": "Loading docks",
+            "attributevalue": 20,
+            "drawingId": "LD",
+            "type": "ptas_commaccessorytype"
+        },
+        {
+            "value": "Miscellaneous",
+            "attributevalue": 31,
+            "drawingId": "MS",
+            "type": "ptas_commaccessorytype"
+        },
+        {
+            "value": "Mobile home pad",
+            "attributevalue": 24,
+            "drawingId": "MHP",
+            "type": "ptas_commaccessorytype"
+        },
+        {
+            "value": "Moorage - covered",
+            "attributevalue": 18,
+            "drawingId": "MC",
+            "type": "ptas_commaccessorytype"
+        },
+        {
+            "value": "Moorage - open",
+            "attributevalue": 19,
+            "drawingId": "MO",
+            "type": "ptas_commaccessorytype"
+        },
+        {
+            "value": "Overhead doors",
+            "attributevalue": 30,
+            "drawingId": "OD",
+            "type": "ptas_commaccessorytype"
+        },
+        {
+            "value": "Parking - covered secured",
+            "attributevalue": 14,
+            "drawingId": "PCS",
+            "type": "ptas_commaccessorytype"
+        },
+        {
+            "value": "Parking - covered unsecured",
+            "attributevalue": 15,
+            "drawingId": "PCU",
+            "type": "ptas_commaccessorytype"
+        },
+        {
+            "value": "Parking - open secured",
+            "attributevalue": 16,
+            "drawingId": "POS",
+            "type": "ptas_commaccessorytype"
+        },
+        {
+            "value": "Parking - open unsecured",
+            "attributevalue": 17,
+            "drawingId": "POU",
+            "type": "ptas_commaccessorytype"
+        },
+        {
+            "value": "Parking - paved",
+            "attributevalue": 23,
+            "drawingId": "PVP",
+            "type": "ptas_commaccessorytype"
+        },
+        {
+            "value": "Recreation building",
+            "attributevalue": 29,
+            "drawingId": "RBL",
+            "type": "ptas_commaccessorytype"
+        },
+        {
+            "value": "Retail booths",
+            "attributevalue": 35,
+            "drawingId": "RBO",
+            "type": "ptas_commaccessorytype"
+        },
+        {
+            "value": "Sauna",
+            "attributevalue": 26,
+            "drawingId": "SA",
+            "type": "ptas_commaccessorytype"
+        },
+        {
+            "value": "Shipping docks",
+            "attributevalue": 21,
+            "drawingId": "SD",
+            "type": "ptas_commaccessorytype"
+        },
+        {
+            "value": "Sports court",
+            "attributevalue": 28,
+            "drawingId": "SC",
+            "type": "ptas_commaccessorytype"
+        },
+        {
+            "value": "Storage tanks",
+            "attributevalue": 32,
+            "drawingId": "ST",
+            "type": "ptas_commaccessorytype"
+        },
+        {
+            "value": "Swimming pool",
+            "attributevalue": 25,
+            "drawingId": "PL",
+            "type": "ptas_commaccessorytype"
+        },
+        {
+            "value": "Yard lighting",
+            "attributevalue": 37,
+            "drawingId": "YL",
+            "type": "ptas_commaccessorytype"
+        }
+    ]
+}

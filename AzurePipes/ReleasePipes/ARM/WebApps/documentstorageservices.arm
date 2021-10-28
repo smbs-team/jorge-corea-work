@@ -1,0 +1,380 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "DeploymentEnv": {
+      "defaultValue": "SBOX",
+      "type": "String"
+    },
+    "DeploymentEnvLong": {
+      "defaultValue": "SBOX",
+      "type": "String"
+    },
+    "ApiManagementId": {
+      "defaultValue": "/subscriptions/4ae7c64c-6b33-4f6d-8ac7-fe04bed6a3fb/resourceGroups/PTAS-sbox-westus-resourcegroup/providers/Microsoft.ApiManagement/service/PTAS-SBOX-ApiManagement",
+      "type": "string"
+    },
+    "ApiManagementIp": {
+      "defaultValue": "52.247.217.22",
+      "type": "string"
+    },
+    "ApiManagementHost": {
+      "defaultValue": "https://api-dev.kingcounty.gov",
+      "type": "string"
+    },
+    "DatabaseServerName": {
+      "defaultValue": "ptas-sbox-dbserver",
+      "type": "string"
+    },
+    "DatabaseName": {
+      "defaultValue": "ptas-sbox-database",
+      "type": "string"
+    },
+    "BlobStorageConnectionSecretUri": {
+      "defaultValue": "https://ptas-sbox-keyvault.vault.azure.net/secrets/ptas-storage-connectionstring/65610c37e69c45498999e53d99dd0bad",
+      "type": "string"
+    },
+    "EdmsSoapServicesEndpoint": {
+      "defaultValue": "https://api-dev.kingcounty.gov/ilinx2/v1",
+      "type": "string"
+    },
+    "IlinxUserNameSecretUri": {
+      "defaultValue": "https://ptas-sbox-keyvault.vault.azure.net/secrets/ptas-ilinx-username/571f00ac4be846f6bdf070705657d428",
+      "type": "string"
+    },
+    "IlinxUserPasswordSecretUri": {
+      "defaultValue": "https://ptas-sbox-keyvault.vault.azure.net/secrets/ptas-ilinx-password/b5285f92356d44189209267b1f4f1e19",
+      "type": "string"
+    },
+    "IlinxActivationIdSecretUri": {
+      "defaultValue": "https://ptas-sbox-keyvault.vault.azure.net/secrets/ptas-ilinx-activationid/4ab36201061741c98066753dabb164cc",
+      "type": "string"
+    },
+    "MapBoxTokenSecretUri": {
+      "defaultValue": "https://ptas-sbox-keyvault.vault.azure.net/secrets/ptas-mapbox-token/dff14671c7994b77a042d2d07c6f32f2",
+      "type": "string"
+    },
+    "PTASDevAppClientIdSecretUri": {
+      "defaultValue": "https://ptas-sbox-keyvault.vault.azure.net/secrets/ptas-dev-app-clientid/0f354286d77b4c0eb41652e7682fd9ab",
+      "type": "string"
+    },
+    "PTASDevAppSecretUri": {
+      "defaultValue": "https://ptas-sbox-keyvault.vault.azure.net/secrets/ptas-dev-app-sececret/87184bd8fbf84b83b361a98e0c022acd",
+      "type": "string"
+    },
+    "CrmUri": {
+      "defaultValue": "https://ptas-dev.crm9.dynamics.com",
+      "type": "string"
+    },
+    "PTASMagicLinkServiceClientIdUri": {
+      "defaultValue": "https://ptas-sbox-keyvault.vault.azure.net/secrets/ptas-dev-app-clientid/0f354286d77b4c0eb41652e7682fd9ab",
+      "type": "string"
+    },
+    "PTASMagicLinkServiceClientSecretUri": {
+      "defaultValue": "https://ptas-sbox-keyvault.vault.azure.net/secrets/ptas-dev-app-sececret/87184bd8fbf84b83b361a98e0c022acd",
+      "type": "string"
+    },
+    "PTASSautinLicenseSecretUri": {
+      "defaultValue": "https://ptas-dev-keyvault.vault.azure.net/secrets/ptas-SautinLicense/67a235395cbd4a9ebd471aafd7813f1c",
+      "type": "string"
+    },
+    "B2CPTASRedirectAppId": {
+      "defaultValue": "9ec48da8-3995-4181-8338-25da2cf1661b",
+      "type": "string"
+    },
+    "UtilitiesApimSubscriptionKey": {
+      "defaultValue": "1bcc1aed30214ca3958ec81527f3dc83",
+      "type": "string"
+    },
+    "NotificatioServiceResourceId": {
+      "defaultValue": "a1e98c07-f3e2-4452-9523-b76372315915",
+      "type": "string"
+    },
+    "NotificationServiceApiManagementHost": {
+      "defaultValue": "https://api-dev.kingcounty.gov",
+      "type": "string"
+    },
+    "B2CTenant": {
+      "defaultValue": "kcb2csandbox",
+      "type": "string"
+    },
+    "MagicLinkSigningCertThumbprint": {
+      "defaultValue": "283F310F39AE8BED2D5D3C4D3E657F9F6398E187",
+      "type": "string"
+    },
+    "QrTokenSigningKeySecretUri": {
+      "defaultValue": "https://ptas-dev-keyvault.vault.azure.net/secrets/ptasselfsignedcertificate/1e5d3080108f484fb7970d0bdf6ad632",
+      "type": "string"
+    },
+    "IsWhatIfEnvironment": {
+      "defaultValue": "True",
+      "type": "string"
+    },
+    "WhatIfPairEnvironment": {
+      "defaultValue": "PROD",
+      "type": "string"
+    },
+    "WhatIfPairApiManagementHost": {
+      "defaultValue": "https://api-dev.kingcounty.gov",
+      "type": "string"
+    },
+    "SharepointClientId": {
+      "defaultValue": "18f8cdd5-8a84-4a2f-a4e6-bc2349fac716",
+      "type": "string"
+    },
+    "SharepointClientSecretUri": {
+      "defaultValue": "https://ptas-dev-keyvault.vault.azure.net/secrets/ptas-sharepoint-clientsecret/53d0277d8c7c4568ae8b93c8be6322f8",
+      "type": "string"
+    },
+    "SharepointSiteId": {
+      "defaultValue": "927f49f3-68f6-4839-9a12-7744b157cfbf,eca30c3e-93b2-4e2c-95a9-2625f0bc00b9",
+      "type": "string"
+    },
+    "sharepointTenantId": {
+      "defaultValue": "bae5059a-76f0-49d7-9996-72dfe95d69c7",
+      "type": "string"
+    },
+    "SharepointSite": {
+      "defaultValue": "DEV",
+      "type": "string"
+    },
+    "MapServerIp": {
+      "defaultValue": "51.143.46.203",
+      "type": "string"
+    },
+    "OrganizationId": {
+      "defaultValue": "8dcf1c09-56fb-4cdd-af75-54b14b04349b",
+      "type": "string"
+    },
+    "OrganizationName": {
+      "defaultValue": "org7ff68ed4",
+      "type": "string"
+    }
+  },
+  "variables": {
+    "SiteName": "[replace('PTAS-[Env]-DocumentStorageServices', '[Env]', toLower(parameters('DeploymentEnv')))]",
+    "AppServicePlanId": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/PTAS-', parameters('DeploymentEnv'), '-AppServicePlan')]",
+    "AppInsightsId": "[concat(resourceGroup().id, '/providers/microsoft.insights/components/PTAS-', parameters('DeploymentEnv'), '-AppInsights')]",
+    "PTASSeniorPortalURL": "[replace('https://ptas-[Env]-seniorsportal.azurewebsites.net', '[Env]', toLower(parameters('DeploymentEnv')))]",
+    "SharepointApiURL": "[concat(parameters('ApiManagementHost'), '/', replace('ptas-[Env]-sharepointfunctions/api/{0}/{1}', '[Env]', toLower(parameters('DeploymentEnv'))))]",
+    "DynamicsApiURL": "[concat(parameters('ApiManagementHost'), replace('/ptas-[Env]-dataservices/v1/api', '[Env]', toLower(parameters('DeploymentEnv'))))]",
+    "FinalizerURL": "[concat(variables('DynamicsApiURL'), '/BlobToIlinxFinalizer')]",
+    "CognitiveServicesAccountName": "[replace('PTAS-[Env]-ComputerVision', '[Env]', parameters('DeploymentEnv'))]",
+    "CognitiveServicesId": "[concat(resourceGroup().id,'/providers/','Microsoft.CognitiveServices/accounts/', variables('CognitiveServicesAccountName'))]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "2016-08-01",
+      "name": "[variables('SiteName')]",
+      "location": "[resourceGroup().location]",
+      "tags": {
+        "innotasId": " 2051178045"
+      },
+      "kind": "app",
+      "identity": {
+        "principalId": "",
+        "tenantId": "",
+        "type": "SystemAssigned"
+      },
+      "properties": {
+        "enabled": true,
+        "hostNameSslStates": [
+          {
+            "name": "[concat(variables('SiteName'), '.azurewebsites.net'])",
+            "sslState": "Disabled",
+            "hostType": "Standard"
+          },
+          {
+            "name": "[concat(variables('SiteName'), 'scm.azurewebsites.net'])",
+            "sslState": "Disabled",
+            "hostType": "Repository"
+          }
+        ],
+        "siteConfig": {
+          "appSettings": [
+            {
+              "name": "EdmsSoapServicesEndpoint",
+              "value": "[parameters('EdmsSoapServicesEndpoint')]"
+            },
+            {
+              "name": "DynamicsApiURL",
+              "value": "[variables('DynamicsApiURL')]"
+            },
+            {
+              "name": "FinalizerURL",
+              "value": "[variables('FinalizerURL')]"
+            },
+            {
+              "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
+              "value": "[reference(variables('AppInsightsId'), '2015-05-01').InstrumentationKey]"
+            },
+            {
+              "name": "ApplicationInsightsAgent_EXTENSION_VERSION",
+              "value": "~2"
+            },
+            {
+              "name": "BlobStorage",
+              "value": "[concat('@Microsoft.KeyVault(SecretUri=',parameters('BlobStorageConnectionSecretUri'),')')]"
+            },
+            {
+              "name": "IlinxUserName",
+              "value": "[concat('@Microsoft.KeyVault(SecretUri=',parameters('IlinxUserNameSecretUri'),')')]"
+            },
+            {
+              "name": "IlinxPassword",
+              "value": "[concat('@Microsoft.KeyVault(SecretUri=',parameters('IlinxUserPasswordSecretUri'),')')]"
+            },
+            {
+              "name": "ActivationId",
+              "value": "[concat('@Microsoft.KeyVault(SecretUri=',parameters('IlinxActivationIdSecretUri'),')')]"
+            },
+            {
+              "name": "SautinLicense",
+              "value": "[concat('@Microsoft.KeyVault(SecretUri=',parameters('PTASSautinLicenseSecretUri'),')')]"
+            },
+            {
+              "name": "CognitiveSubscriptionKey",
+              "value": "[listKeys(variables('CognitiveServicesId'),'2016-02-01-preview').key1]"
+            },
+            {
+              "name": "SharepointApiURL",
+              "value": "[variables('SharepointApiURL')]"
+            }
+          ]
+        },
+        "serverFarmId": "[variables('AppServicePlanId')]",
+        "reserved": false,
+        "scmSiteAlsoStopped": false,
+        "clientAffinityEnabled": false,
+        "clientCertEnabled": false,
+        "hostNamesDisabled": false,
+        "containerSize": 0,
+        "dailyMemoryTimeQuota": 0,
+        "httpsOnly": true
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/config",
+      "apiVersion": "2016-08-01",
+      "name": "[concat(variables('SiteName'), '/web')]",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', variables('SiteName'))]"
+      ],
+      "properties": {
+        "numberOfWorkers": 1,
+        "defaultDocuments": [
+          "Default.htm",
+          "Default.html",
+          "Default.asp",
+          "index.htm",
+          "index.html",
+          "iisstart.htm",
+          "default.aspx",
+          "index.php",
+          "hostingstart.html"
+        ],
+        "netFrameworkVersion": "v4.0",
+        "phpVersion": "5.6",
+        "pythonVersion": "",
+        "nodeVersion": "",
+        "linuxFxVersion": "",
+        "requestTracingEnabled": false,
+        "remoteDebuggingEnabled": false,
+        "remoteDebuggingVersion": "VS2017",
+        "httpLoggingEnabled": false,
+        "logsDirectorySizeLimit": 35,
+        "detailedErrorLoggingEnabled": false,
+        "publishingUsername": "[Concat('$', variables('SiteName'))]",
+        "scmType": "None",
+        "use32BitWorkerProcess": true,
+        "webSocketsEnabled": false,
+        "alwaysOn": false,
+        "appCommandLine": "",
+        "managedPipelineMode": "Integrated",
+        "virtualApplications": [
+          {
+            "virtualPath": "/",
+            "physicalPath": "site\\wwwroot",
+            "preloadEnabled": false,
+            "virtualDirectories": null
+          }
+        ],
+        "winAuthAdminState": 0,
+        "winAuthTenantState": 0,
+        "customAppPoolIdentityAdminState": false,
+        "customAppPoolIdentityTenantState": false,
+        "loadBalancing": "LeastRequests",
+        "routingRules": [],
+        "experiments": {
+          "rampUpRules": []
+        },
+        "autoHealEnabled": false,
+        "vnetName": "",
+        "siteAuthEnabled": false,
+        "siteAuthSettings": {
+          "enabled": null,
+          "unauthenticatedClientAction": null,
+          "tokenStoreEnabled": null,
+          "allowedExternalRedirectUrls": null,
+          "defaultProvider": null,
+          "clientId": null,
+          "clientSecret": null,
+          "clientSecretCertificateThumbprint": null,
+          "issuer": null,
+          "allowedAudiences": null,
+          "additionalLoginParams": null,
+          "isAadAutoProvisioned": false,
+          "googleClientId": null,
+          "googleClientSecret": null,
+          "googleOAuthScopes": null,
+          "facebookAppId": null,
+          "facebookAppSecret": null,
+          "facebookOAuthScopes": null,
+          "twitterConsumerKey": null,
+          "twitterConsumerSecret": null,
+          "microsoftAccountClientId": null,
+          "microsoftAccountClientSecret": null,
+          "microsoftAccountOAuthScopes": null
+        },
+        "cors": {
+          "allowedOrigins": [
+            "*"
+          ],
+          "supportCredentials": false
+        },
+        "apiManagementConfig": {
+          "id": "[concat(parameters('ApiManagementId'), '/apis/', variables('SiteName'))]"
+        },
+        "localMySqlEnabled": false,
+        "ipSecurityRestrictions": [
+          {
+            "ipAddress": "[parameters('ApiManagementIp')]",
+            "subnetMask": "255.255.255.255",
+            "name": "Allow APIM",
+            "description": "Allow APIM"
+          }
+        ],
+        "http20Enabled": false,
+        "minTlsVersion": "1.2",
+        "ftpsState": "AllAllowed",
+        "reservedInstanceCount": 0,
+        "fileChangeAuditEnabled": false
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/hostNameBindings",
+      "apiVersion": "2016-08-01",
+      "name": "[concat(variables('SiteName'), '/', variables('SiteName'), '.azurewebsites.net')]",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', variables('SiteName'))]"
+      ],
+      "properties": {
+        "siteName": "[variables('SiteName')]",
+        "hostNameType": "Verified"
+      }
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+﻿apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mapserver-{Env}-managed-disk
+spec:
+  accessModes:
+  - ReadWriteMany
+  storageClassName: managed-premium
+  resources:
+    requests:
+      storage: 2TiB
+allowVolumeExpansion: true

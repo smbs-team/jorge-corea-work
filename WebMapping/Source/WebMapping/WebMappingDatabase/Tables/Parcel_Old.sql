@@ -1,0 +1,32 @@
+﻿CREATE TABLE [gis].[PARCEL_OLD](
+	[OBJECTID] [int] NOT NULL IDENTITY,
+	[MAJOR] [nvarchar](6) NULL,
+	[MINOR] [nvarchar](4) NULL,
+	[PIN] [nvarchar](10) NULL,
+	[Shape_STArea__] [numeric](38, 8) NOT NULL,
+	[Shape_STLength__] [numeric](38, 8) NOT NULL,
+	[Shape] [geometry] NULL,
+ CONSTRAINT [PK_PARCEL_OLD] PRIMARY KEY CLUSTERED 
+(
+	[OBJECTID] ASC
+)WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+
+/****** Object:  Index [gi_parcel_old_geometry_sidx]     Script Date: 9/4/2019 1:08:54 PM ******/
+CREATE SPATIAL INDEX [gi_parcel_old_geometry_sidx] ON [gis].[parcel_old]
+(
+	[Shape]
+) USING  GEOMETRY_GRID 
+WITH (BOUNDING_BOX =(-122.5279015, 47.0838109, -121.0875364, 47.780378), GRIDS =(LEVEL_1 = MEDIUM,LEVEL_2 = MEDIUM,LEVEL_3 = MEDIUM,LEVEL_4 = MEDIUM), 
+CELLS_PER_OBJECT = 16, STATISTICS_NORECOMPUTE = OFF, DROP_EXISTING = OFF, ONLINE = OFF) ON [PRIMARY]
+GO
+
+/****** Object:  Index [IDX_PIN]    Script Date: 9/4/2019 1:13:13 PM ******/
+CREATE NONCLUSTERED INDEX [IDX_PIN] ON [gis].[parcel_old]
+(
+	[pin] ASC
+)WITH (STATISTICS_NORECOMPUTE = OFF, DROP_EXISTING = OFF, ONLINE = OFF) ON [PRIMARY]
+GO
+

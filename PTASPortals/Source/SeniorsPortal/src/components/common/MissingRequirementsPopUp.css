@@ -1,0 +1,24 @@
+.missing-requirements-popup {
+  width: 100%;
+  max-width: 630px;
+  position: absolute;
+  margin-left: -315px;
+  left: 50%;
+  z-index: 1;
+  font-size: 1rem;
+  background-color: white;
+  border: 1px solid #d20000;
+  padding: 30px 37px;
+}
+
+.missing-requirements-close {
+  position: absolute !important;
+  top: 0;
+  right: 0;
+}
+
+.missing-requirements-close-icon {
+  width: 1.5em !important;
+  height: 1.5em !important;
+  color: black;
+}

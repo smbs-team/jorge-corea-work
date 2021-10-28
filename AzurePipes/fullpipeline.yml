@@ -1,0 +1,1049 @@
+parameters:
+  - name: isFullBuild
+    type: boolean
+    default: true
+  - name: forcePreReqDeployment
+    type: boolean
+    default: false
+  - name: deploy
+    type: boolean
+    default: true
+  - name: deployData
+    type: boolean
+    default: false
+  - name: deployKubernetes
+    type: boolean
+    default: false
+  - name: runItegrationTests
+    type: boolean
+    default: false
+  - name: deploymentLocation
+    type: string
+    default: ""
+  - name: deploymentResourceGroup
+    type: string
+    default: ""
+  - name: deploymentEnv
+    type: string
+    default: ""
+  - name: deploymentEnvLong
+    type: string
+    default: ""
+  - name: deploymentSubscription
+    type: string
+    default: ""
+  - name: deploymentKeyVaultName
+    type: string
+    default: ""
+  - name: deploymentAppRegistration
+    type: string
+    default: "vsts-dev-reg"
+  - name: ptasAppRegistration
+    type: string
+    default: "ptas-dev-app-seniorexemption"
+  - name: deploymentSslCertName
+    type: string
+    default: "AZURE-Wildcard-KINGCOUNTY-GOV"
+  - name: deploymentSslKeyVaultName
+    type: string
+    default: ""
+  - name: databaseServerName
+    type: string
+    default: ""
+  - name: databaseName
+    type: string
+    default: ""
+  - name: dynamicsUrl
+    type: string
+    default: "https://ptas-dev.crm9.dynamics.com"
+  - name: dynamicsLargeTables
+    type: object
+    default: ["tableName"]
+  - name: dockerImageRepository
+    type: string
+    default: "dunphyacrtest3"
+  - name: kubernetesResourceGroup
+    type: string
+    default: "DunphyAKSTest"
+  - name: kubernetesClusterName
+    type: string
+    default: "DunphyDevAKSCluster3"
+  - name: kubernetesSubscriptionId
+    type: string
+    default: "e2e5ecc4-5bf0-4dc0-9d85-fdbcaebd8740"
+
+stages:
+  - stage: Build
+    condition: true
+    jobs:
+      - job: WebServices_BatchBuild_1
+        pool:
+          vmImage: "windows-2019"
+        steps:
+          - template: ./BuildPipes/installdependencies.yml
+
+          # ------------------------------------ Authentication Build ------------------------------------
+          - template: ./BuildPipes/buildfolder.yml # Template reference
+            parameters:
+              folder: "Authentication"
+              isFullBuild: ${{parameters.isFullBuild}}
+          - template: ./BuildPipes/publishproject.yml
+            parameters:
+              folder: "Authentication"
+              netCoreProject: "Authentication/**/PTASMagicLinkService.csproj"
+              isFullBuild: ${{parameters.isFullBuild}}
+              deploy: ${{parameters.deploy}}
+          - template: ./BuildPipes/stagefolder.yml
+            parameters:
+              folder: "Authentication"
+              isFullBuild: ${{parameters.isFullBuild}}
+              deploy: ${{parameters.deploy}}
+
+          # ------------------------------------ PTASDynamicsToSQLSynchronizer Build ------------------------------------
+          - template: ./BuildPipes/buildfolder.yml # Template reference
+            parameters:
+              folder: "PTASDynamicsToSQLSynchronizer"
+              isFullBuild: ${{parameters.isFullBuild}}
+          - template: ./BuildPipes/stagefolder.yml # Template reference
+            parameters:
+              folder: "PTASDynamicsToSQLSynchronizer"
+              isFullBuild: ${{parameters.isFullBuild}}
+              deploy: ${{parameters.deploy}}
+
+      - job: WebServices_BatchBuild_2
+        pool:
+          vmImage: "windows-2019"
+        steps:
+          - template: ./BuildPipes/installdependencies.yml
+
+          # ------------------------------------ PTASMobileConnectors Build ------------------------------------
+          - template: ./BuildPipes/buildfolder.yml # Template reference
+            parameters:
+              folder: "PTASMobileConnectors"
+              isFullBuild: ${{parameters.isFullBuild}}
+          - template: ./BuildPipes/publishproject.yml
+            parameters:
+              folder: "PTASMobileConnectors"
+              netCoreProject: "PTASMobileConnectors/**/PTASSyncService.csproj"
+              isFullBuild: ${{parameters.isFullBuild}}
+              deploy: ${{parameters.deploy}}
+          - template: ./BuildPipes/stagefolder.yml # Template reference
+            parameters:
+              folder: "PTASMobileConnectors"
+              isFullBuild: ${{parameters.isFullBuild}}
+              deploy: ${{parameters.deploy}}
+
+          # ------------------------------------ WebMapping Build ------------------------------------
+          - template: ./BuildPipes/buildfolder.yml # Template reference
+            parameters:
+              folder: "WebMapping"
+              isFullBuild: ${{parameters.isFullBuild}}
+          - template: ./BuildPipes/stagefolder.yml # Template reference
+            parameters:
+              folder: "WebMapping"
+              isFullBuild: ${{parameters.isFullBuild}}
+              deploy: ${{parameters.deploy}}
+
+      - job: WebServices_BatchBuild_3
+        pool:
+          vmImage: "windows-2019"
+        steps:
+          - template: ./BuildPipes/installdependencies.yml
+
+          # ------------------------------------ OData Build ------------------------------------
+          - template: ./BuildPipes/buildfolder.yml # Template reference
+            parameters:
+              folder: "PTASOData"
+              isFullBuild: ${{parameters.isFullBuild}}
+          - template: ./BuildPipes/stagefolder.yml # Template reference
+            parameters:
+              folder: "PTASOData"
+              isFullBuild: ${{parameters.isFullBuild}}
+              deploy: ${{parameters.deploy}}
+
+          # ------------------------------------ PTASSema Build ------------------------------------
+          - template: ./BuildPipes/buildfolder.yml # Template reference
+            parameters:
+              folder: "PTASSema"
+              isFullBuild: ${{parameters.isFullBuild}}
+          - template: ./BuildPipes/stagefolder.yml # Template reference
+            parameters:
+              folder: "PTASSema"
+              isFullBuild: ${{parameters.isFullBuild}}
+              deploy: ${{parameters.deploy}}
+
+      - job: WebServices_BatchBuild_4
+        pool:
+          vmImage: "windows-2019"
+        steps:
+          - template: ./BuildPipes/installdependencies.yml
+
+          # ------------------------------------ PTASDynamicsInterface Build ------------------------------------
+          - template: ./BuildPipes/buildfolder.yml # Template reference
+            parameters:
+              folder: "PTASDynamicsInterface"
+              isFullBuild: ${{parameters.isFullBuild}}
+          - template: ./BuildPipes/publishproject.yml
+            parameters:
+              folder: "PTASDynamicsInterface"
+              netCoreProject: "PTASDynamicsInterface/**/PTASDynamicsCrudCore.csproj"
+              isFullBuild: ${{parameters.isFullBuild}}
+              deploy: ${{parameters.deploy}}
+          - template: ./BuildPipes/stagefolder.yml # Template reference
+            parameters:
+              folder: "PTASDynamicsInterface"
+              isFullBuild: ${{parameters.isFullBuild}}
+              deploy: ${{parameters.deploy}}
+
+          # ------------------------------------ PTASCommon Build ------------------------------------
+          - template: ./BuildPipes/buildfolder.yml # Template reference
+            parameters:
+              folder: "PTASCommon"
+              isFullBuild: ${{parameters.isFullBuild}}
+          - template: ./BuildPipes/stagefolder.yml # Template reference
+            parameters:
+              folder: "PTASCommon"
+              isFullBuild: ${{parameters.isFullBuild}}
+              deploy: ${{parameters.deploy}}
+
+      - job: WebServices_BatchBuild_5
+        pool:
+          vmImage: "windows-2019"
+        steps:
+          - template: ./BuildPipes/installdependencies.yml
+
+          # ------------------------------------ MediaFolderSync Build ------------------------------------
+          - template: ./BuildPipes/buildfolder.yml # Template reference
+            parameters:
+              folder: "MediaFolderSync"
+              isFullBuild: ${{parameters.isFullBuild}}
+              useNugetRestoreCommand: true
+              aditionalNugetRestoreSteps:
+                - task: DotNetCoreCLI@2
+                  condition: or(eq(variables['TargetFolderChangedMediaFolderSync.FolderChanged'], 'True'), ${{parameters.isFullBuild}})
+                  inputs:
+                    command: restore
+                    projects: "MediaFolderSync/**/PTASFunctionMediaInfo.csproj"
+                    feedsToUse: "select"
+                    vstsFeed: "Stable"
+                    includeNuGetOrg: true
+          - template: ./BuildPipes/stagefolder.yml # Template reference
+            parameters:
+              folder: "MediaFolderSync"
+              isFullBuild: ${{parameters.isFullBuild}}
+              deploy: ${{parameters.deploy}}
+
+          # ------------------------------------ DeploymentHealthService Build ------------------------------------
+          - template: ./BuildPipes/buildfolder.yml # Template reference
+            parameters:
+              folder: "DeploymentHealthService"
+              isFullBuild: ${{parameters.isFullBuild}}
+              useNugetRestoreCommand: true
+              aditionalNugetRestoreSteps:
+                - task: NuGetCommand@2
+                  condition: or(eq(variables['TargetFolderChangedDeploymentHealthService.FolderChanged'], 'True'), ${{parameters.isFullBuild}})
+                  inputs:
+                    restoreSolution: "ILinxConnector/**/*.sln"
+                    feedsToUse: "select"
+                    vstsFeed: "Stable"
+          - template: ./BuildPipes/publishproject.yml
+            parameters:
+              folder: "DeploymentHealthService"
+              isNetCoreProject: false
+              netFrameworkSolution: "DeploymentHealthService/**/DeploymentHealthService.sln"
+              netFrameworkTargetProject: "DeploymentHealthService"
+              isFullBuild: ${{parameters.isFullBuild}}
+              deploy: ${{parameters.deploy}}
+          - template: ./BuildPipes/stagefolder.yml # Template reference
+            parameters:
+              folder: "DeploymentHealthService"
+              isFullBuild: ${{parameters.isFullBuild}}
+              deploy: ${{parameters.deploy}}
+
+      - job: WebServices_BatchBuild_6
+        pool:
+          vmImage: "windows-2019"
+        steps:
+          - template: ./BuildPipes/installdependencies.yml
+
+          # ------------------------------------ ILinxConnector Build ------------------------------------
+          - template: ./BuildPipes/buildfolder.yml # Template reference
+            parameters:
+              folder: "ILinxConnector"
+              isFullBuild: ${{parameters.isFullBuild}}
+              useNugetRestoreCommand: true
+          - template: ./BuildPipes/publishproject.yml
+            parameters:
+              folder: "ILinxConnector"
+              isNetCoreProject: false
+              netFrameworkSolution: "ILinxConnector/**/PTASILinxConnector.sln"
+              netFrameworkTargetProject: "PTASIlinxService"
+              isFullBuild: ${{parameters.isFullBuild}}
+              deploy: ${{parameters.deploy}}
+          - template: ./BuildPipes/stagefolder.yml # Template reference
+            parameters:
+              folder: "ILinxConnector"
+              isFullBuild: ${{parameters.isFullBuild}}
+              deploy: ${{parameters.deploy}}
+
+          # ------------------------------------ PTASCustomSearches Build ------------------------------------
+          - ${{ if eq(parameters.deployKubernetes, true) }}:
+              - template: ./BuildPipes/buildfolder.yml
+                parameters:
+                  folder: "PTASCustomSearches"
+                  isFullBuild: true
+          - ${{ if ne(parameters.deployKubernetes, true) }}:
+              - template: ./BuildPipes/buildfolder.yml
+                parameters:
+                  folder: "PTASCustomSearches"
+                  isFullBuild: ${{parameters.isFullBuild}}
+
+          - ${{ if eq(parameters.deployKubernetes, true) }}:
+              - template: ./BuildPipes/publishproject.yml
+                parameters:
+                  folder: "PTASCustomSearches"
+                  netCoreProject: "PTASCustomSearches/**/CustomSearchesWorker.csproj"
+                  isFullBuild: true
+                  deploy: ${{parameters.deploy}}
+                  arguments: -p:PublishProfile=FolderProfile
+
+          - ${{ if eq(parameters.deployKubernetes, true) }}:
+              - template: ./BuildPipes/stagefolder.yml # Template reference
+                parameters:
+                  folder: "PTASCustomSearches"
+                  isFullBuild: true
+                  deploy: ${{parameters.deploy}}
+          - ${{ if ne(parameters.deployKubernetes, true) }}:
+              - template: ./BuildPipes/stagefolder.yml # Template reference
+                parameters:
+                  folder: "PTASCustomSearches"
+                  isFullBuild: ${{parameters.isFullBuild}}
+                  deploy: ${{parameters.deploy}}
+
+      - job: NPM_Batch_Build
+        pool:
+          vmImage: "windows-2019"
+        steps:
+          # ------------------------------------ SeniorsPortal Build ------------------------------------
+          - template: ./BuildPipes/buildportalfolder.yml # Template reference
+            parameters:
+              folder: "SeniorsPortal"
+              isFullBuild: ${{parameters.isFullBuild}}
+              deploymentEnv: "${{parameters.deploymentEnv}}"
+              deploy: ${{parameters.deploy}}
+              npmCommands:
+                ["install copyfiles -g", "run installIESupport", "run build"]
+
+          # ------------------------------------ RedactionDynamics Build ------------------------------------
+          - template: ./BuildPipes/buildportalfolder.yml # Template reference
+            parameters:
+              folder: "RedactionDynamics"
+              isFullBuild: ${{parameters.isFullBuild}}
+              deploymentEnv: "${{parameters.deploymentEnv}}"
+              deploy: ${{parameters.deploy}}
+              npmCommands: ["install", "run build"]
+
+          # ------------------------------------ NpmDrop Publish ------------------------------------
+          - task: PublishBuildArtifacts@1
+            condition: and(or(or(variables['TargetFolderChangedSeniorsPortal.FolderChanged'], variables['TargetFolderChangedRedactionDynamics.FolderChanged']), ${{parameters.isFullBuild}}), ${{parameters.deploy}})
+            displayName: Publish Binaries
+            inputs:
+              pathToPublish: $(Build.ArtifactStagingDirectory)
+              artifactName: NpmDrop
+
+      - job: NPM_Batch_Build2
+        pool:
+          vmImage: "windows-2019"
+        steps:
+          - task: PowerShell@2
+            condition: ne(${{parameters.isFullBuild}}, True)
+            name: CustomSearchesChanged
+            inputs:
+              targetType: "filePath"
+              filePath: "AzurePipes/Script/CheckIfFolderModifiedGit.ps1"
+              arguments: -folder 'PTASPortals/Source/CustomSearches/*'
+          - task: PowerShell@2
+            condition: ne(${{parameters.isFullBuild}}, True)
+            name: MapboxControlChanged
+            inputs:
+              targetType: "filePath"
+              filePath: "AzurePipes/Script/CheckIfFolderModifiedGit.ps1"
+              arguments: -folder 'PTASPortals/Source/MapboxControl/*'
+
+          # ------------------------------------ CustomSearches Build ------------------------------------
+          - template: ./BuildPipes/buildportalfolder.yml # Template reference
+            parameters:
+              folder: "CustomSearches"
+              forceBuild: or(variables['MapboxControlChanged.FolderChanged'], variables['CustomSearchesChanged.FolderChanged'])
+              isFullBuild: ${{parameters.isFullBuild}}
+              deploymentEnv: "${{parameters.deploymentEnv}}"
+              deploy: ${{parameters.deploy}}
+              npmCommands: ["install", "run build"]
+
+          # ------------------------------------ MapboxControl Build ------------------------------------
+          - template: ./BuildPipes/buildportalfolder.yml # Template reference
+            parameters:
+              folder: "MapboxControl"
+              forceBuild: or(variables['MapboxControlChanged.FolderChanged'], variables['CustomSearchesChanged.FolderChanged'])
+              isFullBuild: ${{parameters.isFullBuild}}
+              deploymentEnv: "${{parameters.deploymentEnv}}"
+              deploy: ${{parameters.deploy}}
+              npmCommands: ["install", "run build"]
+
+          # ------------------------------------ NpmDrop Publish ------------------------------------
+          - task: PublishBuildArtifacts@1
+            condition: and(or(or(variables['CustomSearchesChanged.FolderChanged'], variables['MapboxControlChanged.FolderChanged']), ${{parameters.isFullBuild}}), ${{parameters.deploy}})
+            displayName: Publish Binaries
+            inputs:
+              pathToPublish: $(Build.ArtifactStagingDirectory)
+              artifactName: NpmDropCustomSearchesMapControl
+
+  - stage: DeployPreRequisites
+    condition: ${{parameters.deploy}}
+    jobs:
+      - deployment: DeployPreRequisites
+        pool:
+          vmImage: "windows-2019"
+        environment: "WebApps - ${{parameters.deploymentEnv}}"
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+                - template: ./ReleasePipes/deployprereq.yml # Template reference
+                  parameters:
+                    armName: "SignalR"
+                    deploymentSubscription: ${{parameters.deploymentSubscription}}
+                    deploymentResourceGroup: "${{parameters.deploymentResourceGroup}}"
+                    deploymentEnv: "${{parameters.deploymentEnv}}"
+                    deploymentLocation: "${{parameters.deploymentLocation}}"
+                    forcePreReqDeployment: "${{parameters.forcePreReqDeployment}}"
+                - template: ./ReleasePipes/deployprereq.yml # Template reference
+                  parameters:
+                    armName: "appinsights"
+                    deploymentSubscription: ${{parameters.deploymentSubscription}}
+                    deploymentResourceGroup: "${{parameters.deploymentResourceGroup}}"
+                    deploymentEnv: "${{parameters.deploymentEnv}}"
+                    deploymentLocation: "${{parameters.deploymentLocation}}"
+                    forcePreReqDeployment: "${{parameters.forcePreReqDeployment}}"
+                - template: ./ReleasePipes/deployprereq.yml # Template reference
+                  parameters:
+                    armName: "consumptionappserviceplan"
+                    deploymentSubscription: ${{parameters.deploymentSubscription}}
+                    deploymentResourceGroup: "${{parameters.deploymentResourceGroup}}"
+                    deploymentEnv: "${{parameters.deploymentEnv}}"
+                    deploymentLocation: "${{parameters.deploymentLocation}}"
+                    forcePreReqDeployment: "${{parameters.forcePreReqDeployment}}"
+                - template: ./ReleasePipes/deployprereq.yml # Template reference
+                  parameters:
+                    armName: "storage"
+                    deploymentSubscription: ${{parameters.deploymentSubscription}}
+                    deploymentResourceGroup: "${{parameters.deploymentResourceGroup}}"
+                    deploymentEnv: "${{parameters.deploymentEnv}}"
+                    deploymentLocation: "${{parameters.deploymentLocation}}"
+                    forcePreReqDeployment: "${{parameters.forcePreReqDeployment}}"
+                - template: ./ReleasePipes/deployprereq.yml # Template reference
+                  parameters:
+                    armName: "storagepremium"
+                    deploymentSubscription: ${{parameters.deploymentSubscription}}
+                    deploymentResourceGroup: "${{parameters.deploymentResourceGroup}}"
+                    deploymentEnv: "${{parameters.deploymentEnv}}"
+                    deploymentLocation: "${{parameters.deploymentLocation}}"
+                    forcePreReqDeployment: "${{parameters.forcePreReqDeployment}}"
+                - template: ./ReleasePipes/deployprereq.yml # Template reference
+                  parameters:
+                    armName: "cognitiveservices"
+                    deploymentSubscription: ${{parameters.deploymentSubscription}}
+                    deploymentResourceGroup: "${{parameters.deploymentResourceGroup}}"
+                    deploymentEnv: "${{parameters.deploymentEnv}}"
+                    deploymentLocation: "${{parameters.deploymentLocation}}"
+                    forcePreReqDeployment: "${{parameters.forcePreReqDeployment}}"
+                - template: ./ReleasePipes/deployprereq.yml # Template reference
+                  parameters:
+                    armName: "servicebus"
+                    deploymentSubscription: ${{parameters.deploymentSubscription}}
+                    deploymentResourceGroup: "${{parameters.deploymentResourceGroup}}"
+                    deploymentEnv: "${{parameters.deploymentEnv}}"
+                    deploymentLocation: "${{parameters.deploymentLocation}}"
+                    forcePreReqDeployment: "${{parameters.forcePreReqDeployment}}"
+
+  - stage: Deploy
+    condition: ${{parameters.deploy}}
+    dependsOn: [Build, DeployPreRequisites]
+    jobs:
+      - deployment: WebServices_Deploy_1
+        pool:
+          vmImage: "windows-2019"
+        environment: "WebApps - ${{parameters.deploymentEnv}} - No Approval"
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+
+                # ------------------------------------ WebMapping Deploy ------------------------------------
+                - template: ./ReleasePipes/azurefunctiondeploy.yml # Template reference
+                  parameters:
+                    folder: "WebMapping"
+                    isFullBuild: ${{parameters.isFullBuild}}
+                    armName: "webmapping"
+                    webAppName: "PTAS-${{parameters.deploymentEnv}}-MapTileServices"
+                    packagePath: "$(System.ArtifactsDirectory)/WebMapping/WebMappingNetDrop/WebMapping/Source/WebMapping/MapTileFunctions/bin/debug/netcoreapp3.1"
+                    deploymentSubscription: ${{parameters.deploymentSubscription}}
+                    deploymentResourceGroup: "${{parameters.deploymentResourceGroup}}"
+                    deploymentEnv: "${{parameters.deploymentEnv}}"
+                    deploymentLocation: "${{parameters.deploymentLocation}}"
+
+                # ------------------------------------ PTASOData CAMA Deploy ------------------------------------
+                - template: ./ReleasePipes/azurefunctiondeploy.yml # Template reference
+                  parameters:
+                    folder: "PTASOData"
+                    isFullBuild: ${{parameters.isFullBuild}}
+                    armName: "odata"
+                    webAppName: "PTAS-${{parameters.deploymentEnv}}-ODataServices"
+                    packagePath: "$(System.ArtifactsDirectory)/PTASOData/PTASODataNetDrop/PTASOData/Source/PTASOData/PTASODataFunctions/bin/debug/netcoreapp3.1"
+                    deploymentSubscription: ${{parameters.deploymentSubscription}}
+                    deploymentResourceGroup: "${{parameters.deploymentResourceGroup}}"
+                    deploymentEnv: "${{parameters.deploymentEnv}}"
+                    deploymentLocation: "${{parameters.deploymentLocation}}"
+
+                # ------------------------------------ PTASCustomSearches Deploy ------------------------------------
+                - template: ./ReleasePipes/azurefunctiondeploy.yml # Template reference
+                  parameters:
+                    folder: "PTASCustomSearches"
+                    isFullBuild: ${{parameters.isFullBuild}}
+                    armName: "customsearchesfunctions"
+                    webAppName: "PTAS-${{parameters.deploymentEnv}}-CustomSearchesFunctions"
+                    packagePath: "$(System.ArtifactsDirectory)/PTASCustomSearches/PTASCustomSearchesNetDrop/PTASCustomSearches/Source/CustomSearches/CustomSearchesBE/CustomSearchesServices/CustomSearchesFunctions/bin/debug/netcoreapp3.1"
+                    deploymentSubscription: ${{parameters.deploymentSubscription}}
+                    deploymentResourceGroup: "${{parameters.deploymentResourceGroup}}"
+                    deploymentEnv: "${{parameters.deploymentEnv}}"
+                    deploymentLocation: "${{parameters.deploymentLocation}}"
+
+      - deployment: WebServices_Deploy_2
+        pool:
+          vmImage: "windows-2019"
+        environment: "WebApps - ${{parameters.deploymentEnv}} - No Approval"
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+
+                # ------------------------------------ PTASSema Deploy ------------------------------------
+                - template: ./ReleasePipes/azurefunctiondeploy.yml # Template reference
+                  parameters:
+                    folder: "PTASSema"
+                    isFullBuild: ${{parameters.isFullBuild}}
+                    armName: "semasignalr"
+                    webAppName: "PTAS-${{parameters.deploymentEnv}}-SemaSignalR"
+                    packagePath: "$(System.ArtifactsDirectory)/PTASSema/PTASSemaNetDrop/PTASSEMA/Source/PTASSEMA/PTASSEMA/bin/debug/netcoreapp3.1"
+                    deploymentSubscription: ${{parameters.deploymentSubscription}}
+                    deploymentResourceGroup: "${{parameters.deploymentResourceGroup}}"
+                    deploymentEnv: "${{parameters.deploymentEnv}}"
+                    deploymentLocation: "${{parameters.deploymentLocation}}"
+
+                # ------------------------------------ MediaFolderSync Deploy ------------------------------------
+                - template: ./ReleasePipes/azurefunctiondeploy.yml # Template reference
+                  parameters:
+                    folder: "MediaFolderSync"
+                    isFullBuild: ${{parameters.isFullBuild}}
+                    armName: "mediainfo"
+                    webAppName: "PTAS-${{parameters.deploymentEnv}}-MediaInfo"
+                    packagePath: "$(System.ArtifactsDirectory)/MediaFolderSync/MediaFolderSyncNetDrop/MediaFolderSync/Source/MediaFolderSync/PTASFunctionMediaInfo/bin/debug/netcoreapp3.1"
+                    deploymentSubscription: ${{parameters.deploymentSubscription}}
+                    deploymentResourceGroup: "${{parameters.deploymentResourceGroup}}"
+                    deploymentEnv: "${{parameters.deploymentEnv}}"
+                    deploymentLocation: "${{parameters.deploymentLocation}}"
+
+                # ------------------------------------ PTASOData Treasury Deploy ------------------------------------
+                - template: ./ReleasePipes/azurefunctiondeploy.yml # Template reference
+                  parameters:
+                    folder: "PTASOData"
+                    isFullBuild: ${{parameters.isFullBuild}}
+                    armName: "odatatreasury"
+                    webAppName: "PTAS-${{parameters.deploymentEnv}}-ODataServices-Treasury"
+                    packagePath: "$(System.ArtifactsDirectory)/PTASOData/PTASODataNetDrop/PTASOData/Source/PTASOData/PTASODataFunctions/bin/debug/netcoreapp3.1"
+                    deploymentSubscription: ${{parameters.deploymentSubscription}}
+                    deploymentResourceGroup: "${{parameters.deploymentResourceGroup}}"
+                    deploymentEnv: "${{parameters.deploymentEnv}}"
+                    deploymentLocation: "${{parameters.deploymentLocation}}"
+
+      - deployment: WebServices_Deploy_3
+        pool:
+          vmImage: "windows-2019"
+        environment: "WebApps - ${{parameters.deploymentEnv}} - No Approval"
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+
+                # ------------------------------------ ILinxConnector Deploy ------------------------------------
+                - template: ./ReleasePipes/webappdeploy4.yml # Template reference
+                  parameters:
+                    folder: "ILinxConnector"
+                    isFullBuild: ${{parameters.isFullBuild}}
+                    armName: "documentstorageservices"
+                    webAppName: "PTAS-${{parameters.deploymentEnv}}-DocumentStorageServices"
+                    packagePath: "$(System.ArtifactsDirectory)/ILinxConnector/ILinxConnectorNetDrop/ILinxConnector/Source/ILinxConnector/PTASILinxService/bin/Release/Publish"
+                    deploymentSubscription: ${{parameters.deploymentSubscription}}
+                    deploymentResourceGroup: "${{parameters.deploymentResourceGroup}}"
+                    deploymentEnv: "${{parameters.deploymentEnv}}"
+                    deploymentLocation: "${{parameters.deploymentLocation}}"
+
+                # ------------------------------------ DeploymentHealthService Deploy ------------------------------------
+                - template: ./ReleasePipes/webappdeploy4.yml # Template reference
+                  parameters:
+                    folder: "DeploymentHealthService"
+                    isFullBuild: ${{parameters.isFullBuild}}
+                    armName: "healthservices"
+                    webAppName: "PTAS-${{parameters.deploymentEnv}}-HealthServices"
+                    packagePath: "$(System.ArtifactsDirectory)/DeploymentHealthService/DeploymentHealthServiceNetDrop/DeploymentHealthService/Source/DeploymentHealthService/bin/Release/Publish"
+                    deploymentSubscription: ${{parameters.deploymentSubscription}}
+                    deploymentResourceGroup: "${{parameters.deploymentResourceGroup}}"
+                    deploymentEnv: "${{parameters.deploymentEnv}}"
+                    deploymentLocation: "${{parameters.deploymentLocation}}"
+
+                # ------------------------------------ PTASOData Historical Deploy ------------------------------------
+                - template: ./ReleasePipes/azurefunctiondeploy.yml # Template reference
+                  parameters:
+                    folder: "PTASOData"
+                    isFullBuild: ${{parameters.isFullBuild}}
+                    armName: "odatahistorical"
+                    webAppName: "PTAS-${{parameters.deploymentEnv}}-ODataServices-Historical"
+                    packagePath: "$(System.ArtifactsDirectory)/PTASOData/PTASODataNetDrop/PTASOData/Source/PTASOData/PTASODataFunctions/bin/debug/netcoreapp3.1"
+                    deploymentSubscription: ${{parameters.deploymentSubscription}}
+                    deploymentResourceGroup: "${{parameters.deploymentResourceGroup}}"
+                    deploymentEnv: "${{parameters.deploymentEnv}}"
+                    deploymentLocation: "${{parameters.deploymentLocation}}"
+
+      - deployment: WebServices_Deploy_4
+        pool:
+          vmImage: "windows-2019"
+        environment: "WebApps - ${{parameters.deploymentEnv}} - No Approval"
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+
+                # ------------------------------------ CustomSearches/Mapbox Deploy ------------------------------------
+                - template: ./ReleasePipes/portaltwowebappdeploy.yml # Template reference
+                  parameters:
+                    folder1: "mapboxcontrol"
+                    folder2: "customsearches"
+                    isFullBuild: ${{parameters.isFullBuild}}
+                    armName: "ptastools"
+                    webAppName: "PTAS-${{parameters.deploymentEnv}}-Tools"
+                    deploymentSubscription: ${{parameters.deploymentSubscription}}
+                    deploymentResourceGroup: "${{parameters.deploymentResourceGroup}}"
+                    deploymentEnv: "${{parameters.deploymentEnv}}"
+                    artifactName: "NpmDropCustomSearchesMapControl"
+                    deploymentLocation: "${{parameters.deploymentLocation}}"
+
+                # ------------------------------------ PTASDynamicsInterface Deploy ------------------------------------
+                - template: ./ReleasePipes/webappdeploy.yml # Template reference
+                  parameters:
+                    folder: "PTASDynamicsInterface"
+                    isFullBuild: ${{parameters.isFullBuild}}
+                    armName: "dataservices"
+                    webAppName: "PTAS-${{parameters.deploymentEnv}}-DataServices"
+                    packagePath: "$(System.ArtifactsDirectory)/PTASDynamicsInterface/PTASDynamicsInterfaceNetDrop/PTASDynamicsInterface/source/PTASDynamicsInterface/PTASDynamicsCrudCore/bin/Release/netcoreapp2.1/publish.zip"
+                    deploymentSubscription: ${{parameters.deploymentSubscription}}
+                    deploymentResourceGroup: "${{parameters.deploymentResourceGroup}}"
+                    deploymentEnv: "${{parameters.deploymentEnv}}"
+                    deploymentLocation: "${{parameters.deploymentLocation}}"
+
+                # ------------------------------------ PTASOData Cama And Historical Deploy ------------------------------------
+                - template: ./ReleasePipes/azurefunctiondeploy.yml # Template reference
+                  parameters:
+                    folder: "PTASOData"
+                    isFullBuild: ${{parameters.isFullBuild}}
+                    armName: "odatacamaandhistorical"
+                    webAppName: "PTAS-${{parameters.deploymentEnv}}-ODataServices-CamaAndHistorical"
+                    packagePath: "$(System.ArtifactsDirectory)/PTASOData/PTASODataNetDrop/PTASOData/Source/PTASOData/PTASODataFunctions/bin/debug/netcoreapp3.1"
+                    deploymentSubscription: ${{parameters.deploymentSubscription}}
+                    deploymentResourceGroup: "${{parameters.deploymentResourceGroup}}"
+                    deploymentEnv: "${{parameters.deploymentEnv}}"
+                    deploymentLocation: "${{parameters.deploymentLocation}}"
+
+      - deployment: WebServices_Deploy_5
+        pool:
+          vmImage: "windows-2019"
+        environment: "WebApps - ${{parameters.deploymentEnv}} - No Approval"
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+
+                # ------------------------------------ SeniorsPortal Deploy ------------------------------------
+                - template: ./ReleasePipes/portalwebappdeploy.yml # Template reference
+                  parameters:
+                    folder: "SeniorsPortal"
+                    isFullBuild: ${{parameters.isFullBuild}}
+                    armName: "seniorportal"
+                    webAppName: "PTAS-${{parameters.deploymentEnv}}-SeniorsPortal"
+                    deploymentSubscription: ${{parameters.deploymentSubscription}}
+                    deploymentResourceGroup: "${{parameters.deploymentResourceGroup}}"
+                    deploymentEnv: "${{parameters.deploymentEnv}}"
+                    deploymentLocation: "${{parameters.deploymentLocation}}"
+
+                # ------------------------------------ Authentication Deploy ------------------------------------
+                - template: ./ReleasePipes/webappdeploy.yml # Template reference
+                  parameters:
+                    folder: "Authentication"
+                    isFullBuild: ${{parameters.isFullBuild}}
+                    armName: "magiclinkservice"
+                    webAppName: "PTAS-${{parameters.deploymentEnv}}-MagicLinkService"
+                    packagePath: "$(System.ArtifactsDirectory)/Authentication/AuthenticationNetDrop/Authentication/Source/MagicLinkService/MagicLinkService/bin/Release/netcoreapp2.2/publish.zip"
+                    deploymentSubscription: ${{parameters.deploymentSubscription}}
+                    deploymentResourceGroup: "${{parameters.deploymentResourceGroup}}"
+                    deploymentEnv: "${{parameters.deploymentEnv}}"
+                    deploymentLocation: "${{parameters.deploymentLocation}}"
+
+                # ------------------------------------ PTASSyncService Deploy ------------------------------------
+                - template: ./ReleasePipes/webappdeploy.yml # Template reference
+                  parameters:
+                    folder: "PTASMobileConnectors"
+                    isFullBuild: ${{parameters.isFullBuild}}
+                    armName: "syncservices"
+                    webAppName: "PTAS-${{parameters.deploymentEnv}}-SyncService"
+                    packagePath: "$(System.ArtifactsDirectory)/PTASMobileConnectors/PTASMobileConnectorsNetDrop/PTASMobileConnectors/Source/PTASSyncService/bin/Release/netcoreapp2.1/publish.zip"
+                    deploymentSubscription: ${{parameters.deploymentSubscription}}
+                    deploymentResourceGroup: "${{parameters.deploymentResourceGroup}}"
+                    deploymentEnv: "${{parameters.deploymentEnv}}"
+                    deploymentLocation: "${{parameters.deploymentLocation}}"
+
+      - deployment: WebServices_Deploy_6
+        pool:
+          vmImage: "windows-2019"
+        environment: "WebApps - ${{parameters.deploymentEnv}} - No Approval"
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+
+                # ------------------------------------ RedactionDynamics Deploy ------------------------------------
+                - template: ./ReleasePipes/portalwebappdeploy.yml # Template reference
+                  parameters:
+                    folder: "RedactionDynamics"
+                    isFullBuild: ${{parameters.isFullBuild}}
+                    armName: "redactiondynamics"
+                    webAppName: "PTAS-${{parameters.deploymentEnv}}-RedactionDynamics"
+                    deploymentSubscription: ${{parameters.deploymentSubscription}}
+                    deploymentResourceGroup: "${{parameters.deploymentResourceGroup}}"
+                    deploymentEnv: "${{parameters.deploymentEnv}}"
+                    deploymentLocation: "${{parameters.deploymentLocation}}"
+
+                # ------------------------------------ PTAS Sharepoint Functions Deploy ------------------------------------
+                - template: ./ReleasePipes/azurefunctiondeploy.yml # Template reference
+                  parameters:
+                    folder: "ILinxConnector"
+                    isFullBuild: ${{parameters.isFullBuild}}
+                    armName: "sharepointfunctions"
+                    webAppName: "PTAS-${{parameters.deploymentEnv}}-SharepointFunctions"
+                    packagePath: "$(System.ArtifactsDirectory)/ILinxConnector/ILinxConnectorNetDrop/ILinxConnector/Source/ILinxConnector/PTASSharepointFunctions/bin/debug/netcoreapp3.1"
+                    deploymentSubscription: ${{parameters.deploymentSubscription}}
+                    deploymentResourceGroup: "${{parameters.deploymentResourceGroup}}"
+                    deploymentEnv: "${{parameters.deploymentEnv}}"
+                    deploymentLocation: "${{parameters.deploymentLocation}}"
+
+                # ------------------------------------ Sketch Website Deploy ------------------------------------
+                - template: ./ReleasePipes/staticwebsitedeploy.yml # Template reference
+                  parameters:
+                    isFullBuild: ${{parameters.isFullBuild}}
+                    targetFolderChangePath: "PTAS_Sketch/wwwroot/*"
+                    deploymentEnv: "${{parameters.deploymentEnv}}"
+                    deploymentSubscription: "${{parameters.deploymentSubscription}}"
+                    deploymentResourceGroup: "${{parameters.deploymentResourceGroup}}"
+                    filePath: "$(Build.SourcesDirectory)/PTAS_Sketch/wwwroot"
+
+      - deployment: WebServices_Deploy_7
+        pool:
+          vmImage: "windows-2019"
+        environment: "WebApps - ${{parameters.deploymentEnv}} - No Approval"
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+
+                # ------------------------------------ PTAS Import Connector Functions Deploy ------------------------------------
+                - template: ./ReleasePipes/azurefunctiondeploy.yml # Template reference
+                  parameters:
+                    folder: "PTASMobileConnectors"
+                    isFullBuild: ${{parameters.isFullBuild}}
+                    armName: "importconnectors"
+                    webAppName: "PTAS-${{parameters.deploymentEnv}}-importconnector-function"
+                    packagePath: "$(System.ArtifactsDirectory)/PTASMobileConnectors/PTASMobileConnectorsNetDrop/PTASMobileConnectors/Source/PTASImportConnector/PTASImportConnector/bin/Debug/netcoreapp3.1"
+                    deploymentSubscription: ${{parameters.deploymentSubscription}}
+                    deploymentResourceGroup: "${{parameters.deploymentResourceGroup}}"
+                    deploymentEnv: "${{parameters.deploymentEnv}}"
+                    deploymentLocation: "${{parameters.deploymentLocation}}"
+
+                # ------------------------------------ PTAS Web Hook Functions Deploy ------------------------------------
+                - template: ./ReleasePipes/azurefunctiondeploy.yml # Template reference
+                  parameters:
+                    folder: "PTASDynamicsToSQLSynchronizer"
+                    isFullBuild: ${{parameters.isFullBuild}}
+                    armName: "webhook"
+                    webAppName: "PTAS-${{parameters.deploymentEnv}}-dynamics2sqlbridgewebhook-function"
+                    packagePath: "$(System.ArtifactsDirectory)/PTASDynamicsToSQLSynchronizer/PTASDynamicsToSQLSynchronizerNetDrop/PTASDynamicsToSQLSynchronizer/Source/PTASDynamicsToSQLSynchronizer/PTASDynamicsWebhook/bin/Debug/netcoreapp3.1"
+                    deploymentSubscription: ${{parameters.deploymentSubscription}}
+                    deploymentResourceGroup: "${{parameters.deploymentResourceGroup}}"
+                    deploymentEnv: "${{parameters.deploymentEnv}}"
+                    deploymentLocation: "${{parameters.deploymentLocation}}"
+
+                # ------------------------------------ PTASCustomSearches Valuation Deploy ------------------------------------
+                - template: ./ReleasePipes/azurefunctiondeploy.yml # Template reference
+                  parameters:
+                    folder: "PTASCustomSearches"
+                    isFullBuild: ${{parameters.isFullBuild}}
+                    armName: "customsearchesvaluationfunctions"
+                    webAppName: "PTAS-${{parameters.deploymentEnv}}-CustomSearchesValuationFunctions"
+                    packagePath: "$(System.ArtifactsDirectory)/PTASCustomSearches/PTASCustomSearchesNetDrop/PTASCustomSearches/Source/CustomSearches/CustomSearchesValuationBE/CustomSearchesServices/CustomSearchesValuationFunctions/bin/debug/netcoreapp3.1"
+                    deploymentSubscription: ${{parameters.deploymentSubscription}}
+                    deploymentResourceGroup: "${{parameters.deploymentResourceGroup}}"
+                    deploymentEnv: "${{parameters.deploymentEnv}}"
+                    deploymentLocation: "${{parameters.deploymentLocation}}"
+
+  - stage: PostDeploy
+    condition: ${{parameters.deploy}}
+    jobs:
+      - deployment: PostDeploy
+        pool:
+          vmImage: "windows-2019"
+        environment: "WebApps - ${{parameters.deploymentEnv}} - No Approval"
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+                - task: AzurePowerShell@4
+                  displayName: "Role Assignment"
+                  inputs:
+                    azureSubscription: "${{parameters.deploymentSubscription}}"
+                    ScriptPath: "AzurePipes/Script/RoleAssignment.ps1"
+                    ScriptArguments: '-DeploymentEnv "${{parameters.deploymentEnv}}" -DeploymentSqlEnv "${{parameters.deploymentEnvLong}}" -DeploymentResourceGroup ${{parameters.deploymentResourceGroup}} -DeployKeyVaultName ${{parameters.deploymentKeyVaultName}} -DeployPipeAppRegistration ${{parameters.deploymentAppRegistration}} -PtasAppRegistration ${{parameters.ptasAppRegistration}}'
+                    azurePowerShellVersion: LatestVersion
+                - task: AzurePowerShell@4
+                  displayName: "Prepare Environment"
+                  inputs:
+                    azureSubscription: "${{parameters.deploymentSubscription}}"
+                    ScriptPath: "AzurePipes/Script/PrepareEnvironment.ps1"
+                    ScriptArguments: "-DeploymentEnv ${{parameters.deploymentEnv}} -DeploymentSqlEnv ${{parameters.deploymentEnvLong}} -DeploymentResourceGroup ${{parameters.deploymentResourceGroup}} -DeploymentKeyVaultName ${{parameters.deploymentKeyVaultName}}"
+                    azurePowerShellVersion: LatestVersion
+                #- task: AzurePowerShell@4
+                #  condition: eq('${{parameters.deploymentEnv}}', 'DEV')
+                #  displayName: "Additional IP Access Restrictions"
+                #  inputs:
+                #    azureSubscription: "${{parameters.deploymentSubscription}}"
+                #    ScriptPath: "AzurePipes/Script/AddIPAccessRestrictionDev.ps1"
+                #    azurePowerShellVersion: LatestVersion
+                - task: AzurePowerShell@4
+                  displayName: "Download SSL Certs"
+                  inputs:
+                    azureSubscription: "Azure-Production"
+                    ScriptPath: "AzurePipes/Script/DownloadSslCerts.ps1"
+                    ScriptArguments: "-DeploymentSslKeyVaultName ${{parameters.deploymentSslKeyVaultName}} -DeploymentSslCertName ${{parameters.deploymentSslCertName}}"
+                    azurePowerShellVersion: LatestVersion
+                    enabled: true
+                - task: AzurePowerShell@4
+                  displayName: "Assign SSL Bindings"
+                  inputs:
+                    azureSubscription: "${{parameters.deploymentSubscription}}"
+                    ScriptPath: "AzurePipes/Script/ApplySslBindings.ps1"
+                    ScriptArguments: "-DeploymentEnvShort ${{parameters.deploymentEnv}} -DeploymentEnv ${{parameters.deploymentEnv}} -DeploymentResourceGroup ${{parameters.deploymentResourceGroup}} -DeploymentSslCertName ${{parameters.deploymentSslCertName}}"
+                    azurePowerShellVersion: LatestVersion
+                    enabled: true
+
+  - stage: SqlServerDeploy
+    condition: or(${{parameters.deploy}}, ${{parameters.deployData}})
+    dependsOn: [DeployPreRequisites]
+    jobs:
+      - deployment: SqlServerDeploy
+        timeoutInMinutes: 0
+        pool:
+          vmImage: "windows-2019"
+        environment: "WebApps - ${{parameters.deploymentEnv}} - No Approval"
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+                - task: AzureCLI@2
+                  displayName: "Sql Deployment"
+                  inputs:
+                    azureSubscription: "${{parameters.deploymentSubscription}}"
+                    scriptType: ps
+                    ScriptPath: "AzurePipes/Script/SqlServerDeployment.ps1"
+                    arguments: "-DatabaseServerName ${{parameters.databaseServerName}} -DatabaseName ${{parameters.databaseName}}"
+
+  - stage: SqlServerDynamicsTransfer
+    condition: ${{parameters.deployData}}
+    dependsOn: [SqlServerDeploy]
+    jobs:
+      - deployment: SqlServerDynamicsTransfer
+        condition: ${{parameters.deployData}}
+        timeoutInMinutes: 0
+        pool:
+          vmImage: "windows-2019"
+        environment: "WebApps - ${{parameters.deploymentEnv}} - No Approval"
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+                - task: AzureCLI@2
+                  displayName: "Sql Dynamics Transfer"
+                  inputs:
+                    azureSubscription: "${{parameters.deploymentSubscription}}"
+                    scriptType: ps
+                    ScriptPath: "AzurePipes/Script/SqlServerDynamicsTransfer.ps1"
+                    arguments: "-DeploymentEnv ${{parameters.deploymentEnv}} -DatabaseServerName ${{parameters.databaseServerName}} -DatabaseName ${{parameters.databaseName}} -DynamicsUrl ${{parameters.dynamicsUrl}} -KeyVaultName ${{parameters.deploymentKeyVaultName}}"
+
+      - ${{ each table in parameters.dynamicsLargeTables }}:
+          - deployment:
+            condition: ${{parameters.deployData}}
+            timeoutInMinutes: 0
+            displayName: ${{ table }}
+            pool:
+              vmImage: "windows-2019"
+            environment: "WebApps - ${{parameters.deploymentEnv}} - No Approval"
+            strategy:
+              runOnce:
+                deploy:
+                  steps:
+                    - checkout: self
+                    - task: AzureCLI@2
+                      displayName: "Sql Dynamics Transfer"
+                      inputs:
+                        azureSubscription: "${{parameters.deploymentSubscription}}"
+                        scriptType: ps
+                        ScriptPath: "AzurePipes/Script/SqlServerDynamicsTransfer.ps1"
+                        arguments: "-DeploymentEnv ${{parameters.deploymentEnv}} -DatabaseServerName ${{parameters.databaseServerName}} -DatabaseName ${{parameters.databaseName}} -DynamicsUrl ${{parameters.dynamicsUrl}} -KeyVaultName ${{parameters.deploymentKeyVaultName}} -SpecificTable ${{ table }}"
+
+  - stage: IntegrationTests
+    condition: ${{parameters.runItegrationTests}}
+    dependsOn: []
+    jobs:
+      - job: IntegrationTests_Batch1
+        pool:
+          vmImage: "windows-2019"
+        steps:
+          - template: ./BuildPipes/installdependencies.yml
+
+          # ------------------------------------ Authentication Build ------------------------------------
+          - template: ./BuildPipes/runintegrationtests.yml # Template reference
+            parameters:
+              folder: "PTASOData/Source/PTASOData"
+              deploymentEnv: "${{parameters.deploymentEnv}}"
+
+  - stage: KubernetesDeploy
+    condition: and(${{parameters.deploy}}, ${{parameters.deployKubernetes}})
+    dependsOn: [DeployPreRequisites]
+    jobs:
+      - deployment: KubernetesDeploy
+        pool:
+          vmImage: "windows-2019"
+        environment: "WebApps - ${{parameters.deploymentEnv}} - No Approval"
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+                - task: ExtractFiles@1
+                  inputs:
+                    archiveFilePatterns: "$(Pipeline.Workspace)/PTASCustomSearchesNetDrop/PTASCustomSearches/Source/CustomSearches/CustomSearchesBE/CustomSearchesWorkers/CustomSearchesWorker/bin/Release/netcoreapp3.1/publish.zip"
+                    destinationFolder: "$(Pipeline.Workspace)/PTASCustomSearchesNetDrop/PTASCustomSearches/Source/CustomSearches/CustomSearchesBE/CustomSearchesWorkers/CustomSearchesWorker/bin/Release/netcoreapp3.1/publish"
+                    archiveType: "zip"
+                - task: PowerShell@2
+                  name: GetFileVersion
+                  inputs:
+                    targetType: "inline" # Optional. Options: filePath, inline
+                    script: |
+                      $version = (Get-Item CustomSearchesWorker.exe).VersionInfo.FileVersion
+                      Write-Host "##vso[task.setvariable variable=FileVersion;isOutput=true]v$($version)"
+                    workingDirectory: "$(Pipeline.Workspace)/PTASCustomSearchesNetDrop/PTASCustomSearches/Source/CustomSearches/CustomSearchesBE/CustomSearchesWorkers/CustomSearchesWorker/bin/Release/netcoreapp3.1/publish"
+                - task: AzureCLI@2
+                  name: ReplaceInFiles
+                  inputs:
+                    azureSubscription: "${{parameters.deploymentSubscription}}"
+                    scriptType: ps
+                    scriptLocation: inlineScript
+                    inlineScript: |
+                      Write-Host 'Worker Version: ' + $(GetFileVersion.FileVersion)                      
+                      $env = '${{parameters.deploymentEnv}}'.ToLower()               
+                      $clientId = $(az keyvault secret show --name "ptas-$($env)-app-clientid" --vault-name "${{parameters.deploymentKeyVaultName}}" --query '{SecretValue:value}' -o tsv)
+                      $clientSecret = $(az keyvault secret show --name "ptas-$($env)-app-secret" --vault-name "${{parameters.deploymentKeyVaultName}}" --query '{SecretValue:value}' -o tsv)                      
+                      Write-Host "Client id: $($clientId)"   
+                      az account set --subscription ${{parameters.kubernetesSubscriptionId}}                      
+                      $workerClientId = $(az identity create -g DunphyAKSTest -n ptas-$env-customsearchesworker-identity --query '{Identity:clientId}' -o tsv)                      
+                      Write-Host "Worker client id: $($workerClientId)"  
+                      ((Get-Content -path .\Namespace.yaml -Raw) -replace '{Env}', $env) | Set-Content -Path .\Namespace.yaml
+                      ((Get-Content -path .\AzureIdentity.yaml -Raw) -replace '{Env}', $env) | Set-Content -Path .\AzureIdentity.yaml
+                      ((Get-Content -path .\AzureIdentity.yaml -Raw) -replace '{KubernetesSubscriptionId}', '${{parameters.kubernetesSubscriptionId}}') | Set-Content -Path .\AzureIdentity.yaml
+                      ((Get-Content -path .\AzureIdentity.yaml -Raw) -replace '{KubernetesResourceGroup}', '${{parameters.kubernetesResourceGroup}}') | Set-Content -Path .\AzureIdentity.yaml
+                      ((Get-Content -path .\AzureIdentity.yaml -Raw) -replace '{WorkerIdentityClientId}', $workerClientId) | Set-Content -Path .\AzureIdentity.yaml
+                      ((Get-Content -path .\AzureIdentityBinding.yaml -Raw) -replace '{Env}', $env) | Set-Content -Path .\AzureIdentityBinding.yaml
+                      ((Get-Content -path .\CustomSearchesWorker.yaml -Raw) -replace '{Env}', $env) | Set-Content -Path .\CustomSearchesWorker.yaml
+                      ((Get-Content -path .\CustomSearchesWorker.yaml -Raw) -replace '{Version}', '$(GetFileVersion.FileVersion)') | Set-Content -Path .\CustomSearchesWorker.yaml                                       
+                      ((Get-Content -path ..\app.settings.json -Raw) -replace '{SqlServerName}', '${{parameters.databaseServerName}}') | Set-Content -Path ..\app.settings.json
+                      ((Get-Content -path ..\app.settings.json -Raw) -replace '{DatabaseName}', '${{parameters.databaseName}}') | Set-Content -Path ..\app.settings.json
+                      ((Get-Content -path ..\app.settings.json -Raw) -replace '{Env}', $env) | Set-Content -Path ..\app.settings.json                      
+                      ((Get-Content -path ..\app.settings.json -Raw) -replace '{CrmBaseAddress}', '${{parameters.dynamicsUrl}}') | Set-Content -Path ..\app.settings.json
+                      ((Get-Content -path ..\app.settings.json -Raw) -replace '{DynamicsClientSecret}', $clientSecret) | Set-Content -Path ..\app.settings.json
+                      ((Get-Content -path ..\app.settings.json -Raw) -replace '{DynamicsClientId}', $clientId) | Set-Content -Path ..\app.settings.json
+                    workingDirectory: $(Build.SourcesDirectory)/PTASCustomSearches/Source/CustomSearches/CustomSearchesBE/CustomSearchesWorkers/CustomSearchesWorker/Kubernetes
+                - task: CopyFiles@2
+                  inputs:
+                    contents: "$(Build.SourcesDirectory)/PTASCustomSearches/Source/CustomSearches/CustomSearchesBE/CustomSearchesWorkers/CustomSearchesWorker/app.settings.json"
+                    targetFolder: "$(Pipeline.Workspace)/PTASCustomSearchesNetDrop/PTASCustomSearches/Source/CustomSearches/CustomSearchesBE/CustomSearchesWorkers/CustomSearchesWorker/bin/Release/netcoreapp3.1/publish"
+                    OverWrite: true
+                    flattenFolders: true
+                - task: ArchiveFiles@2
+                  inputs:
+                    rootFolderOrFile: "$(Pipeline.Workspace)/PTASCustomSearchesNetDrop/PTASCustomSearches/Source/CustomSearches/CustomSearchesBE/CustomSearchesWorkers/CustomSearchesWorker/bin/Release/netcoreapp3.1/publish"
+                    includeRootFolder: false
+                    archiveType: "zip"
+                    archiveFile: "$(Build.SourcesDirectory)/PTASCustomSearches/Source/CustomSearches/CustomSearchesBE/CustomSearchesWorkers/CustomSearchesWorker/Docker/CustomSearchesWorker.zip"
+                - task: AzureCLI@2
+                  displayName: DeployDocker
+                  inputs:
+                    azureSubscription: "${{parameters.deploymentSubscription}}"
+                    scriptType: ps
+                    scriptLocation: inlineScript
+                    inlineScript: |
+                      $env = '${{parameters.deploymentEnv}}'.ToLower()               
+                      az account set --subscription ${{parameters.kubernetesSubscriptionId}}                
+                      az acr login --name ${{parameters.dockerImageRepository}}                      
+                      docker build -t servercore/customsearchesworker-$($env):$(GetFileVersion.FileVersion) . 
+                      docker tag servercore/customsearchesworker-$($env):$(GetFileVersion.FileVersion) ${{parameters.dockerImageRepository}}.azurecr.io/servercore/customsearchesworker-$($env):$(GetFileVersion.FileVersion)
+                      docker push ${{parameters.dockerImageRepository}}.azurecr.io/servercore/customsearchesworker-$($env):$(GetFileVersion.FileVersion)
+                    workingDirectory: $(Build.SourcesDirectory)/PTASCustomSearches/Source/CustomSearches/CustomSearchesBE/CustomSearchesWorkers/CustomSearchesWorker/Docker
+                - task: AzureCLI@2
+                  displayName: ApplyAKSConfig
+                  inputs:
+                    azureSubscription: "${{parameters.deploymentSubscription}}"
+                    scriptType: ps
+                    scriptLocation: inlineScript
+                    inlineScript: |
+                      $env = '${{parameters.deploymentEnv}}'.ToLower()
+                      az account set --subscription ${{parameters.kubernetesSubscriptionId}}
+                      az aks get-credentials --resource-group ${{parameters.kubernetesResourceGroup}} --name ${{parameters.kubernetesClusterName}} --admin
+                      $fileContents = get-content .\Namespace.yaml
+                      write-host "Namespace.yaml file contents: $($fileContents)"
+                      kubectl apply -f .\Namespace.yaml --namespace ptas-$env
+                      $fileContents = get-content .\AzureIdentity.yaml
+                      write-host "AzureIdentity.yaml file contents: $($fileContents)"
+                      kubectl apply -f .\AzureIdentity.yaml --namespace ptas-$env
+                      $fileContents = get-content .\AzureIdentityBinding.yaml
+                      write-host "AzureIdentityBinding.yaml file contents: $($fileContents)"
+                      kubectl apply -f .\AzureIdentityBinding.yaml --namespace ptas-$env
+                      $fileContents = get-content .\CustomSearchesWorker.yaml
+                      write-host "CustomSearchesWorker.yaml file contents: $($fileContents)"
+                      kubectl apply -f .\CustomSearchesWorker.yaml --namespace ptas-$env
+                    workingDirectory: $(Build.SourcesDirectory)/PTASCustomSearches/Source/CustomSearches/CustomSearchesBE/CustomSearchesWorkers/CustomSearchesWorker/Kubernetes

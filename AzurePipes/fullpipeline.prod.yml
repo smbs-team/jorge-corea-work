@@ -1,0 +1,36 @@
+trigger:
+  branches:
+    include:
+      - master
+
+parameters:
+  - name: forcePreReqDeployment
+    type: boolean
+    default: false
+  - name: forceFullBuild
+    type: boolean
+    default: false
+  - name: deployData
+    type: boolean
+    default: false
+
+extends:
+  template: fullpipeline.yml
+  parameters:
+    isFullBuild: ${{parameters.forceFullBuild}}
+    deploy: true
+    deployData: ${{parameters.deployData}}
+    forcePreReqDeployment: ${{parameters.forcePreReqDeployment}}
+    deploymentResourceGroup: "ptas-production-resourcegroup"
+    deploymentEnv: "PROD"
+    deploymentEnvLong: "PRODUCTION"
+    deploymentLocation: "West US"
+    deploymentSubscription: "Azure-Production"
+    deploymentKeyVaultName: "ptas-prod-keyvault"
+    deploymentAppRegistration: "vsts-prod-reg"
+    ptasAppRegistration: "ptas-prod-app-seniorexemption"
+    deploymentSslKeyVaultName: sslcert-prod-keyvault
+    deploymentSslCertName: Azure-NamedEV-2021-05-07
+    databaseServerName: "Kcitazrsqluat01.database.windows.net"
+    databaseName: "PTASProduction"
+    dynamicsUrl: "https://ptas.crm9.dynamics.com"

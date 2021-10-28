@@ -1,0 +1,38 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: ptas-prdm-customsearches-worker
+    aadpodidbinding: ptas-prdm-customsearchesworker-identity
+  name: ptas-prdm-customsearches-worker-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ptas-prdm-customsearches-worker
+  template:
+    metadata:
+      labels:
+        app: ptas-prdm-customsearches-worker
+        aadpodidbinding: ptas-prdm-customsearchesworker-identity
+    spec:
+      containers:
+      - name: ptas-prdm-customsearches-worker
+        image: dunphyacrtest3.azurecr.io/servercore/customsearchesworker-prdm:1.15
+        imagePullPolicy: Always
+        volumeMounts:
+        - mountPath: "/mapserver/map-share"
+          name: layers-prdm-fileshare        
+      nodeSelector:
+        kubernetes.io/os: windows
+      tolerations:
+        - key: "kubernetes.io/os"
+          operator: "Equal"
+          value: "windows"
+          effect: "NoSchedule"
+      volumes:
+      - name: layers-prdm-fileshare
+        azureFile:
+          secretName: storage-secret-prdm
+          shareName: layers
+          readOnly: false

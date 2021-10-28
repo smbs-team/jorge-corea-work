@@ -1,0 +1,234 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "DeploymentEnv": {
+      "defaultValue": "SBOX",
+      "type": "String"
+    },
+    "SignalRSkuTier": {
+      "defaultValue": "Free",
+      "type": "String"
+    },
+    "CORSRulesURI": {
+      "defaultValue": "http://",
+      "type": "String"
+    }
+  },
+  "variables": {
+    "accountName": "[replace('ptas[Env]storage', '[Env]', toLower(parameters('DeploymentEnv')))]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Storage/storageAccounts",
+      "apiVersion": "2019-04-01",
+      "name": "[variables('accountName')]",
+      "location": "[resourceGroup().location]",
+      "sku": {
+        "name": "Standard_RAGRS",
+        "tier": "Standard"
+      },
+      "kind": "StorageV2",
+      "properties": {
+        "networkAcls": {
+          "bypass": "AzureServices",
+          "virtualNetworkRules": [],
+          "ipRules": [],
+          "defaultAction": "Allow"
+        },
+        "supportsHttpsTrafficOnly": true,
+        "encryption": {
+          "services": {
+            "file": {
+              "enabled": true
+            },
+            "blob": {
+              "enabled": true
+            }
+          },
+          "keySource": "Microsoft.Storage"
+        },
+        "accessTier": "Hot"
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/providers/locks",
+      "apiVersion": "2016-09-01",
+      "name": "[concat(variables('accountName'), '/Microsoft.Authorization/storageLock')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts', variables('accountName'))]"
+      ],
+      "properties": {
+        "level": "CanNotDelete",
+        "notes": "storage account not be deleted."
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/blobServices",
+      "apiVersion": "2019-04-01",
+      "name": "[concat(variables('accountName'), '/default')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts', variables('accountName'))]"
+      ],
+      "properties": {
+        "cors": {
+          "corsRules": [
+            {
+              "allowedOrigins": [
+                "[parameters('CORSRulesURI')]"
+              ],
+              "allowedMethods": [
+                "GET"
+              ],
+              "maxAgeInSeconds": 68542,
+              "exposedHeaders": [
+                "*"
+              ],
+              "allowedHeaders": [
+                "*"
+              ]
+            }
+          ]
+        },
+        "deleteRetentionPolicy": {
+          "enabled": true,
+          "days": 7
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+      "apiVersion": "2019-04-01",
+      "name": "[concat(variables('accountName'), '/default/ilinx')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts/blobServices', variables('accountName'), 'default')]",
+        "[resourceId('Microsoft.Storage/storageAccounts', variables('accountName'))]"
+      ],
+      "properties": {
+        "publicAccess": "None"
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+      "apiVersion": "2019-04-01",
+      "name": "[concat(variables('accountName'), '/default/media')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts/blobServices', variables('accountName'), 'default')]",
+        "[resourceId('Microsoft.Storage/storageAccounts', variables('accountName'))]"
+      ],
+      "properties": {
+        "publicAccess": "None"
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+      "apiVersion": "2019-04-01",
+      "name": "[concat(variables('accountName'), '/default/tilesource')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts/blobServices', variables('accountName'), 'default')]",
+        "[resourceId('Microsoft.Storage/storageAccounts', variables('accountName'))]"
+      ],
+      "properties": {
+        "publicAccess": "None"
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+      "apiVersion": "2019-04-01",
+      "name": "[concat(variables('accountName'), '/default/json-store')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts/blobServices', variables('accountName'), 'default')]",
+        "[resourceId('Microsoft.Storage/storageAccounts', variables('accountName'))]"
+      ],
+      "properties": {
+        "publicAccess": "None"
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+      "apiVersion": "2019-04-01",
+      "name": "[concat(variables('accountName'), '/default/json-store-processed')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts/blobServices', variables('accountName'), 'default')]",
+        "[resourceId('Microsoft.Storage/storageAccounts', variables('accountName'))]"
+      ],
+      "properties": {
+        "publicAccess": "None"
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+      "apiVersion": "2019-04-01",
+      "name": "[concat(variables('accountName'), '/default/sketch')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts/blobServices', variables('accountName'), 'default')]",
+        "[resourceId('Microsoft.Storage/storageAccounts', variables('accountName'))]"
+      ],
+      "properties": {
+        "publicAccess": "None"
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+      "apiVersion": "2019-04-01",
+      "name": "[concat(variables('accountName'), '/default/sketch-files')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts/blobServices', variables('accountName'), 'default')]",
+        "[resourceId('Microsoft.Storage/storageAccounts', variables('accountName'))]"
+      ],
+      "properties": {
+        "publicAccess": "None"
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+      "apiVersion": "2019-04-01",
+      "name": "[concat(variables('accountName'), '/default/portalb2clogintemplates')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts/blobServices', variables('accountName'), 'default')]",
+        "[resourceId('Microsoft.Storage/storageAccounts', variables('accountName'))]"
+      ],
+      "properties": {
+        "publicAccess": "Blob"
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+      "apiVersion": "2019-04-01",
+      "name": "[concat(variables('accountName'), '/default/rscript')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts/blobServices', variables('accountName'), 'default')]",
+        "[resourceId('Microsoft.Storage/storageAccounts', variables('accountName'))]"
+      ],
+      "properties": {
+        "publicAccess": "Blob"
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/fileServices/shares",
+      "apiVersion": "2021-01-01",
+      "name": "[concat(variables('accountName'), '/default/layers')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts', variables('accountName'))]"
+      ],
+      "properties": {
+        "accessTier": "TransactionOptimized",
+        "shareQuota": 5120,
+        "enabledProtocols": "SMB"
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/fileServices/shares",
+      "apiVersion": "2021-01-01",
+      "name": "[concat(variables('accountName'), '/default/syncdb')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts', variables('accountName'))]"
+      ],
+      "properties": {
+        "accessTier": "TransactionOptimized",
+        "shareQuota": 5120,
+        "enabledProtocols": "SMB"
+      }
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "CustomSearchesValuationFunctions": {
+      "commandName": "Project",
+      "launchUrl": "http://localhost:7071/"
+    }
+  }
+}

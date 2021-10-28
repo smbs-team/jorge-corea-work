@@ -1,0 +1,52 @@
+{
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "..\\..\\..\\PTASCommon\\Source\\PTASNPMCommon\\@ptas\\react-ui-library"
+    },
+    {
+      "path": "..\\customsearches"
+    },
+    {
+      "path": "..\\eAppeals"
+    }
+  ],
+  "settings": {
+    "cSpell.words": [
+      "Accy",
+      "Accys",
+      "bbox",
+      "classbreak",
+      "clickaway",
+      "codemirror",
+      "constate",
+      "coord",
+      "datasetid",
+      "Descr",
+      "devexpress",
+      "Eappeals",
+      "KINGCO",
+      "mapboxcontrol",
+      "mapboxgl",
+      "maxzoom",
+      "moveend",
+      "multipolygon",
+      "Nbhd",
+      "Pcnt",
+      "polylabel",
+      "ptas",
+      "rearg",
+      "Resizer",
+      "rgba",
+      "SIGNALR",
+      "Unmount",
+      "unproject",
+      "upsert",
+      "usermap",
+      "uuidv"
+    ],
+    "liveServer.settings.multiRootWorkspaceName": null
+  }
+}

@@ -1,0 +1,36 @@
+.missing-requirements {
+  width: 100%;
+  display: inline-flex;
+  margin: auto;
+  color: #d20000;
+  text-align: left;
+}
+
+.missing-requirements ul {
+  margin-bottom: 0;
+}
+
+.missing-requirements li {
+  margin-left: 3em;
+  margin-bottom: 0;
+  color: black;
+}
+
+.missing-requirements p {
+}
+
+body .missing-requirements a {
+  text-decoration: underline;
+  font-weight: 400;
+  color: #d20000;
+}
+
+body .missing-requirements a:hover {
+  text-decoration: none;
+  color: #a20000;
+}
+
+.missing-requirements-icon {
+  width: 2em !important;
+  height: 2em !important;
+}

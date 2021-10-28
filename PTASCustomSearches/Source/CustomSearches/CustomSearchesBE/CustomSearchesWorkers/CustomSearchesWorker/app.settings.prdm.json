@@ -1,0 +1,24 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AdminRoles": "System Administrator;Assessment Admin",
+    "SQLServerConnectionString": "Server=tcp:Kcitazrsqluat01.database.windows.net,1433;Initial Catalog=PTAStrain;Persist Security Info=False;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;",
+    "SQLServerDataConnectionString": "Server=tcp:Kcitazrsqluat01.database.windows.net,1433;Initial Catalog=PTAStrain;Persist Security Info=False;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;",
+    "StorageConnectionString": "DefaultEndpointsProtocol=https;AccountName=ptasprdmstorage;EndpointSuffix=core.windows.net",
+    "PremiumStorageConnectionString": "DefaultEndpointsProtocol=https;AccountName=ptasprdmstoragepremium;EndpointSuffix=core.windows.net",
+    "DynamicsODataUri": "https://ptas-training.crm9.dynamics.com",
+    "DynamicsApiRoute": "/api/data/v9.1/",
+    "DynamicsAuthUri": "https://login.windows.net/KC1.onmicrosoft.com",
+    "DynamicsClientSecret": "",
+    "DynamicsClientId": "7c90199b-50c5-4c38-8391-f193f1b868b6",
+    "AzureSignalRConnectionString": "Endpoint=https://ptas-prdm-signalr.service.signalr.net;AccessKey=XYZW;Version=1.0;",
+    "SignalRHubEndpoint": "https://ptas-prdm-customsearchesfunctions.azurewebsites.net/v2/api/workerhub",
+    "MapServerStorageSharePath": "C:\\MapServer\\map-share",
+    "OgrConnectionString": "",
+    "JobQueueSuffix": "",
+    "AllowCoordinatorToExit": false
+  },
+  "Host": {
+    "CORS": "*"
+  }
+}

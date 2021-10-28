@@ -1,0 +1,18 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AdminRoles": "System Administrator;Assessment Admin",
+    "SQLServerConnectionString": "Server={SqlServerName};Initial Catalog={DatabaseName};Persist Security Info=False;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;",
+    "SQLServerDataConnectionString": "Server={SqlServerName};Initial Catalog={DatabaseName};Persist Security Info=False;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;",
+    "StorageConnectionString": "DefaultEndpointsProtocol=https;AccountName=ptas{Env}storage;EndpointSuffix=core.windows.net",
+    "DynamicsODataUri": "{CrmBaseAddress}",
+    "DynamicsApiRoute": "/api/data/v9.1/",
+    "DynamicsAuthUri": "https://login.windows.net/KC1.onmicrosoft.com",
+    "DynamicsClientSecret": "{DynamicsClientSecret}",
+    "DynamicsClientId": "{DynamicsClientId}",
+    "JobQueueSuffix": ""
+  },
+  "Host": {
+    "CORS": "*"
+  }
+}

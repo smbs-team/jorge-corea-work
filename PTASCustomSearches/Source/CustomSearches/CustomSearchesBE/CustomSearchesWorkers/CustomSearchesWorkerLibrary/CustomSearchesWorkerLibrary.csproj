@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DynamicInterop" Version="0.9.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.12" />
+    <PackageReference Include="PTASCRMHelpers" Version="1.0.6" />
+    <PackageReference Include="PTASServicesCommon" Version="1.0.18" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\CustomSearchesServices\CustomSearchesServicesLibrary\CustomSearchesServicesLibrary.csproj" />
+    <ProjectReference Include="..\BaseWorkerLibrary\BaseWorkerLibrary.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="RDotNet">
+      <HintPath>Dependencies\RNet\RDotNet.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

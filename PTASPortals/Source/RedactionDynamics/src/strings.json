@@ -1,0 +1,11 @@
+{
+  "loading": "Getting document information...",
+  "loadingImages": "Loading images, please wait some images will take a few seconds to complete the download process.",
+  "saving": "Saving...",
+  "isSaved": "The image information has been saved, you can close the window now.",
+  "error": "Error: ",
+  "notFoundError": "The document was not found with the given identifier, or you don't have rights to access it.",
+  "failedToFetch": "Failed to connect. Please verify that you are connected to the internet or try accessing the image again.",
+  "noImagesFound": "This document does not contain images. Only images are supported on this tool.",
+  "expiredSession": "Your session has expired, please access the image again to renew the session."
+}

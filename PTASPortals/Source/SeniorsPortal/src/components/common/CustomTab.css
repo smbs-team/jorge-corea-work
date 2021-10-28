@@ -1,0 +1,48 @@
+.custom-tab {
+  margin: auto;
+}
+
+.menu-icon {
+  margin-right: 5px;
+}
+
+.menu-text * {
+  font-size: 0.9rem !important;
+}
+
+.list-item {
+  text-align: center !important;
+}
+
+.drawer {
+  position: absolute;
+  left: 0;
+  top: 49px;
+}
+
+@media (max-width: 599px) {
+  .styled-tab {
+    min-width: 130px !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  .menu-icon {
+    width: auto !important;
+    height: 33px !important;
+    margin-right: 10px;
+  }
+
+  .menu-text * {
+    font-size: 1.25rem !important;
+    text-align: left;
+  }
+
+  .list-item {
+    text-align: left !important;
+  }
+
+  .tabs-app-bar {
+    max-height: 49px;
+  }
+}

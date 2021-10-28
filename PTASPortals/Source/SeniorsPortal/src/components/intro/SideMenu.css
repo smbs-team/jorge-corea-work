@@ -1,0 +1,14 @@
+.side-menu-list {
+  padding: 0 !important;
+}
+
+.side-menu-header {
+  font-size: 1rem;
+  font-weight: bold;
+  color: black;
+}
+
+.side-menu-item {
+  border-bottom: 1px solid black !important;
+  padding: 4px 8px !important;
+}

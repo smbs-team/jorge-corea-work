@@ -1,0 +1,71 @@
+parameters:
+- name: folder
+  type: string 
+  default: "Authentication"
+- name: armName
+  type: string 
+  default: ""
+- name: webAppName
+  type: string 
+  default: ""
+- name: packagePath
+  type: string 
+  default: ""
+- name: deploymentSubscription
+  type: string 
+  default: ""
+- name: deploymentResourceGroup
+  type: string 
+  default: ""
+- name: deploymentEnv
+  type: string 
+  default: ""
+- name: deploymentLocation
+  type: string 
+  default: ""
+- name: isFullBuild
+  type: boolean
+  default: True
+
+
+steps:
+  - task: PowerShell@2
+    condition: ne(${{parameters.isFullBuild}}, True)
+    name: TargetFolderChanged${{parameters.folder}}
+    inputs:
+      targetType: 'filePath'
+      filePath: 'AzurePipes/Script/CheckIfFolderModifiedGit.ps1'
+      arguments: -folder '${{parameters.folder}}/*'
+  - task: PowerShell@2
+    condition: ne(${{parameters.isFullBuild}}, True)
+    name: TargetArmFileChanged${{parameters.folder}}
+    inputs:
+      targetType: 'filePath'
+      filePath: 'AzurePipes/Script/CheckIfFolderModifiedGit.ps1'
+      arguments: -folder "AzurePipes/ReleasePipes/ARM/WebApps/${{parameters.armName}}.arm"
+  - task: DownloadBuildArtifacts@0
+    condition: or(eq(variables['TargetFolderChanged${{parameters.folder}}.FolderChanged'], 'True'),  ${{parameters.isFullBuild}})
+    displayName: "Download ${{parameters.folder}} Artifact"
+    inputs:
+        buildType: 'current'
+        downloadType: 'single'
+        downloadPath: "$(System.ArtifactsDirectory)/${{parameters.folder}}"
+        artifactName: "${{parameters.folder}}NetDrop"
+  - task: AzureResourceGroupDeployment@2
+    condition: or(eq(variables['TargetArmFileChanged${{parameters.folder}}.FolderChanged'], 'True'),  ${{parameters.isFullBuild}})
+    displayName: "Deploy ${{parameters.folder}} ARM"
+    inputs:
+      azureSubscription: ${{parameters.deploymentSubscription}}
+      resourceGroupName: "${{parameters.deploymentResourceGroup}}"
+      location: "$(deploymentLocation)"
+      csmFile: "$(Build.SourcesDirectory)/AzurePipes/ReleasePipes/ARM/WebApps/${{parameters.armName}}.arm"
+      csmParametersFile: "$(Build.SourcesDirectory)/AzurePipes/ReleasePipes/ARM/WebApps/webapps-parameters.${{parameters.deploymentEnv}}.json"
+      enabled: true
+  - task: AzureRmWebAppDeployment@4
+    condition: or(or(eq(variables['TargetFolderChanged${{parameters.folder}}.FolderChanged'], 'True'), eq(variables['TargetArmFileChanged${{parameters.folder}}.FolderChanged'], 'True')), ${{parameters.isFullBuild}})
+    displayName: "Azure Wep App Deploy4: ${{parameters.webAppName}}"
+    inputs:
+      azureSubscription: ${{parameters.deploymentSubscription}}
+      WebAppName: "${{parameters.webAppName}}"
+      packageForLinux: "${{parameters.packagePath}}"
+      enabled: true

@@ -1,0 +1,12 @@
+﻿	LAYER
+		PROJECTION
+			"+init={LayerProjection}"
+		END
+		
+		NAME "{LayerName}"
+		DATA "{LayerConnectionPath}"
+	    TYPE RASTER
+		DEBUG 5
+	    STATUS ON
+	    DUMP TRUE
+	END

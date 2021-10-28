@@ -1,0 +1,10 @@
+﻿[*.cs]
+
+# SA1629: Documentation text should end with a period
+dotnet_diagnostic.SA1629.severity = warning
+
+# SA1612: Element parameter documentation should match element parameters
+dotnet_diagnostic.SA1612.severity = warning
+
+# SA1625: Element documentation should not be copied and pasted
+dotnet_diagnostic.SA1625.severity = warning

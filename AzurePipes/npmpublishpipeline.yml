@@ -1,0 +1,23 @@
+stages:
+  - stage: NPMPublish
+    jobs:
+      - deployment: NPMPublish
+        pool:
+          vmImage: "windows-2019"
+        environment: "WebApps - Dev - No Approval"
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+                - task: Npm@1
+                  inputs:
+                    command: "install"
+                    workingDir: "PTASCommon/Source/PTASNPMCommon/@ptas/react-ui-library"
+                - task: Npm@1
+                  displayName: "npm publish"
+                  inputs:
+                    command: publish
+                    workingDir: "PTASCommon/Source/PTASNPMCommon/@ptas/react-ui-library"
+                    publishRegistry: useFeed
+                    publishFeed: "c60202ca-6470-424f-9919-eca75b4fce63"

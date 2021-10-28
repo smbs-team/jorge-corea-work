@@ -1,0 +1,44 @@
+trigger:
+  branches:
+    include:
+      - development
+
+parameters:
+  - name: forcePreReqDeployment
+    type: boolean
+    default: false
+  - name: forceFullBuild
+    type: boolean
+    default: false
+  - name: deployData
+    type: boolean
+    default: false
+  - name: deployKubernetes
+    type: boolean
+    default: false
+
+
+
+extends:
+  template: fullpipeline.yml
+  parameters:
+    isFullBuild: ${{parameters.forceFullBuild}}
+    deploy: true
+    deployData: ${{parameters.deployData}}
+    deployKubernetes: ${{parameters.deployKubernetes}}
+    forcePreReqDeployment: ${{parameters.forcePreReqDeployment}}
+    deploymentResourceGroup: "ptas-dev-resourcegroup"
+    deploymentEnv: "DEV"
+    deploymentEnvLong: "DEV"
+    deploymentLocation: "West US"
+    deploymentSubscription: "Azure-Dev"
+    deploymentKeyVaultName: "ptas-dev-keyvault"
+    deploymentAppRegistration: "vsts-dev-reg"
+    ptasAppRegistration: "ptas-dev-app-seniorexemption"
+    deploymentSslKeyVaultName: sslcert-prod-keyvault
+    deploymentSslCertName: AZURE-Wildcard-KINGCOUNTY-GOV
+    databaseServerName: "kcitazrsqldev01.database.windows.net"
+    databaseName: "PTAS"
+    #databaseServerName: "ptas-sbox-dbserver.database.windows.net"
+    #databaseName: "ptas-sbox-developmentdb"
+    dynamicsUrl: "https://ptas-dev.crm9.dynamics.com"

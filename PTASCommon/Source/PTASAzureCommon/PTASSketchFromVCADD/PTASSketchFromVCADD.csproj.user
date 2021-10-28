@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
+    <StartAction>Project</StartAction>
+    <StartArguments>a3cc749c-36cc-41d2-baa4-41e6d22ba5a8.xml a3cc749c-36cc-41d2-baa4-41e6d22ba5a83.json a3cc749c-36cc-41d2-baa4-41e6d22ba5a8.svg</StartArguments>
+    <StartWorkingDirectory>..\..\..\..\..\..\Downloads\24 June 500 errors</StartWorkingDirectory>
+    <ExternalConsole>true</ExternalConsole>
+  </PropertyGroup>
+</Project>

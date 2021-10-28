@@ -1,0 +1,42 @@
+parameters:
+- name: folder
+  type: string 
+  default: "Authentication"
+- name: netFrameworkSolution
+  type: string 
+  default: ""
+- name: netFrameworkTargetProject
+  type: string 
+  default: ""
+- name: netCoreProject
+  type: string 
+  default: ""
+- name: isFullBuild
+  type: boolean
+  default: true
+- name: deploy
+  type: boolean
+  default: true
+- name: isNetCoreProject
+  type: boolean
+  default: true
+- name: arguments
+  type: string
+  default: ""
+
+
+steps:
+    - task: DotNetCoreCLI@2
+      condition: and(and(or(eq(variables['TargetFolderChanged${{parameters.folder}}.FolderChanged'], 'True'), ${{parameters.isFullBuild}}), ${{parameters.isNetCoreProject}}), ${{parameters.deploy}})
+      inputs:
+        command: publish
+        projects: "${{parameters.netCoreProject}}"
+        publishWebProjects: false
+        arguments: "--configuration Release ${{parameters.arguments}}"
+    - task: VSBuild@1
+      condition: and(and(or(eq(variables['TargetFolderChanged${{parameters.folder}}.FolderChanged'], 'True'), ${{parameters.isFullBuild}}), ne(${{parameters.isNetCoreProject}}, true)), ${{parameters.deploy}})
+      inputs:
+        solution: "${{parameters.netFrameworkSolution}}"
+        msbuildArgs: /p:SkipInvalidConfigurations=true /P:DeployOnBuild=true /P:PublishProfile=FolderProfile.pubxml ${{parameters.arguments}}
+        platform: "Any CPU"
+        configuration: "Release"

@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <CodeAnalysisRuleSet>..\PTASLinxConnector.ruleset</CodeAnalysisRuleSet>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <CodeAnalysisRuleSet>..\PTASLinxConnector.ruleset</CodeAnalysisRuleSet>
+    </PropertyGroup>
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{88DDAE09-22D2-41A4-BC3B-BD006CC52C4F}</ProjectGuid>
+        <OutputType>Library</OutputType>
+        <AppDesignerFolder>Properties</AppDesignerFolder>
+        <RootNamespace>ILinxSoapImport</RootNamespace>
+        <AssemblyName>ILinxSoapImport</AssemblyName>
+        <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+        <FileAlignment>512</FileAlignment>
+        <Deterministic>true</Deterministic>
+        <TargetFrameworkProfile />
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\Release\</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <ItemGroup>
+        <AdditionalFiles Include="stylecop.json" />
+    </ItemGroup>
+    <ItemGroup>
+        <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+            <HintPath>..\packages\Serilog.2.9.0\lib\net46\Serilog.dll</HintPath>
+        </Reference>
+        <Reference Include="System" />
+        <Reference Include="System.Core" />
+        <Reference Include="System.Runtime.Serialization" />
+        <Reference Include="System.ServiceModel" />
+        <Reference Include="System.Web" />
+        <Reference Include="System.Xml.Linq" />
+        <Reference Include="System.Data.DataSetExtensions" />
+        <Reference Include="Microsoft.CSharp" />
+        <Reference Include="System.Data" />
+        <Reference Include="System.Net.Http" />
+        <Reference Include="System.Xml" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="Exceptions\DocumentNotFoundException.cs" />
+        <Compile Include="Exceptions\EmptyDocException.cs" />
+        <Compile Include="Exceptions\FileDoesNotExistException.cs" />
+        <Compile Include="Exceptions\FilesDoNotMatchException.cs" />
+        <Compile Include="Exceptions\IlinxLoginFailedException.cs" />
+        <Compile Include="IILinxHelper.cs" />
+        <Compile Include="ILinxHelper.cs" />
+        <Compile Include="Connected Services\EdmsService\Reference.cs">
+            <AutoGen>True</AutoGen>
+            <DesignTime>True</DesignTime>
+            <DependentUpon>Reference.svcmap</DependentUpon>
+        </Compile>
+        <Compile Include="ContentStoreHelper.cs" />
+        <Compile Include="IContentStoreHelper.cs" />
+        <Compile Include="Exceptions\NeedFileException.cs" />
+        <Compile Include="Properties\AssemblyInfo.cs" />
+    </ItemGroup>
+    <ItemGroup>
+        <WCFMetadata Include="Connected Services\" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Include="app.config" />
+        <None Include="Connected Services\EdmsService\ContentStore.wsdl" />
+        <None Include="Connected Services\EdmsService\ContentStore.xsd">
+            <SubType>Designer</SubType>
+        </None>
+        <None Include="Connected Services\EdmsService\ContentStore1.xsd">
+            <SubType>Designer</SubType>
+        </None>
+        <None Include="Connected Services\EdmsService\ContentStore2.xsd">
+            <SubType>Designer</SubType>
+        </None>
+        <None Include="Connected Services\EdmsService\ContentStore3.xsd">
+            <SubType>Designer</SubType>
+        </None>
+        <None Include="Connected Services\EdmsService\ContentStore4.xsd">
+            <SubType>Designer</SubType>
+        </None>
+        <None Include="Connected Services\EdmsService\ContentStore5.xsd">
+            <SubType>Designer</SubType>
+        </None>
+        <None Include="Connected Services\EdmsService\ContentStore6.xsd">
+            <SubType>Designer</SubType>
+        </None>
+        <None Include="Connected Services\EdmsService\ContentStore7.xsd">
+            <SubType>Designer</SubType>
+        </None>
+        <None Include="Connected Services\EdmsService\ContentStore8.xsd">
+            <SubType>Designer</SubType>
+        </None>
+        <None Include="Connected Services\EdmsService\ContentStore9.xsd">
+            <SubType>Designer</SubType>
+        </None>
+        <None Include="Connected Services\EdmsService\ILinxSoapImport.EdmsService.AnnotationPermission.datasource">
+            <DependentUpon>Reference.svcmap</DependentUpon>
+        </None>
+        <None Include="Connected Services\EdmsService\ILinxSoapImport.EdmsService.CanCheckoutDocumentsResponse.datasource">
+            <DependentUpon>Reference.svcmap</DependentUpon>
+        </None>
+        <None Include="Connected Services\EdmsService\ILinxSoapImport.EdmsService.ContentStoreDocument.datasource">
+            <DependentUpon>Reference.svcmap</DependentUpon>
+        </None>
+        <None Include="Connected Services\EdmsService\ILinxSoapImport.EdmsService.ContentStoreDocumentMetaData.datasource">
+            <DependentUpon>Reference.svcmap</DependentUpon>
+        </None>
+        <None Include="Connected Services\EdmsService\ILinxSoapImport.EdmsService.ContentStoreDocumentVersionEntry.datasource">
+            <DependentUpon>Reference.svcmap</DependentUpon>
+        </None>
+        <None Include="Connected Services\EdmsService\ILinxSoapImport.EdmsService.DiscussionMessage.datasource">
+            <DependentUpon>Reference.svcmap</DependentUpon>
+        </None>
+        <None Include="Connected Services\EdmsService\ILinxSoapImport.EdmsService.FavoriteSearch.datasource">
+            <DependentUpon>Reference.svcmap</DependentUpon>
+        </None>
+        <None Include="Connected Services\EdmsService\ILinxSoapImport.EdmsService.IndexField.datasource">
+            <DependentUpon>Reference.svcmap</DependentUpon>
+        </None>
+        <None Include="Connected Services\EdmsService\ILinxSoapImport.EdmsService.IsRepositoryLinkedWithBatchProfileResponse.datasource">
+            <DependentUpon>Reference.svcmap</DependentUpon>
+        </None>
+        <None Include="Connected Services\EdmsService\ILinxSoapImport.EdmsService.LinkedServerTableSettings.datasource">
+            <DependentUpon>Reference.svcmap</DependentUpon>
+        </None>
+        <None Include="Connected Services\EdmsService\ILinxSoapImport.EdmsService.PicklistSortingType.datasource">
+            <DependentUpon>Reference.svcmap</DependentUpon>
+        </None>
+        <None Include="Connected Services\EdmsService\ILinxSoapImport.EdmsService.Repository.datasource">
+            <DependentUpon>Reference.svcmap</DependentUpon>
+        </None>
+        <None Include="Connected Services\EdmsService\ILinxSoapImport.EdmsService.RepositoryAssociation.datasource">
+            <DependentUpon>Reference.svcmap</DependentUpon>
+        </None>
+        <None Include="Connected Services\EdmsService\ILinxSoapImport.EdmsService.RetrieveDocument2Response.datasource">
+            <DependentUpon>Reference.svcmap</DependentUpon>
+        </None>
+        <None Include="Connected Services\EdmsService\ILinxSoapImport.EdmsService.RetrieveDocumentResponse.datasource">
+            <DependentUpon>Reference.svcmap</DependentUpon>
+        </None>
+        <None Include="Connected Services\EdmsService\ILinxSoapImport.EdmsService.RetrieveDocumentVersionResponse.datasource">
+            <DependentUpon>Reference.svcmap</DependentUpon>
+        </None>
+        <None Include="Connected Services\EdmsService\ILinxSoapImport.EdmsService.RunAdvanceSearchResponse.datasource">
+            <DependentUpon>Reference.svcmap</DependentUpon>
+        </None>
+        <None Include="Connected Services\EdmsService\ILinxSoapImport.EdmsService.RunGlobalSearchResponse.datasource">
+            <DependentUpon>Reference.svcmap</DependentUpon>
+        </None>
+        <None Include="Connected Services\EdmsService\ILinxSoapImport.EdmsService.RunSearchAdvancedForRepositoryAssociationsResponse.datasource">
+            <DependentUpon>Reference.svcmap</DependentUpon>
+        </None>
+        <None Include="Connected Services\EdmsService\ILinxSoapImport.EdmsService.SearchDatum.datasource">
+            <DependentUpon>Reference.svcmap</DependentUpon>
+        </None>
+        <None Include="Connected Services\EdmsService\ILinxSoapImport.EdmsService.User.datasource">
+            <DependentUpon>Reference.svcmap</DependentUpon>
+        </None>
+        <None Include="Connected Services\EdmsService\ILinxSoapImport.EdmsService.UserGroup.datasource">
+            <DependentUpon>Reference.svcmap</DependentUpon>
+        </None>
+        <None Include="Connected Services\EdmsService\ILinxSoapImport.EdmsService.UserGroupPermission.datasource">
+            <DependentUpon>Reference.svcmap</DependentUpon>
+        </None>
+        <None Include="Connected Services\EdmsService\ILinxSoapImport.EdmsService.View.datasource">
+            <DependentUpon>Reference.svcmap</DependentUpon>
+        </None>
+        <None Include="Connected Services\EdmsService\ILinxSoapImport.EdmsService.ViewPermission.datasource">
+            <DependentUpon>Reference.svcmap</DependentUpon>
+        </None>
+        <None Include="packages.config" />
+        <None Include="Properties\DataSources\System.Data.DataTable.datasource" />
+        <None Include="stylecop.json" />
+    </ItemGroup>
+    <ItemGroup>
+        <WCFMetadataStorage Include="Connected Services\EdmsService\" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Include="Connected Services\EdmsService\ContentStore.disco" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Include="Connected Services\EdmsService\configuration91.svcinfo" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Include="Connected Services\EdmsService\configuration.svcinfo" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Include="Connected Services\EdmsService\Reference.svcmap">
+            <Generator>WCF Proxy Generator</Generator>
+            <LastGenOutput>Reference.cs</LastGenOutput>
+        </None>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\PTASILinxConnectorHelperClasses\PTASILinxConnectorHelperClasses.csproj">
+            <Project>{ac1d9806-8912-4b85-9f21-e52f4fdfb836}</Project>
+            <Name>PTASILinxConnectorHelperClasses</Name>
+        </ProjectReference>
+        <ProjectReference Include="..\PTASTiffs\PTASTiffs.csproj">
+            <Project>{3349e56d-04bd-452a-b832-781bd99bb9f5}</Project>
+            <Name>PTASTiffs</Name>
+        </ProjectReference>
+    </ItemGroup>
+    <ItemGroup>
+        <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
+        <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

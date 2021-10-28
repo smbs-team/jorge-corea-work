@@ -1,0 +1,736 @@
+﻿namespace CustomSearchesServicesLibrary.CustomSearches.Services.CustomImporters
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using CustomSearchesEFLibrary.CustomSearches;
+    using CustomSearchesEFLibrary.CustomSearches.Model;
+    using CustomSearchesServicesLibrary.CustomSearches.Enumeration;
+    using CustomSearchesServicesLibrary.CustomSearches.Model.CustomImporters;
+    using CustomSearchesServicesLibrary.CustomSearches.Model.CustomSearches;
+    using CustomSearchesServicesLibrary.CustomSearches.Model.DatasetPostProcesses;
+    using CustomSearchesServicesLibrary.CustomSearches.ProjectBusinessLogic;
+    using CustomSearchesServicesLibrary.CustomSearches.Services.CustomSearches.InteractiveCharts;
+    using CustomSearchesServicesLibrary.Exception;
+    using CustomSearchesServicesLibrary.ServiceFramework;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Logging;
+    using Microsoft.WindowsAzure.Storage.Blob;
+
+    /// <summary>
+    /// Service that setups the land model creating the required post processes.
+    /// </summary>
+    public class SetupLandModelService : BaseService
+    {
+        /// <summary>
+        /// The land schedule post process role.
+        /// </summary>
+        private const string LandSchedulePostProcessRole = "LandSchedule";
+
+        /// <summary>
+        /// The non waterfront expressions post process role.
+        /// </summary>
+        private const string NonWaterfrontExpressionsPostProcessRole = "NonWaterfrontExpressions";
+
+        /// <summary>
+        /// The waterfront schedule post process role.
+        /// </summary>
+        private const string WaterfrontSchedulePostProcessRole = "WaterfrontSchedule";
+
+        /// <summary>
+        /// The waterfront expressions post process role.
+        /// </summary>
+        private const string WaterfrontExpressionsPostProcessRole = "WaterfrontExpressions";
+
+        /// <summary>
+        /// The land adjustment post process role.
+        /// </summary>
+        private const string LandAdjustmentPostProcessRole = "LandAdjustment";
+
+        /// <summary>
+        /// The add waterfront value to land value post process role.
+        /// </summary>
+        private const string AddWaterfrontValueToLandValuePostProcessRole = "AddWaterfrontValueToLandValue";
+
+        /// <summary>
+        /// The truncate land value post process role.
+        /// </summary>
+        private const string TruncateLandValuePostProcessRole = "TruncateLandValue";
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SetupLandModelService"/> class.
+        /// </summary>
+        /// <param name="setupLandModelData">The setup land model data.</param>
+        /// <param name="serviceContext">The service context.</param>
+        public SetupLandModelService(SetupLandModelData setupLandModelData, IServiceContext serviceContext)
+            : base(serviceContext)
+        {
+            this.SetupLandModelData = setupLandModelData;
+        }
+
+        /// <summary>
+        /// Gets or sets the setup land model data.
+        /// </summary>
+        public SetupLandModelData SetupLandModelData { get; set; }
+
+        /// <summary>
+        /// Creates the default land model exception rule.
+        /// </summary>
+        /// <param name="datasetPostProcessId">The dataset post process id.</param>
+        /// <param name="columnName">The column name.</param>
+        /// <param name="postProcessRole">The post process role.</param>
+        /// <returns>
+        /// The exception post process rule.
+        /// </returns>
+        public static ExceptionPostProcessRule CreateDefaultLandModelExceptionRule(
+            int datasetPostProcessId,
+            string columnName,
+            string postProcessRole)
+        {
+            ExceptionPostProcessRule exceptionPostProcessRule = new ExceptionPostProcessRule()
+            {
+                DatasetPostProcessId = datasetPostProcessId,
+                Description = $"Default {postProcessRole}",
+                ExecutionOrder = 0,
+            };
+
+            string traceMessage = postProcessRole == SetupLandModelService.LandAdjustmentPostProcessRole ? "GetNonModelAdjs" : "Default";
+
+            traceMessage = $"'{postProcessRole}: {traceMessage} => '" + "{ColumnValue}";
+
+            CustomSearchExpression filterExpression = new CustomSearchExpression()
+            {
+                ColumnName = columnName,
+                ExceptionPostProcessRule = exceptionPostProcessRule,
+                ExecutionOrder = 0,
+                ExpressionExtensions = "{\"traceMessage\":\"" + traceMessage + "\"}",
+                ExpressionRole = CustomSearchExpressionRoleType.FilterExpression.ToString(),
+                ExpressionType = CustomSearchExpressionType.TSQL.ToString(),
+                IsAutoGenerated = true,
+                OwnerType = CustomSearchExpressionOwnerType.ExceptionPostProcessRule.ToString(),
+                Script = "1 = 1"
+            };
+
+            exceptionPostProcessRule.CustomSearchExpression.Add(filterExpression);
+
+            CustomSearchExpression calculatedColumnExpression = new CustomSearchExpression()
+            {
+                ColumnName = columnName,
+                ExceptionPostProcessRule = exceptionPostProcessRule,
+                ExecutionOrder = 1,
+                ExpressionRole = CustomSearchExpressionRoleType.CalculatedColumn.ToString(),
+                ExpressionType = CustomSearchExpressionType.TSQL.ToString(),
+                IsAutoGenerated = true,
+                OwnerType = CustomSearchExpressionOwnerType.ExceptionPostProcessRule.ToString(),
+                Script = postProcessRole == SetupLandModelService.LandAdjustmentPostProcessRole ? "CAST([cus].[FN_GetNonModelAdjs]([Major], [Minor], [NewLandValue]) as FLOAT)" : "0.0"
+            };
+
+            exceptionPostProcessRule.CustomSearchExpression.Add(calculatedColumnExpression);
+
+            return exceptionPostProcessRule;
+        }
+
+        /// <summary>
+        /// Creates and adds the default land model exception rule to the dataset post process.
+        /// </summary>
+        /// <param name="datasetPostProcess">The dataset post process.</param>
+        /// <param name="columnName">The column name.</param>
+        /// <param name="postProcessRole">The post process role.</param>
+        public static void AddDefaultLandModelExceptionRule(
+            DatasetPostProcess datasetPostProcess,
+            string columnName,
+            string postProcessRole)
+        {
+            ExceptionPostProcessRule exceptionPostProcessRule = SetupLandModelService.CreateDefaultLandModelExceptionRule(datasetPostProcessId: 0, columnName, postProcessRole);
+            exceptionPostProcessRule.DatasetPostProcess = datasetPostProcess;
+            datasetPostProcess.ExceptionPostProcessRule.Add(exceptionPostProcessRule);
+        }
+
+        /// <summary>
+        /// Setups the land model creating the required post processes.
+        /// </summary>
+        /// <param name="datasetId">The dataset id.</param>
+        /// <param name="dbContext">Database context.</param>
+        /// <param name="logger">The log.</param>
+        /// <returns>
+        /// The non-waterfront, the waterfront and the adjustment post processes.
+        /// </returns>
+        /// <exception cref="CustomSearchesEntityNotFoundException">Entity was not found.</exception>
+        /// <exception cref="CustomSearchesRequestBodyException">Required parameter was not added or parameter has an invalid value.</exception>
+        public async Task<SetupLandModelResponse> SetupLandModelAsync(
+            Guid datasetId,
+            CustomSearchesDbContext dbContext,
+            ILogger logger)
+        {
+            var response = new SetupLandModelResponse();
+
+            List<Guid> datasetIds = new List<Guid>();
+            datasetIds.Add(datasetId);
+            if (this.SetupLandModelData.SecondaryDatasets?.Length > 0)
+            {
+                datasetIds.AddRange(this.SetupLandModelData.SecondaryDatasets);
+            }
+
+            var datasets = await dbContext.Dataset
+                .Where(d => datasetIds.Contains(d.DatasetId))
+                .Include(d => d.DatasetPostProcess)
+                .ToListAsync();
+
+            var primaryDataset = datasets.FirstOrDefault(d => d.DatasetId == datasetId);
+            InputValidationHelper.AssertEntityExists(primaryDataset, nameof(Dataset), datasetId);
+
+            UserProject userProject = await DatasetHelper.GetOwnerProjectAsync(primaryDataset, dbContext);
+            InputValidationHelper.AssertEntityExists(userProject, nameof(userProject), entityId: null, $"Dataset should belong to an user project.");
+            this.ServiceContext.AuthProvider.AuthorizeProjectOrFolderItemOperation<Folder>(
+                primaryDataset.UserId,
+                primaryDataset.ParentFolder,
+                primaryDataset.IsLocked,
+                userProject,
+                "SetupLandModel");
+
+            ProjectBusinessLogicFactory projectBusinessLogicFactory = new ProjectBusinessLogicFactory();
+            var projectBusinessLogic = projectBusinessLogicFactory.CreateProjectBusinessLogic(userProject, dbContext);
+            projectBusinessLogic.ValidateImportPostProcess(new DatasetPostProcessData() { PostProcessRole = "LandSchedule" }, datasets, bypassPostProcessBundleCheck: true);
+
+            var pivotDataset = await projectBusinessLogic.LoadPivotDatasetAsync(datasetId);
+            await DatasetHelper.LoadDatasetWithDependenciesAsync(
+                dbContext,
+                pivotDataset.DatasetId,
+                includeRelatedExpressions: true,
+                includeParentFolder: false,
+                includeInverseSourceDatasets: false,
+                includeUserProject: false,
+                includeDatasetUserClientState: false);
+
+            var datasetsWithPostProcessesToDelete =
+                await (from up in dbContext.UserProject
+                       join upd in dbContext.UserProjectDataset
+                            on up.UserProjectId equals upd.UserProjectId
+                       join d in dbContext.Dataset
+                            on upd.DatasetId equals d.DatasetId
+                       join dpp in dbContext.DatasetPostProcess
+                            on d.DatasetId equals dpp.DatasetId
+                       where upd.OwnsDataset == true &&
+                        upd.UserProjectId == userProject.UserProjectId &&
+                        dpp.PostProcessRole == SetupLandModelService.LandSchedulePostProcessRole
+                       select d).
+                       Include(d => d.DatasetPostProcess).
+                    ToListAsync();
+
+            // Starting at the primary dataset
+            datasets.Remove(primaryDataset);
+            datasets.Insert(0, primaryDataset);
+
+            foreach (var currentDataset in datasets)
+            {
+                if (this.SetupLandModelData.IsCustomModelingStepPostProcess)
+                {
+                    this.SetupCustomModelingStepPostProcess(primaryDataset, currentDataset, pivotDataset);
+                }
+                else
+                {
+                    this.SetupNonWaterfrontSchedule(primaryDataset, currentDataset, pivotDataset);
+                    this.SetupExpressionsPostProcess(primaryDataset, currentDataset, pivotDataset, SetupLandModelService.NonWaterfrontExpressionsPostProcessRole);
+                    this.SetupWaterfrontSchedule(primaryDataset, currentDataset, pivotDataset);
+                    this.SetupExpressionsPostProcess(primaryDataset, currentDataset, pivotDataset, SetupLandModelService.WaterfrontExpressionsPostProcessRole);
+                    this.SetupAddWaterfrontValueToLandValue(primaryDataset, currentDataset);
+                    this.SetupLandAdjustments(primaryDataset, currentDataset, pivotDataset);
+                    this.SetupTruncateLandValue(primaryDataset, currentDataset);
+                }
+
+                if (datasetsWithPostProcessesToDelete.Contains(currentDataset))
+                {
+                    datasetsWithPostProcessesToDelete.Remove(currentDataset);
+                }
+            }
+
+            var postProcessesToDelete = datasetsWithPostProcessesToDelete
+                .SelectMany(d => d.DatasetPostProcess)
+                .Where(dpp => PhysicalInspectionProjectBusinessLogic.LandSchedulePostProcessRoleOrder.Contains(dpp.PostProcessRole?.Trim().ToLower()))
+                .OrderByDescending(dpp => dpp.Priority)
+                .ToList();
+
+            // Remove unused post processes.
+            DeleteDatasetPostProcessService deleteDatasetPostProcessService = new DeleteDatasetPostProcessService(this.ServiceContext);
+            CloudBlobContainer blobContainer = await this.ServiceContext.CloudStorageProvider.GetCloudBlobContainer(ImportExceptionPostProcessService.RScriptBlobContainerName, this.ServiceContext.AppCredential);
+            await deleteDatasetPostProcessService.DeleteDatasetPostProcessesAsync(postProcessesToDelete, dbContext, bypassPostProcessBundleCheck: true, checkPostProcessStackOnPivot: false);
+            await deleteDatasetPostProcessService.DeleteDependenciesAsync(postProcessesToDelete, blobContainer);
+
+            await dbContext.SaveChangesAsync();
+
+            var datasetPostProcessDataList = new List<DatasetPostProcessData>();
+            foreach (var datasetPostProcess in primaryDataset.DatasetPostProcess)
+            {
+                if (datasetPostProcess.PostProcessRole == SetupLandModelService.LandSchedulePostProcessRole ||
+                    datasetPostProcess.PostProcessRole == SetupLandModelService.WaterfrontSchedulePostProcessRole ||
+                    datasetPostProcess.PostProcessRole == SetupLandModelService.LandAdjustmentPostProcessRole ||
+                    datasetPostProcess.PostProcessRole == SetupLandModelService.NonWaterfrontExpressionsPostProcessRole ||
+                    datasetPostProcess.PostProcessRole == SetupLandModelService.WaterfrontExpressionsPostProcessRole)
+                {
+                    datasetPostProcessDataList.Add(new DatasetPostProcessData(datasetPostProcess, ModelInitializationType.FullObjectWithDepedendencies, userDetails: null));
+                }
+            }
+
+            response.PostProcesses = datasetPostProcessDataList.ToArray();
+
+            var lastPostProcessRole = this.SetupLandModelData.IsCustomModelingStepPostProcess ?
+                PhysicalInspectionProjectBusinessLogic.LandSchedulePostProcessRoleOrder.First() :
+                PhysicalInspectionProjectBusinessLogic.LandSchedulePostProcessRoleOrder.Last();
+
+            ExecuteDatasetPostProcessService service = new ExecuteDatasetPostProcessService(this.ServiceContext);
+            response.JobId = (int)(await service.QueueExecuteDatasetPostProcessAsync(
+                datasetId,
+                primaryDataset.DatasetPostProcess.First(dpp => dpp.PostProcessRole?.ToLower() == lastPostProcessRole).DatasetPostProcessId,
+                major: null,
+                minor: null,
+                parameters: null,
+                dataStream: null,
+                dbContext)).Id;
+
+            return response;
+        }
+
+        /// <summary>
+        /// Setups the custom modeling step post process.
+        /// </summary>
+        /// <param name="primaryDataset">The primary dataset.</param>
+        /// <param name="dataset">The dataset.</param>
+        /// <param name="pivotDataset">The pivot dataset.</param>
+        public void SetupCustomModelingStepPostProcess(Dataset primaryDataset, Dataset dataset, Dataset pivotDataset)
+        {
+            string postProcessRole = SetupLandModelService.LandSchedulePostProcessRole;
+            DatasetPostProcess datasetPostProcess =
+                dataset.DatasetPostProcess.FirstOrDefault(dp => dp.PostProcessRole == SetupLandModelService.LandSchedulePostProcessRole);
+
+            if (datasetPostProcess == null)
+            {
+                datasetPostProcess = this.ClonePostProcess(dataset, pivotDataset, postProcessRole);
+                if (datasetPostProcess == null)
+                {
+                    Guid userId = this.ServiceContext.AuthProvider.UserInfoData.Id;
+                    datasetPostProcess = new DatasetPostProcess()
+                    {
+                        CreatedBy = userId,
+                        CreatedTimestamp = DateTime.UtcNow,
+                        Dataset = dataset,
+                        IsDirty = true,
+                        LastModifiedBy = userId,
+                        PostProcessDefinition = "Nonwaterfront schedule",
+                        PostProcessName = "Nonwaterfront schedule",
+                        PostProcessRole = SetupLandModelService.LandSchedulePostProcessRole,
+                        LastModifiedTimestamp = DateTime.UtcNow,
+                        PostProcessType = DatasetPostProcessType.CustomModelingStepPostProcess.ToString(),
+                        Priority = 2100,
+                        TraceEnabledFields = "[\"NewLandValue\"]",
+                    };
+
+                    dataset.DatasetPostProcess.Add(datasetPostProcess);
+
+                    CustomSearchExpression calculatedColumnExpression = new CustomSearchExpression()
+                    {
+                        ColumnName = "NewLandValue",
+                        ExecutionOrder = 1,
+                        ExpressionRole = CustomSearchExpressionRoleType.CalculatedColumn.ToString(),
+                        ExpressionType = CustomSearchExpressionType.Imported.ToString(),
+                        IsAutoGenerated = true,
+                        OwnerType = CustomSearchExpressionOwnerType.DatasetPostProcess.ToString(),
+                        Script = "1 = 1"
+                    };
+
+                    datasetPostProcess.CustomSearchExpression.Add(calculatedColumnExpression);
+                }
+
+                this.AssignPrimaryDatasetPostProcess(primaryDataset, dataset, datasetPostProcess);
+            }
+        }
+
+        /// <summary>
+        /// Setups the non-waterfront schedule post process.
+        /// </summary>
+        /// <param name="primaryDataset">The primary dataset.</param>
+        /// <param name="dataset">The dataset.</param>
+        /// <param name="pivotDataset">The pivot dataset.</param>
+        private void SetupNonWaterfrontSchedule(Dataset primaryDataset, Dataset dataset, Dataset pivotDataset)
+        {
+            string postProcessRole = SetupLandModelService.LandSchedulePostProcessRole;
+            DatasetPostProcess datasetPostProcess =
+                dataset.DatasetPostProcess.FirstOrDefault(dp => dp.PostProcessRole == SetupLandModelService.LandSchedulePostProcessRole);
+
+            if (datasetPostProcess == null)
+            {
+                datasetPostProcess = this.ClonePostProcess(dataset, pivotDataset, postProcessRole);
+                if (datasetPostProcess == null)
+                {
+                    Guid userId = this.ServiceContext.AuthProvider.UserInfoData.Id;
+                    datasetPostProcess = new DatasetPostProcess()
+                    {
+                        CreatedBy = userId,
+                        CreatedTimestamp = DateTime.UtcNow,
+                        Dataset = dataset,
+                        IsDirty = true,
+                        LastModifiedBy = userId,
+                        PostProcessDefinition = "Nonwaterfront schedule",
+                        PostProcessName = "Nonwaterfront schedule",
+                        PostProcessRole = SetupLandModelService.LandSchedulePostProcessRole,
+                        LastModifiedTimestamp = DateTime.UtcNow,
+                        PostProcessSubType = ExceptionMethodType.UniqueConditionSelector.ToString(),
+                        PostProcessType = DatasetPostProcessType.ExceptionPostProcess.ToString(),
+                        Priority = 2100,
+                        TraceEnabledFields = "[\"NewLandValue\"]",
+                    };
+
+                    dataset.DatasetPostProcess.Add(datasetPostProcess);
+                    SetupLandModelService.AddDefaultLandModelExceptionRule(datasetPostProcess, "NewLandValue", SetupLandModelService.LandSchedulePostProcessRole);
+                }
+            }
+
+            this.AssignPrimaryDatasetPostProcess(primaryDataset, dataset, datasetPostProcess);
+        }
+
+        /// <summary>
+        /// Setups the waterfront schedule post process.
+        /// </summary>
+        /// <param name="primaryDataset">The primary dataset.</param>
+        /// <param name="dataset">The dataset.</param>
+        /// <param name="pivotDataset">The pivot dataset.</param>
+        private void SetupWaterfrontSchedule(Dataset primaryDataset, Dataset dataset, Dataset pivotDataset)
+        {
+            string postProcessRole = SetupLandModelService.WaterfrontSchedulePostProcessRole;
+            DatasetPostProcess datasetPostProcess =
+                dataset.DatasetPostProcess.FirstOrDefault(dp => dp.PostProcessRole == postProcessRole);
+
+            if (datasetPostProcess == null)
+            {
+                datasetPostProcess = this.ClonePostProcess(dataset, pivotDataset, postProcessRole);
+                if (datasetPostProcess == null)
+                {
+                    Guid userId = this.ServiceContext.AuthProvider.UserInfoData.Id;
+                    datasetPostProcess = new DatasetPostProcess()
+                    {
+                        CreatedBy = userId,
+                        CreatedTimestamp = DateTime.UtcNow,
+                        Dataset = dataset,
+                        IsDirty = true,
+                        LastModifiedBy = userId,
+                        PostProcessDefinition = "Waterfront schedule",
+                        PostProcessName = "Waterfront schedule",
+                        PostProcessRole = SetupLandModelService.WaterfrontSchedulePostProcessRole,
+                        LastModifiedTimestamp = DateTime.UtcNow,
+                        PostProcessSubType = ExceptionMethodType.UniqueConditionSelector.ToString(),
+                        PostProcessType = DatasetPostProcessType.ExceptionPostProcess.ToString(),
+                        Priority = 2300,
+                        TraceEnabledFields = "[\"WaterfrontValue\"]",
+                    };
+
+                    dataset.DatasetPostProcess.Add(datasetPostProcess);
+                    SetupLandModelService.AddDefaultLandModelExceptionRule(datasetPostProcess, "WaterfrontValue", SetupLandModelService.WaterfrontSchedulePostProcessRole);
+                }
+            }
+
+            this.AssignPrimaryDatasetPostProcess(primaryDataset, dataset, datasetPostProcess);
+
+            DatasetPostProcess waterfrontExpressionsPostProcess =
+                dataset.DatasetPostProcess.FirstOrDefault(dp => dp.PostProcessRole == SetupLandModelService.WaterfrontExpressionsPostProcessRole);
+
+            if (waterfrontExpressionsPostProcess != null)
+            {
+                this.AssignPrimaryDatasetPostProcess(primaryDataset, dataset, waterfrontExpressionsPostProcess);
+            }
+        }
+
+        /// <summary>
+        /// Setups the add waterfront value to land value post process.
+        /// </summary>
+        /// <param name="primaryDataset">The primary dataset.</param>
+        /// <param name="dataset">The dataset.</param>
+        private void SetupAddWaterfrontValueToLandValue(Dataset primaryDataset, Dataset dataset)
+        {
+            DatasetPostProcess datasetPostProcess =
+                dataset.DatasetPostProcess.FirstOrDefault(dp => dp.PostProcessRole == SetupLandModelService.AddWaterfrontValueToLandValuePostProcessRole);
+
+            if (datasetPostProcess == null)
+            {
+                Guid userId = this.ServiceContext.AuthProvider.UserInfoData.Id;
+                datasetPostProcess = new DatasetPostProcess()
+                {
+                    CreatedBy = userId,
+                    CreatedTimestamp = DateTime.UtcNow,
+                    Dataset = dataset,
+                    IsDirty = true,
+                    LastModifiedBy = userId,
+                    PostProcessDefinition = "Add Waterfront Value To Land Value",
+                    PostProcessName = "Add Waterfront Value To Land Value",
+                    PostProcessRole = SetupLandModelService.AddWaterfrontValueToLandValuePostProcessRole,
+                    LastModifiedTimestamp = DateTime.UtcNow,
+                    PostProcessSubType = ExceptionMethodType.UniqueConditionSelector.ToString(),
+                    PostProcessType = DatasetPostProcessType.ExceptionPostProcess.ToString(),
+                    Priority = 2500,
+                };
+
+                dataset.DatasetPostProcess.Add(datasetPostProcess);
+
+                ExceptionPostProcessRule exceptionPostProcessRule = new ExceptionPostProcessRule()
+                {
+                    DatasetPostProcess = datasetPostProcess,
+                    Description = "Add Waterfront Value To Land Value",
+                    ExecutionOrder = 0,
+                };
+
+                datasetPostProcess.ExceptionPostProcessRule.Add(exceptionPostProcessRule);
+
+                CustomSearchExpression filterExpression = new CustomSearchExpression()
+                {
+                    ColumnName = "NewLandValue",
+                    ExceptionPostProcessRule = exceptionPostProcessRule,
+                    ExecutionOrder = 0,
+                    ExpressionRole = CustomSearchExpressionRoleType.FilterExpression.ToString(),
+                    ExpressionType = CustomSearchExpressionType.TSQL.ToString(),
+                    IsAutoGenerated = true,
+                    OwnerType = CustomSearchExpressionOwnerType.ExceptionPostProcessRule.ToString(),
+                    Script = "1 = 1"
+                };
+
+                exceptionPostProcessRule.CustomSearchExpression.Add(filterExpression);
+
+                CustomSearchExpression calculatedColumnExpression = new CustomSearchExpression()
+                {
+                    ColumnName = "NewLandValue",
+                    ExceptionPostProcessRule = exceptionPostProcessRule,
+                    ExecutionOrder = 1,
+                    ExpressionRole = CustomSearchExpressionRoleType.CalculatedColumn.ToString(),
+                    ExpressionType = CustomSearchExpressionType.TSQL.ToString(),
+                    IsAutoGenerated = true,
+                    OwnerType = CustomSearchExpressionOwnerType.ExceptionPostProcessRule.ToString(),
+                    Script = "(SELECT Max(v) FROM (VALUES (CAST([NewLandValue] as FLOAT) + CAST([WaterfrontValue] as FLOAT)), ({MinLandValue})) AS value(v))"
+                };
+
+                exceptionPostProcessRule.CustomSearchExpression.Add(calculatedColumnExpression);
+
+                ExceptionPostProcessRule exceptionPostProcessRuleTrace = new ExceptionPostProcessRule()
+                {
+                    DatasetPostProcess = datasetPostProcess,
+                    Description = "Add Waterfront Value To Land Value Trace",
+                    ExecutionOrder = 0,
+                };
+
+                datasetPostProcess.ExceptionPostProcessRule.Add(exceptionPostProcessRuleTrace);
+
+                CustomSearchExpression filterExpressionTrace = new CustomSearchExpression()
+                {
+                    ColumnName = "NewLandValue_RulesTrace",
+                    ExceptionPostProcessRule = exceptionPostProcessRuleTrace,
+                    ExecutionOrder = 0,
+                    ExpressionRole = CustomSearchExpressionRoleType.FilterExpression.ToString(),
+                    ExpressionType = CustomSearchExpressionType.TSQL.ToString(),
+                    IsAutoGenerated = true,
+                    OwnerType = CustomSearchExpressionOwnerType.ExceptionPostProcessRule.ToString(),
+                    Script = "1 = 1"
+                };
+
+                exceptionPostProcessRuleTrace.CustomSearchExpression.Add(filterExpressionTrace);
+
+                CustomSearchExpression calculatedColumnExpressionTrace = new CustomSearchExpression()
+                {
+                    ColumnName = "NewLandValue_RulesTrace",
+                    ExceptionPostProcessRule = exceptionPostProcessRuleTrace,
+                    ExecutionOrder = 1,
+                    ExpressionRole = CustomSearchExpressionRoleType.CalculatedColumn.ToString(),
+                    ExpressionType = CustomSearchExpressionType.TSQL.ToString(),
+                    IsAutoGenerated = true,
+                    OwnerType = CustomSearchExpressionOwnerType.ExceptionPostProcessRule.ToString(),
+                    Script = "[NewLandValue_RulesTrace] + [WaterfrontValue_RulesTrace]"
+                };
+
+                exceptionPostProcessRuleTrace.CustomSearchExpression.Add(calculatedColumnExpressionTrace);
+            }
+
+            this.AssignPrimaryDatasetPostProcess(primaryDataset, dataset, datasetPostProcess);
+        }
+
+        /// <summary>
+        /// Setups the land adjustments post process.
+        /// </summary>
+        /// <param name="primaryDataset">The primary dataset.</param>
+        /// <param name="dataset">The dataset.</param>
+        /// <param name="pivotDataset">The pivot dataset.</param>
+        private void SetupLandAdjustments(Dataset primaryDataset, Dataset dataset, Dataset pivotDataset)
+        {
+            string postProcessRole = SetupLandModelService.LandAdjustmentPostProcessRole;
+            DatasetPostProcess datasetPostProcess =
+                dataset.DatasetPostProcess.FirstOrDefault(dp => dp.PostProcessRole == postProcessRole);
+
+            if (datasetPostProcess == null)
+            {
+                datasetPostProcess = this.ClonePostProcess(dataset, pivotDataset, postProcessRole);
+                if (datasetPostProcess == null)
+                {
+                    Guid userId = this.ServiceContext.AuthProvider.UserInfoData.Id;
+                    datasetPostProcess = new DatasetPostProcess()
+                    {
+                        CreatedBy = userId,
+                        CreatedTimestamp = DateTime.UtcNow,
+                        Dataset = dataset,
+                        IsDirty = true,
+                        LastModifiedBy = userId,
+                        PostProcessDefinition = "Adjustments",
+                        PostProcessName = "Adjustments",
+                        PostProcessRole = SetupLandModelService.LandAdjustmentPostProcessRole,
+                        LastModifiedTimestamp = DateTime.UtcNow,
+                        PostProcessSubType = ExceptionMethodType.MultipleConditionModifier.ToString(),
+                        PostProcessType = DatasetPostProcessType.ExceptionPostProcess.ToString(),
+                        Priority = 2600,
+                        TraceEnabledFields = "[\"NewLandValue\"]",
+                    };
+
+                    dataset.DatasetPostProcess.Add(datasetPostProcess);
+                    SetupLandModelService.AddDefaultLandModelExceptionRule(datasetPostProcess, "NewLandValue", SetupLandModelService.LandAdjustmentPostProcessRole);
+                }
+            }
+
+            this.AssignPrimaryDatasetPostProcess(primaryDataset, dataset, datasetPostProcess);
+        }
+
+        /// <summary>
+        /// Setups the add waterfront value to land value post process.
+        /// </summary>
+        /// <param name="primaryDataset">The primary dataset.</param>
+        /// <param name="dataset">The dataset.</param>
+        private void SetupTruncateLandValue(Dataset primaryDataset, Dataset dataset)
+        {
+            DatasetPostProcess datasetPostProcess =
+                dataset.DatasetPostProcess.FirstOrDefault(dp => dp.PostProcessRole == SetupLandModelService.TruncateLandValuePostProcessRole);
+
+            if (datasetPostProcess == null)
+            {
+                Guid userId = this.ServiceContext.AuthProvider.UserInfoData.Id;
+                datasetPostProcess = new DatasetPostProcess()
+                {
+                    CreatedBy = userId,
+                    CreatedTimestamp = DateTime.UtcNow,
+                    Dataset = dataset,
+                    IsDirty = true,
+                    LastModifiedBy = userId,
+                    PostProcessDefinition = "Truncate Land Value",
+                    PostProcessName = "Truncate Land Value",
+                    PostProcessRole = SetupLandModelService.TruncateLandValuePostProcessRole,
+                    LastModifiedTimestamp = DateTime.UtcNow,
+                    PostProcessSubType = ExceptionMethodType.UniqueConditionSelector.ToString(),
+                    PostProcessType = DatasetPostProcessType.ExceptionPostProcess.ToString(),
+                    Priority = 2700,
+                    TraceEnabledFields = "[\"NewLandValue\"]",
+                };
+
+                dataset.DatasetPostProcess.Add(datasetPostProcess);
+
+                ExceptionPostProcessRule exceptionPostProcessRule = new ExceptionPostProcessRule()
+                {
+                    DatasetPostProcess = datasetPostProcess,
+                    Description = "Truncate Land Value",
+                    ExecutionOrder = 0,
+                };
+
+                datasetPostProcess.ExceptionPostProcessRule.Add(exceptionPostProcessRule);
+
+                var traceMessage = $"'{datasetPostProcess.PostProcessRole} => '" + "{ColumnValue}";
+
+                CustomSearchExpression filterExpression = new CustomSearchExpression()
+                {
+                    ColumnName = "NewLandValue",
+                    ExceptionPostProcessRule = exceptionPostProcessRule,
+                    ExecutionOrder = 0,
+                    ExpressionExtensions = "{\"traceMessage\":\"" + traceMessage + "\"}",
+                    ExpressionRole = CustomSearchExpressionRoleType.FilterExpression.ToString(),
+                    ExpressionType = CustomSearchExpressionType.TSQL.ToString(),
+                    IsAutoGenerated = true,
+                    OwnerType = CustomSearchExpressionOwnerType.ExceptionPostProcessRule.ToString(),
+                    Script = "1 = 1"
+                };
+
+                exceptionPostProcessRule.CustomSearchExpression.Add(filterExpression);
+
+                CustomSearchExpression calculatedColumnExpression = new CustomSearchExpression()
+                {
+                    ColumnName = "NewLandValue",
+                    ExceptionPostProcessRule = exceptionPostProcessRule,
+                    ExecutionOrder = 1,
+                    ExpressionRole = CustomSearchExpressionRoleType.CalculatedColumn.ToString(),
+                    ExpressionType = CustomSearchExpressionType.TSQL.ToString(),
+                    IsAutoGenerated = true,
+                    OwnerType = CustomSearchExpressionOwnerType.ExceptionPostProcessRule.ToString(),
+                    Script = "(SELECT ROUND(CAST([NewLandValue] AS INT),-3,4))"
+                };
+
+                exceptionPostProcessRule.CustomSearchExpression.Add(calculatedColumnExpression);
+            }
+
+            this.AssignPrimaryDatasetPostProcess(primaryDataset, dataset, datasetPostProcess);
+        }
+
+        /// <summary>
+        /// Assigns the primary dataset post process.
+        /// </summary>
+        /// <param name="primaryDataset">The primary dataset.</param>
+        /// <param name="dataset">The dataset.</param>
+        /// <param name="datasetPostProcess">The dataset post process.</param>
+        private void AssignPrimaryDatasetPostProcess(Dataset primaryDataset, Dataset dataset, DatasetPostProcess datasetPostProcess)
+        {
+            datasetPostProcess.PrimaryDatasetPostProcess =
+                primaryDataset == dataset ?
+                null :
+                primaryDataset.DatasetPostProcess.FirstOrDefault(dpp => dpp.PostProcessRole == datasetPostProcess.PostProcessRole);
+        }
+
+        /// <summary>
+        /// Setups an expressions post process.
+        /// </summary>
+        /// <param name="primaryDataset">The primary dataset.</param>
+        /// <param name="dataset">The dataset.</param>
+        /// <param name="pivotDataset">The pivot dataset.</param>
+        /// <param name="postProcessRole">The post process role.</param>
+        private void SetupExpressionsPostProcess(Dataset primaryDataset, Dataset dataset, Dataset pivotDataset, string postProcessRole)
+        {
+            DatasetPostProcess expressionsPostProcess =
+                dataset.DatasetPostProcess.FirstOrDefault(dp => dp?.PostProcessRole.Trim().ToLower() == postProcessRole.Trim().ToLower());
+
+            if (expressionsPostProcess == null)
+            {
+                expressionsPostProcess = this.ClonePostProcess(dataset, pivotDataset, postProcessRole);
+
+                if (expressionsPostProcess != null)
+                {
+                    dataset.DatasetPostProcess.Add(expressionsPostProcess);
+                }
+            }
+
+            if (expressionsPostProcess != null)
+            {
+                this.AssignPrimaryDatasetPostProcess(primaryDataset, dataset, expressionsPostProcess);
+            }
+        }
+
+        /// <summary>
+        /// Clones a pivot post process if found.
+        /// </summary>
+        /// <param name="dataset">The dataset.</param>
+        /// <param name="pivotDataset">The pivot dataset.</param>
+        /// <param name="postProcessRole">The post process role.</param>
+        /// <returns>
+        /// The cloned post processes.
+        /// </returns>
+        private DatasetPostProcess ClonePostProcess(Dataset dataset, Dataset pivotDataset, string postProcessRole)
+        {
+            DatasetPostProcess datasetPostProcess = null;
+            var pivotPostProcess =
+                pivotDataset.DatasetPostProcess.FirstOrDefault(dp => dp?.PostProcessRole.Trim().ToLower() == postProcessRole.Trim().ToLower());
+
+            // If the post process is already in the database then clone it else create a new one.
+            if (pivotPostProcess?.DatasetPostProcessId > 0)
+            {
+                datasetPostProcess = DatasetPostProcessData.Clone(pivotPostProcess, dataset, this.ServiceContext.AuthProvider.UserInfoData.Id);
+            }
+
+            return datasetPostProcess;
+        }
+    }
+}

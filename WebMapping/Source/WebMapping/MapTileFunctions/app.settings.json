@@ -1,0 +1,12 @@
+﻿{
+  "IsEncrypted": false,
+  "Values": {
+    "StorageConnectionString": "https://ptassboxstoragepremium.blob.core.windows.net"
+  },
+  "Settings": {
+    "BlobTilePathMask": "{0}/{1}/{2}/{3}.{4}",
+    "BlotTileContainerName": "tilecachecontainer",
+    "MapServerUrl": "http://{MapServerIp}/cgi-bin/mapserv/?map={0}&mode=tile&tilemode=gmap&tile={1}+{2}+{3}&layers={4}&map.imagetype={5}&MAXFEATURES=65000",
+    "SQLServerLayerConfigurationTableName": "LayerConfiguration"
+  }
+}

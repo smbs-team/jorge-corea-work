@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <AzureFunctionsVersion>v3</AzureFunctionsVersion>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <CodeAnalysisRuleSet>..\PTASDynamicsToSQLSynchronizer.ruleset</CodeAnalysisRuleSet>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <CodeAnalysisRuleSet>..\PTASDynamicsToSQLSynchronizer.ruleset</CodeAnalysisRuleSet>
+    </PropertyGroup>
+    <ItemGroup>
+      <None Remove="stylecop.json" />
+    </ItemGroup>
+    <ItemGroup>
+      <AdditionalFiles Include="stylecop.json" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Azure.Services.AppAuthentication" Version="1.5.0" />
+        <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.ServiceBus" Version="4.1.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.2" />
+        <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.3" />
+        <PackageReference Include="PTASDynamicsSyncLibrary" Version="1.0.0" />
+        <PackageReference Include="PTASServicesCommon" Version="1.0.10" />
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+    <ItemGroup>
+        <None Update="host.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="local.settings.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Properties\ServiceDependencies\ptas-sandbox-dynamics2sqlbridgewebhook-function - Zip Deploy\" />
+      <Folder Include="Properties\ServiceDependencies\PTASDynamicsWebhookSync - Zip Deploy\" />
+    </ItemGroup>
+</Project>

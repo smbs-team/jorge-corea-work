@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.0/mapbox-gl.css' rel='stylesheet' />
+
+</head>
+
+<body>
+
+    <div id='map' style='width:100%; height: 100%;position:absolute'></div>
+    <script>
+        // TO MAKE THE MAP APPEAR YOU MUST
+        // ADD YOUR ACCESS TOKEN FROM
+        // https://account.mapbox.com
+        mapboxgl.accessToken = 'pk.eyJ1Ijoibi1qY2hhdmVzIiwiYSI6ImNqenlqM2JmZTFub2MzbXFvenhxNjFzeHoifQ.OJ7CAc07mpebvf8PvnBo4g';
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v9',
+            center: [-122.31933077513008,
+                47.479971283143215,],
+            minZoom: 2,
+            zoom: 8.5,
+            preserveDrawingBuffer: true,
+        });
+    </script>
+</body>
+
+</html>

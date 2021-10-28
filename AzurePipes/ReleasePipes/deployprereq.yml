@@ -1,0 +1,37 @@
+parameters:
+- name: armName
+  type: string 
+  default: ""
+- name: forcePreReqDeployment
+  type: boolean
+  default: false
+- name: deploymentSubscription
+  type: string 
+  default: ""
+- name: deploymentResourceGroup
+  type: string 
+  default: ""
+- name: deploymentEnv
+  type: string 
+  default: ""
+- name: deploymentLocation
+  type: string 
+  default: ""
+
+steps:
+  - task: PowerShell@2
+    condition: ne(${{parameters.forcePreReqDeployment}}, True)
+    name: TargetArmFileChanged${{parameters.armName}}
+    inputs:
+      targetType: 'filePath'
+      filePath: 'AzurePipes/Script/CheckIfFolderModifiedGit.ps1'
+      arguments: -folder "AzurePipes/ReleasePipes/ARM/PreReqs/${{parameters.armName}}.arm"
+  - task: AzureResourceGroupDeployment@2
+    condition: or(eq(variables['TargetArmFileChanged${{parameters.armName}}.FolderChanged'], 'True'),  ${{parameters.forcePreReqDeployment}})
+    displayName: "Deploy ${{parameters.armName}} ARM"
+    inputs:
+      azureSubscription: ${{parameters.deploymentSubscription}}
+      resourceGroupName: "${{parameters.deploymentResourceGroup}}"
+      location: "$(deploymentLocation)"
+      csmFile: "$(Build.SourcesDirectory)/AzurePipes/ReleasePipes/ARM/PreReqs/${{parameters.armName}}.arm"
+      csmParametersFile: "$(Build.SourcesDirectory)/AzurePipes/ReleasePipes/ARM/PreReqs/prereqs-parameters.${{parameters.deploymentEnv}}.json"

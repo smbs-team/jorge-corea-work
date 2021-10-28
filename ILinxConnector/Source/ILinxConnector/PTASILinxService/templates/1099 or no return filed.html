@@ -1,0 +1,137 @@
+<!--1099 or no return filed.html-->
+<h3>Financial Form %year% - %occupantFullName%</h3>
+<table border="1" style="width:90%;margin:1.5em auto;">
+  <tr id="incomesocialsec">
+    <th style="text-align:left;padding:0.25em;width:25%;">
+      Net Social Security less Medicare
+    </th>
+    <td style="width: 25%; padding:10px">%incomesocialsec%</td>
+    <th style="text-align:left;padding:0.25em;width:25%;">
+      Money received from family members
+    </th>
+    <td style="width: 25%; padding:10px">%incomegifts%</td>
+  </tr>
+  <tr id="incomedividends">
+    <th style="text-align:left;padding:0.25em;width:25%;">
+      Taxable and nontaxable interest and dividends
+    </th>
+    <td style="width: 25%; padding:10px">%incomedividends%</td>
+    <th style="text-align:left;padding:0.25em;width:25%;">
+      Retirement, pension, and annuity income
+    </th>
+    <td style="width: 25%; padding:10px">%incomeretirement%</td>
+  </tr>
+  <tr id="incomeretirement">
+    <th style="text-align:left;padding:0.25em;width:25%;">
+      Money received from another country
+    </th>
+    <td style="width: 25%; padding:10px">%incomecountries%</td>
+    <th style="text-align:left;padding:0.25em;width:25%;">
+      IRA (taxable amount)
+    </th>
+    <td style="width: 25%; padding:10px">%incomeirataxamt%</td>
+  </tr>
+  <tr id="incomeirataxamt">
+    <th style="text-align:left;padding:0.25em;width:25%;">
+      Public assistance
+    </th>
+    <td style="width: 25%; padding:10px">%incomedshs%</td>
+    <th style="text-align:left;padding:0.25em;width:25%;">
+      Total earned wages
+    </th>
+    <td style="width: 25%; padding:10px">%incomewages%</td>
+  </tr>
+  <tr id="incomewages">
+    <th style="text-align:left;padding:0.25em;width:25%;">
+      Unemployment income
+    </th>
+    <td style="width: 25%; padding:10px">%incomeunemployment%</td>
+    <th style="text-align:left;padding:0.25em;width:25%;">
+      Total capital gains (don't deduct losses)
+    </th>
+    <td style="width: 25%; padding:10px">%incomecapgains%</td>
+  </tr>
+  <tr id="incomecapgains">
+    <th style="text-align:left;padding:0.25em;width:25%;">Disability income</th>
+    <td style="width: 25%; padding:10px">%incomedisability%</td>
+    <th style="text-align:left;padding:0.25em;width:25%;">
+      Business income before depreciation
+    </th>
+    <td style="width: 25%; padding:10px">%incomebusiness%</td>
+  </tr>
+  <tr id="incomebusiness">
+    <th style="text-align:left;padding:0.25em;width:25%;">Disability source</th>
+    <td style="width: 25%; padding:10px">%incomedisabilitysrc%</td>
+    <th style="text-align:left;padding:0.25em;width:25%;">
+      Other financial resources
+    </th>
+    <td style="width: 25%; padding:10px">%incomeother%</td>
+  </tr>
+  <tr id="incomeother">
+    <th style="text-align:left;padding:0.25em;width:25%;">
+      VA benefit
+    </th>
+    <td style="width: 25%; padding:10px">%incomeservicedisability%</td>
+    <th style="text-align:left;padding:0.25em;width:25%;">
+      Rental income before depreciation
+    </th>
+    <td style="width: 25%; padding:10px">%incomerental%</td>
+  </tr>
+  <tr id="incomerental">
+    <th style="text-align:left;padding:0.25em;width:25%;">
+      Gambling winnings
+    </th>
+    <td style="width: 25%; padding:10px">%incomegambling%</td>
+    <th style="text-align:left;padding:0.25em;width:25%;">
+      Trust, partnership, estate, or royalty income
+    </th>
+    <td style="width: 25%; padding:10px">%trustpartnershipestateincome%</td>
+  </tr>
+  <!--new fields-->
+  <tr id="incomegambling">
+    <th style="text-align:left;padding:0.25em;width:25%;">
+      Taxable and non-taxable bonds
+    </th>
+    <td style="width: 25%; padding:10px">%taxnontaxbonds%</td>
+    <th style="text-align:left;padding:0.25em;width:25%;">
+      Alimony received
+    </th>
+    <td style="width: 25%; padding:10px">%incomealimony%</td>
+  </tr>
+  <!--new fields-->
+</table>
+
+<!--expenses.html-->
+<h3>Expenses</h3>
+<table border="1" style="width:90%;margin:1.5em auto;">
+  <tbody>
+    <tr id="expenseassistedliving">
+      <th style="text-align:left;padding:0.25em;width:25%;">
+        Assisted living or adult family home
+      </th>
+      <td style="width: 25%; padding:10px">%expenseassistedliving%</td>
+      <th style="text-align:left;padding:0.25em;width:25%;">
+        Non-reimbursed prescriptions
+      </th>
+      <td style="width: 25%; padding:10px">%expensepres%</td>
+    </tr>
+    <tr id="expensesinhome">
+      <th style="text-align:left;padding:0.25em;width:25%;">
+        In-home care and nursing home
+      </th>
+      <td style="width: 25%; padding:10px">%expensesinhome%</td>
+      <th style="text-align:left;padding:0.25em;width:25%;">
+        Approved Medicare Advantage plan
+      </th>
+      <td style="width: 25%; padding:10px">%expensemedicareplan%</td>
+    </tr>
+    <tr id="medicareprovidername">
+      <th style="text-align:left;padding:0.25em;width:25%;">
+        Medicare provider
+      </th>
+      <td style="width: 25%; padding:10px">%medicareprovidername%</td>
+      <th style="text-align:left;padding:0.25em;width:25%;">Medicare plan</th>
+      <td style="width: 25%; padding:10px">%medicareplanid%</td>
+    </tr>
+  </tbody>
+</table>

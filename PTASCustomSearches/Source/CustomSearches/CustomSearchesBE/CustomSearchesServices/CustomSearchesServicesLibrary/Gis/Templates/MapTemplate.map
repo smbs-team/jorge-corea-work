@@ -1,0 +1,19 @@
+﻿MAP
+    EXTENT -13644500.000000 5950030.000000 -13476800.000000 6104410.000000
+	DEBUG 5
+    NAME "{LayerName}Map"
+	IMAGETYPE PNG	
+	SIZE 1920 1080
+    WEB
+      METADATA
+        "ows_enable_request" "*"
+		"wms_srs"            "EPSG:3857"
+      END
+    END
+
+    PROJECTION
+      "+init=epsg:3857"
+    END
+
+	{Layers}
+END

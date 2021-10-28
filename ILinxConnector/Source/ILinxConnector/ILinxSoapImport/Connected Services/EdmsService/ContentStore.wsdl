@@ -1,0 +1,2581 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://imagesourceinc.com/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ContentStore" targetNamespace="http://imagesourceinc.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="BasicHttpBinding_IContentStoreContract_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsoma:OptimizedMimeSerialization xmlns:wsoma="http://schemas.xmlsoap.org/ws/2004/09/policy/optimizedmimeserialization" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://imagesourceinc.com/Imports">
+      <xsd:import schemaLocation="https://edmsimagingtest2.kingcounty.gov/ILINXCSService/ContentStore.svc?xsd=xsd0" namespace="http://imagesourceinc.com/" />
+      <xsd:import schemaLocation="https://edmsimagingtest2.kingcounty.gov/ILINXCSService/ContentStore.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="https://edmsimagingtest2.kingcounty.gov/ILINXCSService/ContentStore.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ImageSource.ILINX.ContentStore.Domain" />
+      <xsd:import schemaLocation="https://edmsimagingtest2.kingcounty.gov/ILINXCSService/ContentStore.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="https://edmsimagingtest2.kingcounty.gov/ILINXCSService/ContentStore.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/ImageSource.ILINX.CommonILINX.CaptureDomain" />
+      <xsd:import schemaLocation="https://edmsimagingtest2.kingcounty.gov/ILINXCSService/ContentStore.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" />
+      <xsd:import schemaLocation="https://edmsimagingtest2.kingcounty.gov/ILINXCSService/ContentStore.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/ImageSource.ILINX.CommonILINX.BarcodeLib" />
+      <xsd:import schemaLocation="https://edmsimagingtest2.kingcounty.gov/ILINXCSService/ContentStore.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/ImageSource.ILINX.CommonILINX.CaptureDomain.Barcode" />
+      <xsd:import schemaLocation="https://edmsimagingtest2.kingcounty.gov/ILINXCSService/ContentStore.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xsd:import schemaLocation="https://edmsimagingtest2.kingcounty.gov/ILINXCSService/ContentStore.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/System.Data" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IContentStoreContract_GetAllUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllUsers" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetAllUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsers" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_AddNewUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddNewUser" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_AddNewUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddNewUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_UpdateUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUser" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_UpdateUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_DeleteUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUser" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_DeleteUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_Login2_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login2" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_Login2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Login2Response" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_Login3_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login3" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_Login3_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Login3Response" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_Logout_InputMessage">
+    <wsdl:part name="parameters" element="tns:Logout" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_Logout_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LogoutResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_ChangePassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangePassword" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_ChangePassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangePasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_ResetUserPassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:ResetUserPassword" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_ResetUserPassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ResetUserPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_SearchADUserStartWith_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchADUserStartWith" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_SearchADUserStartWith_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchADUserStartWithResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_IsADEnabled_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsADEnabled" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_IsADEnabled_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsADEnabledResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_StoreFavoriteSearches_InputMessage">
+    <wsdl:part name="parameters" element="tns:StoreFavoriteSearches" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_StoreFavoriteSearches_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StoreFavoriteSearchesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_RetrieveFavoriteSearches_InputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveFavoriteSearches" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_RetrieveFavoriteSearches_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveFavoriteSearchesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetAllUserGroups1_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllUserGroups1" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetAllUserGroups1_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllUserGroups1Response" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetUserGroups_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserGroups" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetUserGroups_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserGroupsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetUserGroupsForUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserGroupsForUser" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetUserGroupsForUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserGroupsForUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetAllUserGroups2_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllUserGroups2" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetAllUserGroups2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllUserGroups2Response" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_AddNewGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddNewGroup" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_AddNewGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddNewGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_UpdateGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateGroup" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_UpdateGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_DeleteGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteGroup" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_DeleteGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_SearchADUserGroupStartWith_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchADUserGroupStartWith" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_SearchADUserGroupStartWith_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchADUserGroupStartWithResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetUserGroupsByRepository_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserGroupsByRepository" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetUserGroupsByRepository_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserGroupsByRepositoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetAnnotationPermissionByUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAnnotationPermissionByUser" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetAnnotationPermissionByUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAnnotationPermissionByUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetAnnotationPermissionByGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAnnotationPermissionByGroup" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetAnnotationPermissionByGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAnnotationPermissionByGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetDocumentPermissionByUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDocumentPermissionByUser" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetDocumentPermissionByUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDocumentPermissionByUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetDocumentPermissionByGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDocumentPermissionByGroup" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetDocumentPermissionByGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDocumentPermissionByGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_SetAnnotationPermission_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetAnnotationPermission" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_SetAnnotationPermission_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetAnnotationPermissionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_SetDocumentPermission_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetDocumentPermission" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_SetDocumentPermission_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetDocumentPermissionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_InsertDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertDocument" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_InsertDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_RunAdvanceSearch_InputMessage">
+    <wsdl:part name="parameters" element="tns:RunAdvanceSearch" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_RunAdvanceSearch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RunAdvanceSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_RunAdvanceSearch2_InputMessage">
+    <wsdl:part name="parameters" element="tns:RunAdvanceSearch2" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_RunAdvanceSearch2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RunAdvanceSearch2Response" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_RetrieveDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveDocument" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_RetrieveDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_RetrieveDocument2_InputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveDocument2" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_RetrieveDocument2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveDocument2Response" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_RetrieveDiscussionMessages_InputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveDiscussionMessages" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_RetrieveDiscussionMessages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveDiscussionMessagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_DeleteDocumentIndexRow_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteDocumentIndexRow" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_DeleteDocumentIndexRow_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteDocumentIndexRowResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_DeleteDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteDocument" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_DeleteDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_RetrieveDocumentInformationByDocumentId_InputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveDocumentInformationByDocumentId" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_RetrieveDocumentInformationByDocumentId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveDocumentInformationByDocumentIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_RetrieveDocumentInformationByDocumentIds_InputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveDocumentInformationByDocumentIds" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_RetrieveDocumentInformationByDocumentIds_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveDocumentInformationByDocumentIdsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_UpdateMultipleIndexRows_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMultipleIndexRows" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_UpdateMultipleIndexRows_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMultipleIndexRowsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_UpdateDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDocument" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_UpdateDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_InsertDocumentWithBarcode1_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertDocumentWithBarcode1" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_InsertDocumentWithBarcode1_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertDocumentWithBarcode1Response" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_InsertDocumentWithBarcode2_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertDocumentWithBarcode2" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_InsertDocumentWithBarcode2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertDocumentWithBarcode2Response" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_InsertNewIndexRowToExistingDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertNewIndexRowToExistingDocument" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_InsertNewIndexRowToExistingDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertNewIndexRowToExistingDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_RunGlobalSearch_InputMessage">
+    <wsdl:part name="parameters" element="tns:RunGlobalSearch" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_RunGlobalSearch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RunGlobalSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_RunSearchAdvancedForRepositoryAssociations_InputMessage">
+    <wsdl:part name="parameters" element="tns:RunSearchAdvancedForRepositoryAssociations" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_RunSearchAdvancedForRepositoryAssociations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RunSearchAdvancedForRepositoryAssociationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetRepositories_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRepositories" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetRepositories_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRepositoriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_CheckoutDocuments_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckoutDocuments" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_CheckoutDocuments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckoutDocumentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_CanCheckoutDocuments_InputMessage">
+    <wsdl:part name="parameters" element="tns:CanCheckoutDocuments" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_CanCheckoutDocuments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CanCheckoutDocumentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_CanUndoCheckoutDocuments_InputMessage">
+    <wsdl:part name="parameters" element="tns:CanUndoCheckoutDocuments" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_CanUndoCheckoutDocuments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CanUndoCheckoutDocumentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_UndoCheckoutDocuments_InputMessage">
+    <wsdl:part name="parameters" element="tns:UndoCheckoutDocuments" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_UndoCheckoutDocuments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UndoCheckoutDocumentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_CheckinDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckinDocument" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_CheckinDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckinDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_RetrieveDocumentVersionHistory_InputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveDocumentVersionHistory" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_RetrieveDocumentVersionHistory_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveDocumentVersionHistoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_RestoreDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:RestoreDocument" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_RestoreDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RestoreDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_RetrieveDocumentVersion_InputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveDocumentVersion" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_RetrieveDocumentVersion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveDocumentVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_RetrieveDocumentVersionInformation_InputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveDocumentVersionInformation" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_RetrieveDocumentVersionInformation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveDocumentVersionInformationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_RetrieveAllDocumentInformationCheckedOutToUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveAllDocumentInformationCheckedOutToUser" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_RetrieveAllDocumentInformationCheckedOutToUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveAllDocumentInformationCheckedOutToUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_DeleteDocumentVersion_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteDocumentVersion" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_DeleteDocumentVersion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteDocumentVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_CreateShareDocLink_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateShareDocLink" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_CreateShareDocLink_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateShareDocLinkResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_DeleteShareDocLink_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteShareDocLink" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_DeleteShareDocLink_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteShareDocLinkResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_DoesShareDocLinkExist_InputMessage">
+    <wsdl:part name="parameters" element="tns:DoesShareDocLinkExist" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_DoesShareDocLinkExist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DoesShareDocLinkExistResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetShareDocByLinkID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetShareDocByLinkID" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetShareDocByLinkID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetShareDocByLinkIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_IsShareDocLinkExpired_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsShareDocLinkExpired" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_IsShareDocLinkExpired_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsShareDocLinkExpiredResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_SendShareDocLink_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendShareDocLink" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_SendShareDocLink_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendShareDocLinkResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetDocumentAnnotations_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDocumentAnnotations" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetDocumentAnnotations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDocumentAnnotationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_SetDocumentAnnotations_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetDocumentAnnotations" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_SetDocumentAnnotations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetDocumentAnnotationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_IsDocumentLinkedWithBatch_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsDocumentLinkedWithBatch" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_IsDocumentLinkedWithBatch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsDocumentLinkedWithBatchResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetRepositoryByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRepositoryByName" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetRepositoryByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRepositoryByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetRepositoryById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRepositoryById" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetRepositoryById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRepositoryByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetRepositoryByUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRepositoryByUser" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetRepositoryByUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRepositoryByUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetRepositoryByUserGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRepositoryByUserGroup" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetRepositoryByUserGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRepositoryByUserGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_AddNewRepository_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddNewRepository" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_AddNewRepository_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddNewRepositoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_UpdateRepository_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRepository" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_UpdateRepository_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRepositoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_DeleteRepository_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRepository" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_DeleteRepository_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRepositoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_AddNewIndexesToRepository_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddNewIndexesToRepository" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_AddNewIndexesToRepository_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddNewIndexesToRepositoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_SetIndexOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetIndexOrder" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_SetIndexOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetIndexOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetAllCaptureRepositories_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCaptureRepositories" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetAllCaptureRepositories_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCaptureRepositoriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetAllSearchRepositories_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllSearchRepositories" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetAllSearchRepositories_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllSearchRepositoriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_DoesRepositoryExist_InputMessage">
+    <wsdl:part name="parameters" element="tns:DoesRepositoryExist" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_DoesRepositoryExist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DoesRepositoryExistResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_DoesIndexFieldExist_InputMessage">
+    <wsdl:part name="parameters" element="tns:DoesIndexFieldExist" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_DoesIndexFieldExist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DoesIndexFieldExistResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetSearchRestrictions_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSearchRestrictions" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetSearchRestrictions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSearchRestrictionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_SetSearchRestrictions_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetSearchRestrictions" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_SetSearchRestrictions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetSearchRestrictionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetDocumentCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDocumentCount" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetDocumentCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDocumentCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetPicklistValuesForUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPicklistValuesForUser" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetPicklistValuesForUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPicklistValuesForUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetPicklistValuesForUserGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPicklistValuesForUserGroup" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetPicklistValuesForUserGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPicklistValuesForUserGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_AddPicklistItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddPicklistItem" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_AddPicklistItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddPicklistItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_AddPicklistItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddPicklistItems" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_AddPicklistItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddPicklistItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_RemovePicklistItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemovePicklistItem" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_RemovePicklistItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemovePicklistItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_UpdatePicklistItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePicklistItem" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_UpdatePicklistItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePicklistItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_RestrictPickListForGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:RestrictPickListForGroup" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_RestrictPickListForGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RestrictPickListForGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_UnRestrictPickListForGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:UnRestrictPickListForGroup" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_UnRestrictPickListForGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UnRestrictPickListForGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetPicklistSortingType_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPicklistSortingType" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetPicklistSortingType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPicklistSortingTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_SetPicklistSortingType_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetPicklistSortingType" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_SetPicklistSortingType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetPicklistSortingTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetRepositoryUsageSizeInMB_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRepositoryUsageSizeInMB" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetRepositoryUsageSizeInMB_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRepositoryUsageSizeInMBResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetMaxAllowableDatabaseSizeInMB_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMaxAllowableDatabaseSizeInMB" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetMaxAllowableDatabaseSizeInMB_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMaxAllowableDatabaseSizeInMBResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetRepositoryAssociationsById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRepositoryAssociationsById" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetRepositoryAssociationsById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRepositoryAssociationsByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetRepositoryAssociationsByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRepositoryAssociationsByName" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetRepositoryAssociationsByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRepositoryAssociationsByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_SetRepositoryAssociations_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetRepositoryAssociations" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_SetRepositoryAssociations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetRepositoryAssociationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_DeleteRepositoryAssociationsForSourceRepository_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRepositoryAssociationsForSourceRepository" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_DeleteRepositoryAssociationsForSourceRepository_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRepositoryAssociationsForSourceRepositoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_SetSettingXml_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetSettingXml" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_SetSettingXml_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetSettingXmlResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_LockRepository_InputMessage">
+    <wsdl:part name="parameters" element="tns:LockRepository" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_LockRepository_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LockRepositoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_UnLockRepository_InputMessage">
+    <wsdl:part name="parameters" element="tns:UnLockRepository" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_UnLockRepository_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UnLockRepositoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_ForceUnlockRepository_InputMessage">
+    <wsdl:part name="parameters" element="tns:ForceUnlockRepository" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_ForceUnlockRepository_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ForceUnlockRepositoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_IsRepositoryLinkedWithBatchProfile_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsRepositoryLinkedWithBatchProfile" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_IsRepositoryLinkedWithBatchProfile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsRepositoryLinkedWithBatchProfileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetLinkedServerSettings_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLinkedServerSettings" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetLinkedServerSettings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLinkedServerSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_UpdateLinkedServerSettings_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateLinkedServerSettings" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_UpdateLinkedServerSettings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateLinkedServerSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_ExecuteLinkedServerQuery_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExecuteLinkedServerQuery" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_ExecuteLinkedServerQuery_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExecuteLinkedServerQueryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_DeleteLinkedServerSettings_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteLinkedServerSettings" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_DeleteLinkedServerSettings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteLinkedServerSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetMigratedVersions_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMigratedVersions" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetMigratedVersions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMigratedVersionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_ExportProfile_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExportProfile" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_ExportProfile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExportProfileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_ImportProfile_InputMessage">
+    <wsdl:part name="parameters" element="tns:ImportProfile" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_ImportProfile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportProfileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_Ping_InputMessage">
+    <wsdl:part name="parameters" element="tns:Ping" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_Ping_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_DownloadOfflineFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadOfflineFile" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_DownloadOfflineFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadOfflineFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetCurrentClientBinaryVersion_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrentClientBinaryVersion" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetCurrentClientBinaryVersion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrentClientBinaryVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_DeleteView_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteView" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_DeleteView_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteViewResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GenerateSampleViewSearch_InputMessage">
+    <wsdl:part name="parameters" element="tns:GenerateSampleViewSearch" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GenerateSampleViewSearch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GenerateSampleViewSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetViewsForUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetViewsForUser" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetViewsForUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetViewsForUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetViewsForUserGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetViewsForUserGroup" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetViewsForUserGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetViewsForUserGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetUserGroupsForView_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserGroupsForView" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetUserGroupsForView_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserGroupsForViewResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetView_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetView" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetView_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetViewResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetViewSearchFields_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetViewSearchFields" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetViewSearchFields_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetViewSearchFieldsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetViewSearchFieldsForViews_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetViewSearchFieldsForViews" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetViewSearchFieldsForViews_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetViewSearchFieldsForViewsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetViewPermission_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetViewPermission" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetViewPermission_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetViewPermissionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetViewPermissions_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetViewPermissions" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetViewPermissions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetViewPermissionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_RunViewSearch_InputMessage">
+    <wsdl:part name="parameters" element="tns:RunViewSearch" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_RunViewSearch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RunViewSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_SetView_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetView" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_SetView_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetViewResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_DoesViewNameExists_InputMessage">
+    <wsdl:part name="parameters" element="tns:DoesViewNameExists" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_DoesViewNameExists_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DoesViewNameExistsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_ValidateViewSearch_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateViewSearch" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_ValidateViewSearch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateViewSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_ParseViewSearchForSearchFields_InputMessage">
+    <wsdl:part name="parameters" element="tns:ParseViewSearchForSearchFields" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_ParseViewSearchForSearchFields_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ParseViewSearchForSearchFieldsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_RetrieveDocumentInformationFromViewSearchResult_InputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveDocumentInformationFromViewSearchResult" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_RetrieveDocumentInformationFromViewSearchResult_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveDocumentInformationFromViewSearchResultResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_SetViewPermission_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetViewPermission" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_SetViewPermission_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetViewPermissionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetViewPermissionForUserGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetViewPermissionForUserGroup" />
+  </wsdl:message>
+  <wsdl:message name="IContentStoreContract_GetViewPermissionForUserGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetViewPermissionForUserGroupResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IContentStoreContract">
+    <wsdl:operation name="GetAllUsers">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IUserManagerContract/GetAllUsers" message="tns:IContentStoreContract_GetAllUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IUserManagerContract/GetAllUsersResponse" message="tns:IContentStoreContract_GetAllUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IUserManagerContract/GetUsers" message="tns:IContentStoreContract_GetUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IUserManagerContract/GetUsersResponse" message="tns:IContentStoreContract_GetUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddNewUser">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IUserManagerContract/AddNewUser" message="tns:IContentStoreContract_AddNewUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IUserManagerContract/AddNewUserResponse" message="tns:IContentStoreContract_AddNewUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IUserManagerContract/UpdateUser" message="tns:IContentStoreContract_UpdateUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IUserManagerContract/UpdateUserResponse" message="tns:IContentStoreContract_UpdateUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IUserManagerContract/DeleteUser" message="tns:IContentStoreContract_DeleteUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IUserManagerContract/DeleteUserResponse" message="tns:IContentStoreContract_DeleteUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IUserManagerContract/Login" message="tns:IContentStoreContract_Login_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IUserManagerContract/LoginResponse" message="tns:IContentStoreContract_Login_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Login2">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IUserManagerContract/Login2" message="tns:IContentStoreContract_Login2_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IUserManagerContract/Login2Response" message="tns:IContentStoreContract_Login2_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Login3">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IUserManagerContract/Login3" message="tns:IContentStoreContract_Login3_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IUserManagerContract/Login3Response" message="tns:IContentStoreContract_Login3_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Logout">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IUserManagerContract/Logout" message="tns:IContentStoreContract_Logout_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IUserManagerContract/LogoutResponse" message="tns:IContentStoreContract_Logout_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangePassword">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IUserManagerContract/ChangePassword" message="tns:IContentStoreContract_ChangePassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IUserManagerContract/ChangePasswordResponse" message="tns:IContentStoreContract_ChangePassword_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ResetUserPassword">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IUserManagerContract/ResetUserPassword" message="tns:IContentStoreContract_ResetUserPassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IUserManagerContract/ResetUserPasswordResponse" message="tns:IContentStoreContract_ResetUserPassword_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchADUserStartWith">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IUserManagerContract/SearchADUserStartWith" message="tns:IContentStoreContract_SearchADUserStartWith_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IUserManagerContract/SearchADUserStartWithResponse" message="tns:IContentStoreContract_SearchADUserStartWith_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsADEnabled">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IUserManagerContract/IsADEnabled" message="tns:IContentStoreContract_IsADEnabled_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IUserManagerContract/IsADEnabledResponse" message="tns:IContentStoreContract_IsADEnabled_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StoreFavoriteSearches">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IUserManagerContract/StoreFavoriteSearches" message="tns:IContentStoreContract_StoreFavoriteSearches_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IUserManagerContract/StoreFavoriteSearchesResponse" message="tns:IContentStoreContract_StoreFavoriteSearches_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveFavoriteSearches">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IUserManagerContract/RetrieveFavoriteSearches" message="tns:IContentStoreContract_RetrieveFavoriteSearches_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IUserManagerContract/RetrieveFavoriteSearchesResponse" message="tns:IContentStoreContract_RetrieveFavoriteSearches_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUserGroups1">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IUserGroupManagerContract/GetAllUserGroups1" message="tns:IContentStoreContract_GetAllUserGroups1_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IUserGroupManagerContract/GetAllUserGroups1Response" message="tns:IContentStoreContract_GetAllUserGroups1_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserGroups">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IUserGroupManagerContract/GetUserGroups" message="tns:IContentStoreContract_GetUserGroups_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IUserGroupManagerContract/GetUserGroupsResponse" message="tns:IContentStoreContract_GetUserGroups_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserGroupsForUser">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IUserGroupManagerContract/GetUserGroupsForUser" message="tns:IContentStoreContract_GetUserGroupsForUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IUserGroupManagerContract/GetUserGroupsForUserResponse" message="tns:IContentStoreContract_GetUserGroupsForUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUserGroups2">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IUserGroupManagerContract/GetAllUserGroups2" message="tns:IContentStoreContract_GetAllUserGroups2_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IUserGroupManagerContract/GetAllUserGroups2Response" message="tns:IContentStoreContract_GetAllUserGroups2_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddNewGroup">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IUserGroupManagerContract/AddNewGroup" message="tns:IContentStoreContract_AddNewGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IUserGroupManagerContract/AddNewGroupResponse" message="tns:IContentStoreContract_AddNewGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateGroup">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IUserGroupManagerContract/UpdateGroup" message="tns:IContentStoreContract_UpdateGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IUserGroupManagerContract/UpdateGroupResponse" message="tns:IContentStoreContract_UpdateGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteGroup">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IUserGroupManagerContract/DeleteGroup" message="tns:IContentStoreContract_DeleteGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IUserGroupManagerContract/DeleteGroupResponse" message="tns:IContentStoreContract_DeleteGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchADUserGroupStartWith">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IUserGroupManagerContract/SearchADUserGroupStartWith" message="tns:IContentStoreContract_SearchADUserGroupStartWith_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IUserGroupManagerContract/SearchADUserGroupStartWithResponse" message="tns:IContentStoreContract_SearchADUserGroupStartWith_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserGroupsByRepository">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IUserGroupManagerContract/GetUserGroupsByRepository" message="tns:IContentStoreContract_GetUserGroupsByRepository_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IUserGroupManagerContract/GetUserGroupsByRepositoryResponse" message="tns:IContentStoreContract_GetUserGroupsByRepository_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAnnotationPermissionByUser">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/ISecurityManagerContract/GetAnnotationPermissionByUser" message="tns:IContentStoreContract_GetAnnotationPermissionByUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/ISecurityManagerContract/GetAnnotationPermissionByUserResponse" message="tns:IContentStoreContract_GetAnnotationPermissionByUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAnnotationPermissionByGroup">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/ISecurityManagerContract/GetAnnotationPermissionByGroup" message="tns:IContentStoreContract_GetAnnotationPermissionByGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/ISecurityManagerContract/GetAnnotationPermissionByGroupResponse" message="tns:IContentStoreContract_GetAnnotationPermissionByGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentPermissionByUser">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/ISecurityManagerContract/GetDocumentPermissionByUser" message="tns:IContentStoreContract_GetDocumentPermissionByUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/ISecurityManagerContract/GetDocumentPermissionByUserResponse" message="tns:IContentStoreContract_GetDocumentPermissionByUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentPermissionByGroup">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/ISecurityManagerContract/GetDocumentPermissionByGroup" message="tns:IContentStoreContract_GetDocumentPermissionByGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/ISecurityManagerContract/GetDocumentPermissionByGroupResponse" message="tns:IContentStoreContract_GetDocumentPermissionByGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetAnnotationPermission">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/ISecurityManagerContract/SetAnnotationPermission" message="tns:IContentStoreContract_SetAnnotationPermission_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/ISecurityManagerContract/SetAnnotationPermissionResponse" message="tns:IContentStoreContract_SetAnnotationPermission_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetDocumentPermission">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/ISecurityManagerContract/SetDocumentPermission" message="tns:IContentStoreContract_SetDocumentPermission_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/ISecurityManagerContract/SetDocumentPermissionResponse" message="tns:IContentStoreContract_SetDocumentPermission_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertDocument">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/InsertDocument" message="tns:IContentStoreContract_InsertDocument_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/InsertDocumentResponse" message="tns:IContentStoreContract_InsertDocument_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RunAdvanceSearch">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/RunAdvanceSearch" message="tns:IContentStoreContract_RunAdvanceSearch_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/RunAdvanceSearchResponse" message="tns:IContentStoreContract_RunAdvanceSearch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RunAdvanceSearch2">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/RunAdvanceSearch2" message="tns:IContentStoreContract_RunAdvanceSearch2_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/RunAdvanceSearch2Response" message="tns:IContentStoreContract_RunAdvanceSearch2_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveDocument">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/RetrieveDocument" message="tns:IContentStoreContract_RetrieveDocument_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/RetrieveDocumentResponse" message="tns:IContentStoreContract_RetrieveDocument_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveDocument2">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/RetrieveDocument2" message="tns:IContentStoreContract_RetrieveDocument2_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/RetrieveDocument2Response" message="tns:IContentStoreContract_RetrieveDocument2_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveDiscussionMessages">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/RetrieveDiscussionMessages" message="tns:IContentStoreContract_RetrieveDiscussionMessages_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/RetrieveDiscussionMessagesResponse" message="tns:IContentStoreContract_RetrieveDiscussionMessages_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDocumentIndexRow">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/DeleteDocumentIndexRow" message="tns:IContentStoreContract_DeleteDocumentIndexRow_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/DeleteDocumentIndexRowResponse" message="tns:IContentStoreContract_DeleteDocumentIndexRow_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDocument">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/DeleteDocument" message="tns:IContentStoreContract_DeleteDocument_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/DeleteDocumentResponse" message="tns:IContentStoreContract_DeleteDocument_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveDocumentInformationByDocumentId">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/RetrieveDocumentInformationByDocumentId" message="tns:IContentStoreContract_RetrieveDocumentInformationByDocumentId_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/RetrieveDocumentInformationByDocumentIdResponse" message="tns:IContentStoreContract_RetrieveDocumentInformationByDocumentId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveDocumentInformationByDocumentIds">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/RetrieveDocumentInformationByDocumentIds" message="tns:IContentStoreContract_RetrieveDocumentInformationByDocumentIds_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/RetrieveDocumentInformationByDocumentIdsResponse" message="tns:IContentStoreContract_RetrieveDocumentInformationByDocumentIds_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMultipleIndexRows">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/UpdateMultipleIndexRows" message="tns:IContentStoreContract_UpdateMultipleIndexRows_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/UpdateMultipleIndexRowsResponse" message="tns:IContentStoreContract_UpdateMultipleIndexRows_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDocument">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/UpdateDocument" message="tns:IContentStoreContract_UpdateDocument_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/UpdateDocumentResponse" message="tns:IContentStoreContract_UpdateDocument_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertDocumentWithBarcode1">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/InsertDocumentWithBarcode1" message="tns:IContentStoreContract_InsertDocumentWithBarcode1_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/InsertDocumentWithBarcode1Response" message="tns:IContentStoreContract_InsertDocumentWithBarcode1_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertDocumentWithBarcode2">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/InsertDocumentWithBarcode2" message="tns:IContentStoreContract_InsertDocumentWithBarcode2_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/InsertDocumentWithBarcode2Response" message="tns:IContentStoreContract_InsertDocumentWithBarcode2_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertNewIndexRowToExistingDocument">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/InsertNewIndexRowToExistingDocument" message="tns:IContentStoreContract_InsertNewIndexRowToExistingDocument_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/InsertNewIndexRowToExistingDocumentResponse" message="tns:IContentStoreContract_InsertNewIndexRowToExistingDocument_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RunGlobalSearch">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/RunGlobalSearch" message="tns:IContentStoreContract_RunGlobalSearch_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/RunGlobalSearchResponse" message="tns:IContentStoreContract_RunGlobalSearch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RunSearchAdvancedForRepositoryAssociations">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/RunSearchAdvancedForRepositoryAssociations" message="tns:IContentStoreContract_RunSearchAdvancedForRepositoryAssociations_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/RunSearchAdvancedForRepositoryAssociationsResponse" message="tns:IContentStoreContract_RunSearchAdvancedForRepositoryAssociations_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRepositories">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/GetRepositories" message="tns:IContentStoreContract_GetRepositories_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/GetRepositoriesResponse" message="tns:IContentStoreContract_GetRepositories_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckoutDocuments">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/CheckoutDocuments" message="tns:IContentStoreContract_CheckoutDocuments_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/CheckoutDocumentsResponse" message="tns:IContentStoreContract_CheckoutDocuments_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CanCheckoutDocuments">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/CanCheckoutDocuments" message="tns:IContentStoreContract_CanCheckoutDocuments_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/CanCheckoutDocumentsResponse" message="tns:IContentStoreContract_CanCheckoutDocuments_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CanUndoCheckoutDocuments">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/CanUndoCheckoutDocuments" message="tns:IContentStoreContract_CanUndoCheckoutDocuments_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/CanUndoCheckoutDocumentsResponse" message="tns:IContentStoreContract_CanUndoCheckoutDocuments_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UndoCheckoutDocuments">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/UndoCheckoutDocuments" message="tns:IContentStoreContract_UndoCheckoutDocuments_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/UndoCheckoutDocumentsResponse" message="tns:IContentStoreContract_UndoCheckoutDocuments_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckinDocument">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/CheckinDocument" message="tns:IContentStoreContract_CheckinDocument_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/CheckinDocumentResponse" message="tns:IContentStoreContract_CheckinDocument_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveDocumentVersionHistory">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/RetrieveDocumentVersionHistory" message="tns:IContentStoreContract_RetrieveDocumentVersionHistory_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/RetrieveDocumentVersionHistoryResponse" message="tns:IContentStoreContract_RetrieveDocumentVersionHistory_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RestoreDocument">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/RestoreDocument" message="tns:IContentStoreContract_RestoreDocument_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/RestoreDocumentResponse" message="tns:IContentStoreContract_RestoreDocument_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveDocumentVersion">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/RetrieveDocumentVersion" message="tns:IContentStoreContract_RetrieveDocumentVersion_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/RetrieveDocumentVersionResponse" message="tns:IContentStoreContract_RetrieveDocumentVersion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveDocumentVersionInformation">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/RetrieveDocumentVersionInformation" message="tns:IContentStoreContract_RetrieveDocumentVersionInformation_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/RetrieveDocumentVersionInformationResponse" message="tns:IContentStoreContract_RetrieveDocumentVersionInformation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveAllDocumentInformationCheckedOutToUser">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/RetrieveAllDocumentInformationCheckedOutToUser" message="tns:IContentStoreContract_RetrieveAllDocumentInformationCheckedOutToUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/RetrieveAllDocumentInformationCheckedOutToUserResponse" message="tns:IContentStoreContract_RetrieveAllDocumentInformationCheckedOutToUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDocumentVersion">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/DeleteDocumentVersion" message="tns:IContentStoreContract_DeleteDocumentVersion_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/DeleteDocumentVersionResponse" message="tns:IContentStoreContract_DeleteDocumentVersion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateShareDocLink">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/CreateShareDocLink" message="tns:IContentStoreContract_CreateShareDocLink_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/CreateShareDocLinkResponse" message="tns:IContentStoreContract_CreateShareDocLink_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteShareDocLink">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/DeleteShareDocLink" message="tns:IContentStoreContract_DeleteShareDocLink_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/DeleteShareDocLinkResponse" message="tns:IContentStoreContract_DeleteShareDocLink_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DoesShareDocLinkExist">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/DoesShareDocLinkExist" message="tns:IContentStoreContract_DoesShareDocLinkExist_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/DoesShareDocLinkExistResponse" message="tns:IContentStoreContract_DoesShareDocLinkExist_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetShareDocByLinkID">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/GetShareDocByLinkID" message="tns:IContentStoreContract_GetShareDocByLinkID_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/GetShareDocByLinkIDResponse" message="tns:IContentStoreContract_GetShareDocByLinkID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsShareDocLinkExpired">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/IsShareDocLinkExpired" message="tns:IContentStoreContract_IsShareDocLinkExpired_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/IsShareDocLinkExpiredResponse" message="tns:IContentStoreContract_IsShareDocLinkExpired_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendShareDocLink">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/SendShareDocLink" message="tns:IContentStoreContract_SendShareDocLink_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/SendShareDocLinkResponse" message="tns:IContentStoreContract_SendShareDocLink_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentAnnotations">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/GetDocumentAnnotations" message="tns:IContentStoreContract_GetDocumentAnnotations_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/GetDocumentAnnotationsResponse" message="tns:IContentStoreContract_GetDocumentAnnotations_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetDocumentAnnotations">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/SetDocumentAnnotations" message="tns:IContentStoreContract_SetDocumentAnnotations_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/SetDocumentAnnotationsResponse" message="tns:IContentStoreContract_SetDocumentAnnotations_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsDocumentLinkedWithBatch">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/IsDocumentLinkedWithBatch" message="tns:IContentStoreContract_IsDocumentLinkedWithBatch_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IDocumentManagerContract/IsDocumentLinkedWithBatchResponse" message="tns:IContentStoreContract_IsDocumentLinkedWithBatch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRepositoryByName">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/GetRepositoryByName" message="tns:IContentStoreContract_GetRepositoryByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/GetRepositoryByNameResponse" message="tns:IContentStoreContract_GetRepositoryByName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRepositoryById">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/GetRepositoryById" message="tns:IContentStoreContract_GetRepositoryById_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/GetRepositoryByIdResponse" message="tns:IContentStoreContract_GetRepositoryById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRepositoryByUser">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/GetRepositoryByUser" message="tns:IContentStoreContract_GetRepositoryByUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/GetRepositoryByUserResponse" message="tns:IContentStoreContract_GetRepositoryByUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRepositoryByUserGroup">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/GetRepositoryByUserGroup" message="tns:IContentStoreContract_GetRepositoryByUserGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/GetRepositoryByUserGroupResponse" message="tns:IContentStoreContract_GetRepositoryByUserGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddNewRepository">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/AddNewRepository" message="tns:IContentStoreContract_AddNewRepository_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/AddNewRepositoryResponse" message="tns:IContentStoreContract_AddNewRepository_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRepository">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/UpdateRepository" message="tns:IContentStoreContract_UpdateRepository_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/UpdateRepositoryResponse" message="tns:IContentStoreContract_UpdateRepository_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRepository">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/DeleteRepository" message="tns:IContentStoreContract_DeleteRepository_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/DeleteRepositoryResponse" message="tns:IContentStoreContract_DeleteRepository_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddNewIndexesToRepository">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/AddNewIndexesToRepository" message="tns:IContentStoreContract_AddNewIndexesToRepository_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/AddNewIndexesToRepositoryResponse" message="tns:IContentStoreContract_AddNewIndexesToRepository_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetIndexOrder">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/SetIndexOrder" message="tns:IContentStoreContract_SetIndexOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/SetIndexOrderResponse" message="tns:IContentStoreContract_SetIndexOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCaptureRepositories">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/GetAllCaptureRepositories" message="tns:IContentStoreContract_GetAllCaptureRepositories_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/GetAllCaptureRepositoriesResponse" message="tns:IContentStoreContract_GetAllCaptureRepositories_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllSearchRepositories">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/GetAllSearchRepositories" message="tns:IContentStoreContract_GetAllSearchRepositories_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/GetAllSearchRepositoriesResponse" message="tns:IContentStoreContract_GetAllSearchRepositories_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DoesRepositoryExist">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/DoesRepositoryExist" message="tns:IContentStoreContract_DoesRepositoryExist_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/DoesRepositoryExistResponse" message="tns:IContentStoreContract_DoesRepositoryExist_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DoesIndexFieldExist">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/DoesIndexFieldExist" message="tns:IContentStoreContract_DoesIndexFieldExist_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/DoesIndexFieldExistResponse" message="tns:IContentStoreContract_DoesIndexFieldExist_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSearchRestrictions">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/GetSearchRestrictions" message="tns:IContentStoreContract_GetSearchRestrictions_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/GetSearchRestrictionsResponse" message="tns:IContentStoreContract_GetSearchRestrictions_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetSearchRestrictions">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/SetSearchRestrictions" message="tns:IContentStoreContract_SetSearchRestrictions_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/SetSearchRestrictionsResponse" message="tns:IContentStoreContract_SetSearchRestrictions_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentCount">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/GetDocumentCount" message="tns:IContentStoreContract_GetDocumentCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/GetDocumentCountResponse" message="tns:IContentStoreContract_GetDocumentCount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPicklistValuesForUser">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/GetPicklistValuesForUser" message="tns:IContentStoreContract_GetPicklistValuesForUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/GetPicklistValuesForUserResponse" message="tns:IContentStoreContract_GetPicklistValuesForUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPicklistValuesForUserGroup">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/GetPicklistValuesForUserGroup" message="tns:IContentStoreContract_GetPicklistValuesForUserGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/GetPicklistValuesForUserGroupResponse" message="tns:IContentStoreContract_GetPicklistValuesForUserGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddPicklistItem">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/AddPicklistItem" message="tns:IContentStoreContract_AddPicklistItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/AddPicklistItemResponse" message="tns:IContentStoreContract_AddPicklistItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddPicklistItems">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/AddPicklistItems" message="tns:IContentStoreContract_AddPicklistItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/AddPicklistItemsResponse" message="tns:IContentStoreContract_AddPicklistItems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemovePicklistItem">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/RemovePicklistItem" message="tns:IContentStoreContract_RemovePicklistItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/RemovePicklistItemResponse" message="tns:IContentStoreContract_RemovePicklistItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePicklistItem">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/UpdatePicklistItem" message="tns:IContentStoreContract_UpdatePicklistItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/UpdatePicklistItemResponse" message="tns:IContentStoreContract_UpdatePicklistItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RestrictPickListForGroup">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/RestrictPickListForGroup" message="tns:IContentStoreContract_RestrictPickListForGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/RestrictPickListForGroupResponse" message="tns:IContentStoreContract_RestrictPickListForGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UnRestrictPickListForGroup">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/UnRestrictPickListForGroup" message="tns:IContentStoreContract_UnRestrictPickListForGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/UnRestrictPickListForGroupResponse" message="tns:IContentStoreContract_UnRestrictPickListForGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPicklistSortingType">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/GetPicklistSortingType" message="tns:IContentStoreContract_GetPicklistSortingType_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/GetPicklistSortingTypeResponse" message="tns:IContentStoreContract_GetPicklistSortingType_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetPicklistSortingType">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/SetPicklistSortingType" message="tns:IContentStoreContract_SetPicklistSortingType_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/SetPicklistSortingTypeResponse" message="tns:IContentStoreContract_SetPicklistSortingType_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRepositoryUsageSizeInMB">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/GetRepositoryUsageSizeInMB" message="tns:IContentStoreContract_GetRepositoryUsageSizeInMB_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/GetRepositoryUsageSizeInMBResponse" message="tns:IContentStoreContract_GetRepositoryUsageSizeInMB_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMaxAllowableDatabaseSizeInMB">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/GetMaxAllowableDatabaseSizeInMB" message="tns:IContentStoreContract_GetMaxAllowableDatabaseSizeInMB_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/GetMaxAllowableDatabaseSizeInMBResponse" message="tns:IContentStoreContract_GetMaxAllowableDatabaseSizeInMB_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRepositoryAssociationsById">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/GetRepositoryAssociationsById" message="tns:IContentStoreContract_GetRepositoryAssociationsById_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/GetRepositoryAssociationsByIdResponse" message="tns:IContentStoreContract_GetRepositoryAssociationsById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRepositoryAssociationsByName">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/GetRepositoryAssociationsByName" message="tns:IContentStoreContract_GetRepositoryAssociationsByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/GetRepositoryAssociationsByNameResponse" message="tns:IContentStoreContract_GetRepositoryAssociationsByName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetRepositoryAssociations">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/SetRepositoryAssociations" message="tns:IContentStoreContract_SetRepositoryAssociations_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/SetRepositoryAssociationsResponse" message="tns:IContentStoreContract_SetRepositoryAssociations_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRepositoryAssociationsForSourceRepository">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/DeleteRepositoryAssociationsForSourceRepository" message="tns:IContentStoreContract_DeleteRepositoryAssociationsForSourceRepository_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/DeleteRepositoryAssociationsForSourceRepositoryResponse" message="tns:IContentStoreContract_DeleteRepositoryAssociationsForSourceRepository_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetSettingXml">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/SetSettingXml" message="tns:IContentStoreContract_SetSettingXml_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/SetSettingXmlResponse" message="tns:IContentStoreContract_SetSettingXml_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LockRepository">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/LockRepository" message="tns:IContentStoreContract_LockRepository_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/LockRepositoryResponse" message="tns:IContentStoreContract_LockRepository_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UnLockRepository">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/UnLockRepository" message="tns:IContentStoreContract_UnLockRepository_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/UnLockRepositoryResponse" message="tns:IContentStoreContract_UnLockRepository_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ForceUnlockRepository">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/ForceUnlockRepository" message="tns:IContentStoreContract_ForceUnlockRepository_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/ForceUnlockRepositoryResponse" message="tns:IContentStoreContract_ForceUnlockRepository_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsRepositoryLinkedWithBatchProfile">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/IsRepositoryLinkedWithBatchProfile" message="tns:IContentStoreContract_IsRepositoryLinkedWithBatchProfile_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/IsRepositoryLinkedWithBatchProfileResponse" message="tns:IContentStoreContract_IsRepositoryLinkedWithBatchProfile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLinkedServerSettings">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/GetLinkedServerSettings" message="tns:IContentStoreContract_GetLinkedServerSettings_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/GetLinkedServerSettingsResponse" message="tns:IContentStoreContract_GetLinkedServerSettings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLinkedServerSettings">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/UpdateLinkedServerSettings" message="tns:IContentStoreContract_UpdateLinkedServerSettings_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/UpdateLinkedServerSettingsResponse" message="tns:IContentStoreContract_UpdateLinkedServerSettings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteLinkedServerQuery">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/ExecuteLinkedServerQuery" message="tns:IContentStoreContract_ExecuteLinkedServerQuery_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/ExecuteLinkedServerQueryResponse" message="tns:IContentStoreContract_ExecuteLinkedServerQuery_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLinkedServerSettings">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/DeleteLinkedServerSettings" message="tns:IContentStoreContract_DeleteLinkedServerSettings_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/DeleteLinkedServerSettingsResponse" message="tns:IContentStoreContract_DeleteLinkedServerSettings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMigratedVersions">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/GetMigratedVersions" message="tns:IContentStoreContract_GetMigratedVersions_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/GetMigratedVersionsResponse" message="tns:IContentStoreContract_GetMigratedVersions_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExportProfile">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/ExportProfile" message="tns:IContentStoreContract_ExportProfile_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/ExportProfileResponse" message="tns:IContentStoreContract_ExportProfile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportProfile">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/ImportProfile" message="tns:IContentStoreContract_ImportProfile_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IRepositoryManagerContract/ImportProfileResponse" message="tns:IContentStoreContract_ImportProfile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Ping">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IOfflineContract/Ping" message="tns:IContentStoreContract_Ping_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IOfflineContract/PingResponse" message="tns:IContentStoreContract_Ping_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadOfflineFile">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IOfflineContract/DownloadOfflineFile" message="tns:IContentStoreContract_DownloadOfflineFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IOfflineContract/DownloadOfflineFileResponse" message="tns:IContentStoreContract_DownloadOfflineFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentClientBinaryVersion">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IOfflineContract/GetCurrentClientBinaryVersion" message="tns:IContentStoreContract_GetCurrentClientBinaryVersion_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IOfflineContract/GetCurrentClientBinaryVersionResponse" message="tns:IContentStoreContract_GetCurrentClientBinaryVersion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteView">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IViewManagerContract/DeleteView" message="tns:IContentStoreContract_DeleteView_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IViewManagerContract/DeleteViewResponse" message="tns:IContentStoreContract_DeleteView_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GenerateSampleViewSearch">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IViewManagerContract/GenerateSampleViewSearch" message="tns:IContentStoreContract_GenerateSampleViewSearch_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IViewManagerContract/GenerateSampleViewSearchResponse" message="tns:IContentStoreContract_GenerateSampleViewSearch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetViewsForUser">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IViewManagerContract/GetViewsForUser" message="tns:IContentStoreContract_GetViewsForUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IViewManagerContract/GetViewsForUserResponse" message="tns:IContentStoreContract_GetViewsForUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetViewsForUserGroup">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IViewManagerContract/GetViewsForUserGroup" message="tns:IContentStoreContract_GetViewsForUserGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IViewManagerContract/GetViewsForUserGroupResponse" message="tns:IContentStoreContract_GetViewsForUserGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserGroupsForView">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IViewManagerContract/GetUserGroupsForView" message="tns:IContentStoreContract_GetUserGroupsForView_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IViewManagerContract/GetUserGroupsForViewResponse" message="tns:IContentStoreContract_GetUserGroupsForView_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetView">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IViewManagerContract/GetView" message="tns:IContentStoreContract_GetView_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IViewManagerContract/GetViewResponse" message="tns:IContentStoreContract_GetView_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetViewSearchFields">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IViewManagerContract/GetViewSearchFields" message="tns:IContentStoreContract_GetViewSearchFields_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IViewManagerContract/GetViewSearchFieldsResponse" message="tns:IContentStoreContract_GetViewSearchFields_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetViewSearchFieldsForViews">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IViewManagerContract/GetViewSearchFieldsForViews" message="tns:IContentStoreContract_GetViewSearchFieldsForViews_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IViewManagerContract/GetViewSearchFieldsForViewsResponse" message="tns:IContentStoreContract_GetViewSearchFieldsForViews_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetViewPermission">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IViewManagerContract/GetViewPermission" message="tns:IContentStoreContract_GetViewPermission_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IViewManagerContract/GetViewPermissionResponse" message="tns:IContentStoreContract_GetViewPermission_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetViewPermissions">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IViewManagerContract/GetViewPermissions" message="tns:IContentStoreContract_GetViewPermissions_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IViewManagerContract/GetViewPermissionsResponse" message="tns:IContentStoreContract_GetViewPermissions_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RunViewSearch">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IViewManagerContract/RunViewSearch" message="tns:IContentStoreContract_RunViewSearch_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IViewManagerContract/RunViewSearchResponse" message="tns:IContentStoreContract_RunViewSearch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetView">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IViewManagerContract/SetView" message="tns:IContentStoreContract_SetView_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IViewManagerContract/SetViewResponse" message="tns:IContentStoreContract_SetView_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DoesViewNameExists">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IViewManagerContract/DoesViewNameExists" message="tns:IContentStoreContract_DoesViewNameExists_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IViewManagerContract/DoesViewNameExistsResponse" message="tns:IContentStoreContract_DoesViewNameExists_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateViewSearch">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IViewManagerContract/ValidateViewSearch" message="tns:IContentStoreContract_ValidateViewSearch_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IViewManagerContract/ValidateViewSearchResponse" message="tns:IContentStoreContract_ValidateViewSearch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ParseViewSearchForSearchFields">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IViewManagerContract/ParseViewSearchForSearchFields" message="tns:IContentStoreContract_ParseViewSearchForSearchFields_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IViewManagerContract/ParseViewSearchForSearchFieldsResponse" message="tns:IContentStoreContract_ParseViewSearchForSearchFields_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveDocumentInformationFromViewSearchResult">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IViewManagerContract/RetrieveDocumentInformationFromViewSearchResult" message="tns:IContentStoreContract_RetrieveDocumentInformationFromViewSearchResult_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IViewManagerContract/RetrieveDocumentInformationFromViewSearchResultResponse" message="tns:IContentStoreContract_RetrieveDocumentInformationFromViewSearchResult_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetViewPermission">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IViewManagerContract/SetViewPermission" message="tns:IContentStoreContract_SetViewPermission_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IViewManagerContract/SetViewPermissionResponse" message="tns:IContentStoreContract_SetViewPermission_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetViewPermissionForUserGroup">
+      <wsdl:input wsaw:Action="http://imagesourceinc.com/IViewManagerContract/GetViewPermissionForUserGroup" message="tns:IContentStoreContract_GetViewPermissionForUserGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://imagesourceinc.com/IViewManagerContract/GetViewPermissionForUserGroupResponse" message="tns:IContentStoreContract_GetViewPermissionForUserGroup_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IContentStoreContract" type="tns:IContentStoreContract">
+    <wsp:PolicyReference URI="#BasicHttpBinding_IContentStoreContract_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAllUsers">
+      <soap:operation soapAction="http://imagesourceinc.com/IUserManagerContract/GetAllUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <soap:operation soapAction="http://imagesourceinc.com/IUserManagerContract/GetUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddNewUser">
+      <soap:operation soapAction="http://imagesourceinc.com/IUserManagerContract/AddNewUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <soap:operation soapAction="http://imagesourceinc.com/IUserManagerContract/UpdateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <soap:operation soapAction="http://imagesourceinc.com/IUserManagerContract/DeleteUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://imagesourceinc.com/IUserManagerContract/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login2">
+      <soap:operation soapAction="http://imagesourceinc.com/IUserManagerContract/Login2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login3">
+      <soap:operation soapAction="http://imagesourceinc.com/IUserManagerContract/Login3" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Logout">
+      <soap:operation soapAction="http://imagesourceinc.com/IUserManagerContract/Logout" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangePassword">
+      <soap:operation soapAction="http://imagesourceinc.com/IUserManagerContract/ChangePassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetUserPassword">
+      <soap:operation soapAction="http://imagesourceinc.com/IUserManagerContract/ResetUserPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchADUserStartWith">
+      <soap:operation soapAction="http://imagesourceinc.com/IUserManagerContract/SearchADUserStartWith" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsADEnabled">
+      <soap:operation soapAction="http://imagesourceinc.com/IUserManagerContract/IsADEnabled" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreFavoriteSearches">
+      <soap:operation soapAction="http://imagesourceinc.com/IUserManagerContract/StoreFavoriteSearches" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveFavoriteSearches">
+      <soap:operation soapAction="http://imagesourceinc.com/IUserManagerContract/RetrieveFavoriteSearches" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUserGroups1">
+      <soap:operation soapAction="http://imagesourceinc.com/IUserGroupManagerContract/GetAllUserGroups1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserGroups">
+      <soap:operation soapAction="http://imagesourceinc.com/IUserGroupManagerContract/GetUserGroups" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserGroupsForUser">
+      <soap:operation soapAction="http://imagesourceinc.com/IUserGroupManagerContract/GetUserGroupsForUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUserGroups2">
+      <soap:operation soapAction="http://imagesourceinc.com/IUserGroupManagerContract/GetAllUserGroups2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddNewGroup">
+      <soap:operation soapAction="http://imagesourceinc.com/IUserGroupManagerContract/AddNewGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateGroup">
+      <soap:operation soapAction="http://imagesourceinc.com/IUserGroupManagerContract/UpdateGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteGroup">
+      <soap:operation soapAction="http://imagesourceinc.com/IUserGroupManagerContract/DeleteGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchADUserGroupStartWith">
+      <soap:operation soapAction="http://imagesourceinc.com/IUserGroupManagerContract/SearchADUserGroupStartWith" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserGroupsByRepository">
+      <soap:operation soapAction="http://imagesourceinc.com/IUserGroupManagerContract/GetUserGroupsByRepository" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAnnotationPermissionByUser">
+      <soap:operation soapAction="http://imagesourceinc.com/ISecurityManagerContract/GetAnnotationPermissionByUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAnnotationPermissionByGroup">
+      <soap:operation soapAction="http://imagesourceinc.com/ISecurityManagerContract/GetAnnotationPermissionByGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentPermissionByUser">
+      <soap:operation soapAction="http://imagesourceinc.com/ISecurityManagerContract/GetDocumentPermissionByUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentPermissionByGroup">
+      <soap:operation soapAction="http://imagesourceinc.com/ISecurityManagerContract/GetDocumentPermissionByGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetAnnotationPermission">
+      <soap:operation soapAction="http://imagesourceinc.com/ISecurityManagerContract/SetAnnotationPermission" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDocumentPermission">
+      <soap:operation soapAction="http://imagesourceinc.com/ISecurityManagerContract/SetDocumentPermission" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertDocument">
+      <soap:operation soapAction="http://imagesourceinc.com/IDocumentManagerContract/InsertDocument" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RunAdvanceSearch">
+      <soap:operation soapAction="http://imagesourceinc.com/IDocumentManagerContract/RunAdvanceSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RunAdvanceSearch2">
+      <soap:operation soapAction="http://imagesourceinc.com/IDocumentManagerContract/RunAdvanceSearch2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveDocument">
+      <soap:operation soapAction="http://imagesourceinc.com/IDocumentManagerContract/RetrieveDocument" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveDocument2">
+      <soap:operation soapAction="http://imagesourceinc.com/IDocumentManagerContract/RetrieveDocument2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveDiscussionMessages">
+      <soap:operation soapAction="http://imagesourceinc.com/IDocumentManagerContract/RetrieveDiscussionMessages" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDocumentIndexRow">
+      <soap:operation soapAction="http://imagesourceinc.com/IDocumentManagerContract/DeleteDocumentIndexRow" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDocument">
+      <soap:operation soapAction="http://imagesourceinc.com/IDocumentManagerContract/DeleteDocument" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveDocumentInformationByDocumentId">
+      <soap:operation soapAction="http://imagesourceinc.com/IDocumentManagerContract/RetrieveDocumentInformationByDocumentId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveDocumentInformationByDocumentIds">
+      <soap:operation soapAction="http://imagesourceinc.com/IDocumentManagerContract/RetrieveDocumentInformationByDocumentIds" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMultipleIndexRows">
+      <soap:operation soapAction="http://imagesourceinc.com/IDocumentManagerContract/UpdateMultipleIndexRows" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDocument">
+      <soap:operation soapAction="http://imagesourceinc.com/IDocumentManagerContract/UpdateDocument" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertDocumentWithBarcode1">
+      <soap:operation soapAction="http://imagesourceinc.com/IDocumentManagerContract/InsertDocumentWithBarcode1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertDocumentWithBarcode2">
+      <soap:operation soapAction="http://imagesourceinc.com/IDocumentManagerContract/InsertDocumentWithBarcode2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertNewIndexRowToExistingDocument">
+      <soap:operation soapAction="http://imagesourceinc.com/IDocumentManagerContract/InsertNewIndexRowToExistingDocument" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RunGlobalSearch">
+      <soap:operation soapAction="http://imagesourceinc.com/IDocumentManagerContract/RunGlobalSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RunSearchAdvancedForRepositoryAssociations">
+      <soap:operation soapAction="http://imagesourceinc.com/IDocumentManagerContract/RunSearchAdvancedForRepositoryAssociations" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRepositories">
+      <soap:operation soapAction="http://imagesourceinc.com/IDocumentManagerContract/GetRepositories" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckoutDocuments">
+      <soap:operation soapAction="http://imagesourceinc.com/IDocumentManagerContract/CheckoutDocuments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CanCheckoutDocuments">
+      <soap:operation soapAction="http://imagesourceinc.com/IDocumentManagerContract/CanCheckoutDocuments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CanUndoCheckoutDocuments">
+      <soap:operation soapAction="http://imagesourceinc.com/IDocumentManagerContract/CanUndoCheckoutDocuments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UndoCheckoutDocuments">
+      <soap:operation soapAction="http://imagesourceinc.com/IDocumentManagerContract/UndoCheckoutDocuments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckinDocument">
+      <soap:operation soapAction="http://imagesourceinc.com/IDocumentManagerContract/CheckinDocument" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveDocumentVersionHistory">
+      <soap:operation soapAction="http://imagesourceinc.com/IDocumentManagerContract/RetrieveDocumentVersionHistory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RestoreDocument">
+      <soap:operation soapAction="http://imagesourceinc.com/IDocumentManagerContract/RestoreDocument" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveDocumentVersion">
+      <soap:operation soapAction="http://imagesourceinc.com/IDocumentManagerContract/RetrieveDocumentVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveDocumentVersionInformation">
+      <soap:operation soapAction="http://imagesourceinc.com/IDocumentManagerContract/RetrieveDocumentVersionInformation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveAllDocumentInformationCheckedOutToUser">
+      <soap:operation soapAction="http://imagesourceinc.com/IDocumentManagerContract/RetrieveAllDocumentInformationCheckedOutToUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDocumentVersion">
+      <soap:operation soapAction="http://imagesourceinc.com/IDocumentManagerContract/DeleteDocumentVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateShareDocLink">
+      <soap:operation soapAction="http://imagesourceinc.com/IDocumentManagerContract/CreateShareDocLink" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteShareDocLink">
+      <soap:operation soapAction="http://imagesourceinc.com/IDocumentManagerContract/DeleteShareDocLink" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DoesShareDocLinkExist">
+      <soap:operation soapAction="http://imagesourceinc.com/IDocumentManagerContract/DoesShareDocLinkExist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetShareDocByLinkID">
+      <soap:operation soapAction="http://imagesourceinc.com/IDocumentManagerContract/GetShareDocByLinkID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsShareDocLinkExpired">
+      <soap:operation soapAction="http://imagesourceinc.com/IDocumentManagerContract/IsShareDocLinkExpired" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendShareDocLink">
+      <soap:operation soapAction="http://imagesourceinc.com/IDocumentManagerContract/SendShareDocLink" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentAnnotations">
+      <soap:operation soapAction="http://imagesourceinc.com/IDocumentManagerContract/GetDocumentAnnotations" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDocumentAnnotations">
+      <soap:operation soapAction="http://imagesourceinc.com/IDocumentManagerContract/SetDocumentAnnotations" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsDocumentLinkedWithBatch">
+      <soap:operation soapAction="http://imagesourceinc.com/IDocumentManagerContract/IsDocumentLinkedWithBatch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRepositoryByName">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/GetRepositoryByName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRepositoryById">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/GetRepositoryById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRepositoryByUser">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/GetRepositoryByUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRepositoryByUserGroup">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/GetRepositoryByUserGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddNewRepository">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/AddNewRepository" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRepository">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/UpdateRepository" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRepository">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/DeleteRepository" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddNewIndexesToRepository">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/AddNewIndexesToRepository" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetIndexOrder">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/SetIndexOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCaptureRepositories">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/GetAllCaptureRepositories" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllSearchRepositories">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/GetAllSearchRepositories" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DoesRepositoryExist">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/DoesRepositoryExist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DoesIndexFieldExist">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/DoesIndexFieldExist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSearchRestrictions">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/GetSearchRestrictions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetSearchRestrictions">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/SetSearchRestrictions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentCount">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/GetDocumentCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPicklistValuesForUser">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/GetPicklistValuesForUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPicklistValuesForUserGroup">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/GetPicklistValuesForUserGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddPicklistItem">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/AddPicklistItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddPicklistItems">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/AddPicklistItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemovePicklistItem">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/RemovePicklistItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePicklistItem">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/UpdatePicklistItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RestrictPickListForGroup">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/RestrictPickListForGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnRestrictPickListForGroup">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/UnRestrictPickListForGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPicklistSortingType">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/GetPicklistSortingType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetPicklistSortingType">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/SetPicklistSortingType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRepositoryUsageSizeInMB">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/GetRepositoryUsageSizeInMB" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMaxAllowableDatabaseSizeInMB">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/GetMaxAllowableDatabaseSizeInMB" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRepositoryAssociationsById">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/GetRepositoryAssociationsById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRepositoryAssociationsByName">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/GetRepositoryAssociationsByName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetRepositoryAssociations">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/SetRepositoryAssociations" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRepositoryAssociationsForSourceRepository">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/DeleteRepositoryAssociationsForSourceRepository" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetSettingXml">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/SetSettingXml" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LockRepository">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/LockRepository" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnLockRepository">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/UnLockRepository" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ForceUnlockRepository">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/ForceUnlockRepository" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsRepositoryLinkedWithBatchProfile">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/IsRepositoryLinkedWithBatchProfile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLinkedServerSettings">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/GetLinkedServerSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLinkedServerSettings">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/UpdateLinkedServerSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteLinkedServerQuery">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/ExecuteLinkedServerQuery" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLinkedServerSettings">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/DeleteLinkedServerSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMigratedVersions">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/GetMigratedVersions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExportProfile">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/ExportProfile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportProfile">
+      <soap:operation soapAction="http://imagesourceinc.com/IRepositoryManagerContract/ImportProfile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Ping">
+      <soap:operation soapAction="http://imagesourceinc.com/IOfflineContract/Ping" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadOfflineFile">
+      <soap:operation soapAction="http://imagesourceinc.com/IOfflineContract/DownloadOfflineFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentClientBinaryVersion">
+      <soap:operation soapAction="http://imagesourceinc.com/IOfflineContract/GetCurrentClientBinaryVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteView">
+      <soap:operation soapAction="http://imagesourceinc.com/IViewManagerContract/DeleteView" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerateSampleViewSearch">
+      <soap:operation soapAction="http://imagesourceinc.com/IViewManagerContract/GenerateSampleViewSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetViewsForUser">
+      <soap:operation soapAction="http://imagesourceinc.com/IViewManagerContract/GetViewsForUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetViewsForUserGroup">
+      <soap:operation soapAction="http://imagesourceinc.com/IViewManagerContract/GetViewsForUserGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserGroupsForView">
+      <soap:operation soapAction="http://imagesourceinc.com/IViewManagerContract/GetUserGroupsForView" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetView">
+      <soap:operation soapAction="http://imagesourceinc.com/IViewManagerContract/GetView" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetViewSearchFields">
+      <soap:operation soapAction="http://imagesourceinc.com/IViewManagerContract/GetViewSearchFields" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetViewSearchFieldsForViews">
+      <soap:operation soapAction="http://imagesourceinc.com/IViewManagerContract/GetViewSearchFieldsForViews" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetViewPermission">
+      <soap:operation soapAction="http://imagesourceinc.com/IViewManagerContract/GetViewPermission" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetViewPermissions">
+      <soap:operation soapAction="http://imagesourceinc.com/IViewManagerContract/GetViewPermissions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RunViewSearch">
+      <soap:operation soapAction="http://imagesourceinc.com/IViewManagerContract/RunViewSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetView">
+      <soap:operation soapAction="http://imagesourceinc.com/IViewManagerContract/SetView" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DoesViewNameExists">
+      <soap:operation soapAction="http://imagesourceinc.com/IViewManagerContract/DoesViewNameExists" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateViewSearch">
+      <soap:operation soapAction="http://imagesourceinc.com/IViewManagerContract/ValidateViewSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ParseViewSearchForSearchFields">
+      <soap:operation soapAction="http://imagesourceinc.com/IViewManagerContract/ParseViewSearchForSearchFields" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveDocumentInformationFromViewSearchResult">
+      <soap:operation soapAction="http://imagesourceinc.com/IViewManagerContract/RetrieveDocumentInformationFromViewSearchResult" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetViewPermission">
+      <soap:operation soapAction="http://imagesourceinc.com/IViewManagerContract/SetViewPermission" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetViewPermissionForUserGroup">
+      <soap:operation soapAction="http://imagesourceinc.com/IViewManagerContract/GetViewPermissionForUserGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ContentStore">
+    <wsdl:port name="BasicHttpBinding_IContentStoreContract" binding="tns:BasicHttpBinding_IContentStoreContract">
+      <soap:address location="https://edmsimagingtest2.kingcounty.gov/ILINXCSService/ContentStore.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

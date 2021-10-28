@@ -1,0 +1,24 @@
+---
+title: "Linear Regression"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Chart
+
+The following two charts are an example of what we could potentially expect when drawing a chart using R and gpplot2.
+
+![](linearChart.png)
+
+![](linearChart2.png)
+
+The following is a report on the content of the regression.
+
+``` {r chunck_name, echo=FALSE, comment=NA }
+summary(linearRegression)
+```
+
+

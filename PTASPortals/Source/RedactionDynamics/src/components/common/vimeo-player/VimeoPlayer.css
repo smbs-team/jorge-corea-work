@@ -1,0 +1,6 @@
+tr :hover {
+  background-color: #d4e693;
+}
+.customDialog iframe {
+  height: 90% !important;
+}

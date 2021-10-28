@@ -1,0 +1,371 @@
+{
+  "source": 2,
+  "revision": 4,
+  "description": null,
+  "createdBy": {
+    "displayName": "Eric Esteban Herrera Vado",
+    "url": "https://spsprodeus27.vssps.visualstudio.com/A90364681-6ca4-4180-bf52-cd162afac75c/_apis/Identities/ffdc3a21-d7fa-6f11-9808-47ba46eb2dda",
+    "_links": {
+      "avatar": {
+        "href": "https://kingcounty.visualstudio.com/_apis/GraphProfile/MemberAvatars/aad.ZmZkYzNhMjEtZDdmYS03ZjExLTk4MDgtNDdiYTQ2ZWIyZGRh"
+      }
+    },
+    "id": "ffdc3a21-d7fa-6f11-9808-47ba46eb2dda",
+    "uniqueName": "n-evado@kingcounty.gov",
+    "imageUrl": "https://kingcounty.visualstudio.com/_apis/GraphProfile/MemberAvatars/aad.ZmZkYzNhMjEtZDdmYS03ZjExLTk4MDgtNDdiYTQ2ZWIyZGRh",
+    "descriptor": "aad.ZmZkYzNhMjEtZDdmYS03ZjExLTk4MDgtNDdiYTQ2ZWIyZGRh"
+  },
+  "createdOn": "2019-09-18T21:07:00.283Z",
+  "modifiedBy": {
+    "displayName": "Eric Esteban Herrera Vado",
+    "url": "https://spsprodeus27.vssps.visualstudio.com/A90364681-6ca4-4180-bf52-cd162afac75c/_apis/Identities/ffdc3a21-d7fa-6f11-9808-47ba46eb2dda",
+    "_links": {
+      "avatar": {
+        "href": "https://kingcounty.visualstudio.com/_apis/GraphProfile/MemberAvatars/aad.ZmZkYzNhMjEtZDdmYS03ZjExLTk4MDgtNDdiYTQ2ZWIyZGRh"
+      }
+    },
+    "id": "ffdc3a21-d7fa-6f11-9808-47ba46eb2dda",
+    "uniqueName": "n-evado@kingcounty.gov",
+    "imageUrl": "https://kingcounty.visualstudio.com/_apis/GraphProfile/MemberAvatars/aad.ZmZkYzNhMjEtZDdmYS03ZjExLTk4MDgtNDdiYTQ2ZWIyZGRh",
+    "descriptor": "aad.ZmZkYzNhMjEtZDdmYS03ZjExLTk4MDgtNDdiYTQ2ZWIyZGRh"
+  },
+  "modifiedOn": "2019-09-18T21:17:05.807Z",
+  "isDeleted": false,
+  "lastRelease": {
+    "id": 181,
+    "name": "Release-7",
+    "artifacts": [
+    ],
+    "_links": {
+    },
+    "description": "",
+    "releaseDefinition": {
+      "id": 2,
+      "projectReference": null,
+      "_links": {
+      }
+    },
+    "createdOn": "2019-10-25T03:10:56.680Z",
+    "createdBy": {
+      "displayName": "Eric Esteban Herrera Vado",
+      "url": "https://spsprodeus27.vssps.visualstudio.com/A90364681-6ca4-4180-bf52-cd162afac75c/_apis/Identities/ffdc3a21-d7fa-6f11-9808-47ba46eb2dda",
+      "_links": {
+        "avatar": {
+          "href": "https://kingcounty.visualstudio.com/_apis/GraphProfile/MemberAvatars/aad.ZmZkYzNhMjEtZDdmYS03ZjExLTk4MDgtNDdiYTQ2ZWIyZGRh"
+        }
+      },
+      "id": "ffdc3a21-d7fa-6f11-9808-47ba46eb2dda",
+      "uniqueName": "n-evado@kingcounty.gov",
+      "imageUrl": "https://kingcounty.visualstudio.com/_apis/GraphProfile/MemberAvatars/aad.ZmZkYzNhMjEtZDdmYS03ZjExLTk4MDgtNDdiYTQ2ZWIyZGRh",
+      "descriptor": "aad.ZmZkYzNhMjEtZDdmYS03ZjExLTk4MDgtNDdiYTQ2ZWIyZGRh"
+    }
+  },
+  "variables": {
+  },
+  "variableGroups": [
+  ],
+  "environments": [
+    {
+      "id": 4,
+      "name": "PublishFeeds",
+      "rank": 1,
+      "owner": {
+        "displayName": "Eric Esteban Herrera Vado",
+        "url": "https://spsprodeus27.vssps.visualstudio.com/A90364681-6ca4-4180-bf52-cd162afac75c/_apis/Identities/ffdc3a21-d7fa-6f11-9808-47ba46eb2dda",
+        "_links": {
+          "avatar": {
+            "href": "https://kingcounty.visualstudio.com/_apis/GraphProfile/MemberAvatars/aad.ZmZkYzNhMjEtZDdmYS03ZjExLTk4MDgtNDdiYTQ2ZWIyZGRh"
+          }
+        },
+        "id": "ffdc3a21-d7fa-6f11-9808-47ba46eb2dda",
+        "uniqueName": "n-evado@kingcounty.gov",
+        "imageUrl": "https://kingcounty.visualstudio.com/_apis/GraphProfile/MemberAvatars/aad.ZmZkYzNhMjEtZDdmYS03ZjExLTk4MDgtNDdiYTQ2ZWIyZGRh",
+        "descriptor": "aad.ZmZkYzNhMjEtZDdmYS03ZjExLTk4MDgtNDdiYTQ2ZWIyZGRh"
+      },
+      "variables": {
+      },
+      "variableGroups": [
+      ],
+      "preDeployApprovals": {
+        "approvals": [
+          {
+            "rank": 1,
+            "isAutomated": true,
+            "isNotificationOn": false,
+            "id": 10
+          }
+        ],
+        "approvalOptions": {
+          "requiredApproverCount": null,
+          "releaseCreatorCanBeApprover": false,
+          "autoTriggeredAndPreviousEnvironmentApprovedCanBeSkipped": false,
+          "enforceIdentityRevalidation": false,
+          "timeoutInMinutes": 0,
+          "executionOrder": 1
+        }
+      },
+      "deployStep": {
+        "id": 11
+      },
+      "postDeployApprovals": {
+        "approvals": [
+          {
+            "rank": 1,
+            "isAutomated": true,
+            "isNotificationOn": false,
+            "id": 12
+          }
+        ],
+        "approvalOptions": {
+          "requiredApproverCount": null,
+          "releaseCreatorCanBeApprover": false,
+          "autoTriggeredAndPreviousEnvironmentApprovedCanBeSkipped": false,
+          "enforceIdentityRevalidation": false,
+          "timeoutInMinutes": 0,
+          "executionOrder": 2
+        }
+      },
+      "deployPhases": [
+        {
+          "deploymentInput": {
+            "parallelExecution": {
+              "parallelExecutionType": 0
+            },
+            "agentSpecification": {
+              "identifier": "windows-2019"
+            },
+            "skipArtifactsDownload": false,
+            "artifactsDownloadInput": {
+              "downloadInputs": [
+                {
+                  "alias": "_PTAS-DEV-IAC-Build",
+                  "artifactType": "Build",
+                  "artifactDownloadMode": "Selective",
+                  "artifactItems": [
+                    "BuildBinaries/**"
+                  ]
+                }
+              ]
+            },
+            "queueId": 2176,
+            "demands": [
+            ],
+            "enableAccessToken": true,
+            "timeoutInMinutes": 0,
+            "jobCancelTimeoutInMinutes": 1,
+            "condition": "succeeded()",
+            "overrideInputs": {
+            }
+          },
+          "rank": 1,
+          "phaseType": 1,
+          "name": "Download Artifacts",
+          "refName": null,
+          "workflowTasks": [
+            {
+              "environment": {
+              },
+              "taskId": "5541a522-603c-47ad-91fc-a4b1d163081b",
+              "version": "2.*",
+              "name": "Push nuget packages",
+              "refName": "",
+              "enabled": true,
+              "alwaysRun": false,
+              "continueOnError": false,
+              "timeoutInMinutes": 0,
+              "definitionType": "task",
+              "overrideInputs": {
+              },
+              "condition": "succeeded()",
+              "inputs": {
+                "command": "push",
+                "publishWebProjects": "true",
+                "projects": "",
+                "custom": "",
+                "arguments": "",
+                "publishTestResults": "true",
+                "testRunTitle": "",
+                "zipAfterPublish": "true",
+                "modifyOutputPath": "true",
+                "selectOrConfig": "select",
+                "feedRestore": "",
+                "includeNuGetOrg": "true",
+                "nugetConfigPath": "",
+                "externalEndpoints": "",
+                "noCache": "false",
+                "packagesDirectory": "",
+                "verbosityRestore": "Detailed",
+                "searchPatternPush": "$(System.DefaultWorkingDirectory)/_PTAS-DEV-IAC-Build/BuildBinaries/PTASCommon/**/*.nupkg",
+                "nuGetFeedType": "internal",
+                "feedPublish": "c60202ca-6470-424f-9919-eca75b4fce63",
+                "publishPackageMetadata": "true",
+                "externalEndpoint": "",
+                "searchPatternPack": "**/*.csproj",
+                "configurationToPack": "$(BuildConfiguration)",
+                "outputDir": "$(Build.ArtifactStagingDirectory)",
+                "nobuild": "false",
+                "includesymbols": "false",
+                "includesource": "false",
+                "versioningScheme": "off",
+                "versionEnvVar": "",
+                "requestedMajorVersion": "1",
+                "requestedMinorVersion": "0",
+                "requestedPatchVersion": "0",
+                "buildProperties": "",
+                "verbosityPack": "Detailed",
+                "workingDirectory": ""
+              }
+            }
+          ]
+        }
+      ],
+      "environmentOptions": {
+        "emailNotificationType": "OnlyOnFailure",
+        "emailRecipients": "release.environment.owner;release.creator",
+        "skipArtifactsDownload": false,
+        "timeoutInMinutes": 0,
+        "enableAccessToken": false,
+        "publishDeploymentStatus": true,
+        "badgeEnabled": false,
+        "autoLinkWorkItems": false,
+        "pullRequestDeploymentEnabled": false
+      },
+      "demands": [
+      ],
+      "conditions": [
+        {
+          "name": "ReleaseStarted",
+          "conditionType": 1,
+          "value": ""
+        }
+      ],
+      "executionPolicy": {
+        "concurrencyCount": 1,
+        "queueDepthCount": 0
+      },
+      "schedules": [
+      ],
+      "currentRelease": {
+        "id": 181,
+        "url": "https://kingcounty.vsrm.visualstudio.com/ecac2c29-2814-451d-85e7-9c3be654fdd9/_apis/Release/releases/181",
+        "_links": {
+        }
+      },
+      "retentionPolicy": {
+        "daysToKeep": 30,
+        "releasesToKeep": 3,
+        "retainBuild": true
+      },
+      "processParameters": {
+      },
+      "properties": {
+        "BoardsEnvironmentType": {
+          "$type": "System.String",
+          "$value": "unmapped"
+        },
+        "LinkBoardsWorkItems": {
+          "$type": "System.String",
+          "$value": "False"
+        }
+      },
+      "preDeploymentGates": {
+        "id": 0,
+        "gatesOptions": null,
+        "gates": [
+        ]
+      },
+      "postDeploymentGates": {
+        "id": 0,
+        "gatesOptions": null,
+        "gates": [
+        ]
+      },
+      "environmentTriggers": [
+      ],
+      "badgeUrl": "https://kingcounty.vsrm.visualstudio.com/_apis/public/Release/badge/ecac2c29-2814-451d-85e7-9c3be654fdd9/2/4"
+    }
+  ],
+  "artifacts": [
+    {
+      "sourceId": "ecac2c29-2814-451d-85e7-9c3be654fdd9:224",
+      "type": "Build",
+      "alias": "_PTAS-DEV-IAC-Build",
+      "definitionReference": {
+        "artifactSourceDefinitionUrl": {
+          "id": "https://kingcounty.visualstudio.com/_permalink/_build/index?collectionId=d668897d-9de0-4d68-af7a-7c33dea83b82&projectId=ecac2c29-2814-451d-85e7-9c3be654fdd9&definitionId=224",
+          "name": ""
+        },
+        "defaultVersionBranch": {
+          "id": "",
+          "name": ""
+        },
+        "defaultVersionSpecific": {
+          "id": "",
+          "name": ""
+        },
+        "defaultVersionTags": {
+          "id": "",
+          "name": ""
+        },
+        "defaultVersionType": {
+          "id": "latestType",
+          "name": "Latest"
+        },
+        "definition": {
+          "id": "224",
+          "name": "PTAS-DEV-IAC-Build"
+        },
+        "definitions": {
+          "id": "",
+          "name": ""
+        },
+        "IsMultiDefinitionType": {
+          "id": "False",
+          "name": "False"
+        },
+        "project": {
+          "id": "ecac2c29-2814-451d-85e7-9c3be654fdd9",
+          "name": "PTAS"
+        },
+        "repository": {
+          "id": "",
+          "name": ""
+        }
+      },
+      "isPrimary": true,
+      "isRetained": false
+    }
+  ],
+  "triggers": [
+  ],
+  "releaseNameFormat": "Release-$(rev:r)",
+  "tags": [
+  ],
+  "properties": {
+    "DefinitionCreationSource": {
+      "$type": "System.String",
+      "$value": "ReleaseNew"
+    },
+    "IntegrateJiraWorkItems": {
+      "$type": "System.String",
+      "$value": "false"
+    },
+    "IntegrateBoardsWorkItems": {
+      "$type": "System.String",
+      "$value": "False"
+    }
+  },
+  "id": 2,
+  "name": "PTAS-DEV-IAC-NugetRelease",
+  "path": "\\",
+  "projectReference": null,
+  "url": "https://kingcounty.vsrm.visualstudio.com/ecac2c29-2814-451d-85e7-9c3be654fdd9/_apis/Release/definitions/2",
+  "_links": {
+    "self": {
+      "href": "https://kingcounty.vsrm.visualstudio.com/ecac2c29-2814-451d-85e7-9c3be654fdd9/_apis/Release/definitions/2"
+    },
+    "web": {
+      "href": "https://kingcounty.visualstudio.com/ecac2c29-2814-451d-85e7-9c3be654fdd9/_release?definitionId=2"
+    }
+  }
+}

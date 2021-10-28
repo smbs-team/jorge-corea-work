@@ -1,0 +1,87 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29102.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PTASServicesCommon", "PTASServicesCommon\PTASServicesCommon.csproj", "{BFF213A3-7FBF-4144-8A9F-99AC40395F38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PTASILinxConnectorHelperClasses", "PTASILinxConnectorHelperClasses\PTASILinxConnectorHelperClasses.csproj", "{AC1D9806-8912-4B85-9F21-E52F4FDFB836}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PTASILinxService", "PTASILinxService\PTASILinxService.csproj", "{196EC7A1-56A1-4C60-9AD9-814CA861E5FB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{88DDAE09-22D2-41A4-BC3B-BD006CC52C4F} = {88DDAE09-22D2-41A4-BC3B-BD006CC52C4F}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ILinxSoapImport", "ILinxSoapImport\ILinxSoapImport.csproj", "{88DDAE09-22D2-41A4-BC3B-BD006CC52C4F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PTASTiffs", "PTASTiffs\PTASTiffs.csproj", "{3349E56D-04BD-452A-B832-781BD99BB9F5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTest", "UnitTest", "{6767D40D-F4CB-49CA-B307-FB067D613D9E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PTASILinxService-UnitTests", "UnitTest\PTASILinxService-UnitTests\PTASILinxService-UnitTests.csproj", "{EB709C3B-10F9-4708-9DB5-33ACB53E61FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PTASTiffs-UnitTests", "UnitTest\PTASTiffs-UnitTests\PTASTiffs-UnitTests.csproj", "{2852BB90-DE0A-49B5-904A-DAF82520B49C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonLister", "JsonLister\JsonLister.csproj", "{2BF4AFAD-A55B-4253-8451-1362E98316CF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{78828B09-A96C-4C24-8A99-09C4120A6523}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PTASSharepointFunctions", "PTASSharepointFunctions\PTASSharepointFunctions.csproj", "{C194DCE8-BF30-4A0A-8BE9-365A44CDEEC3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BFF213A3-7FBF-4144-8A9F-99AC40395F38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFF213A3-7FBF-4144-8A9F-99AC40395F38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFF213A3-7FBF-4144-8A9F-99AC40395F38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFF213A3-7FBF-4144-8A9F-99AC40395F38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC1D9806-8912-4B85-9F21-E52F4FDFB836}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC1D9806-8912-4B85-9F21-E52F4FDFB836}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC1D9806-8912-4B85-9F21-E52F4FDFB836}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC1D9806-8912-4B85-9F21-E52F4FDFB836}.Release|Any CPU.Build.0 = Release|Any CPU
+		{196EC7A1-56A1-4C60-9AD9-814CA861E5FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{196EC7A1-56A1-4C60-9AD9-814CA861E5FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{196EC7A1-56A1-4C60-9AD9-814CA861E5FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{196EC7A1-56A1-4C60-9AD9-814CA861E5FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88DDAE09-22D2-41A4-BC3B-BD006CC52C4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88DDAE09-22D2-41A4-BC3B-BD006CC52C4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88DDAE09-22D2-41A4-BC3B-BD006CC52C4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88DDAE09-22D2-41A4-BC3B-BD006CC52C4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3349E56D-04BD-452A-B832-781BD99BB9F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3349E56D-04BD-452A-B832-781BD99BB9F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3349E56D-04BD-452A-B832-781BD99BB9F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3349E56D-04BD-452A-B832-781BD99BB9F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB709C3B-10F9-4708-9DB5-33ACB53E61FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB709C3B-10F9-4708-9DB5-33ACB53E61FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB709C3B-10F9-4708-9DB5-33ACB53E61FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB709C3B-10F9-4708-9DB5-33ACB53E61FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2852BB90-DE0A-49B5-904A-DAF82520B49C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2852BB90-DE0A-49B5-904A-DAF82520B49C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2852BB90-DE0A-49B5-904A-DAF82520B49C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2852BB90-DE0A-49B5-904A-DAF82520B49C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BF4AFAD-A55B-4253-8451-1362E98316CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BF4AFAD-A55B-4253-8451-1362E98316CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BF4AFAD-A55B-4253-8451-1362E98316CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BF4AFAD-A55B-4253-8451-1362E98316CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C194DCE8-BF30-4A0A-8BE9-365A44CDEEC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C194DCE8-BF30-4A0A-8BE9-365A44CDEEC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C194DCE8-BF30-4A0A-8BE9-365A44CDEEC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C194DCE8-BF30-4A0A-8BE9-365A44CDEEC3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EB709C3B-10F9-4708-9DB5-33ACB53E61FB} = {6767D40D-F4CB-49CA-B307-FB067D613D9E}
+		{2852BB90-DE0A-49B5-904A-DAF82520B49C} = {6767D40D-F4CB-49CA-B307-FB067D613D9E}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3AAC91B3-5D36-4072-8C6F-C1D874E84F11}
+	EndGlobalSection
+EndGlobal

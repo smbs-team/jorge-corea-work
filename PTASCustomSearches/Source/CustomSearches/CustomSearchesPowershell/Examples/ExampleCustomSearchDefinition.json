@@ -1,0 +1,218 @@
+{
+  "Name": "ImportedPhysicalInspection",
+  "Categories": [
+    "ImportedCategory",
+    "ImportedCategory3"
+  ],
+  "Description": "This is an imported custom search",
+  "StoredProcedureName": "SP_PhysicalInspection",
+  "Parameters": [
+    {
+      "name": "landOnly",
+      "description": "Land Only",
+      "type": "bit",
+      "defaultValue": "0",
+      "isRequired": true,
+      "parameterRangeType": "NotRanged",
+      "parameterGroupName": "landOnly",
+      "expressions": null
+    },
+    {
+      "name": "LotSizeSqFtFrom",
+      "description": "LotSizeSqFtFrom",
+      "type": "int",
+      "defaultValue": "0",
+      "isRequired": true,
+      "parameterRangeType": "RangeStart",
+      "parameterGroupName": "LotSizeSqFt",
+      "expressions": null
+    },
+    {
+      "name": "LotSizeSqFtTo",
+      "description": "LotSizeSqFtTo",
+      "type": "int",
+      "defaultValue": "10000000",
+      "isRequired": true,
+      "parameterRangeType": "RangeEnd",
+      "parameterGroupName": "LotSizeSqFt",
+      "expressions": null
+    },
+    {
+      "name": "TotalLeavingSqFtFrom",
+      "description": "TotalLeavingSqFtFrom",
+      "type": "int",
+      "defaultValue": "0",
+      "isRequired": true,
+      "parameterRangeType": "RangeStart",
+      "parameterGroupName": "TotalLeavingSqFt",
+      "expressions": null
+    },
+    {
+      "name": "TotalLeavingSqFtTo",
+      "description": "TotalLeavingSqFtTo",
+      "type": "int",
+      "defaultValue": "10000000",
+      "isRequired": true,
+      "parameterRangeType": "RangeEnd",
+      "parameterGroupName": "TotalLeavingSqFt",
+      "expressions": null
+    },
+    {
+      "name": "GradeFrom",
+      "description": "GradeFrom",
+      "type": "int",
+      "defaultValue": "0",
+      "isRequired": true,
+      "parameterRangeType": "RangeStart",
+      "parameterGroupName": "Grade",
+      "expressions": [
+        {
+          "ExpressionType": "TSQL",
+          "ExpressionRole": "LookupExpression",
+          "Script": "SELECT Grade AS Value FROM [dbo].[ValidGrades]",
+        }
+      ]
+    },
+    {
+      "name": "GradeTo",
+      "description": "GradeTo",
+      "type": "int",
+      "defaultValue": "10000000",
+      "isRequired": true,
+      "parameterRangeType": "RangeEnd",
+      "parameterGroupName": "Grade",
+      "expressions": [
+        {
+          "ExpressionType": "TSQL",
+          "ExpressionRole": "LookupExpression",
+          "Script": "SELECT Grade AS Value FROM [dbo].[ValidGrades]",
+        }
+      ]
+    },
+    {
+      "name": "YearBuiltFrom",
+      "description": "YearBuiltFrom",
+      "type": "int",
+      "defaultValue": "0",
+      "isRequired": true,
+      "parameterRangeType": "RangeStart",
+      "parameterGroupName": "YearBuilt",
+      "expressions": null
+    },
+    {
+      "name": "YearBuiltTo",
+      "description": "YearBuiltTo",
+      "type": "int",
+      "defaultValue": "0",
+      "isRequired": true,
+      "parameterRangeType": "RangeEnd",
+      "parameterGroupName": "YearBuilt",
+      "expressions": null
+    },
+    {
+      "name": "MinYearRenovationFrom",
+      "description": "MinYearRenovationFrom",
+      "type": "int",
+      "defaultValue": "0",
+      "isRequired": true,
+      "parameterRangeType": "NotRanged",
+      "parameterGroupName": "MinYearRenovationFrom ",
+      "expressions": null
+    },
+    {
+      "name": "ConditionFrom",
+      "description": "ConditionFrom",
+      "type": "int",
+      "defaultValue": "0",
+      "isRequired": true,
+      "parameterRangeType": "NotRanged",
+      "parameterGroupName": "ConditionFrom",
+      "expressions": null
+    },
+    {
+      "name": "MinNbrLivingUnits",
+      "description": "MinNbrLivingUnits",
+      "type": "int",
+      "defaultValue": "0",
+      "isRequired": true,
+      "parameterRangeType": "NotRanged",
+      "parameterGroupName": "MinNbrLivingUnits",
+      "expressions": null
+    }
+  ],
+  "ColumnDefinitions": [
+    {
+      "columnName": "bldgGrade",
+      "columnType": "int",
+      "columnTypeLength": 0,
+      "canBeUsedAsLookup": true,
+      "columnCategory": "Editable",
+      "isEditable": true,
+      "forceEditLookupExpression": true,
+      "expressions": [
+        {
+          "ExpressionType": "TSQL",
+          "ExpressionRole": "EditLookupExpression",
+          "Script": "SELECT Grade AS Value FROM [dbo].[ValidGrades]",
+        }
+      ]
+    },
+    {
+      "columnName": "condition",
+      "columnType": "int",
+      "columnTypeLength": 0,
+      "canBeUsedAsLookup": true,
+      "columnCategory": "Editable",
+      "isEditable": true,
+      "forceEditLookupExpression": false,
+      "backendEntityName": "ptas_parceldetail",
+      "backendEntityFieldName": "ptas_bldgnbr",
+      "expressions": [
+        {
+          "ExpressionType": "JSonPayload",
+          "ExpressionRole": "EditLookupExpression",
+          "Script": "[{\"Value\": 1},{\"Value\": 2},{\"Value\": 3}]"
+        }
+      ]
+    }
+  ],
+  "BackendEntities": [
+    {
+      "BackendEntityName": "ptas_parceldetail",
+      "BackendEntityKeyFieldName": "ptas_parceldetailid",
+      "CustomSearchKeyFieldName": "parcelId"
+    }
+  ],
+  "ValidationRules": [
+    {
+      "description": "Account Number Not Empty",
+      "expressions": [
+        {
+          "ExpressionType": "TSQL",
+          "ExpressionRole": "ValidationConditionExpression",
+          "Script": "ISNULL(acctNbr, '') != ''"
+        },
+        {
+          "ExpressionType": "TSQL",
+          "ExpressionRole": "ValidationErrorExpression",
+          "Script": "'Account Number should not be Empty'"
+        }
+      ]
+    },
+    {
+      "description": "Account Number Should be Numeric",
+      "expressions": [
+        {
+          "ExpressionType": "TSQL",
+          "ExpressionRole": "ValidationConditionExpression",
+          "Script": "IsNumeric(acctNbr) = 1"
+        },
+        {
+          "ExpressionType": "TSQL",
+          "ExpressionRole": "ValidationErrorExpression",
+          "Script": "'Account Number should be Numeric'"
+        }
+      ]
+    }
+  ]
+}

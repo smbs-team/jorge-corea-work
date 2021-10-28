@@ -1,0 +1,46 @@
+/*//-----------------------------------------------------------------------
+// <copyright file="Banner.css" company="King County">
+//     Copyright (c) King County. All rights reserved.
+// </copyright>
+//-----------------------------------------------------------------------*/
+
+.banner {
+  color: var(--color-white);
+  width: 100%;
+  min-height: 50px;
+  font-size: 28px;
+  border: 0;
+  padding: 5px;
+  align-self: center;
+  text-align: center;
+  border-radius: 2.5px;
+  font-weight: 600;
+  margin: 25px 0 0 0;
+  overflow-wrap: normal;
+}
+
+.banner-warning {
+  background-image: linear-gradient(
+    270deg,
+    var(--color-warning-dark),
+    var(--color-warning)
+  );
+}
+
+.banner-information {
+  background-image: linear-gradient(
+    270deg,
+    var(--color-accent-light),
+    var(--color-accent)
+  );
+  box-shadow: 0 1px 3px rgba(111, 31, 98, 0.12),
+    0 1px 2px rgba(111, 31, 98, 0.24);
+}
+
+.banner-error {
+  background-image: linear-gradient(
+    270deg,
+    var(--color-google),
+    var(--color-error)
+  );
+}

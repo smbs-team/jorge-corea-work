@@ -1,0 +1,12 @@
+.upload-file {
+  margin-left: 0px;
+}
+
+.upload-gradient {
+  background-image: linear-gradient(#ffffff00, #ffffffff);
+  height: 50%;
+  width: 228px;
+  position: absolute;
+  bottom: 0;
+  pointer-events: none;
+}

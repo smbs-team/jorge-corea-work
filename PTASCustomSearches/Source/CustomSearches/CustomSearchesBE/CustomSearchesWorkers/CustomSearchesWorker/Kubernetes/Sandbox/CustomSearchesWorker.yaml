@@ -1,0 +1,45 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: ptas-sbox-customsearches-worker
+    aadpodidbinding: ptas-sbox-customsearchesworker-identity
+  name: ptas-sbox-customsearches-worker-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ptas-sbox-customsearches-worker
+  template:
+    metadata:
+      labels:
+        app: ptas-sbox-customsearches-worker
+        aadpodidbinding: ptas-sbox-customsearchesworker-identity
+    spec:
+      containers:
+      - name: ptas-sbox-customsearches-worker
+        image: dunphyacrtest3.azurecr.io/servercore/customsearchesworker-sbox:1.70
+        imagePullPolicy: Always
+        volumeMounts:
+        - mountPath: "/mapserver/map-share"
+          name: layers-sbox-fileshare 
+        - mountPath: "/syncmobile"
+          name: syncmobile-sbox-fileshare          
+      nodeSelector:
+        kubernetes.io/os: windows
+      tolerations:
+        - key: "kubernetes.io/os"
+          operator: "Equal"
+          value: "windows"
+          effect: "NoSchedule"
+      volumes:
+      - name: layers-sbox-fileshare
+        azureFile:
+          secretName: storage-secret-sbox
+          shareName: layers
+          readOnly: false
+      - name: syncmobile-sbox-fileshare
+          azureFile:
+            secretName: storage-secret-sbox
+            shareName: syncdb
+            readOnly: false

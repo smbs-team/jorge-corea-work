@@ -1,0 +1,101 @@
+parameters:
+  - name: folder1
+    type: string
+    default: ""
+  - name: folder2
+    type: string
+    default: ""
+  - name: armName
+    type: string
+    default: ""
+  - name: webAppName
+    type: string
+    default: ""
+  - name: deploymentSubscription
+    type: string
+    default: ""
+  - name: deploymentResourceGroup
+    type: string
+    default: ""
+  - name: deploymentEnv
+    type: string
+    default: ""
+  - name: deploymentLocation
+    type: string
+    default: ""
+  - name: artifactName
+    type: string
+    default: "NpmDropCustomSearchesMapControl"
+  - name: isFullBuild
+    type: boolean
+    default: True
+
+steps:
+  - task: PowerShell@2
+    condition: ne(${{parameters.isFullBuild}}, True)
+    name: TargetFolderChangedApp1
+    inputs:
+      targetType: "filePath"
+      filePath: "AzurePipes/Script/CheckIfFolderModifiedGit.ps1"
+      arguments: -folder 'PTASPortals/Source/${{parameters.folder1}}/*'
+  - task: PowerShell@2
+    condition: ne(${{parameters.isFullBuild}}, True)
+    name: TargetFolderChangedApp2
+    inputs:
+      targetType: "filePath"
+      filePath: "AzurePipes/Script/CheckIfFolderModifiedGit.ps1"
+      arguments: -folder 'PTASPortals/Source/${{parameters.folder2}}/*'
+  - task: PowerShell@2
+    condition: ne(${{parameters.isFullBuild}}, True)
+    name: TargetArmFileChangedBothApps
+    inputs:
+      targetType: "filePath"
+      filePath: "AzurePipes/Script/CheckIfFolderModifiedGit.ps1"
+      arguments: -folder "AzurePipes/ReleasePipes/ARM/WebApps/${{parameters.armName}}.arm"
+  - task: DownloadBuildArtifacts@0
+    condition: or(or(eq(variables['TargetFolderChangedApp1.FolderChanged'], 'True'), eq(variables['TargetFolderChangedApp2.FolderChanged'], 'True')),  ${{parameters.isFullBuild}})
+    displayName: "NpmDrop"
+    inputs:
+      buildType: "current"
+      downloadType: "single"
+      downloadPath: "$(System.ArtifactsDirectory)"
+      artifactName: ${{parameters.artifactName}}
+  - task: CopyFiles@2
+    condition: or(or(eq(variables['TargetFolderChangedApp1.FolderChanged'], 'True'), eq(variables['TargetFolderChangedApp2.FolderChanged'], 'True')),  ${{parameters.isFullBuild}})
+    displayName: CopyWebConfig
+    inputs:
+      contents: "web.config"
+      sourceFolder: "$(System.ArtifactsDirectory)/${{parameters.artifactName}}/Portals/${{parameters.folder2}}"
+      targetFolder: "$(System.ArtifactsDirectory)/${{parameters.artifactName}}/Portals"
+  - task: DeleteFiles@1
+    condition: or(or(eq(variables['TargetFolderChangedApp1.FolderChanged'], 'True'), eq(variables['TargetFolderChangedApp2.FolderChanged'], 'True')),  ${{parameters.isFullBuild}})
+    displayName: Delete web config 1
+    inputs:
+      contents: "web.config"
+      sourceFolder: "$(System.ArtifactsDirectory)/${{parameters.artifactName}}/Portals/${{parameters.folder1}}"
+  - task: DeleteFiles@1
+    condition: or(or(eq(variables['TargetFolderChangedApp1.FolderChanged'], 'True'), eq(variables['TargetFolderChangedApp2.FolderChanged'], 'True')),  ${{parameters.isFullBuild}})
+    displayName: Delete web config 2
+    inputs:
+      contents: "web.config"
+      sourceFolder: "$(System.ArtifactsDirectory)/${{parameters.artifactName}}/Portals/${{parameters.folder2}}"
+  - task: AzureResourceGroupDeployment@2
+    condition: or(eq(variables['TargetArmFileChangedBothApps.FolderChanged'], 'True'),  ${{parameters.isFullBuild}})
+    displayName: "Deploy ${{parameters.armName}} ARM"
+    inputs:
+      azureSubscription: ${{parameters.deploymentSubscription}}
+      resourceGroupName: "${{parameters.deploymentResourceGroup}}"
+      location: "$(deploymentLocation)"
+      csmFile: "$(Build.SourcesDirectory)/AzurePipes/ReleasePipes/ARM/WebApps/${{parameters.armName}}.arm"
+      csmParametersFile: "$(Build.SourcesDirectory)/AzurePipes/ReleasePipes/ARM/WebApps/webapps-parameters.${{parameters.deploymentEnv}}.json"
+      enabled: true
+  - task: AzureWebApp@1
+    condition: or(or(or(eq(variables['TargetFolderChangedApp1.FolderChanged'], 'True'), eq(variables['TargetArmFileChangedBothApps.FolderChanged'], 'True')), eq(variables['TargetFolderChangedApp2.FolderChanged'], 'True')), ${{parameters.isFullBuild}})
+    displayName: "Azure Web App Deploy: ${{parameters.webAppName}}"
+    inputs:
+      azureSubscription: ${{parameters.deploymentSubscription}}
+      appType: webApp
+      appName: "${{parameters.webAppName}}"
+      package: "$(System.ArtifactsDirectory)/${{parameters.artifactName}}/Portals"
+      deploymentMethod: zipDeploy
+      enabled: true

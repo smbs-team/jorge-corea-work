@@ -1,0 +1,37 @@
+trigger:
+  branches:
+    include:
+      - test
+
+parameters:
+  - name: forcePreReqDeployment
+    type: boolean
+    default: false
+  - name: forceFullBuild
+    type: boolean
+    default: false
+  - name: deployData
+    type: boolean
+    default: false
+
+
+extends:
+  template: fullpipeline.yml
+  parameters:
+    isFullBuild: ${{parameters.forceFullBuild}}
+    deploy: true
+    deployData: ${{parameters.deployData}}
+    forcePreReqDeployment: ${{parameters.forcePreReqDeployment}}
+    deploymentResourceGroup: "ptas-test-resourcegroup"
+    deploymentEnv: "TEST"
+    deploymentEnvLong: "TEST"
+    deploymentLocation: "West US"
+    deploymentSubscription: "Azure-Test"
+    deploymentKeyVaultName: "ptas2-test-keyvault"
+    deploymentAppRegistration: "vsts-test-reg"
+    ptasAppRegistration: "ptas-test-app-seniorexemption"
+    deploymentSslKeyVaultName: sslcert-prod-keyvault
+    deploymentSslCertName: AZURE-Wildcard-KINGCOUNTY-GOV
+    databaseServerName: "Kcitazrsqluat01.database.windows.net"
+    databaseName: "PTASTest"
+    dynamicsUrl: "https://ptas-test.crm9.dynamics.com"

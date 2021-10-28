@@ -1,0 +1,18 @@
+{
+  "folders": [
+	{
+		"path": "."
+	},
+	{
+		"path": "..\\..\\..\\PTASCommon\\Source\\PTASNPMCommon\\@ptas\\react-public-ui-library"
+	}
+],
+"settings": {
+	"cSpell.words": [
+		"datagrid",
+		"officedocument",
+		"openxmlformats",
+		"spreadsheetml"
+	]
+}
+}

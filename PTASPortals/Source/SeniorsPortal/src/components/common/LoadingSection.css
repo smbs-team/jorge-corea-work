@@ -1,0 +1,9 @@
+.loading-section {
+  margin: 12vh auto;
+  text-align: center;
+  flex: 1 1 auto;
+}
+
+.loading-section h1 {
+  text-align: center;
+}

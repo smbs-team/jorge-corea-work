@@ -1,0 +1,43 @@
+.side-menu-list {
+  display: flex;
+  flex-direction: row;
+}
+
+.menu-icon {
+  margin-right: 5px;
+}
+
+.menu-text * {
+  font-size: 1rem !important;
+}
+
+.list-item {
+  text-align: center !important;
+}
+.qrcodeblock {
+  display: none;
+}
+
+@media (min-width: 1280px) {
+  .side-menu-list {
+    display: block;
+  }
+  .menu-icon {
+    width: 33px !important;
+    height: 33px !important;
+    margin-right: 10px;
+  }
+
+  .menu-text * {
+    font-size: 1.25rem !important;
+    text-align: left;
+  }
+
+  .list-item {
+    text-align: left !important;
+  }
+
+  .qrcodeblock {
+    display: inline-block;
+  }
+}

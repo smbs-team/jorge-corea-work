@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.IdentityModel.Clients.ActiveDirectory" Version="5.2.8" />
+    <PackageReference Include="Microsoft.Toolkit.Wpf.UI.Controls.WebView" Version="6.1.2" />
+    <PackageReference Include="PTASServicesCommon" Version="1.0.17" />
+    <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="1.1.14" />
+    <PackageReference Include="SQLitePCLRaw.core" Version="1.1.14" />
+    <PackageReference Include="System.Drawing.Common" Version="5.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="PTASDBFramework">
+      <HintPath>ExternalDLLs\PTASDBFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="PTASSystem">
+      <HintPath>ExternalDLLs\PTASSystem.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="ExternalFiles\PTASDBFramework.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="ExternalFiles\PTASDBFramework.pdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="ExternalFiles\PTASSystem.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="ExternalFiles\PTASSystem.pdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

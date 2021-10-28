@@ -1,0 +1,53 @@
+/**
+ * Copyright (c) King County. All rights reserved.
+ * @packageDocumentation
+ */
+
+@import '~@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css';
+@import '~mapbox-gl/dist/mapbox-gl.css';
+@import url('https://fonts.googleapis.com/css2?family=Cabin:wght@400;600;700&family=Roboto+Condensed&display=swap');
+@import 'bubble.css';
+/* @import '~mapbox-gl-controls/theme.css'; */
+
+input::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+.circle-label {
+  color: #fff;
+  background: rgba(0, 0, 0, 0.5);
+  padding-right: 5px;
+  padding-left: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border-radius: 1px;
+  font-size: 12px;
+}
+
+.circle-label:hover {
+  cursor: move;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  overflow-y: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  overflow: hidden;
+}
+
+.mapboxgl-control-container {
+  display: none;
+}
+
+.mapboxgl-popup-content {
+  padding: 0;
+}

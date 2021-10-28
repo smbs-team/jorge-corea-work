@@ -1,0 +1,6 @@
+//Background fetch example
+// setTimeout(async () => {
+//   const registration = await navigator.serviceWorker.ready;
+//   const res = await registration.backgroundFetch.fetch('my-fetch', ['https://ptas-sbox-maptileservices.azurewebsites.net/v1.0/sprites/CriticalAreas/sprite_1.png']);
+//   console.log(res)
+// }, 3000);

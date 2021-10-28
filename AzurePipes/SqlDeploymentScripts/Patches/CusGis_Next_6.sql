@@ -1,0 +1,2446 @@
+DROP INDEX IF EXISTS [S58178_idx] ON [gis].[ZIPCODE_SHORE_AREA]
+GO
+DROP INDEX IF EXISTS [S81961_idx] ON [gis].[WTRDST_AREA]
+GO
+DROP INDEX IF EXISTS [S76492_idx] ON [gis].[WTRCRS_LINE]
+GO
+DROP INDEX IF EXISTS [S10220_idx] ON [gis].[wtrbdy_wet_area]
+GO
+DROP INDEX IF EXISTS [S70962_idx] ON [gis].[WTRBDY_AREA]
+GO
+DROP INDEX IF EXISTS [S58174_idx] ON [gis].[WETLANDS_AREA]
+GO
+DROP INDEX IF EXISTS [S9067_idx] ON [gis].[wetland_all_area]
+GO
+DROP INDEX IF EXISTS [S21928_idx] ON [gis].[TRIBAL_LANDS_area]
+GO
+DROP INDEX IF EXISTS [S83584_idx] ON [gis].[TRANS_NETWORK_LINE]
+GO
+DROP INDEX IF EXISTS [S48318_idx] ON [gis].[TDR_SITE_LINK_LINE]
+GO
+DROP INDEX IF EXISTS [S45090_idx] ON [gis].[TDR_SENDING_PROPERTIES_AREA]
+GO
+DROP INDEX IF EXISTS [S48317_idx] ON [gis].[TDR_RECEIVING_PROPERTIES_AREA]
+GO
+DROP INDEX IF EXISTS [S81958_idx] ON [gis].[SWRDST_AREA]
+GO
+DROP INDEX IF EXISTS [S48503_idx] ON [gis].[STEEP_SLOPE_HAZARD_AREA]
+GO
+DROP INDEX IF EXISTS [S60855_idx] ON [gis].[STEEP_SLOPE_BUFFER_AREA]
+GO
+DROP INDEX IF EXISTS [S83080_idx] ON [gis].[ST_ADDRESS_LINE]
+GO
+DROP INDEX IF EXISTS [S87570_idx] ON [gis].[SEWER_LINE]
+GO
+DROP INDEX IF EXISTS [S10549_idx] ON [gis].[seism_area]
+GO
+DROP INDEX IF EXISTS [S82451_idx] ON [gis].[SCHSITE_POINT]
+GO
+DROP INDEX IF EXISTS [S81957_idx] ON [gis].[SCHDST_AREA]
+GO
+DROP INDEX IF EXISTS [S80913_idx] ON [gis].[SANT_AREA]
+GO
+DROP INDEX IF EXISTS [S83384_idx] ON [gis].[ROW_AREA]
+GO
+DROP INDEX IF EXISTS [S81954_idx] ON [gis].[RFADST_AREA]
+GO
+DROP INDEX IF EXISTS [S81953_idx] ON [gis].[PRKDST_AREA]
+GO
+DROP INDEX IF EXISTS [S9738_idx] ON [gis].[plss_twn_area]
+GO
+DROP INDEX IF EXISTS [S9737_idx] ON [gis].[plss_sec_area]
+GO
+DROP INDEX IF EXISTS [S36612_idx] ON [gis].[plss_area]
+GO
+DROP INDEX IF EXISTS [S83119_idx] ON [gis].[PARK_AREA]
+GO
+DROP INDEX IF EXISTS [S104789_idx] ON [gis].[PARCEL_AREA]
+GO
+DROP INDEX IF EXISTS [S10293_idx] ON [gis].[noise_contours_1db_area]
+GO
+DROP INDEX IF EXISTS [S81952_idx] ON [gis].[MUNDST_AREA]
+GO
+DROP INDEX IF EXISTS [S81951_idx] ON [gis].[MS2DST_AREA]
+GO
+DROP INDEX IF EXISTS [S65062_idx] ON [gis].[MS1DST_AREA]
+GO
+DROP INDEX IF EXISTS [S81950_idx] ON [gis].[LIBDST_AREA]
+GO
+DROP INDEX IF EXISTS [S48560_idx] ON [gis].[LANDSLIDE_HAZARD_AREA]
+GO
+DROP INDEX IF EXISTS [S48502_idx] ON [gis].[LANDSLIDE_BUFFER_AREA]
+GO
+DROP INDEX IF EXISTS [S52395_idx] ON [gis].[KINGSH_AREA]
+GO
+DROP INDEX IF EXISTS [S81948_idx] ON [gis].[KCCDST_AREA]
+GO
+DROP INDEX IF EXISTS [S79833_idx] ON [gis].[KCACODE_AREA]
+GO
+DROP INDEX IF EXISTS [S81946_idx] ON [gis].[HSPDST_AREA]
+GO
+DROP INDEX IF EXISTS [S68430_idx] ON [gis].[FLOODWAY_AREA]
+GO
+DROP INDEX IF EXISTS [S71802_idx] ON [gis].[FLDPLAIN_100YR_AREA]
+GO
+DROP INDEX IF EXISTS [S81945_idx] ON [gis].[FIRDST_AREA]
+GO
+DROP INDEX IF EXISTS [S101700_idx] ON [gis].[FEMA_FLOODWAY_AREA]
+GO
+DROP INDEX IF EXISTS [S102282_idx] ON [gis].[FEMA_FLOODPLAIN_500YR_AREA]
+GO
+DROP INDEX IF EXISTS [S101698_idx] ON [gis].[FEMA_FLOODPLAIN_100YR_AREA]
+GO
+DROP INDEX IF EXISTS [S10539_idx] ON [gis].[erode_area]
+GO
+DROP INDEX IF EXISTS [S83381_idx] ON [gis].[ENCUMBRANCE_AREA]
+GO
+DROP INDEX IF EXISTS [S79237_idx] ON [gis].[DEVELOPMENT_CONDITION_AREA]
+GO
+DROP INDEX IF EXISTS [S75420_idx] ON [gis].[CUT_PBRSEXCLUDEDAREA_AREA]
+GO
+DROP INDEX IF EXISTS [S102185_idx] ON [gis].[CUT_PBRS_TIMBER_AREA]
+GO
+DROP INDEX IF EXISTS [S58173_idx] ON [gis].[CRITICAL_AREAS_AREA]
+GO
+DROP INDEX IF EXISTS [S72826_idx] ON [gis].[CONTOUR020_LINE]
+GO
+DROP INDEX IF EXISTS [S61631_idx] ON [gis].[CONTOUR010_LINE]
+GO
+DROP INDEX IF EXISTS [S107625_idx] ON [gis].[CONTOUR005_LINE]
+GO
+DROP INDEX IF EXISTS [S10501_idx] ON [gis].[coalmine_area]
+GO
+DROP INDEX IF EXISTS [S68574_idx] ON [gis].[CITY_KC_AREA]
+GO
+DROP INDEX IF EXISTS [S73972_idx] ON [gis].[CITY_AREA]
+GO
+DROP INDEX IF EXISTS [S81651_idx] ON [gis].[CHNLMIGR_AREA]
+GO
+DROP INDEX IF EXISTS [S108635_idx] ON [gis].[CA3_ANNO]
+GO
+DROP INDEX IF EXISTS [S108634_idx] ON [gis].[CA2_ANNO]
+GO
+DROP INDEX IF EXISTS [S108633_idx] ON [gis].[CA1_ANNO]
+GO
+DROP INDEX IF EXISTS [S83380_idx] ON [gis].[BOUNDARY_LINE]
+GO
+DROP INDEX IF EXISTS [S104378_idx] ON [gis].[ADDRESS_POINT]
+GO
+DROP INDEX IF EXISTS [I106281RTE_ID] ON [gis].[WTRCRS_LINE]
+GO
+DROP INDEX IF EXISTS [R67223_SDE_ROWID_UK] ON [gis].[URBAN_GROWTH_AREA]
+GO
+DROP INDEX IF EXISTS [I165845PIN] ON [gis].[PARCEL_AREA]
+GO
+DROP INDEX IF EXISTS [R102457_SDE_ROWID_UK] ON [gis].[FARMLAND_AREA]
+GO
+DROP INDEX IF EXISTS [R79928_SDE_ROWID_UK] ON [gis].[CUT_FOREST_AREA]
+GO
+DROP INDEX IF EXISTS [I174374STATUS] ON [gis].[CA3_ANNO]
+GO
+DROP INDEX IF EXISTS [I174374ANNOTATIO] ON [gis].[CA3_ANNO]
+GO
+DROP INDEX IF EXISTS [I174373STATUS] ON [gis].[CA2_ANNO]
+GO
+DROP INDEX IF EXISTS [I174373ANNOTATIO] ON [gis].[CA2_ANNO]
+GO
+DROP INDEX IF EXISTS [I174372STATUS] ON [gis].[CA1_ANNO]
+GO
+DROP INDEX IF EXISTS [I174372ANNOTATIO] ON [gis].[CA1_ANNO]
+GO
+DROP INDEX IF EXISTS [R71703_SDE_ROWID_UK] ON [gis].[AGRPDDST_AREA]
+GO
+DROP INDEX IF EXISTS [I164755PIN] ON [gis].[ADDRESS_POINT]
+GO
+DROP INDEX IF EXISTS [a82810_ix1] ON [gis].[ZONING_AREA] WITH ( ONLINE = OFF )
+GO
+DROP TABLE IF EXISTS [gis].[ZONING_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[ZIPCODE_SHORE_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[WTRDST_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[WTRCRS_LINE]
+GO
+DROP TABLE IF EXISTS [gis].[wtrbdy_wet_area]
+GO
+DROP TABLE IF EXISTS [gis].[WTRBDY_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[WETLANDS_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[wetland_all_area]
+GO
+DROP INDEX IF EXISTS [a53853_ix1] ON [gis].[URBAN_GROWTH_AREA] WITH ( ONLINE = OFF )
+GO
+DROP TABLE IF EXISTS [gis].[URBAN_GROWTH_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[TRIBAL_LANDS_area]
+GO
+DROP TABLE IF EXISTS [gis].[TRANS_NETWORK_LINE]
+GO
+DROP TABLE IF EXISTS [gis].[TDR_SITE_LINK_LINE]
+GO
+DROP TABLE IF EXISTS [gis].[TDR_SENDING_PROPERTIES_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[TDR_RECEIVING_PROPERTIES_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[SWRDST_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[STEEP_SLOPE_HAZARD_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[STEEP_SLOPE_BUFFER_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[ST_ADDRESS_LINE]
+GO
+DROP TABLE IF EXISTS [gis].[SEWER_LINE]
+GO
+DROP TABLE IF EXISTS [gis].[seism_area]
+GO
+DROP TABLE IF EXISTS [gis].[SCHSITE_POINT]
+GO
+DROP TABLE IF EXISTS [gis].[SCHDST_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[SANT_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[ROW_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[RFADST_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[PRKDST_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[plss_twn_area]
+GO
+DROP TABLE IF EXISTS [gis].[plss_sec_area]
+GO
+DROP TABLE IF EXISTS [gis].[plss_area]
+GO
+DROP TABLE IF EXISTS [gis].[PARK_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[PARCEL_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[noise_contours_1db_area]
+GO
+DROP TABLE IF EXISTS [gis].[MUNDST_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[MS2DST_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[MS1DST_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[LIBDST_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[LANDSLIDE_HAZARD_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[LANDSLIDE_BUFFER_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[KINGSH_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[KCCDST_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[KCACODE_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[HSPDST_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[FLOODWAY_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[FLDPLAIN_100YR_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[FIRDST_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[FEMA_FLOODWAY_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[FEMA_FLOODPLAIN_500YR_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[FEMA_FLOODPLAIN_100YR_AREA]
+GO
+DROP INDEX IF EXISTS [a83357_ix1] ON [gis].[FARMLAND_AREA] WITH ( ONLINE = OFF )
+GO
+DROP TABLE IF EXISTS [gis].[FARMLAND_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[erode_area]
+GO
+DROP TABLE IF EXISTS [gis].[ENCUMBRANCE_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[DEVELOPMENT_CONDITION_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[CUT_PBRSEXCLUDEDAREA_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[CUT_PBRS_TIMBER_AREA]
+GO
+DROP INDEX IF EXISTS [a64333_ix1] ON [gis].[CUT_FOREST_AREA] WITH ( ONLINE = OFF )
+GO
+DROP TABLE IF EXISTS [gis].[CUT_FOREST_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[CRITICAL_AREAS_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[CONTOUR020_LINE]
+GO
+DROP TABLE IF EXISTS [gis].[CONTOUR010_LINE]
+GO
+DROP TABLE IF EXISTS [gis].[CONTOUR005_LINE]
+GO
+DROP TABLE IF EXISTS [gis].[coalmine_area]
+GO
+DROP TABLE IF EXISTS [gis].[CITY_KC_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[CITY_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[CHNLMIGR_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[CA3_ANNO]
+GO
+DROP TABLE IF EXISTS [gis].[CA2_ANNO]
+GO
+DROP TABLE IF EXISTS [gis].[CA1_ANNO]
+GO
+DROP TABLE IF EXISTS [gis].[BOUNDARY_LINE]
+GO
+DROP INDEX IF EXISTS [a57560_ix1] ON [gis].[AGRPDDST_AREA] WITH ( ONLINE = OFF )
+GO
+DROP TABLE IF EXISTS [gis].[AGRPDDST_AREA]
+GO
+DROP TABLE IF EXISTS [gis].[ADDRESS_POINT]
+GO
+
+--
+-- Create table "[gis].[ADDRESS_POINT]"
+--
+CREATE TABLE [gis].[ADDRESS_POINT] (
+  [OBJECTID] int NOT NULL,
+  [COMMENTS] nvarchar(254) NULL,
+  [SITETYPE] nvarchar(2) NULL,
+  [Alias1] nvarchar(60) NULL,
+  [Alias2] nvarchar(60) NULL,
+  [Alias3] nvarchar(60) NULL,
+  [Alias4] nvarchar(60) NULL,
+  [Alias5] nvarchar(60) NULL,
+  [Building] nvarchar(75) NULL,
+  [Unit] nvarchar(75) NULL,
+  [SITEID] numeric(38, 8) NULL,
+  [ADDR_HN] nvarchar(10) NULL,
+  [ADDR_PD] nvarchar(2) NULL,
+  [ADDR_PT] nvarchar(6) NULL,
+  [ADDR_SN] nvarchar(80) NULL,
+  [ADDR_ST] nvarchar(6) NULL,
+  [ADDR_SD] nvarchar(2) NULL,
+  [ADDR_NUM] int NULL,
+  [ADDR_FULL] nvarchar(120) NULL,
+  [FULLNAME] nvarchar(120) NULL,
+  [COMPRESS_NAME] nvarchar(60) NULL,
+  [COMPRESS_ADDR] nvarchar(70) NULL,
+  [ZIPSECTORL] nvarchar(2) NULL,
+  [ZIPSEG_L] nvarchar(2) NULL,
+  [ZIPSECTORH] nvarchar(2) NULL,
+  [ZIPSEG_H] nvarchar(2) NULL,
+  [ZIP5] nvarchar(5) NULL,
+  [PLUS4] nvarchar(4) NULL,
+  [CR_ID] nvarchar(4) NULL,
+  [UPDATE_KEY] nvarchar(10) NULL,
+  [CTYNAME] nvarchar(28) NULL,
+  [POSTALCTYNAME] nvarchar(28) NULL,
+  [LAT] numeric(38, 8) NULL,
+  [LON] numeric(38, 8) NULL,
+  [PRIM_ADDR] smallint NULL,
+  [PRIM_ADDR_FILTER] nvarchar(20) NULL,
+  [SITETYPE_DESCRIPTION] nvarchar(120) NULL,
+  [POINT_X] numeric(38, 8) NULL,
+  [POINT_Y] numeric(38, 8) NULL,
+  [COUNTY] nvarchar(12) NULL,
+  [MAJOR] nvarchar(6) NULL,
+  [MINOR] nvarchar(4) NULL,
+  [PIN] nvarchar(10) NULL,
+  [SHAPE] geometry NULL,
+  [GDB_GEOMATTR_DATA] varbinary(max) NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create index "[I164755PIN]" on table "[gis].[ADDRESS_POINT]"
+--
+CREATE INDEX [I164755PIN]
+  ON [gis].[ADDRESS_POINT] ([PIN])
+GO
+
+
+--
+-- Create spatial index "[S104378_idx]"
+--
+CREATE SPATIAL INDEX [S104378_idx]
+  ON [gis].[ADDRESS_POINT] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1220434.55150114, YMIN = 53466.1110415608, XMAX = 1580051.14066547, YMAX = 302454.64521572))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[CITY_AREA]"
+--
+CREATE TABLE [gis].[CITY_AREA] (
+  [OBJECTID] int NOT NULL,
+  [JURIS] nvarchar(2) NULL,
+  [CITYNAME] nvarchar(75) NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S73972_idx]"
+--
+CREATE SPATIAL INDEX [S73972_idx]
+  ON [gis].[CITY_AREA] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1239107.62498556, YMIN = 61661.0384124964, XMAX = 1514146.55681109, YMAX = 287672.905949399))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[CITY_KC_AREA]"
+--
+CREATE TABLE [gis].[CITY_KC_AREA] (
+  [OBJECTID] int NOT NULL,
+  [JURIS] nvarchar(2) NULL,
+  [CITYNAME] nvarchar(75) NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S68574_idx]"
+--
+CREATE SPATIAL INDEX [S68574_idx]
+  ON [gis].[CITY_KC_AREA] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1217085.12488267, YMIN = 31302.4029383659, XMAX = 1583148.12487438, YMAX = 287947.595022991))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[ZIPCODE_SHORE_AREA]"
+--
+CREATE TABLE [gis].[ZIPCODE_SHORE_AREA] (
+  [OBJECTID] int NOT NULL,
+  [ZIP] int NULL,
+  [ZIPCODE] nvarchar(5) NULL,
+  [COUNTY] nvarchar(3) NULL,
+  [ZIP_TYPE] nvarchar(10) NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S58178_idx]"
+--
+CREATE SPATIAL INDEX [S58178_idx]
+  ON [gis].[ZIPCODE_SHORE_AREA] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1099365.92025, YMIN = -97406.515, XMAX = 1867756.73775, YMAX = 477026.8195))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[FIRDST_AREA]"
+--
+CREATE TABLE [gis].[FIRDST_AREA] (
+  [OBJECTID] int NOT NULL,
+  [FIRDST] nvarchar(4) NULL,
+  [NAME] nvarchar(50) NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S81945_idx]"
+--
+CREATE SPATIAL INDEX [S81945_idx]
+  ON [gis].[FIRDST_AREA] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1220179.43000001, YMIN = 52561.8799999952, XMAX = 1583562.375, YMAX = 287677.996999994))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[HSPDST_AREA]"
+--
+CREATE TABLE [gis].[HSPDST_AREA] (
+  [OBJECTID] int NOT NULL,
+  [HSPDST] nvarchar(4) NULL,
+  [NAME] nvarchar(50) NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S81946_idx]"
+--
+CREATE SPATIAL INDEX [S81946_idx]
+  ON [gis].[HSPDST_AREA] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1220179.43000001, YMIN = 112245.379999995, XMAX = 1529192.03, YMAX = 286763.261000007))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[KCCDST_AREA]"
+--
+CREATE TABLE [gis].[KCCDST_AREA] (
+  [OBJECTID] int NOT NULL,
+  [kccdst] nvarchar(4) NULL,
+  [COUNCILMEM] nvarchar(19) NULL,
+  [PHONE] nvarchar(14) NULL,
+  [URL] nvarchar(62) NULL,
+  [EMAIL] nvarchar(50) NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S81948_idx]"
+--
+CREATE SPATIAL INDEX [S81948_idx]
+  ON [gis].[KCCDST_AREA] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1220179.42996418, YMIN = 31555.1601129323, XMAX = 1583562.37511286, YMAX = 287677.996947601))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[LIBDST_AREA]"
+--
+CREATE TABLE [gis].[LIBDST_AREA] (
+  [OBJECTID] int NOT NULL,
+  [LIBDST] nvarchar(4) NULL,
+  [NAME] nvarchar(50) NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S81950_idx]"
+--
+CREATE SPATIAL INDEX [S81950_idx]
+  ON [gis].[LIBDST_AREA] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1220179.43000001, YMIN = 31555.1599999964, XMAX = 1583562.375, YMAX = 287677.996999994))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[MS1DST_AREA]"
+--
+CREATE TABLE [gis].[MS1DST_AREA] (
+  [OBJECTID] int NOT NULL,
+  [ms1dst] nvarchar(4) NULL,
+  [NAME] nvarchar(50) NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S65062_idx]"
+--
+CREATE SPATIAL INDEX [S65062_idx]
+  ON [gis].[MS1DST_AREA] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = -117104300, YMIN = -99539600, XMAX = 120385100, YMAX = 101712900))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[MS2DST_AREA]"
+--
+CREATE TABLE [gis].[MS2DST_AREA] (
+  [OBJECTID] int NOT NULL,
+  [MS2DST] nvarchar(4) NULL,
+  [NAME] nvarchar(50) NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S81951_idx]"
+--
+CREATE SPATIAL INDEX [S81951_idx]
+  ON [gis].[MS2DST_AREA] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1220179.43000001, YMIN = 31555.1599999964, XMAX = 1583562.375, YMAX = 287677.996999994))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[MUNDST_AREA]"
+--
+CREATE TABLE [gis].[MUNDST_AREA] (
+  [OBJECTID] int NOT NULL,
+  [MUNDST] nvarchar(4) NULL,
+  [NAME] nvarchar(50) NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S81952_idx]"
+--
+CREATE SPATIAL INDEX [S81952_idx]
+  ON [gis].[MUNDST_AREA] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1300133.12, YMIN = 216229.442000002, XMAX = 1321315.45999999, YMAX = 247203.589000001))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[PRKDST_AREA]"
+--
+CREATE TABLE [gis].[PRKDST_AREA] (
+  [OBJECTID] int NOT NULL,
+  [prkdst] nvarchar(4) NULL,
+  [NAME] nvarchar(50) NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S81953_idx]"
+--
+CREATE SPATIAL INDEX [S81953_idx]
+  ON [gis].[PRKDST_AREA] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1220179.42996418, YMIN = 31555.1601129323, XMAX = 1524837.65102711, YMAX = 287677.996947601))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[RFADST_AREA]"
+--
+CREATE TABLE [gis].[RFADST_AREA] (
+  [OBJECTID] int NOT NULL,
+  [RFADST] nvarchar(4) NULL,
+  [NAME] nvarchar(50) NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S81954_idx]"
+--
+CREATE SPATIAL INDEX [S81954_idx]
+  ON [gis].[RFADST_AREA] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1274577.45010494, YMIN = 96667.2661089301, XMAX = 1352518.8204686, YMAX = 202179.069848686))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[SCHDST_AREA]"
+--
+CREATE TABLE [gis].[SCHDST_AREA] (
+  [OBJECTID] int NOT NULL,
+  [SCHDST] nvarchar(4) NULL,
+  [NAME] nvarchar(50) NULL,
+  [DSTNUM] nvarchar(5) NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S81957_idx]"
+--
+CREATE SPATIAL INDEX [S81957_idx]
+  ON [gis].[SCHDST_AREA] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1220179.42996418, YMIN = 31555.1601129323, XMAX = 1583562.37511286, YMAX = 287677.996947601))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[SWRDST_AREA]"
+--
+CREATE TABLE [gis].[SWRDST_AREA] (
+  [OBJECTID] int NOT NULL,
+  [SWRDST] nvarchar(4) NULL,
+  [NAME] nvarchar(50) NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S81958_idx]"
+--
+CREATE SPATIAL INDEX [S81958_idx]
+  ON [gis].[SWRDST_AREA] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1220283.48, YMIN = 130581.900000006, XMAX = 1577841.87800001, YMAX = 287677.996999994))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[WTRDST_AREA]"
+--
+CREATE TABLE [gis].[WTRDST_AREA] (
+  [OBJECTID] int NOT NULL,
+  [WTRDST] nvarchar(4) NULL,
+  [NAME] nvarchar(50) NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S81961_idx]"
+--
+CREATE SPATIAL INDEX [S81961_idx]
+  ON [gis].[WTRDST_AREA] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1232190.41, YMIN = 105619.508000001, XMAX = 1393084.86, YMAX = 287213.489250004))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[coalmine_area]"
+--
+CREATE TABLE [gis].[coalmine_area] (
+  [OBJECTID] int NOT NULL,
+  [HAZARD] nvarchar(3) NULL,
+  [EDIT_DATE] datetime2 NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S10501_idx]"
+--
+CREATE SPATIAL INDEX [S10501_idx]
+  ON [gis].[coalmine_area] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1298277.875, YMIN = 94861.695, XMAX = 1384777.75, YMAX = 206922.422))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[CRITICAL_AREAS_AREA]"
+--
+CREATE TABLE [gis].[CRITICAL_AREAS_AREA] (
+  [OBJECTID] int NOT NULL,
+  [FEATURE_ID] int NULL,
+  [HAZARD_TYPE] numeric(38, 8) NULL,
+  [HAZARD_SUBTYPE] numeric(38, 8) NULL,
+  [HAZARD_BUFFER] int NULL,
+  [created_date] datetime2 NULL,
+  [last_edited_date] datetime2 NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S58173_idx]"
+--
+CREATE SPATIAL INDEX [S58173_idx]
+  ON [gis].[CRITICAL_AREAS_AREA] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1220417.451798, YMIN = 58310.608242, XMAX = 1519661.170895, YMAX = 285251.159938))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[erode_area]"
+--
+CREATE TABLE [gis].[erode_area] (
+  [OBJECTID] int NOT NULL,
+  [HAZARD] nvarchar(3) NULL,
+  [EDIT_DATE] datetime2 NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S10539_idx]"
+--
+CREATE SPATIAL INDEX [S10539_idx]
+  ON [gis].[erode_area] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1220254.875, YMIN = 52556.086, XMAX = 1431818.5, YMAX = 287487.531))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[LANDSLIDE_BUFFER_AREA]"
+--
+CREATE TABLE [gis].[LANDSLIDE_BUFFER_AREA] (
+  [OBJECTID] int NOT NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S48502_idx]"
+--
+CREATE SPATIAL INDEX [S48502_idx]
+  ON [gis].[LANDSLIDE_BUFFER_AREA] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1220268.93241, YMIN = 52374.466243, XMAX = 1558892.922811, YMAX = 285563.551701))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[LANDSLIDE_HAZARD_AREA]"
+--
+CREATE TABLE [gis].[LANDSLIDE_HAZARD_AREA] (
+  [OBJECTID_1] int NOT NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID_1])
+)
+GO
+
+
+--
+-- Create spatial index "[S48560_idx]"
+--
+CREATE SPATIAL INDEX [S48560_idx]
+  ON [gis].[LANDSLIDE_HAZARD_AREA] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1220318.911969, YMIN = 52377.446224, XMAX = 1558842.922911, YMAX = 285513.57772))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[noise_contours_1db_area]"
+--
+CREATE TABLE [gis].[noise_contours_1db_area] (
+  [OBJECTID] int NOT NULL,
+  [DNL] smallint NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S10293_idx]"
+--
+CREATE SPATIAL INDEX [S10293_idx]
+  ON [gis].[noise_contours_1db_area] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1264331.930898, YMIN = 171470.445899, XMAX = 1292114.399611, YMAX = 220170.068972))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[SANT_AREA]"
+--
+CREATE TABLE [gis].[SANT_AREA] (
+  [OBJECTID] int NOT NULL,
+  [PIN] nvarchar(10) NULL,
+  [MAP_DATE] datetime2 NULL,
+  [SPECIALIST] nvarchar(25) NULL,
+  [RECORDING_] nvarchar(20) NULL,
+  [COALMINE] numeric(20, 5) NULL,
+  [EROSION] numeric(20, 5) NULL,
+  [LANDSLIDE] numeric(20, 5) NULL,
+  [SEISMIC] numeric(20, 5) NULL,
+  [STEEPSLOPE] numeric(20, 5) NULL,
+  [FLOOD] numeric(20, 5) NULL,
+  [STREAM] nvarchar(2) NULL,
+  [WETLAND] nvarchar(1) NULL,
+  [HABITAT] numeric(20, 5) NULL,
+  [PERMIT_NO] nvarchar(8) NULL,
+  [PARCEL_NO] nvarchar(10) NULL,
+  [GRETAREA] numeric(20, 5) NULL,
+  [GPRTEASE] numeric(20, 5) NULL,
+  [CHMIGAREA] numeric(20, 5) NULL,
+  [ABCNOT] numeric(20, 5) NULL,
+  [NCONDPERM] numeric(20, 5) NULL,
+  [AFFDDWELL] numeric(20, 5) NULL,
+  [FORSTOPEN] numeric(20, 5) NULL,
+  [EDITDATE] datetime2 NULL,
+  [USERID] nvarchar(16) NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S80913_idx]"
+--
+CREATE SPATIAL INDEX [S80913_idx]
+  ON [gis].[SANT_AREA] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1220799.31675, YMIN = 57679.3412500024, XMAX = 1522130.21250001, YMAX = 287503.497999996))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[seism_area]"
+--
+CREATE TABLE [gis].[seism_area] (
+  [OBJECTID] int NOT NULL,
+  [HAZARD] nvarchar(3) NULL,
+  [EDIT_DATE] datetime2 NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S10549_idx]"
+--
+CREATE SPATIAL INDEX [S10549_idx]
+  ON [gis].[seism_area] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1221294.375, YMIN = 57360.727, XMAX = 1427455.375, YMAX = 287557.906))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[STEEP_SLOPE_BUFFER_AREA]"
+--
+CREATE TABLE [gis].[STEEP_SLOPE_BUFFER_AREA] (
+  [OBJECTID] int NOT NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S60855_idx]"
+--
+CREATE SPATIAL INDEX [S60855_idx]
+  ON [gis].[STEEP_SLOPE_BUFFER_AREA] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1220270.188077, YMIN = 50992.799715, XMAX = 1561933.27992, YMAX = 286717.359071))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[STEEP_SLOPE_HAZARD_AREA]"
+--
+CREATE TABLE [gis].[STEEP_SLOPE_HAZARD_AREA] (
+  [OBJECTID] int NOT NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S48503_idx]"
+--
+CREATE SPATIAL INDEX [S48503_idx]
+  ON [gis].[STEEP_SLOPE_HAZARD_AREA] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1220320.188077, YMIN = 52189.738114, XMAX = 1561936.188077, YMAX = 285607.162498))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[wetland_all_area]"
+--
+CREATE TABLE [gis].[wetland_all_area] (
+  [OBJECTID] int NOT NULL,
+  [DATA_FILE_] nvarchar(254) NULL,
+  [SOURCE_] nvarchar(254) NULL,
+  [CURRENCY_] nvarchar(254) NULL,
+  [TYPE_] smallint NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S9067_idx]"
+--
+CREATE SPATIAL INDEX [S9067_idx]
+  ON [gis].[wetland_all_area] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1105385.250104, YMIN = -92229.139562, XMAX = 1579946.000128, YMAX = 476767.139766))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[WETLANDS_AREA]"
+--
+CREATE TABLE [gis].[WETLANDS_AREA] (
+  [OBJECTID] int NOT NULL,
+  [SERIAL_ID] int NULL,
+  [CAO_PERMIT_NO] nvarchar(25) NULL,
+  [KCINVENTORYNO] nvarchar(25) NULL,
+  [DATE_ACCURACY] nvarchar(1) NULL,
+  [DATE_LASTOBS] datetime2 NULL,
+  [DELIN_DATE] datetime2 NULL,
+  [DELIN_STAT] nvarchar(1) NULL,
+  [WETLAND_CATEGORY] nvarchar(5) NULL,
+  [WETLAND_RATING] nvarchar(5) NULL,
+  [WETLAND_TYPE] nvarchar(50) NULL,
+  [WETLAND_ATTRIBUTE] nvarchar(20) NULL,
+  [ACREAGE_ALT] numeric(38, 8) NULL,
+  [ACREAGE_GIS] numeric(38, 8) NULL,
+  [WETLAND_NAME] nvarchar(75) NULL,
+  [ORIG_DATA_SOURCE] nvarchar(50) NULL,
+  [WETLAND_STATUS] nvarchar(15) NULL,
+  [CONFIDENCE_LEVEL] smallint NULL,
+  [COMMENTS] nvarchar(100) NULL,
+  [WETLAND_BUFFER] int NULL,
+  [HABITAT_POINTS] smallint NULL,
+  [BUFFER_LENGTH] int NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S58174_idx]"
+--
+CREATE SPATIAL INDEX [S58174_idx]
+  ON [gis].[WETLANDS_AREA] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1221330.098595, YMIN = 58672.818476, XMAX = 1497225.649493, YMAX = 285103.817385))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[WTRCRS_LINE]"
+--
+CREATE TABLE [gis].[WTRCRS_LINE] (
+  [OBJECTID] int NOT NULL,
+  [WTR_NAME] nvarchar(50) NULL,
+  [WRIA_NO] smallint NULL,
+  [WRIA_NAME] nvarchar(50) NULL,
+  [WTRSHD_ID] smallint NULL,
+  [WTRSHD_NAME] nvarchar(50) NULL,
+  [BASIN_ID] int NULL,
+  [BASIN_NAME] nvarchar(50) NULL,
+  [RTE_ID] nvarchar(18) NULL,
+  [STR_LVL] smallint NULL,
+  [SOURCE_NAME] nvarchar(70) NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create index "[I106281RTE_ID]" on table "[gis].[WTRCRS_LINE]"
+--
+CREATE INDEX [I106281RTE_ID]
+  ON [gis].[WTRCRS_LINE] ([RTE_ID])
+GO
+
+
+--
+-- Create spatial index "[S76492_idx]"
+--
+CREATE SPATIAL INDEX [S76492_idx]
+  ON [gis].[WTRCRS_LINE] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1220407.279902, YMIN = -51117.229988, XMAX = 1581633.251018, YMAX = 392219.968966))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[FEMA_FLOODPLAIN_100YR_AREA]"
+--
+CREATE TABLE [gis].[FEMA_FLOODPLAIN_100YR_AREA] (
+  [OBJECTID] int NOT NULL,
+  [FLD_AR_ID] nvarchar(11) NULL,
+  [FLD_ZONE] nvarchar(55) NULL,
+  [FLOODWAY] nvarchar(30) NULL,
+  [SFHA_TF] nvarchar(1) NULL,
+  [STATIC_BFE] numeric(38, 8) NULL,
+  [V_DATUM] nvarchar(6) NULL,
+  [DEPTH_] numeric(38, 8) NULL,
+  [LEN_UNIT] nvarchar(20) NULL,
+  [SOURCE_CIT] nvarchar(11) NULL,
+  [Shape] geometry NULL,
+  [GDB_GEOMATTR_DATA] varbinary(max) NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S101698_idx]"
+--
+CREATE SPATIAL INDEX [S101698_idx]
+  ON [gis].[FEMA_FLOODPLAIN_100YR_AREA] ([Shape])
+  WITH (BOUNDING_BOX = (XMIN = 1216499.3634311, YMIN = 44141.9310777783, XMAX = 1522761.79418479, YMAX = 287854.531453073))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[FEMA_FLOODPLAIN_500YR_AREA]"
+--
+CREATE TABLE [gis].[FEMA_FLOODPLAIN_500YR_AREA] (
+  [OBJECTID] int NOT NULL,
+  [FLD_AR_ID] nvarchar(11) NULL,
+  [FLD_ZONE] nvarchar(55) NULL,
+  [SFHA_TF] nvarchar(1) NULL,
+  [SOURCE_CIT] nvarchar(11) NULL,
+  [Shape] geometry NULL,
+  [GDB_GEOMATTR_DATA] varbinary(max) NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S102282_idx]"
+--
+CREATE SPATIAL INDEX [S102282_idx]
+  ON [gis].[FEMA_FLOODPLAIN_500YR_AREA] ([Shape])
+  WITH (BOUNDING_BOX = (XMIN = 1224867.85552222, YMIN = 52675.0474169105, XMAX = 1520159.97995742, YMAX = 286112.430662692))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[FEMA_FLOODWAY_AREA]"
+--
+CREATE TABLE [gis].[FEMA_FLOODWAY_AREA] (
+  [OBJECTID] int NOT NULL,
+  [FLD_AR_ID] nvarchar(11) NULL,
+  [FLD_ZONE] nvarchar(55) NULL,
+  [FLOODWAY] nvarchar(30) NULL,
+  [SFHA_TF] nvarchar(1) NULL,
+  [SOURCE_CIT] nvarchar(11) NULL,
+  [Shape_Leng] numeric(38, 8) NULL,
+  [ORIG_FID] int NULL,
+  [Shape] geometry NULL,
+  [GDB_GEOMATTR_DATA] varbinary(max) NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S101700_idx]"
+--
+CREATE SPATIAL INDEX [S101700_idx]
+  ON [gis].[FEMA_FLOODWAY_AREA] ([Shape])
+  WITH (BOUNDING_BOX = (XMIN = 1261678.64417844, YMIN = 49753.1409831792, XMAX = 1522702.03871313, YMAX = 286649.780180991))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[FLDPLAIN_100YR_AREA]"
+--
+CREATE TABLE [gis].[FLDPLAIN_100YR_AREA] (
+  [OBJECTID] int NOT NULL,
+  [FLD_ZONE] nvarchar(55) NULL,
+  [FLOODPLAIN] nvarchar(8) NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S71802_idx]"
+--
+CREATE SPATIAL INDEX [S71802_idx]
+  ON [gis].[FLDPLAIN_100YR_AREA] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1217084.373487, YMIN = 44223.171202, XMAX = 1522761.794219, YMAX = 287947.087328))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[FLOODWAY_AREA]"
+--
+CREATE TABLE [gis].[FLOODWAY_AREA] (
+  [OBJECTID] int NOT NULL,
+  [FLOODPLAIN] nvarchar(8) NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S68430_idx]"
+--
+CREATE SPATIAL INDEX [S68430_idx]
+  ON [gis].[FLOODWAY_AREA] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1261678.64425, YMIN = 49817.95625, XMAX = 1522702.03875, YMAX = 286649.78025))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[WTRBDY_AREA]"
+--
+CREATE TABLE [gis].[WTRBDY_AREA] (
+  [OBJECTID] int NOT NULL,
+  [FEATURE_ID] int NULL,
+  [NAME] nvarchar(50) NULL,
+  [CREATED_DATE] datetime2 NULL,
+  [SUBSET_CD] smallint NULL,
+  [SUBSET] nvarchar(25) NULL,
+  [TYPE_CD] smallint NULL,
+  [FEAT_TYPE] nvarchar(50) NULL,
+  [WATER_CD] smallint NULL,
+  [WATER] nvarchar(25) NULL,
+  [SOURCE_CD] smallint NULL,
+  [DATASOURCE] nvarchar(50) NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S70962_idx]"
+--
+CREATE SPATIAL INDEX [S70962_idx]
+  ON [gis].[WTRBDY_AREA] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 607329.97575, YMIN = -256692.39975, XMAX = 1617446, YMAX = 765071.27925))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[AGRPDDST_AREA]"
+--
+CREATE TABLE [gis].[AGRPDDST_AREA] (
+  [OBJECTID] int NOT NULL,
+  [NEW_LU] nvarchar(4) NULL,
+  [NAME] nvarchar(40) NULL,
+  [EDITDATE] datetime2 NULL,
+  [USERID] nvarchar(16) NULL,
+  [SHAPE] int NULL
+)
+GO
+
+
+--
+-- Create index "[a57560_ix1]" on table "[gis].[AGRPDDST_AREA]"
+--
+CREATE CLUSTERED INDEX [a57560_ix1]
+  ON [gis].[AGRPDDST_AREA] ([SHAPE])
+GO
+
+
+--
+-- Create index "[R71703_SDE_ROWID_UK]" on table "[gis].[AGRPDDST_AREA]"
+--
+CREATE UNIQUE INDEX [R71703_SDE_ROWID_UK]
+  ON [gis].[AGRPDDST_AREA] ([OBJECTID])
+GO
+
+
+--
+-- Create table "[gis].[CUT_FOREST_AREA]"
+--
+CREATE TABLE [gis].[CUT_FOREST_AREA] (
+  [OBJECTID] int NOT NULL,
+  [PIN] nvarchar(10) NULL,
+  [GIS_Acres] numeric(38, 8) NULL,
+  [AmtInProg] nvarchar(10) NULL,
+  [Shape] int NULL
+)
+GO
+
+
+--
+-- Create index "[a64333_ix1]" on table "[gis].[CUT_FOREST_AREA]"
+--
+CREATE CLUSTERED INDEX [a64333_ix1]
+  ON [gis].[CUT_FOREST_AREA] ([Shape])
+GO
+
+
+--
+-- Create index "[R79928_SDE_ROWID_UK]" on table "[gis].[CUT_FOREST_AREA]"
+--
+CREATE UNIQUE INDEX [R79928_SDE_ROWID_UK]
+  ON [gis].[CUT_FOREST_AREA] ([OBJECTID])
+GO
+
+
+--
+-- Create table "[gis].[CUT_PBRS_TIMBER_AREA]"
+--
+CREATE TABLE [gis].[CUT_PBRS_TIMBER_AREA] (
+  [OBJECTID] int NOT NULL,
+  [PIN] nvarchar(10) NULL,
+  [FILE_NUMBR] nvarchar(20) NULL,
+  [MONITRDATE] datetime2 NULL,
+  [PROGRAM] nvarchar(50) NULL,
+  [RESOURCES] nvarchar(254) NULL,
+  [ZIPCODE] nvarchar(10) NULL,
+  [CITY] nvarchar(50) NULL,
+  [PIN_ACRE] numeric(38, 8) NULL,
+  [PBRS_ACRE] numeric(38, 8) NULL,
+  [TIMBR_ACRE] numeric(38, 8) NULL,
+  [Shape] geometry NULL,
+  [GDB_GEOMATTR_DATA] varbinary(max) NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S102185_idx]"
+--
+CREATE SPATIAL INDEX [S102185_idx]
+  ON [gis].[CUT_PBRS_TIMBER_AREA] ([Shape])
+  WITH (BOUNDING_BOX = (XMIN = 1220351.08742927, YMIN = 56991.3871275187, XMAX = 1534301.1599872, YMAX = 286686.107855275))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[FARMLAND_AREA]"
+--
+CREATE TABLE [gis].[FARMLAND_AREA] (
+  [OBJECTID] int NOT NULL,
+  [PIN] nvarchar(10) NULL,
+  [MAJOR] nvarchar(6) NULL,
+  [MINOR] nvarchar(4) NULL,
+  [GIS_ACRES] numeric(16, 3) NULL,
+  [SHAPE] int NULL
+)
+GO
+
+
+--
+-- Create index "[a83357_ix1]" on table "[gis].[FARMLAND_AREA]"
+--
+CREATE CLUSTERED INDEX [a83357_ix1]
+  ON [gis].[FARMLAND_AREA] ([SHAPE])
+GO
+
+
+--
+-- Create index "[R102457_SDE_ROWID_UK]" on table "[gis].[FARMLAND_AREA]"
+--
+CREATE UNIQUE INDEX [R102457_SDE_ROWID_UK]
+  ON [gis].[FARMLAND_AREA] ([OBJECTID])
+GO
+
+
+--
+-- Create table "[gis].[TDR_RECEIVING_PROPERTIES_AREA]"
+--
+CREATE TABLE [gis].[TDR_RECEIVING_PROPERTIES_AREA] (
+  [OBJECTID] int NOT NULL,
+  [SITE_ID] smallint NULL,
+  [SITE_NAME] nvarchar(100) NULL,
+  [SITE_ADDR] nvarchar(100) NULL,
+  [SITE_TYPE] nvarchar(15) NULL,
+  [PIN] nvarchar(10) NULL,
+  [MAJOR_PIN] nvarchar(6) NULL,
+  [PAA] nvarchar(50) NULL,
+  [JURIS] nvarchar(50) NULL,
+  [DDES_NUM] nvarchar(50) NULL,
+  [PERMIT_NUM] nvarchar(50) NULL,
+  [APPLICANT] nvarchar(100) NULL,
+  [PROPOSAL] nvarchar(100) NULL,
+  [STATUSTYPE] nvarchar(50) NULL,
+  [TDRCERTNUM] nvarchar(50) NULL,
+  [UGA_CLASS] nvarchar(5) NULL,
+  [TDR_TYPE] nvarchar(15) NULL,
+  [SUBDIVNAME] nvarchar(100) NULL,
+  [SUBDIVTYPE] nvarchar(50) NULL,
+  [ZONING] nvarchar(50) NULL,
+  [BASE_DENS] nvarchar(50) NULL,
+  [TDR_NUM] smallint NULL,
+  [UNIT_NUM] smallint NULL,
+  [TOT_UNITS] smallint NULL,
+  [TDR_SQ_FT] numeric(38, 8) NULL,
+  [TOTPRJSQFT] numeric(38, 8) NULL,
+  [TDR_PRICE] numeric(38, 8) NULL,
+  [RDI_NUM] smallint NULL,
+  [RDI_TYPE] nvarchar(75) NULL,
+  [RECOR_DATE] datetime2 NULL,
+  [RECOR_NUM] nvarchar(25) NULL,
+  [DDES_PLANR] nvarchar(50) NULL,
+  [NOTES] nvarchar(250) NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S48317_idx]"
+--
+CREATE SPATIAL INDEX [S48317_idx]
+  ON [gis].[TDR_RECEIVING_PROPERTIES_AREA] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1263960.758, YMIN = 109099.75, XMAX = 1421663.38, YMAX = 282452.375))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[TDR_SENDING_PROPERTIES_AREA]"
+--
+CREATE TABLE [gis].[TDR_SENDING_PROPERTIES_AREA] (
+  [OBJECTID] int NOT NULL,
+  [SITE_ID] smallint NULL,
+  [SITE_NAME] nvarchar(100) NULL,
+  [SITE_ADDR] nvarchar(100) NULL,
+  [SITE_TYPE] nvarchar(15) NULL,
+  [PIN] nvarchar(10) NULL,
+  [APPLICANT] nvarchar(100) NULL,
+  [STATUSTYPE] nvarchar(15) NULL,
+  [DDES_NUM] nvarchar(50) NULL,
+  [TDRCERTNUM] nvarchar(10) NULL,
+  [TDR_NUM] smallint NULL,
+  [KC_OWNED] nvarchar(5) NULL,
+  [BANK_ACQ] nvarchar(5) NULL,
+  [BANKTDRNUM] smallint NULL,
+  [KCA_ACRES] numeric(38, 8) NULL,
+  [GIS_ACRES] numeric(38, 8) NULL,
+  [UGA_CLASS] nvarchar(5) NULL,
+  [ZONING] nvarchar(50) NULL,
+  [CRITERIA] nvarchar(50) NULL,
+  [RETAIN_DU] smallint NULL,
+  [EXIST_DU] smallint NULL,
+  [TDRFORSALE] nvarchar(5) NULL,
+  [RECD_DATE] datetime2 NULL,
+  [QUAL_DATE] datetime2 NULL,
+  [CERT_DATE] datetime2 NULL,
+  [ILA] nvarchar(100) NULL,
+  [PARK_NAME] nvarchar(100) NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S45090_idx]"
+--
+CREATE SPATIAL INDEX [S45090_idx]
+  ON [gis].[TDR_SENDING_PROPERTIES_AREA] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1220430.734, YMIN = 42985.4810000062, XMAX = 1518594.579, YMAX = 285042.25))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[TDR_SITE_LINK_LINE]"
+--
+CREATE TABLE [gis].[TDR_SITE_LINK_LINE] (
+  [OBJECTID] int NOT NULL,
+  [SITELINKID] smallint NULL,
+  [FROMSITEID] smallint NULL,
+  [FRSITENAME] nvarchar(100) NULL,
+  [FRSITETYPE] nvarchar(15) NULL,
+  [TOSITEID] smallint NULL,
+  [TOSITENAME] nvarchar(100) NULL,
+  [TOSITETYPE] nvarchar(15) NULL,
+  [ISACTIVE] nvarchar(5) NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S48318_idx]"
+--
+CREATE SPATIAL INDEX [S48318_idx]
+  ON [gis].[TDR_SITE_LINK_LINE] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1220095.02806057, YMIN = 56002.6952447291, XMAX = 1460556.65875, YMAX = 288250.176934366))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[CUT_PBRSEXCLUDEDAREA_AREA]"
+--
+CREATE TABLE [gis].[CUT_PBRSEXCLUDEDAREA_AREA] (
+  [OBJECTID] int NOT NULL,
+  [FileNumber] nvarchar(20) NOT NULL,
+  [PIN] nvarchar(10) NOT NULL,
+  [OwnerName] nvarchar(50) NOT NULL,
+  [FileNameLoc] nvarchar(25) NOT NULL,
+  [ExcludedArea] numeric(38, 8) NOT NULL,
+  [IsValidated] nvarchar(5) NOT NULL,
+  [Notes] nvarchar(500) NOT NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S75420_idx]"
+--
+CREATE SPATIAL INDEX [S75420_idx]
+  ON [gis].[CUT_PBRSEXCLUDEDAREA_AREA] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1220861.458456, YMIN = 57818.027863, XMAX = 1533792.070126, YMAX = 285628.12211))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[DEVELOPMENT_CONDITION_AREA]"
+--
+CREATE TABLE [gis].[DEVELOPMENT_CONDITION_AREA] (
+  [OBJECTID] int NOT NULL,
+  [EDITDATE] datetime2 NULL,
+  [USERID] nvarchar(16) NULL,
+  [DESCRIPTION] nvarchar(120) NULL,
+  [RETIREDDATE] datetime2 NULL,
+  [COND_CODE] nvarchar(30) NULL,
+  [URL] nvarchar(254) NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S79237_idx]"
+--
+CREATE SPATIAL INDEX [S79237_idx]
+  ON [gis].[DEVELOPMENT_CONDITION_AREA] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1220302.375, YMIN = 66291.2199999988, XMAX = 1497555.38, YMAX = 286934.531000003))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[URBAN_GROWTH_AREA]"
+--
+CREATE TABLE [gis].[URBAN_GROWTH_AREA] (
+  [OBJECTID] int NOT NULL,
+  [UGASIDE] nvarchar(1) NULL,
+  [EDITDATE] datetime2 NULL,
+  [USERID] nvarchar(16) NULL,
+  [SHAPE] int NULL
+)
+GO
+
+
+--
+-- Create index "[a53853_ix1]" on table "[gis].[URBAN_GROWTH_AREA]"
+--
+CREATE CLUSTERED INDEX [a53853_ix1]
+  ON [gis].[URBAN_GROWTH_AREA] ([SHAPE])
+GO
+
+
+--
+-- Create index "[R67223_SDE_ROWID_UK]" on table "[gis].[URBAN_GROWTH_AREA]"
+--
+CREATE UNIQUE INDEX [R67223_SDE_ROWID_UK]
+  ON [gis].[URBAN_GROWTH_AREA] ([OBJECTID])
+GO
+
+
+--
+-- Create table "[gis].[ZONING_AREA]"
+--
+CREATE TABLE [gis].[ZONING_AREA] (
+  [OBJECTID] int NOT NULL,
+  [CURRZONE] nvarchar(14) NULL,
+  [POTENTIAL] nvarchar(14) NULL,
+  [CURRTEMP] nvarchar(14) NULL,
+  [EDITDATE] datetime2 NULL,
+  [USERID] nvarchar(16) NULL,
+  [SHAPE] int NULL
+)
+GO
+
+
+--
+-- Create index "[a82810_ix1]" on table "[gis].[ZONING_AREA]"
+--
+CREATE CLUSTERED INDEX [a82810_ix1]
+  ON [gis].[ZONING_AREA] ([SHAPE])
+GO
+
+
+--
+-- Create table "[gis].[KINGSH_AREA]"
+--
+CREATE TABLE [gis].[KINGSH_AREA] (
+  [OBJECTID] int NOT NULL,
+  [COUNTY] nvarchar(12) NULL,
+  [CREATIONDATE] datetime2 NULL,
+  [EDITDATE] datetime2 NULL,
+  [COUNTYLABEL] nvarchar(12) NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S52395_idx]"
+--
+CREATE SPATIAL INDEX [S52395_idx]
+  ON [gis].[KINGSH_AREA] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1220320.04775, YMIN = 31468.78575, XMAX = 1583148.125, YMAX = 287674.479))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[TRIBAL_LANDS_area]"
+--
+CREATE TABLE [gis].[TRIBAL_LANDS_area] (
+  [OBJECTID] int NOT NULL,
+  [LEGFIELD] nvarchar(1) NULL,
+  [NAME] nvarchar(40) NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S21928_idx]"
+--
+CREATE SPATIAL INDEX [S21928_idx]
+  ON [gis].[TRIBAL_LANDS_area] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1240660.664, YMIN = 71972.531, XMAX = 1392472.11, YMAX = 192460.814))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[BOUNDARY_LINE]"
+--
+CREATE TABLE [gis].[BOUNDARY_LINE] (
+  [OBJECTID] int NOT NULL,
+  [BOUNDARYTYPE] int NULL,
+  [DIRECTION] nvarchar(12) NULL,
+  [DISTANCE] nvarchar(10) NULL,
+  [DELTA] nvarchar(10) NULL,
+  [TANGENT] nvarchar(10) NULL,
+  [ARCLENGTH] nvarchar(10) NULL,
+  [SIDE] nvarchar(1) NULL,
+  [EDITDATE] datetime2 NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S83380_idx]"
+--
+CREATE SPATIAL INDEX [S83380_idx]
+  ON [gis].[BOUNDARY_LINE] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1218256.2235, YMIN = 30932.6800000072, XMAX = 1577865.3, YMAX = 287704.244000003))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[ENCUMBRANCE_AREA]"
+--
+CREATE TABLE [gis].[ENCUMBRANCE_AREA] (
+  [OBJECTID] int NOT NULL,
+  [ENCUMBRANCETYPE] int NULL,
+  [EDITDATE] datetime2 NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S83381_idx]"
+--
+CREATE SPATIAL INDEX [S83381_idx]
+  ON [gis].[ENCUMBRANCE_AREA] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1221679.833, YMIN = 54004.0359999985, XMAX = 1577827.34199999, YMAX = 287667.495000005))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[KCACODE_AREA]"
+--
+CREATE TABLE [gis].[KCACODE_AREA] (
+  [OBJECTID] int NOT NULL,
+  [LEVYCODE] nvarchar(4) NULL,
+  [CITYRD] nvarchar(30) NOT NULL,
+  [SCH] int NULL,
+  [WAT] smallint NULL,
+  [FIRE] nvarchar(9) NOT NULL,
+  [SEW] nvarchar(9) NOT NULL,
+  [RST] nvarchar(9) NOT NULL,
+  [HOSP] nvarchar(9) NOT NULL,
+  [LIB] nvarchar(9) NOT NULL,
+  [OTH1] nvarchar(9) NOT NULL,
+  [OTH2] nvarchar(9) NOT NULL,
+  [OTH3] nvarchar(9) NOT NULL,
+  [OTH4] nvarchar(9) NOT NULL,
+  [NOTES] nvarchar(50) NOT NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S79833_idx]"
+--
+CREATE SPATIAL INDEX [S79833_idx]
+  ON [gis].[KCACODE_AREA] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1220145.73646197, YMIN = 31555.1601128876, XMAX = 1577865.2998928, YMAX = 287677.997931808))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[ROW_AREA]"
+--
+CREATE TABLE [gis].[ROW_AREA] (
+  [OBJECTID] int NOT NULL,
+  [MAJOR] nvarchar(6) NULL,
+  [MINOR] nvarchar(4) NULL,
+  [PIN] nvarchar(10) NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S83384_idx]"
+--
+CREATE SPATIAL INDEX [S83384_idx]
+  ON [gis].[ROW_AREA] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1220375.93000001, YMIN = 54785.2430000007, XMAX = 1577707.81999999, YMAX = 287664.324000001))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[PARCEL_AREA]"
+--
+CREATE TABLE [gis].[PARCEL_AREA] (
+  [OBJECTID] int NOT NULL,
+  [MAJOR] nvarchar(6) NULL,
+  [MINOR] nvarchar(4) NULL,
+  [PIN] nvarchar(10) NULL,
+  [Shape] geometry NULL,
+  [GDB_GEOMATTR_DATA] varbinary(max) NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create index "[I165845PIN]" on table "[gis].[PARCEL_AREA]"
+--
+CREATE INDEX [I165845PIN]
+  ON [gis].[PARCEL_AREA] ([PIN])
+GO
+
+
+--
+-- Create spatial index "[S104789_idx]"
+--
+CREATE SPATIAL INDEX [S104789_idx]
+  ON [gis].[PARCEL_AREA] ([Shape])
+  WITH (BOUNDING_BOX = (XMIN = 1218256.2235, YMIN = 30932.6800000072, XMAX = 1577865.3, YMAX = 287704.244000003))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[CA1_ANNO]"
+--
+CREATE TABLE [gis].[CA1_ANNO] (
+  [OBJECTID] int NOT NULL,
+  [FEATUREID] int NULL,
+  [ZORDER] int NULL,
+  [ANNOTATIONCLASSID] int NULL,
+  [ELEMENT] varbinary(max) NULL,
+  [SYMBOLID] int NULL,
+  [STATUS] smallint NULL,
+  [TEXTSTRING] nvarchar(255) NULL,
+  [FONTNAME] nvarchar(255) NULL,
+  [FONTSIZE] numeric(38, 8) NULL,
+  [BOLD] smallint NULL,
+  [ITALIC] smallint NULL,
+  [UNDERLINE] smallint NULL,
+  [VERTICALALIGNMENT] smallint NULL,
+  [HORIZONTALALIGNMENT] smallint NULL,
+  [ANGLE] numeric(38, 8) NULL,
+  [FONTLEADING] numeric(38, 8) NULL,
+  [WORDSPACING] numeric(38, 8) NULL,
+  [CHARACTERWIDTH] numeric(38, 8) NULL,
+  [CHARACTERSPACING] numeric(38, 8) NULL,
+  [FLIPANGLE] numeric(38, 8) NULL,
+  [OVERRIDE] int NULL,
+  [ID] int NOT NULL,
+  [EDITDATE] datetime2 NULL,
+  [SHAPE] geometry NULL,
+  [GDB_GEOMATTR_DATA] varbinary(max) NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create index "[I174372ANNOTATIO]" on table "[gis].[CA1_ANNO]"
+--
+CREATE INDEX [I174372ANNOTATIO]
+  ON [gis].[CA1_ANNO] ([ANNOTATIONCLASSID])
+GO
+
+
+--
+-- Create index "[I174372STATUS]" on table "[gis].[CA1_ANNO]"
+--
+CREATE INDEX [I174372STATUS]
+  ON [gis].[CA1_ANNO] ([STATUS])
+GO
+
+
+--
+-- Create spatial index "[S108633_idx]"
+--
+CREATE SPATIAL INDEX [S108633_idx]
+  ON [gis].[CA1_ANNO] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1234919.42749999, YMIN = 64245.5384999961, XMAX = 1569765.697, YMAX = 280879.319000006))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[CA2_ANNO]"
+--
+CREATE TABLE [gis].[CA2_ANNO] (
+  [OBJECTID] int NOT NULL,
+  [FEATUREID] int NULL,
+  [ZORDER] int NULL,
+  [ANNOTATIONCLASSID] int NULL,
+  [ELEMENT] varbinary(max) NULL,
+  [SYMBOLID] int NULL,
+  [STATUS] smallint NULL,
+  [TEXTSTRING] nvarchar(255) NULL,
+  [FONTNAME] nvarchar(255) NULL,
+  [FONTSIZE] numeric(38, 8) NULL,
+  [BOLD] smallint NULL,
+  [ITALIC] smallint NULL,
+  [UNDERLINE] smallint NULL,
+  [VERTICALALIGNMENT] smallint NULL,
+  [HORIZONTALALIGNMENT] smallint NULL,
+  [ANGLE] numeric(38, 8) NULL,
+  [FONTLEADING] numeric(38, 8) NULL,
+  [WORDSPACING] numeric(38, 8) NULL,
+  [CHARACTERWIDTH] numeric(38, 8) NULL,
+  [CHARACTERSPACING] numeric(38, 8) NULL,
+  [FLIPANGLE] numeric(38, 8) NULL,
+  [OVERRIDE] int NULL,
+  [EDITDATE] datetime2 NULL,
+  [ID] int NOT NULL,
+  [SHAPE] geometry NULL,
+  [GDB_GEOMATTR_DATA] varbinary(max) NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create index "[I174373ANNOTATIO]" on table "[gis].[CA2_ANNO]"
+--
+CREATE INDEX [I174373ANNOTATIO]
+  ON [gis].[CA2_ANNO] ([ANNOTATIONCLASSID])
+GO
+
+
+--
+-- Create index "[I174373STATUS]" on table "[gis].[CA2_ANNO]"
+--
+CREATE INDEX [I174373STATUS]
+  ON [gis].[CA2_ANNO] ([STATUS])
+GO
+
+
+--
+-- Create spatial index "[S108634_idx]"
+--
+CREATE SPATIAL INDEX [S108634_idx]
+  ON [gis].[CA2_ANNO] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1237488.733, YMIN = 48168.8900000006, XMAX = 1399382.93000001, YMAX = 287668.708000004))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[CA3_ANNO]"
+--
+CREATE TABLE [gis].[CA3_ANNO] (
+  [OBJECTID] int NOT NULL,
+  [FEATUREID] int NULL,
+  [ZORDER] int NULL,
+  [ANNOTATIONCLASSID] int NULL,
+  [ELEMENT] varbinary(max) NULL,
+  [SYMBOLID] int NULL,
+  [STATUS] smallint NULL,
+  [TEXTSTRING] nvarchar(255) NULL,
+  [FONTNAME] nvarchar(255) NULL,
+  [FONTSIZE] numeric(38, 8) NULL,
+  [BOLD] smallint NULL,
+  [ITALIC] smallint NULL,
+  [UNDERLINE] smallint NULL,
+  [VERTICALALIGNMENT] smallint NULL,
+  [HORIZONTALALIGNMENT] smallint NULL,
+  [ANGLE] numeric(38, 8) NULL,
+  [FONTLEADING] numeric(38, 8) NULL,
+  [WORDSPACING] numeric(38, 8) NULL,
+  [CHARACTERWIDTH] numeric(38, 8) NULL,
+  [CHARACTERSPACING] numeric(38, 8) NULL,
+  [FLIPANGLE] numeric(38, 8) NULL,
+  [OVERRIDE] int NULL,
+  [EDITDATE] datetime2 NULL,
+  [ID] int NOT NULL,
+  [SHAPE] geometry NULL,
+  [GDB_GEOMATTR_DATA] varbinary(max) NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create index "[I174374ANNOTATIO]" on table "[gis].[CA3_ANNO]"
+--
+CREATE INDEX [I174374ANNOTATIO]
+  ON [gis].[CA3_ANNO] ([ANNOTATIONCLASSID])
+GO
+
+
+--
+-- Create index "[I174374STATUS]" on table "[gis].[CA3_ANNO]"
+--
+CREATE INDEX [I174374STATUS]
+  ON [gis].[CA3_ANNO] ([STATUS])
+GO
+
+
+--
+-- Create spatial index "[S108635_idx]"
+--
+CREATE SPATIAL INDEX [S108635_idx]
+  ON [gis].[CA3_ANNO] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1219462.16, YMIN = -593248.613999993, XMAX = 1577827.142, YMAX = 286755.893999994))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[PARK_AREA]"
+--
+CREATE TABLE [gis].[PARK_AREA] (
+  [OBJECTID] int NOT NULL,
+  [KC_FAC_FID] int NULL,
+  [KCPARKFID] int NULL,
+  [SITENAME] nvarchar(60) NULL,
+  [SITETYPE] nvarchar(30) NULL,
+  [OWNER] nvarchar(60) NULL,
+  [OWNERTYPE] nvarchar(30) NULL,
+  [MANAGER] nvarchar(60) NULL,
+  [MANAGETYPE] nvarchar(30) NULL,
+  [MAINTD_BY] nvarchar(60) NULL,
+  [MAINTTYPE] nvarchar(30) NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S83119_idx]"
+--
+CREATE SPATIAL INDEX [S83119_idx]
+  ON [gis].[PARK_AREA] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1220334.586, YMIN = 53899.2939999998, XMAX = 1583156.449, YMAX = 287209.496999994))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[plss_area]"
+--
+CREATE TABLE [gis].[plss_area] (
+  [OBJECTID] int NOT NULL,
+  [QUARTYPE] nvarchar(2) NULL,
+  [EDITDATE] datetime2 NULL,
+  [QUARTERQUARTER] nvarchar(2) NULL,
+  [PLSS_SECTION] nvarchar(2) NULL,
+  [PLSS_TOWNSHIP] nvarchar(2) NULL,
+  [PLSS_RANGE] nvarchar(2) NULL,
+  [QSTR] nvarchar(20) NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S36612_idx]"
+--
+CREATE SPATIAL INDEX [S36612_idx]
+  ON [gis].[plss_area] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1218256.2235, YMIN = 30932.676, XMAX = 1583203.298, YMAX = 287704.244))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[plss_sec_area]"
+--
+CREATE TABLE [gis].[plss_sec_area] (
+  [OBJECTID] int NOT NULL,
+  [TOWNSHIP] nvarchar(2) NULL,
+  [RNG] nvarchar(2) NULL,
+  [TWNINT] numeric(38, 8) NULL,
+  [RNGINT] numeric(38, 8) NULL,
+  [TWNRNG] numeric(38, 8) NULL,
+  [TWNLAB] nvarchar(6) NULL,
+  [RNGLAB] nvarchar(6) NULL,
+  [MAP_LABEL] nvarchar(12) NULL,
+  [SEC] nvarchar(2) NULL,
+  [SECINT] numeric(38, 8) NULL,
+  [TWNRNGSEC] numeric(38, 8) NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S9737_idx]"
+--
+CREATE SPATIAL INDEX [S9737_idx]
+  ON [gis].[plss_sec_area] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1141820.216, YMIN = -94523.597, XMAX = 1622342, YMAX = 477016.344))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[plss_twn_area]"
+--
+CREATE TABLE [gis].[plss_twn_area] (
+  [OBJECTID] int NOT NULL,
+  [TOWNSHIP] nvarchar(2) NULL,
+  [RNG] nvarchar(2) NULL,
+  [TWNINT] numeric(38, 8) NULL,
+  [RNGINT] numeric(38, 8) NULL,
+  [TWNRNG] numeric(38, 8) NULL,
+  [TWNLAB] nvarchar(6) NULL,
+  [RNGLAB] nvarchar(6) NULL,
+  [MAP_LABEL] nvarchar(12) NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S9738_idx]"
+--
+CREATE SPATIAL INDEX [S9738_idx]
+  ON [gis].[plss_twn_area] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1141820.216, YMIN = -94523.597, XMAX = 1622342, YMAX = 477016.344))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[CONTOUR005_LINE]"
+--
+CREATE TABLE [gis].[CONTOUR005_LINE] (
+  [OBJECTID] int NOT NULL,
+  [ELEVATION] numeric(11) NOT NULL,
+  [IDX_MINOR] numeric(11) NOT NULL,
+  [IDX_20FT] numeric(11) NOT NULL,
+  [IDX_40FT] numeric(11) NOT NULL,
+  [IDX_50FT] numeric(11) NOT NULL,
+  [IDX_100FT] numeric(11) NOT NULL,
+  [TILE_ID] numeric(38, 8) NULL,
+  [FIPS_CODE] nvarchar(3) NULL,
+  [Shape] geometry NULL,
+  [GDB_GEOMATTR_DATA] varbinary(max) NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S107625_idx]"
+--
+CREATE SPATIAL INDEX [S107625_idx]
+  ON [gis].[CONTOUR005_LINE] ([Shape])
+  WITH (BOUNDING_BOX = (XMIN = 1214978.38875, YMIN = 22489.2172500044, XMAX = 1583505.5, YMAX = 360017.145500004))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[CONTOUR010_LINE]"
+--
+CREATE TABLE [gis].[CONTOUR010_LINE] (
+  [OBJECTID] int NOT NULL,
+  [ELEVATION] numeric(38, 8) NOT NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S61631_idx]"
+--
+CREATE SPATIAL INDEX [S61631_idx]
+  ON [gis].[CONTOUR010_LINE] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1214976.79674999, YMIN = 22489.2172500044, XMAX = 1583505.5, YMAX = 360017.145500004))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[CONTOUR020_LINE]"
+--
+CREATE TABLE [gis].[CONTOUR020_LINE] (
+  [OBJECTID] int NOT NULL,
+  [ELEVATION] numeric(38, 8) NOT NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S72826_idx]"
+--
+CREATE SPATIAL INDEX [S72826_idx]
+  ON [gis].[CONTOUR020_LINE] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1214976.79674999, YMIN = 22489.2172500044, XMAX = 1583505.5, YMAX = 360017.145500004))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[ST_ADDRESS_LINE]"
+--
+CREATE TABLE [gis].[ST_ADDRESS_LINE] (
+  [OBJECTID] int NOT NULL,
+  [FRADDL] int NULL,
+  [FRADDR] int NULL,
+  [TOADDL] int NULL,
+  [TOADDR] int NULL,
+  [FULLNAME] nvarchar(38) NULL,
+  [DIRPREFIX] nvarchar(2) NULL,
+  [ST_NAME] nvarchar(30) NULL,
+  [ST_TYPE] nvarchar(4) NULL,
+  [DIRSUFFIX] nvarchar(2) NULL,
+  [ZIP_L] nvarchar(5) NULL,
+  [ZIP_R] nvarchar(5) NULL,
+  [KC_FCC] nvarchar(1) NULL,
+  [EDITDATE] datetime2 NULL,
+  [USERID] nvarchar(16) NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S83080_idx]"
+--
+CREATE SPATIAL INDEX [S83080_idx]
+  ON [gis].[ST_ADDRESS_LINE] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1220503.10924999, YMIN = 56316.8065000027, XMAX = 1577563.55, YMAX = 287664.469999999))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[TRANS_NETWORK_LINE]"
+--
+CREATE TABLE [gis].[TRANS_NETWORK_LINE] (
+  [OBJECTID] int NOT NULL,
+  [TLINK_ID] int NULL,
+  [CREATEDATE] datetime2 NULL,
+  [EFFEC_DATE] datetime2 NULL,
+  [DB_MD_DATE] datetime2 NULL,
+  [END_DATE] datetime2 NULL,
+  [KC_FCC_ID] nvarchar(1) NULL,
+  [CFCC_ID] nvarchar(4) NULL,
+  [HSS] smallint NULL,
+  [UFLAG] nvarchar(2) NULL,
+  [CAR_FLOW] smallint NULL,
+  [BUS_FLOW] smallint NULL,
+  [SPEED_LIM] smallint NULL,
+  [WEIGHT_USA] int NULL,
+  [HEIGHT_USA] int NULL,
+  [GRADE] int NULL,
+  [FR_TPOINT] int NULL,
+  [TO_TPOINT] int NULL,
+  [FR_ADD_L_A] int NULL,
+  [TO_ADD_L_A] int NULL,
+  [FR_ADD_R_A] int NULL,
+  [TO_ADD_R_A] int NULL,
+  [ADD_CONF_A] nvarchar(2) NULL,
+  [FR_ADD_L_T] int NULL,
+  [TO_ADD_L_T] int NULL,
+  [FR_ADD_R_T] int NULL,
+  [TO_ADD_R_T] int NULL,
+  [ADD_CONF_T] nvarchar(2) NULL,
+  [PREFIX_L] nvarchar(2) NULL,
+  [NAME_L] nvarchar(30) NULL,
+  [TYPE_L] nvarchar(6) NULL,
+  [SUFFIX_L] nvarchar(2) NULL,
+  [PREFIX_R] nvarchar(2) NULL,
+  [NAME_R] nvarchar(30) NULL,
+  [TYPE_R] nvarchar(6) NULL,
+  [SUFFIX_R] nvarchar(2) NULL,
+  [FULLNAME_L] nvarchar(43) NULL,
+  [FULLNAME_R] nvarchar(43) NULL,
+  [AP_NAME_L] nvarchar(43) NULL,
+  [AP_NAME_R] nvarchar(43) NULL,
+  [A_NAME_L] nvarchar(43) NULL,
+  [A_NAME_R] nvarchar(43) NULL,
+  [JURIS_L] int NULL,
+  [JURIS_R] int NULL,
+  [CITY_L] nvarchar(50) NULL,
+  [CITY_R] nvarchar(50) NULL,
+  [ZIP_L] int NULL,
+  [ZIP_R] int NULL,
+  [ROLL_LEN] numeric(38, 8) NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S83584_idx]"
+--
+CREATE SPATIAL INDEX [S83584_idx]
+  ON [gis].[TRANS_NETWORK_LINE] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1152543.2845, YMIN = -92507.876000002, XMAX = 1583883, YMAX = 476732.254250005))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[SEWER_LINE]"
+--
+CREATE TABLE [gis].[SEWER_LINE] (
+  [OBJECTID] int NOT NULL,
+  [PIPE_ID] smallint NULL,
+  [UP_FACILITY] nvarchar(50) NULL,
+  [DOWN_FACILITY] nvarchar(50) NULL,
+  [PIPE_NUMBER] smallint NULL,
+  [FLOW_PRIORITY] smallint NULL,
+  [PIPE_USE] nvarchar(2) NULL,
+  [PIPE_TYPE] nvarchar(2) NULL,
+  [MATERIAL] nvarchar(2) NULL,
+  [LINING] nvarchar(5) NULL,
+  [WIDTH] smallint NULL,
+  [HEIGHT] smallint NULL,
+  [PIPE_SHAPE] nvarchar(1) NULL,
+  [LENGTH] smallint NULL,
+  [UP_IE_METRO] numeric(8, 2) NULL,
+  [UP_IE_NAVD88] numeric(8, 2) NULL,
+  [DOWN_IE_METRO] numeric(8, 2) NULL,
+  [DOWN_IE_NAVD88] numeric(8, 2) NULL,
+  [SLOPE] numeric(38, 8) NULL,
+  [AGENCY_CONNECTIONS] smallint NULL,
+  [DIRECT_CONNECTIONS] smallint NULL,
+  [YEAR_INSTALLED] smallint NULL,
+  [YEAR_ACQUIRED] smallint NULL,
+  [YEAR_MODIFIED] smallint NULL,
+  [ORIGINAL_OWNER] nvarchar(50) NULL,
+  [CONTRACT] nvarchar(50) NULL,
+  [TRUNK] nvarchar(70) NULL,
+  [REACH] nvarchar(70) NULL,
+  [DESTINATION] nvarchar(50) NULL,
+  [TREATMENT_PLANT] nvarchar(50) NULL,
+  [STREET_ADDRESS] nvarchar(50) NULL,
+  [CITY] nvarchar(50) NULL,
+  [N_YearBuilt] datetime2 NULL,
+  [N_Diameter] numeric(38, 8) NULL,
+  [N_Depth] numeric(38, 8) NULL,
+  [DB_MOD_DATE] datetime2 NULL,
+  [DB_Mod_name] nvarchar(25) NULL,
+  [QAQC_Name] nvarchar(25) NULL,
+  [QAQC_DATE] datetime2 NULL,
+  [Seg_Name] nvarchar(100) NULL,
+  [Shape_STLength__] numeric(38, 8) NOT NULL,
+  [Shape] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S87570_idx]"
+--
+CREATE SPATIAL INDEX [S87570_idx]
+  ON [gis].[SEWER_LINE] ([Shape])
+  WITH (BOUNDING_BOX = (XMIN = 1225091.057, YMIN = 101118.387999997, XMAX = 1373326.51899999, YMAX = 319486.238999993))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[CHNLMIGR_AREA]"
+--
+CREATE TABLE [gis].[CHNLMIGR_AREA] (
+  [OBJECTID] int NOT NULL,
+  [HAZARD] nvarchar(32) NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S81651_idx]"
+--
+CREATE SPATIAL INDEX [S81651_idx]
+  ON [gis].[CHNLMIGR_AREA] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1294321, YMIN = 56630.81725, XMAX = 1523997.31875, YMAX = 284439.83175))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[SCHSITE_POINT]"
+--
+CREATE TABLE [gis].[SCHSITE_POINT] (
+  [OBJECTID] int NOT NULL,
+  [FEATURE_ID] int NULL,
+  [ESITE] nvarchar(7) NULL,
+  [CODE] smallint NULL,
+  [FEATUREDES] nvarchar(75) NULL,
+  [NAME] nvarchar(60) NULL,
+  [ABB_NAME] nvarchar(40) NULL,
+  [ADDRESS] nvarchar(60) NULL,
+  [ZIPCODE] nvarchar(5) NULL,
+  [LONG_CEN] numeric(38, 8) NULL,
+  [LAT_CEN] numeric(38, 8) NULL,
+  [OSPI_CODE] int NULL,
+  [SCH_CLASS] int NULL,
+  [DISTRICT] nvarchar(32) NULL,
+  [PIN] nvarchar(10) NULL,
+  [MAJOR] nvarchar(6) NULL,
+  [MINOR] nvarchar(4) NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S82451_idx]"
+--
+CREATE SPATIAL INDEX [S82451_idx]
+  ON [gis].[SCHSITE_POINT] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1237793.000052, YMIN = 69933.000024, XMAX = 1510157.99994, YMAX = 286355.99992))
+  ON [PRIMARY]
+GO
+
+
+--
+-- Create table "[gis].[wtrbdy_wet_area]"
+--
+CREATE TABLE [gis].[wtrbdy_wet_area] (
+  [OBJECTID] int NOT NULL,
+  [WTR_TYPE_C] smallint NULL,
+  [WTR_TYPE] nvarchar(15) NULL,
+  [WTR_NAME] nvarchar(47) NULL,
+  [WTR_ACRE] numeric(38, 8) NULL,
+  [DATA_SRCE] nvarchar(35) NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+
+--
+-- Create spatial index "[S10220_idx]"
+--
+CREATE SPATIAL INDEX [S10220_idx]
+  ON [gis].[wtrbdy_wet_area] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1229382, YMIN = -74712.352, XMAX = 1579946, YMAX = 424576.063))
+  ON [PRIMARY]
+GO
+
+
+
+DROP INDEX IF EXISTS [S13288_idx] ON [gis].[oppipes_line]
+GO
+DROP TABLE IF EXISTS [gis].[oppipes_line]
+GO
+
+--
+-- Create table "[gis].[oppipes_line]"
+--
+CREATE TABLE [gis].[oppipes_line] (
+  [OBJECTID] int NOT NULL,
+  [MAP_ID] nvarchar(15) NULL,
+  [SCALE] nvarchar(10) NULL,
+  [PLINE_ID] nvarchar(10) NULL,
+  [DIAMETER] nvarchar(5) NULL,
+  [SHAPE] geometry NULL,
+  PRIMARY KEY ([OBJECTID])
+)
+GO
+
+--
+-- Create spatial index "[S13288_idx]"
+--
+CREATE SPATIAL INDEX [S13288_idx]
+  ON [gis].[oppipes_line] ([SHAPE])
+  WITH (BOUNDING_BOX = (XMIN = 1265584.74, YMIN = 97118.59, XMAX = 1314216.473, YMAX = 286062.133))
+  ON [PRIMARY]
+GO

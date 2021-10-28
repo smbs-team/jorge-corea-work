@@ -1,0 +1,22 @@
+{
+  "version": "2.0",
+  "logging": {
+    "fileLoggingMode": "always",
+    "logLevel": {
+      "default": "Information"
+    },
+    "console": {
+      "isEnabled": "true"
+    },
+    "applicationInsights": {
+      "enableDependencyTracking": true,
+      "enablePerformanceCountersCollection": true,
+      "samplingExcludedTypes": "Trace;Exception",
+      "samplingIncludedTypes": "Request;Dependency",
+      "samplingSettings": {
+        "isEnabled": true,
+        "maxTelemetryItemsPerSecond": 20
+      }
+    }
+  }
+}

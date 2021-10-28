@@ -1,0 +1,176 @@
+.center {
+  margin: auto;
+}
+
+.margin-top-44 {
+  margin-top: '44px';
+}
+
+.property-address-title {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #7a7a7e;
+}
+
+.property-address-white {
+  margin-top: 10px;
+  color: white;
+  font-size: 18px;
+}
+.property-address-bold {
+  font-weight: bold;
+  font-size: 24px;
+  color: white;
+}
+
+.property-address {
+  font-size: 14px;
+}
+
+.property-address-link {
+  font-size: 14px;
+  color: #6f1f62;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.property-form-switch {
+  margin-top: 20px;
+}
+
+.property-form-input {
+  margin: 20px 0 0 20px;
+}
+
+.mailing-address {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.myProperty-center-panel {
+  font-size: 16px;
+  text-align: left;
+  margin: auto;
+  max-width: 632px;
+}
+
+.myProperty-subpanel {
+  max-width: 428px;
+  margin: auto;
+}
+
+.link {
+  font-size: 14px;
+  text-decoration: underline;
+  color: #6f1f62;
+  cursor: pointer;
+}
+.cardStyleBlack {
+  background: #444444 !important;
+  border-radius: 8px !important;
+  margin-bottom: 15px !important;
+  color: white;
+}
+.cardStyleBlack .MuiCardHeader-root {
+  background: #444444 !important;
+  border-radius: 30px 30px 0px 0px !important;
+  color: white;
+}
+.cardStyleBlack .MuiCardContent-root {
+  max-height: 37px;
+  background: #7a7a7a !important;
+  color: white;
+  font-size: 18px;
+  padding-top: 4px;
+}
+.react-autosuggest__suggestions-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+/* commented this out to keep list bullets on intro page
+ul,
+li {
+  margin-left: var(--space-4) !important;
+  margin-bottom: var(--space-8) !important;
+   list-style: outside none none !important;
+
+} */
+
+.react-autosuggest__suggestions-list li {
+  list-style-type: none;
+  margin: 0;
+}
+.greyCollapse {
+  background: #f7f6f6;
+  margin: 10px auto 0;
+  border-radius: 8px;
+  padding: 0px 16px 16px 16px;
+  width: 88%;
+}
+.lookup-divider {
+  width: 280px;
+  align-content: center;
+  display: table-cell;
+  border-style: solid;
+  border-color: gainsboro;
+  border-width: thin;
+}
+
+.margin-bottom-10 {
+  margin-bottom: 10px;
+}
+
+.option-parcel-box {
+  line-height: normal;
+  margin-top: 10px;
+}
+
+.why-not-div {
+  display: inline-block;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+.why-not-icon {
+  display: inline-block;
+  margin-left: -5px;
+}
+
+.property-help-text {
+  font-size: 1rem;
+}
+
+#react-autosuggest-simple,
+#react-autosuggest-simple-label {
+  font-size: 1.11rem;
+  list-style: outside none none;
+}
+
+#react-autosuggest-simple-helper-text {
+  font-size: 0.88rem;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.parcel-error {
+  text-align: center;
+  width: 100%;
+  padding: 10px;
+  font-size: 0.9rem;
+  color: #d20000;
+}
+
+@media (min-width: 600px) {
+  .greyCollapse {
+    max-width: 365px;
+    width: 87%;
+    margin-left: 24%;
+  }
+}
+
+@media (min-width: 960px) {
+  .greyCollapse {
+    max-width: 365px;
+    width: 96%;
+  }
+}

@@ -1,0 +1,505 @@
+{
+  "source": 2,
+  "revision": 2,
+  "description": null,
+  "createdBy": {
+    "displayName": "Eric Esteban Herrera Vado",
+    "url": "https://spsprodeus27.vssps.visualstudio.com/A90364681-6ca4-4180-bf52-cd162afac75c/_apis/Identities/ffdc3a21-d7fa-6f11-9808-47ba46eb2dda",
+    "_links": { "avatar": { "href": "https://kingcounty.visualstudio.com/_apis/GraphProfile/MemberAvatars/aad.ZmZkYzNhMjEtZDdmYS03ZjExLTk4MDgtNDdiYTQ2ZWIyZGRh" } },
+    "id": "ffdc3a21-d7fa-6f11-9808-47ba46eb2dda",
+    "uniqueName": "n-evado@kingcounty.gov",
+    "imageUrl": "https://kingcounty.visualstudio.com/_apis/GraphProfile/MemberAvatars/aad.ZmZkYzNhMjEtZDdmYS03ZjExLTk4MDgtNDdiYTQ2ZWIyZGRh",
+    "descriptor": "aad.ZmZkYzNhMjEtZDdmYS03ZjExLTk4MDgtNDdiYTQ2ZWIyZGRh"
+  },
+  "createdOn": "2019-11-04T20:58:17.547Z",
+  "modifiedBy": {
+    "displayName": "Eric Esteban Herrera Vado",
+    "url": "https://spsprodeus27.vssps.visualstudio.com/A90364681-6ca4-4180-bf52-cd162afac75c/_apis/Identities/ffdc3a21-d7fa-6f11-9808-47ba46eb2dda",
+    "_links": { "avatar": { "href": "https://kingcounty.visualstudio.com/_apis/GraphProfile/MemberAvatars/aad.ZmZkYzNhMjEtZDdmYS03ZjExLTk4MDgtNDdiYTQ2ZWIyZGRh" } },
+    "id": "ffdc3a21-d7fa-6f11-9808-47ba46eb2dda",
+    "uniqueName": "n-evado@kingcounty.gov",
+    "imageUrl": "https://kingcounty.visualstudio.com/_apis/GraphProfile/MemberAvatars/aad.ZmZkYzNhMjEtZDdmYS03ZjExLTk4MDgtNDdiYTQ2ZWIyZGRh",
+    "descriptor": "aad.ZmZkYzNhMjEtZDdmYS03ZjExLTk4MDgtNDdiYTQ2ZWIyZGRh"
+  },
+  "modifiedOn": "2019-11-04T21:09:03.673Z",
+  "isDeleted": false,
+  "lastRelease": {
+    "id": 199,
+    "name": "Release-2",
+    "artifacts": [],
+    "_links": {},
+    "description": "",
+    "releaseDefinition": {
+      "id": 10,
+      "projectReference": null,
+      "_links": {}
+    },
+    "createdOn": "2019-11-04T22:28:36.280Z",
+    "createdBy": {
+      "displayName": "Eric Esteban Herrera Vado",
+      "url": "https://spsprodeus27.vssps.visualstudio.com/A90364681-6ca4-4180-bf52-cd162afac75c/_apis/Identities/ffdc3a21-d7fa-6f11-9808-47ba46eb2dda",
+      "_links": { "avatar": { "href": "https://kingcounty.visualstudio.com/_apis/GraphProfile/MemberAvatars/aad.ZmZkYzNhMjEtZDdmYS03ZjExLTk4MDgtNDdiYTQ2ZWIyZGRh" } },
+      "id": "ffdc3a21-d7fa-6f11-9808-47ba46eb2dda",
+      "uniqueName": "n-evado@kingcounty.gov",
+      "imageUrl": "https://kingcounty.visualstudio.com/_apis/GraphProfile/MemberAvatars/aad.ZmZkYzNhMjEtZDdmYS03ZjExLTk4MDgtNDdiYTQ2ZWIyZGRh",
+      "descriptor": "aad.ZmZkYzNhMjEtZDdmYS03ZjExLTk4MDgtNDdiYTQ2ZWIyZGRh"
+    }
+  },
+  "variables": {
+    "DeploymentLocation": { "value": "West US" },
+    "DeploymentResourceGroup": { "value": "ptas-dev-resourcegroup" },
+    "DeploymentSubscription": { "value": "Azure-Dev" }
+  },
+  "variableGroups": [],
+  "environments": [
+    {
+      "id": 15,
+      "name": "PreReq Deployment",
+      "rank": 1,
+      "owner": {
+        "displayName": "Eric Esteban Herrera Vado",
+        "url": "https://spsprodeus27.vssps.visualstudio.com/A90364681-6ca4-4180-bf52-cd162afac75c/_apis/Identities/ffdc3a21-d7fa-6f11-9808-47ba46eb2dda",
+        "_links": { "avatar": { "href": "https://kingcounty.visualstudio.com/_apis/GraphProfile/MemberAvatars/aad.ZmZkYzNhMjEtZDdmYS03ZjExLTk4MDgtNDdiYTQ2ZWIyZGRh" } },
+        "id": "ffdc3a21-d7fa-6f11-9808-47ba46eb2dda",
+        "uniqueName": "n-evado@kingcounty.gov",
+        "imageUrl": "https://kingcounty.visualstudio.com/_apis/GraphProfile/MemberAvatars/aad.ZmZkYzNhMjEtZDdmYS03ZjExLTk4MDgtNDdiYTQ2ZWIyZGRh",
+        "descriptor": "aad.ZmZkYzNhMjEtZDdmYS03ZjExLTk4MDgtNDdiYTQ2ZWIyZGRh"
+      },
+      "variables": {},
+      "variableGroups": [],
+      "preDeployApprovals": {
+        "approvals": [
+          {
+            "rank": 1,
+            "isAutomated": true,
+            "isNotificationOn": false,
+            "id": 45
+          }
+        ],
+        "approvalOptions": {
+          "requiredApproverCount": null,
+          "releaseCreatorCanBeApprover": false,
+          "autoTriggeredAndPreviousEnvironmentApprovedCanBeSkipped": false,
+          "enforceIdentityRevalidation": false,
+          "timeoutInMinutes": 0,
+          "executionOrder": 1
+        }
+      },
+      "deployStep": { "id": 46 },
+      "postDeployApprovals": {
+        "approvals": [
+          {
+            "rank": 1,
+            "isAutomated": true,
+            "isNotificationOn": false,
+            "id": 47
+          }
+        ],
+        "approvalOptions": {
+          "requiredApproverCount": null,
+          "releaseCreatorCanBeApprover": false,
+          "autoTriggeredAndPreviousEnvironmentApprovedCanBeSkipped": false,
+          "enforceIdentityRevalidation": false,
+          "timeoutInMinutes": 0,
+          "executionOrder": 2
+        }
+      },
+      "deployPhases": [
+        {
+          "deploymentInput": {
+            "parallelExecution": { "parallelExecutionType": 0 },
+            "agentSpecification": { "identifier": "windows-2019" },
+            "skipArtifactsDownload": false,
+            "artifactsDownloadInput": {
+              "downloadInputs": [
+                {
+                  "alias": "_PTAS-DEV-IAC-Build",
+                  "artifactType": "Git",
+                  "artifactDownloadMode": "All",
+                  "artifactItems": []
+                }
+              ]
+            },
+            "queueId": 2176,
+            "demands": [],
+            "enableAccessToken": false,
+            "timeoutInMinutes": 0,
+            "jobCancelTimeoutInMinutes": 1,
+            "condition": "succeeded()",
+            "overrideInputs": {}
+          },
+          "rank": 1,
+          "phaseType": 1,
+          "name": "Agent job",
+          "refName": null,
+          "workflowTasks": [
+            {
+              "environment": {},
+              "taskId": "94a74903-f93f-4075-884f-dc11f34058b4",
+              "version": "2.*",
+              "name": "Deploy App Insights",
+              "refName": "",
+              "enabled": true,
+              "alwaysRun": false,
+              "continueOnError": false,
+              "timeoutInMinutes": 0,
+              "definitionType": "task",
+              "overrideInputs": {},
+              "condition": "succeeded()",
+              "inputs": {
+                "ConnectedServiceName": "$(DeploymentSubscription)",
+                "action": "Create Or Update Resource Group",
+                "resourceGroupName": "$(DeploymentResourceGroup)",
+                "location": "$(DeploymentLocation)",
+                "templateLocation": "Linked artifact",
+                "csmFileLink": "",
+                "csmParametersFileLink": "",
+                "csmFile": "$(System.DefaultWorkingDirectory)/_PTAS-DEV-IAC-Build/azure/PreReq/appinsights.arm",
+                "csmParametersFile": "$(System.DefaultWorkingDirectory)/_PTAS-DEV-IAC-Build/azure/ReleasePipes/PTAS-DEV-IAC-PreReqDeploy-Parameters.json",
+                "overrideParameters": "",
+                "deploymentMode": "Incremental",
+                "enableDeploymentPrerequisites": "None",
+                "deploymentGroupEndpoint": "",
+                "project": "",
+                "deploymentGroupName": "",
+                "copyAzureVMTags": "true",
+                "runAgentServiceAsUser": "false",
+                "userName": "",
+                "password": "",
+                "outputVariable": "",
+                "deploymentName": "",
+                "deploymentOutputs": "",
+                "addSpnToEnvironment": "false"
+              }
+            },
+            {
+              "environment": {},
+              "taskId": "94a74903-f93f-4075-884f-dc11f34058b4",
+              "version": "2.*",
+              "name": "Deploy App Service Plan",
+              "refName": "",
+              "enabled": true,
+              "alwaysRun": false,
+              "continueOnError": false,
+              "timeoutInMinutes": 0,
+              "definitionType": "task",
+              "overrideInputs": {},
+              "condition": "succeeded()",
+              "inputs": {
+                "ConnectedServiceName": "$(DeploymentSubscription)",
+                "action": "Create Or Update Resource Group",
+                "resourceGroupName": "$(DeploymentResourceGroup)",
+                "location": "$(DeploymentLocation)",
+                "templateLocation": "Linked artifact",
+                "csmFileLink": "",
+                "csmParametersFileLink": "",
+                "csmFile": "$(System.DefaultWorkingDirectory)/_PTAS-DEV-IAC-Build/azure/PreReq/appserviceplan.arm",
+                "csmParametersFile": "$(System.DefaultWorkingDirectory)/_PTAS-DEV-IAC-Build/azure/ReleasePipes/PTAS-DEV-IAC-PreReqDeploy-Parameters.json",
+                "overrideParameters": "",
+                "deploymentMode": "Incremental",
+                "enableDeploymentPrerequisites": "None",
+                "deploymentGroupEndpoint": "",
+                "project": "",
+                "deploymentGroupName": "",
+                "copyAzureVMTags": "true",
+                "runAgentServiceAsUser": "false",
+                "userName": "",
+                "password": "",
+                "outputVariable": "",
+                "deploymentName": "",
+                "deploymentOutputs": "",
+                "addSpnToEnvironment": "false"
+              }
+            },
+            {
+              "environment": {},
+              "taskId": "94a74903-f93f-4075-884f-dc11f34058b4",
+              "version": "2.*",
+              "name": "Deploy Key Vaullt",
+              "refName": "",
+              "enabled": false,
+              "alwaysRun": false,
+              "continueOnError": false,
+              "timeoutInMinutes": 0,
+              "definitionType": "task",
+              "overrideInputs": {},
+              "condition": "succeeded()",
+              "inputs": {
+                "ConnectedServiceName": "$(DeploymentSubscription)",
+                "action": "Create Or Update Resource Group",
+                "resourceGroupName": "$(DeploymentResourceGroup)",
+                "location": "$(DeploymentLocation)",
+                "templateLocation": "Linked artifact",
+                "csmFileLink": "",
+                "csmParametersFileLink": "",
+                "csmFile": "$(System.DefaultWorkingDirectory)/_PTAS-DEV-IAC-Build/azure/PreReq/keyvault.arm",
+                "csmParametersFile": "$(System.DefaultWorkingDirectory)/_PTAS-DEV-IAC-Build/azure/ReleasePipes/PTAS-DEV-IAC-PreReqDeploy-Parameters.json",
+                "overrideParameters": "",
+                "deploymentMode": "Incremental",
+                "enableDeploymentPrerequisites": "None",
+                "deploymentGroupEndpoint": "",
+                "project": "",
+                "deploymentGroupName": "",
+                "copyAzureVMTags": "true",
+                "runAgentServiceAsUser": "false",
+                "userName": "",
+                "password": "",
+                "outputVariable": "",
+                "deploymentName": "",
+                "deploymentOutputs": "",
+                "addSpnToEnvironment": "false"
+              }
+            },
+            {
+              "environment": {},
+              "taskId": "94a74903-f93f-4075-884f-dc11f34058b4",
+              "version": "2.*",
+              "name": "Deploy Storage",
+              "refName": "",
+              "enabled": true,
+              "alwaysRun": false,
+              "continueOnError": false,
+              "timeoutInMinutes": 0,
+              "definitionType": "task",
+              "overrideInputs": {},
+              "condition": "succeeded()",
+              "inputs": {
+                "ConnectedServiceName": "$(DeploymentSubscription)",
+                "action": "Create Or Update Resource Group",
+                "resourceGroupName": "$(DeploymentResourceGroup)",
+                "location": "$(DeploymentLocation)",
+                "templateLocation": "Linked artifact",
+                "csmFileLink": "",
+                "csmParametersFileLink": "",
+                "csmFile": "$(System.DefaultWorkingDirectory)/_PTAS-DEV-IAC-Build/azure/PreReq/storage.arm",
+                "csmParametersFile": "$(System.DefaultWorkingDirectory)/_PTAS-DEV-IAC-Build/azure/ReleasePipes/PTAS-DEV-IAC-PreReqDeploy-Parameters.json",
+                "overrideParameters": "",
+                "deploymentMode": "Incremental",
+                "enableDeploymentPrerequisites": "None",
+                "deploymentGroupEndpoint": "",
+                "project": "",
+                "deploymentGroupName": "",
+                "copyAzureVMTags": "true",
+                "runAgentServiceAsUser": "false",
+                "userName": "",
+                "password": "",
+                "outputVariable": "",
+                "deploymentName": "",
+                "deploymentOutputs": "",
+                "addSpnToEnvironment": "false"
+              }
+            },
+            {
+              "environment": {},
+              "taskId": "94a74903-f93f-4075-884f-dc11f34058b4",
+              "version": "2.*",
+              "name": "Deploy Premium Storage",
+              "refName": "",
+              "enabled": true,
+              "alwaysRun": false,
+              "continueOnError": false,
+              "timeoutInMinutes": 0,
+              "definitionType": "task",
+              "overrideInputs": {},
+              "condition": "succeeded()",
+              "inputs": {
+                "ConnectedServiceName": "$(DeploymentSubscription)",
+                "action": "Create Or Update Resource Group",
+                "resourceGroupName": "$(DeploymentResourceGroup)",
+                "location": "$(DeploymentLocation)",
+                "templateLocation": "Linked artifact",
+                "csmFileLink": "",
+                "csmParametersFileLink": "",
+                "csmFile": "$(System.DefaultWorkingDirectory)/_PTAS-DEV-IAC-Build/azure/PreReq/storagepremium.arm",
+                "csmParametersFile": "$(System.DefaultWorkingDirectory)/_PTAS-DEV-IAC-Build/azure/ReleasePipes/PTAS-DEV-IAC-PreReqDeploy-Parameters.json",
+                "overrideParameters": "",
+                "deploymentMode": "Incremental",
+                "enableDeploymentPrerequisites": "None",
+                "deploymentGroupEndpoint": "",
+                "project": "",
+                "deploymentGroupName": "",
+                "copyAzureVMTags": "true",
+                "runAgentServiceAsUser": "false",
+                "userName": "",
+                "password": "",
+                "outputVariable": "",
+                "deploymentName": "",
+                "deploymentOutputs": "",
+                "addSpnToEnvironment": "false"
+              }
+            },
+            {
+              "environment": {},
+              "taskId": "94a74903-f93f-4075-884f-dc11f34058b4",
+              "version": "2.*",
+              "name": "Deploy Cognitive Services",
+              "refName": "",
+              "enabled": true,
+              "alwaysRun": false,
+              "continueOnError": false,
+              "timeoutInMinutes": 0,
+              "definitionType": "task",
+              "overrideInputs": {},
+              "condition": "succeeded()",
+              "inputs": {
+                "ConnectedServiceName": "$(DeploymentSubscription)",
+                "action": "Create Or Update Resource Group",
+                "resourceGroupName": "$(DeploymentResourceGroup)",
+                "location": "$(DeploymentLocation)",
+                "templateLocation": "Linked artifact",
+                "csmFileLink": "",
+                "csmParametersFileLink": "",
+                "csmFile": "$(System.DefaultWorkingDirectory)/_PTAS-DEV-IAC-Build/azure/PreReq/cognitiveservices.arm",
+                "csmParametersFile": "$(System.DefaultWorkingDirectory)/_PTAS-DEV-IAC-Build/azure/ReleasePipes/PTAS-DEV-IAC-PreReqDeploy-Parameters.json",
+                "overrideParameters": "",
+                "deploymentMode": "Incremental",
+                "enableDeploymentPrerequisites": "None",
+                "deploymentGroupEndpoint": "",
+                "project": "",
+                "deploymentGroupName": "",
+                "copyAzureVMTags": "true",
+                "runAgentServiceAsUser": "false",
+                "userName": "",
+                "password": "",
+                "outputVariable": "",
+                "deploymentName": "",
+                "deploymentOutputs": "",
+                "addSpnToEnvironment": "false"
+              }
+            }
+          ]
+        }
+      ],
+      "environmentOptions": {
+        "emailNotificationType": "OnlyOnFailure",
+        "emailRecipients": "release.environment.owner;release.creator",
+        "skipArtifactsDownload": false,
+        "timeoutInMinutes": 0,
+        "enableAccessToken": false,
+        "publishDeploymentStatus": true,
+        "badgeEnabled": false,
+        "autoLinkWorkItems": false,
+        "pullRequestDeploymentEnabled": false
+      },
+      "demands": [],
+      "conditions": [
+        {
+          "name": "ReleaseStarted",
+          "conditionType": 1,
+          "value": ""
+        }
+      ],
+      "executionPolicy": {
+        "concurrencyCount": 1,
+        "queueDepthCount": 0
+      },
+      "schedules": [],
+      "currentRelease": {
+        "id": 199,
+        "url": "https://kingcounty.vsrm.visualstudio.com/ecac2c29-2814-451d-85e7-9c3be654fdd9/_apis/Release/releases/199",
+        "_links": {}
+      },
+      "retentionPolicy": {
+        "daysToKeep": 30,
+        "releasesToKeep": 3,
+        "retainBuild": true
+      },
+      "processParameters": {},
+      "properties": {
+        "BoardsEnvironmentType": {
+          "$type": "System.String",
+          "$value": "unmapped"
+        },
+        "LinkBoardsWorkItems": {
+          "$type": "System.String",
+          "$value": "False"
+        }
+      },
+      "preDeploymentGates": {
+        "id": 0,
+        "gatesOptions": null,
+        "gates": []
+      },
+      "postDeploymentGates": {
+        "id": 0,
+        "gatesOptions": null,
+        "gates": []
+      },
+      "environmentTriggers": [],
+      "badgeUrl": "https://kingcounty.vsrm.visualstudio.com/_apis/public/Release/badge/ecac2c29-2814-451d-85e7-9c3be654fdd9/10/15"
+    }
+  ],
+  "artifacts": [
+    {
+      "sourceId": "ecac2c29-2814-451d-85e7-9c3be654fdd9:7b6445cc-1d1f-46e5-9eda-2be1e025153e",
+      "type": "Git",
+      "alias": "_PTAS-DEV-IAC-Build",
+      "definitionReference": {
+        "branches": {
+          "id": "feature/ptas-cd",
+          "name": "feature/ptas-cd"
+        },
+        "checkoutNestedSubmodules": {
+          "id": "True",
+          "name": "Any nested submodules within"
+        },
+        "checkoutSubmodules": {
+          "id": "",
+          "name": ""
+        },
+        "defaultVersionSpecific": {
+          "id": "",
+          "name": ""
+        },
+        "defaultVersionType": {
+          "id": "latestFromBranchType",
+          "name": "Latest from the default branch"
+        },
+        "definition": {
+          "id": "7b6445cc-1d1f-46e5-9eda-2be1e025153e",
+          "name": "PTAS"
+        },
+        "fetchDepth": {
+          "id": "",
+          "name": ""
+        },
+        "gitLfsSupport": {
+          "id": "",
+          "name": ""
+        },
+        "project": {
+          "id": "ecac2c29-2814-451d-85e7-9c3be654fdd9",
+          "name": "PTAS"
+        }
+      },
+      "isPrimary": true,
+      "isRetained": false
+    }
+  ],
+  "triggers": [],
+  "releaseNameFormat": "Release-$(rev:r)",
+  "tags": [],
+  "properties": {
+    "DefinitionCreationSource": {
+      "$type": "System.String",
+      "$value": "ReleaseClone"
+    },
+    "IntegrateJiraWorkItems": {
+      "$type": "System.String",
+      "$value": "false"
+    },
+    "IntegrateBoardsWorkItems": {
+      "$type": "System.String",
+      "$value": "False"
+    }
+  },
+  "id": 10,
+  "name": "PTAS-CDTEST-IAC-PreReqDeploy",
+  "path": "\\IAC\\PreReq",
+  "projectReference": null,
+  "url": "https://kingcounty.vsrm.visualstudio.com/ecac2c29-2814-451d-85e7-9c3be654fdd9/_apis/Release/definitions/10",
+  "_links": {
+    "self": { "href": "https://kingcounty.vsrm.visualstudio.com/ecac2c29-2814-451d-85e7-9c3be654fdd9/_apis/Release/definitions/10" },
+    "web": { "href": "https://kingcounty.visualstudio.com/ecac2c29-2814-451d-85e7-9c3be654fdd9/_release?definitionId=10" }
+  }
+}

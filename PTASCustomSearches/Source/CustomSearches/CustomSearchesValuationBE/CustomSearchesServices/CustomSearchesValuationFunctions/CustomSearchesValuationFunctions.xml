@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CustomSearchesValuationFunctions</name>
+    </assembly>
+    <members>
+        <member name="T:CustomSearchesValuationFunctions.Startup.Startup">
+            <summary>
+            Startup class.
+            </summary>
+            <seealso cref="T:Microsoft.Azure.Functions.Extensions.DependencyInjection.FunctionsStartup" />
+        </member>
+        <member name="F:CustomSearchesValuationFunctions.Startup.Startup.SQLServerConnectionStringSettingName">
+            <summary>
+            The SQL server connection string setting name.
+            </summary>
+        </member>
+        <member name="M:CustomSearchesValuationFunctions.Startup.Startup.Configure(Microsoft.Azure.Functions.Extensions.DependencyInjection.IFunctionsHostBuilder)">
+            <summary>
+            Startup configuration.
+            </summary>
+            <param name="builder">The host builder.</param>
+        </member>
+        <member name="T:CustomSearchesValuationFunctions.Valuation.Functions.CalculateExcessLand">
+            <summary>
+            Azure function class to get the areas.
+            </summary>
+        </member>
+        <member name="F:CustomSearchesValuationFunctions.Valuation.Functions.CalculateExcessLand.dbContextFactory">
+            <summary>
+            The SQL Server db context factory.
+            </summary>
+        </member>
+        <member name="M:CustomSearchesValuationFunctions.Valuation.Functions.CalculateExcessLand.#ctor(PTASServicesCommon.DependencyInjection.IFactory{CustomSearchesValuationEFLibrary.ValuationDbContext})">
+            <summary>
+            Initializes a new instance of the <see cref="T:CustomSearchesValuationFunctions.Valuation.Functions.CalculateExcessLand"/> class.
+            </summary>
+            <param name="dbContextFactory">The SQL Server db context factory.</param>
+            <exception cref="T:System.ArgumentNullException">If dbContextFactory parameter is null.</exception>
+        </member>
+        <member name="M:CustomSearchesValuationFunctions.Valuation.Functions.CalculateExcessLand.Run(Microsoft.AspNetCore.Http.HttpRequest,Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            Gets the areas.
+            </summary>
+            <param name="req">The request.</param>
+            <param name="log">The log.</param>
+            <returns>
+            The areas.
+            </returns>
+        </member>
+        <member name="T:CustomSearchesValuationFunctions.Valuation.Functions.CommercialIncomeValuation">
+            <summary>
+            Azure function to start the Floating Home Valuation Process.
+            </summary>
+        </member>
+        <member name="F:CustomSearchesValuationFunctions.Valuation.Functions.CommercialIncomeValuation.dbContextFactory">
+            <summary>
+            The SQL Server db context factory.
+            </summary>
+        </member>
+        <member name="M:CustomSearchesValuationFunctions.Valuation.Functions.CommercialIncomeValuation.#ctor(PTASServicesCommon.DependencyInjection.IFactory{CustomSearchesValuationEFLibrary.ValuationDbContext})">
+            <summary>
+            Initializes a new instance of the <see cref="T:CustomSearchesValuationFunctions.Valuation.Functions.CommercialIncomeValuation"/> class.
+            </summary>
+            <param name="dbContextFactory">The SQL Server db context factory.</param>
+            <exception cref="T:System.ArgumentNullException">If dbContextFactory parameter is null.</exception>
+        </member>
+        <member name="M:CustomSearchesValuationFunctions.Valuation.Functions.CommercialIncomeValuation.Run(Microsoft.AspNetCore.Http.HttpRequest,Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            This method will kick off process of valuation this floating home.
+            </summary>
+            <param name="req">The request object.</param>
+            <param name="log">The log object.</param>
+            <returns>A status of the valuation process.</returns>
+        </member>
+        <member name="T:CustomSearchesValuationFunctions.Valuation.Functions.FloatingHomeValuation">
+            <summary>
+            Azure function to start the Floating Home Valuation Process.
+            </summary>
+        </member>
+        <member name="F:CustomSearchesValuationFunctions.Valuation.Functions.FloatingHomeValuation.dbContextFactory">
+            <summary>
+            The SQL Server db context factory.
+            </summary>
+        </member>
+        <member name="M:CustomSearchesValuationFunctions.Valuation.Functions.FloatingHomeValuation.#ctor(PTASServicesCommon.DependencyInjection.IFactory{CustomSearchesValuationEFLibrary.ValuationDbContext})">
+            <summary>
+            Initializes a new instance of the <see cref="T:CustomSearchesValuationFunctions.Valuation.Functions.FloatingHomeValuation"/> class.
+            </summary>
+            <param name="dbContextFactory">The SQL Server db context factory.</param>
+            <exception cref="T:System.ArgumentNullException">If dbContextFactory parameter is null.</exception>
+        </member>
+        <member name="M:CustomSearchesValuationFunctions.Valuation.Functions.FloatingHomeValuation.Run(Microsoft.AspNetCore.Http.HttpRequest,Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            This method will kick off process of valuation this floating home.
+            </summary>
+            <param name="req">The request object.</param>
+            <param name="log">The log object.</param>
+            <returns>A status of the valuation process.</returns>
+        </member>
+        <member name="T:CustomSearchesValuationFunctions.Valuation.Functions.GetAreas">
+            <summary>
+            Azure function class to get the areas.
+            </summary>
+        </member>
+        <member name="F:CustomSearchesValuationFunctions.Valuation.Functions.GetAreas.dbContextFactory">
+            <summary>
+            The SQL Server db context factory.
+            </summary>
+        </member>
+        <member name="M:CustomSearchesValuationFunctions.Valuation.Functions.GetAreas.#ctor(PTASServicesCommon.DependencyInjection.IFactory{CustomSearchesValuationEFLibrary.ValuationDbContext})">
+            <summary>
+            Initializes a new instance of the <see cref="T:CustomSearchesValuationFunctions.Valuation.Functions.GetAreas"/> class.
+            </summary>
+            <param name="dbContextFactory">The SQL Server db context factory.</param>
+            <exception cref="T:System.ArgumentNullException">If dbContextFactory parameter is null.</exception>
+        </member>
+        <member name="M:CustomSearchesValuationFunctions.Valuation.Functions.GetAreas.Run(Microsoft.AspNetCore.Http.HttpRequest,Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            Gets the areas.
+            </summary>
+            <param name="req">The request.</param>
+            <param name="log">The log.</param>
+            <returns>
+            The areas.
+            </returns>
+        </member>
+    </members>
+</doc>

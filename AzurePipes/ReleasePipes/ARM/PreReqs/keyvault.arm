@@ -1,0 +1,152 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "DeploymentEnv": {
+      "defaultValue": "SBOX",
+      "type": "String"
+    },
+    "SignalRSkuTier": {
+      "defaultValue": "Free",
+      "type": "String"
+    },
+    "CORSRulesURI": {
+      "defaultValue": "http://",
+      "type": "String"
+    }
+  },
+  "variables": {
+    "vaultName": "[replace('PTAS-[Env]-KeyVault', '[Env]', parameters('DeploymentEnv'))]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.KeyVault/vaults",
+      "apiVersion": "2016-10-01",
+      "name": "[variables('vaultName')]",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "sku": {
+          "family": "A",
+          "name": "standard"
+        },
+        "tenantId": "bae5059a-76f0-49d7-9996-72dfe95d69c7",
+        "accessPolicies": [],
+        "enabledForDeployment": false,
+        "enabledForDiskEncryption": false,
+        "enabledForTemplateDeployment": false
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2016-10-01",
+      "name": "[concat(variables('vaultName'), '/ptas-dev-app-clientid')]",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', variables('vaultName'))]"
+      ],
+      "properties": {
+        "contentType": "id",
+        "value": "tmp",
+        "attributes": {
+          "enabled": true
+        }
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2016-10-01",
+      "name": "[concat(variables('vaultName'), '/ptas-dev-app-sececret')]",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', variables('vaultName'))]"
+      ],
+      "properties": {
+        "contentType": "Secret",
+        "value": "tmp",
+        "attributes": {
+          "enabled": true
+        }
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2016-10-01",
+      "name": "[concat(variables('vaultName'), '/ptas-ilinx-activationid')]",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', variables('vaultName'))]"
+      ],
+      "properties": {
+        "contentType": "Token",
+        "value": "tmp",
+        "attributes": {
+          "enabled": true
+        }
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2016-10-01",
+      "name": "[concat(variables('vaultName'), '/ptas-ilinx-password')]",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', variables('vaultName'))]"
+      ],
+      "properties": {
+        "contentType": "Password",
+        "value": "tmp",
+        "attributes": {
+          "enabled": true
+        }
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2016-10-01",
+      "name": "[concat(variables('vaultName'), '/ptas-ilinx-username')]",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', variables('vaultName'))]"
+      ],
+      "properties": {
+        "contentType": "UserName",
+        "value": "tmp",
+        "attributes": {
+          "enabled": true
+        }
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2016-10-01",
+      "name": "[concat(variables('vaultName'), '/ptas-mapbox-token')]",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', variables('vaultName'))]"
+      ],
+      "properties": {
+        "contentType": "ApiToken",
+        "value": "tmp",
+        "attributes": {
+          "enabled": true
+        }
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2016-10-01",
+      "name": "[concat(variables('vaultName'), '/ptas-storage-connectionstring')]",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', variables('vaultName'))]"
+      ],
+      "properties": {
+        "contentType": "ConnectionString",
+        "value": "tmp",
+        "attributes": {
+          "enabled": true
+        }
+      }
+    }
+  ]
+}

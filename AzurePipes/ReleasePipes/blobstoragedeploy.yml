@@ -1,0 +1,50 @@
+parameters:
+- name: filePath
+  type: string
+  default: ""
+- name: deploymentSubscription
+  type: string
+  default: ""
+- name: destinationType
+  type: string
+  default: "Azure Blob"
+- name: storageAccount
+  type: string
+  default: ""
+- name: container
+  type: string
+  default: "$web"
+- name: blobNamePrefix
+  type: string
+  default: ""
+- name: additionalArguments
+  type: string
+  default: ""
+- name: isFullBuild
+  type: boolean
+  default: false
+- name: stepName
+  type: string
+  default: ""
+- name: targetFolderChangePath
+  type: string
+  default: ""
+
+steps:
+    - task: PowerShell@2
+      condition: ne(${{parameters.isFullBuild}}, True)
+      name: TargetFolderChanged${{parameters.stepName}}
+      inputs:
+        targetType: 'filePath'
+        filePath: 'AzurePipes/Script/CheckIfFolderModifiedGit.ps1'
+        arguments: -folder '${{parameters.targetFolderChangePath}}'
+    - task: AzureFileCopy@4
+      condition: or(eq(variables['TargetFolderChanged${{parameters.stepName}}.FolderChanged'], 'True'), ${{parameters.isFullBuild}})
+      inputs:
+        sourcePath: "${{parameters.filePath}}"
+        azureSubscription: "${{parameters.deploymentSubscription}}"
+        destination: "${{parameters.destinationType}}"
+        storage: "${{parameters.storageAccount}}"
+        containerName: "${{parameters.container}}"
+        blobPrefix: "${{parameters.blobNamePrefix}}"
+        additionalArgumentsForBlobCopy: "${{parameters.additionalArguments}}"

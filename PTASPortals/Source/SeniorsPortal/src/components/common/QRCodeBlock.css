@@ -1,0 +1,24 @@
+/* -----------------------------------------------------------------------
+<copyright file="QRCodeBlock.css" company="King County">
+     Copyright (c) King County. All rights reserved.
+ </copyright>
+------------------------------------------------------------------------ */
+
+.qrcodeblock-img {
+  position: relative;
+  width: auto;
+  height: 175px;
+}
+
+.qrcodeblock {
+  height: auto;
+  position: relative;
+  margin-top: 32px;
+}
+
+.qrcodeblock_description {
+  max-width: 175px;
+  word-wrap: break-word;
+  text-align: center;
+  margin: auto;
+}

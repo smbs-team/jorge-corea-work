@@ -1,0 +1,490 @@
+/* ------------------------ Working override styles for the PTAS signin experience */
+button {
+  font-family: Open Sans, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+  font-weight: 400;
+}
+.content {
+  max-width: 1180px;
+  min-width: 290px;
+  margin: 0 auto;
+}
+.form-section {
+  text-align: center;
+  font-size: 1.4em;
+}
+.b2c-wrapper {
+  margin-top: 4rem;
+}
+
+/* B2C Form overrides */
+.working {
+  background: url(data:image/gif;base64,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)
+    no-repeat;
+  height: 10px;
+  width: 110px;
+  margin: 5rem auto;
+}
+.error {
+  color: #a61e0c;
+  font-size: 1.1rem;
+  visibility: collapse;
+}
+.error.show {
+  visibility: visible;
+}
+.helpLink.tiny {
+  display: none;
+}
+.accountButton,
+.accountButton:hover {
+  height: 40px;
+  width: 255px;
+  margin: 0 auto;
+  border-radius: 9px;
+  font-size: 1.6rem;
+  font-weight: 600;
+  background-repeat: no-repeat;
+  background-position-x: 16px;
+  background-position-y: center;
+  margin-bottom: 16px;
+  border: 1px solid transparent;
+  color: #fff;
+  transition: background-color 1s ease 0s;
+  text-align: left;
+  padding-left: 62px;
+  background-color: #505050;
+
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  cursor: pointer;
+}
+.accountButton:hover {
+  background-color: #b9b9b9;
+  border: 1px solid transparent;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+.accountButton:focus {
+  text-decoration: underline;
+  outline: none;
+}
+.showHideButton {
+  position: absolute;
+  right: 1rem;
+  height: 16px;
+  width: 16px;
+  background: url(https://ptasdevstorage.blob.core.windows.net/portalb2clogintemplates/images/icon-hidden.svg)
+    no-repeat transparent;
+  top: 1.5rem;
+  cursor: pointer;
+}
+.showHideButton.hidePassword {
+  background: url(https://ptasdevstorage.blob.core.windows.net/portalb2clogintemplates/images/icon-visible.svg)
+    no-repeat transparent;
+}
+.sign-in .showHideButton {
+  top: 0.5rem;
+}
+#MicrosoftAccountExchange {
+  background-image: url(https://ptasdevstorage.blob.core.windows.net/portalb2clogintemplates/images/logo-microsoft.svg);
+  background-color: #00a2ed;
+}
+
+#GoogleExchange {
+  background-image: url(https://ptasdevstorage.blob.core.windows.net/portalb2clogintemplates/images/logo-google.svg);
+  background-color: #ec3f2a;
+}
+#AmazonExchange {
+  background-image: url(https://ptasdevstorage.blob.core.windows.net/portalb2clogintemplates/images/logo-amazon.svg);
+  background-color: #000000;
+}
+
+#FacebookExchange {
+  background-image: url(https://ptasdevstorage.blob.core.windows.net/portalb2clogintemplates/images/logo-facebook.svg);
+  background-color: #3b5b9c;
+}
+
+.b2c-wrapper {
+  margin: 0 auto;
+}
+.b2c-wrapper .divider {
+  min-width: 200px;
+  margin: 3rem auto;
+}
+.b2c-wrapper .divider h2 {
+  display: inline;
+  padding: 1rem;
+}
+.b2c-wrapper .divider h2:before,
+.b2c-wrapper .divider h2:after {
+  background-color: #000;
+  content: "";
+  display: inline-block;
+  height: 1px;
+  position: relative;
+  vertical-align: middle;
+  width: 35%;
+  margin: 0 1rem;
+}
+a#createAccount {
+  display: block;
+}
+a#forgotPassword {
+  display: block;
+  position: absolute;
+  bottom: -1em;
+  font-size: 1.25rem;
+}
+.b2c-wrapper .social .intro,
+.b2c-wrapper .social .options,
+.b2c-wrapper .localAccount .intro,
+.b2c-wrapper .localAccount .entry,
+.b2c-wrapper #attributeVerification {
+  margin-top: 3rem;
+}
+.b2c-wrapper .intro p {
+  display: block;
+  margin-block-start: 0.83em;
+  margin-block-end: 0.83em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+.b2c-wrapper .entry,
+.b2c-wrapper .attrEntry {
+  width: 230px;
+  margin: 0 auto;
+  position: relative;
+  display: inline-block;
+}
+.b2c-wrapper label,
+.b2c-wrapper .password-label {
+  font-size: 1.4rem;
+  cursor: text;
+}
+.b2c-wrapper input {
+  -webkit-appearance: none;
+  border-top-style: initial;
+  border-right-style: initial;
+  border-left-style: initial;
+  border-top-color: initial;
+  border-right-color: initial;
+  border-left-color: initial;
+  background-color: transparent;
+  padding-bottom: 4px;
+  margin-top: 4px;
+  border-width: 0px 0px 0px;
+  border-image: initial;
+  font-size: 1.6rem;
+  display: block;
+  border-bottom: 1px solid black;
+  width: 230px;
+}
+
+.b2c-wrapper input::after {
+  border-bottom: 1px solid #a5c727;
+  transform: scaleX(150);
+}
+.b2c-wrapper input:focus {
+  outline: none;
+  text-decoration: none;
+  border-bottom: 1px solid #a5c727;
+}
+.b2c-wrapper input:focus ~ label {
+  color: #a5c727;
+}
+.b2c-wrapper input:-ms-input-placeholder {
+  color: transparent;
+}
+.b2c-wrapper input::-ms-input-placeholder {
+  color: transparent;
+}
+.b2c-wrapper input::-webkit-input-placeholder {
+  color: transparent;
+}
+.b2c-wrapper input::placeholder {
+  color: transparent;
+}
+
+.b2c-wrapper .entry-item {
+  position: relative;
+  margin-top: 32px;
+  padding-bottom: 16px;
+}
+.b2c-wrapper label {
+  transition: color 200ms cubic-bezier(0, 0, 0.2, 1) 0ms,
+    transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+  top: 0;
+  left: 0;
+  position: absolute;
+}
+.passwordStrength {
+  position: relative;
+}
+.strengthMeter {
+  height: 4px;
+  width: 1px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  background: transparent;
+}
+.weak .strengthMeter {
+  width: 25%;
+  background: #d20000;
+}
+.fair .strengthMeter {
+  width: 50%;
+  background: #d28e00;
+}
+.strong .strengthMeter {
+  width: 75%;
+  background: #a5c727;
+}
+.strengthScore {
+  position: absolute;
+  width: 3rem;
+  height: 3rem;
+  right: 0;
+  top: -0.5em;
+  text-align: center;
+  line-height: 1.25em;
+  color: transparent;
+}
+.weak .strengthScore {
+  color: #d20000;
+}
+.fair .strengthScore {
+  color: #d28e00;
+}
+.strong .strengthScore {
+  color: #a5c727;
+}
+.weak .strengthScore:after {
+  content: "😐";
+}
+.fair .strengthScore:after {
+  content: "🙂";
+}
+.strong .strengthScore:after {
+  content: "😃";
+}
+.b2c-wrapper label.shrink {
+  transform: translate(0, -24px) scale(0.75);
+  transform-origin: top left;
+  color: #a5c727;
+  cursor: default;
+}
+.b2c-wrapper .entry button,
+.b2c-wrapper .attrEntry button,
+.b2c-wrapper .localAccount button,
+.b2c-wrapper #attributeVerification .buttons button {
+  /*copied from .button*/
+  min-height: 36px;
+  min-width: 210px;
+  padding: 0 4rem;
+  display: block;
+  margin: 60 auto;
+  border-radius: 0.8rem;
+  font-size: 1.4rem;
+  /*copied from .button.primary*/
+  border: 0;
+  background-image: linear-gradient(270deg, #9b6692, #6f1f62);
+  color: white;
+  width: 220px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  cursor: pointer;
+}
+.b2c-wrapper .entry .buttons,
+.b2c-wrapper .attrEntry .buttons,
+.b2c-wrapper .localAccount button,
+.b2c-wrapper #attributeVerification .buttons button {
+  margin-top: 42px;
+}
+.b2c-wrapper #attributeVerification .buttons.verify {
+  margin-top: 8px;
+  position: relative;
+  text-align: center;
+}
+.b2c-wrapper .localAccount button {
+  margin-bottom: 32px;
+}
+.b2c-wrapper #attributeVerification .buttons.verify button {
+  margin-top: 32px;
+}
+.b2c-wrapper .entry button:focus,
+.b2c-wrapper .attrEntry button:focus,
+.b2c-wrapper .localAccount button:focus,
+.b2c-wrapper #attributeVerification .buttons button:focus {
+  outline: none;
+}
+.b2c-wrapper .entry button:hover,
+.b2c-wrapper .attrEntry button:hover,
+.b2c-wrapper .localAccount button:hover,
+.b2c-wrapper #attributeVerification .buttons button:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.b2c-wrapper .entry button:active,
+.b2c-wrapper .attrEntry button:active,
+.b2c-wrapper .localAccount button:active,
+.b2c-wrapper #attributeVerification .buttons button:active {
+  background-color: rgba(156, 104, 148, 0.2);
+}
+.b2c-wrapper #attributeVerification > .buttons {
+  display: flex;
+}
+
+.b2c-wrapper #email_ver_input_label {
+  padding-right: 1rem;
+}
+
+.sign-in .entry .buttons {
+  margin-top: 62px;
+}
+
+.sign-in .localAccount .divider {
+  display: none;
+}
+
+.b2c-wrapper li {
+  list-style: none;
+}
+
+.local-signup #api > .intro {
+  margin-top: 42px;
+  margin-bottom: 32px;
+}
+.attrEntry {
+  text-align: left;
+}
+.local-signup .b2c-wrapper #attributeVerification .buttons.verify {
+  margin-top: 32px;
+  max-width: 230px;
+}
+.local-signup .b2c-wrapper #attributeVerification .buttons.verify button {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+.local-signup #email_ver_input {
+  margin-top: 0;
+  margin-bottom: 42px;
+}
+.b2c-wrapper #attributeVerification > .buttons,
+.social-signup .buttons {
+  display: block;
+  text-align: left;
+  max-width: 230px;
+  min-width: 200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.local-signup .b2c-wrapper li {
+  margin-bottom: 32px;
+  margin-top: 8px;
+}
+.local-signup .b2c-wrapper #verifying_blurb {
+  margin-top: 32px;
+}
+.b2c-wrapper .error.pageLevel {
+  margin-top: 32px;
+  position: relative;
+  top: -4rem;
+}
+.b2c-wrapper .error.itemLevel {
+  position: relative;
+  top: 50px;
+}
+.b2c-wrapper .error.hideError {
+  position: absolute;
+  top: -999999em;
+}
+
+.social-signup .b2c-wrapper .attrEntry {
+  text-align: left;
+  margin-bottom: 32px;
+}
+.b2c-wrapper #attributeVerification #cancel {
+  display: none;
+}
+
+.b2c-wrapper ul,
+.b2c-wrapper li {
+  margin-left: 0;
+}
+.b2c-wrapper div.intro {
+  margin-top: 32px;
+  margin-bottom: 32px;
+  font-size: 26px;
+  font-weight: normal;
+}
+#attributeList {
+  position: relative;
+}
+#attributeList ul {
+  margin-top: 62px;
+}
+
+.b2c-wrapper
+  #attributeVerification
+  .buttons.verify
+  button#email_ver_but_default,
+.b2c-wrapper
+  #attributeVerification
+  .buttons.verify
+  button#email_ver_but_resend {
+  text-decoration: none;
+  color: #6f1f62;
+  font-weight: 600;
+  border: 0;
+  box-shadow: none;
+  font-size: 1.1rem;
+  min-height: 0;
+
+  background: transparent;
+}
+.b2c-wrapper
+  #attributeVerification
+  .buttons.verify
+  button#email_ver_but_default:hover,
+.b2c-wrapper
+  #attributeVerification
+  .buttons.verify
+  button#email_ver_but_resend:hover {
+  text-decoration: underline;
+}
+
+.social-signup
+  .b2c-wrapper
+  #attributeVerification
+  .buttons.verify
+  button#email_ver_but_default {
+  margin-top: 16px;
+}
+
+.recover-password .b2c-wrapper #attributeVerification .buttons.verify {
+  width: 230px;
+}
+
+#simplemodal-container {
+  position: absolute !important;
+  left: 50% !important;
+  top: 80% !important;
+  transform: translateX(-50%) translateY(-50%) !important;
+  width: 410px !important;
+}
+
+#verifying_blurb {
+  text-decoration: none !important;
+  font-size: 16px;
+}
+
+.textInParagraph {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  position: relative;
+  top: -33px;
+}

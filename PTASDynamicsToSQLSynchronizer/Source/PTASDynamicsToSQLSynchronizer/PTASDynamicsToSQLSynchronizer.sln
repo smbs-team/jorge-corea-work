@@ -1,0 +1,79 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicsToSQLBlazor", "DynamicsToSQLBlazor\DynamicsToSQLBlazor.csproj", "{45C73527-F50C-4545-9968-DDA92D95096F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTest", "UnitTest", "{7EDEF168-1788-4C69-BE38-13B9A3EBED42}"
+	ProjectSection(SolutionItems) = preProject
+		TestXML.xml = TestXML.xml
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicsToSQLBlazorTests", "DynamicsToSQLBlazorTests\DynamicsToSQLBlazorTests.csproj", "{3D258C28-6C39-48A5-A379-045EDDEE594B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PTASDynamicsWebhook", "PTASDynamicsWebhook\PTASDynamicsWebhook.csproj", "{0D114BF9-FAB0-4249-989B-7FA373164492}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PTASDynamicsTranfer", "PTASDynamicsTranfer\PTASDynamicsTranfer\PTASDynamicsTranfer.csproj", "{54A7EED0-E574-4772-AAF0-FBF70D5FEE7B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PTAS_Console_test", "PTAS_Console_test\PTAS_Console_test.csproj", "{3DC59686-4E4E-4C58-9FF4-77C0FAD6A3B6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Imported", "Imported", "{F4717888-75AE-4F9E-9558-A4E5A30FFFD9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "D2SSyncHelpers", "..\..\..\PTASCommon\Source\PTASAzureCommon\D2SSyncHelpers\D2SSyncHelpers.csproj", "{F2507E27-FD44-48CE-9549-458B7B34ACEF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PTASDynamicsSyncLibrary", "..\..\..\PTASCommon\Source\PTASAzureCommon\PTASDynamicsSyncLibrary\PTASDynamicsSyncLibrary.csproj", "{4103B687-7FA5-40C4-9F90-353D36F360A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PTASRealPropSync", "PTASRealPropSync\PTASRealPropSync.csproj", "{7BB6FCB6-B282-4012-961D-4C88838FADCD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{45C73527-F50C-4545-9968-DDA92D95096F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45C73527-F50C-4545-9968-DDA92D95096F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45C73527-F50C-4545-9968-DDA92D95096F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45C73527-F50C-4545-9968-DDA92D95096F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D258C28-6C39-48A5-A379-045EDDEE594B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D258C28-6C39-48A5-A379-045EDDEE594B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D258C28-6C39-48A5-A379-045EDDEE594B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D258C28-6C39-48A5-A379-045EDDEE594B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D114BF9-FAB0-4249-989B-7FA373164492}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D114BF9-FAB0-4249-989B-7FA373164492}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D114BF9-FAB0-4249-989B-7FA373164492}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D114BF9-FAB0-4249-989B-7FA373164492}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54A7EED0-E574-4772-AAF0-FBF70D5FEE7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54A7EED0-E574-4772-AAF0-FBF70D5FEE7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54A7EED0-E574-4772-AAF0-FBF70D5FEE7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54A7EED0-E574-4772-AAF0-FBF70D5FEE7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DC59686-4E4E-4C58-9FF4-77C0FAD6A3B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DC59686-4E4E-4C58-9FF4-77C0FAD6A3B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DC59686-4E4E-4C58-9FF4-77C0FAD6A3B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DC59686-4E4E-4C58-9FF4-77C0FAD6A3B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2507E27-FD44-48CE-9549-458B7B34ACEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2507E27-FD44-48CE-9549-458B7B34ACEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2507E27-FD44-48CE-9549-458B7B34ACEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2507E27-FD44-48CE-9549-458B7B34ACEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4103B687-7FA5-40C4-9F90-353D36F360A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4103B687-7FA5-40C4-9F90-353D36F360A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4103B687-7FA5-40C4-9F90-353D36F360A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4103B687-7FA5-40C4-9F90-353D36F360A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BB6FCB6-B282-4012-961D-4C88838FADCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BB6FCB6-B282-4012-961D-4C88838FADCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BB6FCB6-B282-4012-961D-4C88838FADCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BB6FCB6-B282-4012-961D-4C88838FADCD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3D258C28-6C39-48A5-A379-045EDDEE594B} = {7EDEF168-1788-4C69-BE38-13B9A3EBED42}
+		{F2507E27-FD44-48CE-9549-458B7B34ACEF} = {F4717888-75AE-4F9E-9558-A4E5A30FFFD9}
+		{4103B687-7FA5-40C4-9F90-353D36F360A9} = {F4717888-75AE-4F9E-9558-A4E5A30FFFD9}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8B1E0E59-3291-4AC9-AACE-8767D4E29430}
+	EndGlobalSection
+EndGlobal

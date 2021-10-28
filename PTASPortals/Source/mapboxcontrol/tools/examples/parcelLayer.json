@@ -1,0 +1,38 @@
+{
+  "isHighlightable": true,
+  "id": "parcelLayer",
+  "type": "fill",
+  "source": "parcelSource",
+  "source-layer": "parcel",
+  "paint": {
+    "fill-outline-color": [
+      "case",
+      ["boolean", ["feature-state", "selected"], false],
+      "rgb(255,100,100)",
+      ["boolean", ["feature-state", "isSearchResult"], false],
+      "rgb(0,255,255)",
+      "#000000"
+    ],
+    "fill-color": [
+      "case",
+      ["boolean", ["feature-state", "hover"], false],
+      "rgba(255,255,0,0.5)",
+      ["==", ["feature-state", "generalClassif"], "CmlAccy"],
+      "rgba(255,0,0,0.5)",
+      ["==", ["feature-state", "generalClassif"], "CmlImp"],
+      "rgba(255,0,0,0.5)",
+      ["==", ["feature-state", "generalClassif"], "CmlVac"],
+      "rgba(255,0,0,0.5)",
+      ["==", ["feature-state", "generalClassif"], "ResAccy"],
+      "rgba(0,255,0,0.5)",
+      ["==", ["feature-state", "generalClassif"], "ResImp"],
+      "rgba(0,255,0,0.5)",
+      ["==", ["feature-state", "generalClassif"], "ResMH"],
+      "rgba(0,255,0,0.5)",
+      ["==", ["feature-state", "generalClassif"], "ResVac"],
+      "rgba(0,255,0,0.5)",
+      "rgba(0,0,0,0)"
+    ]
+  },
+  "isBaseLayer": true
+}

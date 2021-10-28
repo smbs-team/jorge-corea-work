@@ -1,0 +1,50 @@
+parameters:
+- name: deploymentEnv
+  type: string
+  default: ""
+- name: folder
+  type: string 
+  default: "Authentication"
+- name: useNugetRestoreCommand
+  type: boolean
+  default: false
+- name: aditionalNugetRestoreSteps
+  type: stepList
+  default: []
+
+steps:
+    - task: DotNetCoreCLI@2
+      displayName: "DotNetCore Nuget Restore:  ${{parameters.folder}}"
+      condition: not(${{parameters.useNugetRestoreCommand}})
+      inputs:
+        command: restore
+        projects: '${{parameters.folder}}/**/*.csproj'
+        feedsToUse: "select"
+        vstsFeed: "Stable"
+        includeNuGetOrg: true
+    - task: NuGetCommand@2
+      condition: ${{parameters.useNugetRestoreCommand}}
+      displayName: "NuggetCommand2 Nuget Restore:  ${{parameters.folder}}"
+      inputs:
+        command: restore
+        restoreSolution: "${{parameters.folder}}/**/*.sln"
+        feedsToUse: "select"
+        vstsFeed: "Stable"
+    - ${{ each step in parameters.aditionalNugetRestoreSteps }}:
+      - ${{ each pair in step }}:
+          ${{ pair.key }}: ${{ pair.value }}       
+    - task: VSBuild@1
+      displayName: "VSBuild: ${{parameters.folder}}"
+      inputs:
+        solution: '${{parameters.folder}}/**/*.sln'
+        msbuildArgs: /p:SkipInvalidConfigurations=true
+        platform: "Any CPU"
+        configuration: "Debug"
+    - task: DotNetCoreCLI@2
+      displayName: "VSTest:  ${{parameters.folder}}"
+      inputs:
+        command: test
+        projects: "${{parameters.folder}}/**/*IntegrationTest*.csproj"
+        arguments: "-s ${{parameters.folder}}/IntegrationTests.${{parameters.deploymentEnv}}.RunSettings --verbosity d --no-build --no-restore --configuration Debug"
+        timeoutInMinutes: 10
+        nobuild: true

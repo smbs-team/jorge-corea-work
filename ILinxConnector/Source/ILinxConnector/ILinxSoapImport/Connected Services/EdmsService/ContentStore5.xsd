@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/ImageSource.ILINX.CommonILINX.CaptureDomain" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ImageSource.ILINX.CommonILINX.CaptureDomain" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://edmsimagingtest2.kingcounty.gov/ILINXCSService/ContentStore.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfFavoriteSearch">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FavoriteSearch" nillable="true" type="tns:FavoriteSearch" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFavoriteSearch" nillable="true" type="tns:ArrayOfFavoriteSearch" />
+  <xs:complexType name="FavoriteSearch">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Conditions" nillable="true" type="tns:ArrayOfFavoriteSearchConditionItem" />
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Owner" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RepositoryId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FavoriteSearch" nillable="true" type="tns:FavoriteSearch" />
+  <xs:complexType name="ArrayOfFavoriteSearchConditionItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FavoriteSearchConditionItem" nillable="true" type="tns:FavoriteSearchConditionItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFavoriteSearchConditionItem" nillable="true" type="tns:ArrayOfFavoriteSearchConditionItem" />
+  <xs:complexType name="FavoriteSearchConditionItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Conjunction" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IndexName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Operand1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Operand2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Operator" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FavoriteSearchConditionItem" nillable="true" type="tns:FavoriteSearchConditionItem" />
+</xs:schema>

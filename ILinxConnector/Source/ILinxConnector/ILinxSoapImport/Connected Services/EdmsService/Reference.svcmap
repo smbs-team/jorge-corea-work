@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="082f5cc1-cb5f-4c54-b967-44059aa21c05" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="https://edmsimagingtest2.kingcounty.gov/ILINXCSService/ContentStore.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ContentStore.xsd" MetadataType="Schema" ID="0fc36ad5-92b6-4b16-9711-4fa41acf6da9" SourceId="1" SourceUrl="https://edmsimagingtest2.kingcounty.gov/ILINXCSService/ContentStore.svc?xsd=xsd8" />
+    <MetadataFile FileName="ContentStore.wsdl" MetadataType="Wsdl" ID="1fe3e848-7146-4a30-b928-68b316b4a02f" SourceId="1" SourceUrl="https://edmsimagingtest2.kingcounty.gov/ILINXCSService/ContentStore.svc?wsdl" />
+    <MetadataFile FileName="ContentStore.disco" MetadataType="Disco" ID="fd8e83a8-ce4b-4367-bbc0-3d2e0ba144f6" SourceId="1" SourceUrl="https://edmsimagingtest2.kingcounty.gov/ILINXCSService/ContentStore.svc?disco" />
+    <MetadataFile FileName="ContentStore1.xsd" MetadataType="Schema" ID="ee9a7560-1983-4dae-a816-44d104fcf710" SourceId="1" SourceUrl="https://edmsimagingtest2.kingcounty.gov/ILINXCSService/ContentStore.svc?xsd=xsd0" />
+    <MetadataFile FileName="ContentStore2.xsd" MetadataType="Schema" ID="04ff55e1-f177-4d3f-b70c-02426d1e2307" SourceId="1" SourceUrl="https://edmsimagingtest2.kingcounty.gov/ILINXCSService/ContentStore.svc?xsd=xsd6" />
+    <MetadataFile FileName="ContentStore3.xsd" MetadataType="Schema" ID="2ef490c4-847b-4761-b0ad-435512b004db" SourceId="1" SourceUrl="https://edmsimagingtest2.kingcounty.gov/ILINXCSService/ContentStore.svc?xsd=xsd9" />
+    <MetadataFile FileName="ContentStore4.xsd" MetadataType="Schema" ID="80cb5da7-b532-4d13-b353-a6527d64a6ad" SourceId="1" SourceUrl="https://edmsimagingtest2.kingcounty.gov/ILINXCSService/ContentStore.svc?xsd=xsd2" />
+    <MetadataFile FileName="ContentStore5.xsd" MetadataType="Schema" ID="79d9569f-4838-4514-b48f-74c583b26190" SourceId="1" SourceUrl="https://edmsimagingtest2.kingcounty.gov/ILINXCSService/ContentStore.svc?xsd=xsd4" />
+    <MetadataFile FileName="ContentStore6.xsd" MetadataType="Schema" ID="4aa6b108-21a5-4264-b436-3216db3feb7a" SourceId="1" SourceUrl="https://edmsimagingtest2.kingcounty.gov/ILINXCSService/ContentStore.svc?xsd=xsd1" />
+    <MetadataFile FileName="ContentStore7.xsd" MetadataType="Schema" ID="f5ab364c-73a6-4f2c-a550-a7b16d05db63" SourceId="1" SourceUrl="https://edmsimagingtest2.kingcounty.gov/ILINXCSService/ContentStore.svc?xsd=xsd7" />
+    <MetadataFile FileName="ContentStore8.xsd" MetadataType="Schema" ID="02d016fe-e3f0-42ab-99c2-109c9150c977" SourceId="1" SourceUrl="https://edmsimagingtest2.kingcounty.gov/ILINXCSService/ContentStore.svc?xsd=xsd3" />
+    <MetadataFile FileName="ContentStore9.xsd" MetadataType="Schema" ID="0d3edc30-71df-4b3e-99b0-5e00db61b333" SourceId="1" SourceUrl="https://edmsimagingtest2.kingcounty.gov/ILINXCSService/ContentStore.svc?xsd=xsd5" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

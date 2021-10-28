@@ -1,0 +1,78 @@
+parameters:
+- name: deploymentResourceGroup
+  type: string
+  default: ""
+- name: deploymentEnv
+  type: string
+  default: ""
+- name: deploymentSubscription
+  type: string
+  default: ""
+
+stages:
+  - stage: RestartApps
+    jobs:
+      - deployment: RestartApps
+        pool:
+          vmImage: "windows-2019"
+        environment: 'WebApps - Dev - No Approval'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                # ------------------------------------ Restart MagicLinkService ---------------------------------------
+                - task: AzureAppServiceManage@0
+                  displayName: 'Restart MagicLinkService'
+                  inputs:
+                    action: "Restart Azure App Service"
+                    azureSubscription: "${{parameters.deploymentSubscription}}"
+                    webAppName: "PTAS-${{parameters.deploymentEnv}}-MagicLinkService"
+                    resourceGroupName: "${{parameters.deploymentResourceGroup}}"
+                # ------------------------------------ Restart DocumentStorageServices ---------------------------------------
+                - task: AzureAppServiceManage@0
+                  displayName: 'Restart DocumentStorageServices'
+                  inputs:
+                    action: "Restart Azure App Service"
+                    azureSubscription: "${{parameters.deploymentSubscription}}"
+                    webAppName: "PTAS-${{parameters.deploymentEnv}}-DocumentStorageServices"
+                    resourceGroupName: "${{parameters.deploymentResourceGroup}}"
+                # ------------------------------------ Restart DataServices ---------------------------------------
+                - task: AzureAppServiceManage@0
+                  displayName: 'Restart DataServices'
+                  inputs:
+                    action: "Restart Azure App Service"
+                    azureSubscription: "${{parameters.deploymentSubscription}}"
+                    webAppName: "PTAS-${{parameters.deploymentEnv}}-DataServices"
+                    resourceGroupName: "${{parameters.deploymentResourceGroup}}"
+                # ------------------------------------ Restart SeniorsPortal ---------------------------------------
+                - task: AzureAppServiceManage@0
+                  displayName: 'Restart SeniorsPortal'
+                  inputs:
+                    action: "Restart Azure App Service"
+                    azureSubscription: "${{parameters.deploymentSubscription}}"
+                    webAppName: "PTAS-${{parameters.deploymentEnv}}-SeniorsPortal"
+                    resourceGroupName: "${{parameters.deploymentResourceGroup}}"
+                # ------------------------------------ Restart RedactionDynamics ---------------------------------------
+                - task: AzureAppServiceManage@0
+                  displayName: 'Restart RedactionDynamics'
+                  inputs:
+                    action: "Restart Azure App Service"
+                    azureSubscription: "${{parameters.deploymentSubscription}}"
+                    webAppName: "PTAS-${{parameters.deploymentEnv}}-RedactionDynamics"
+                    resourceGroupName: "${{parameters.deploymentResourceGroup}}"
+                # ------------------------------------ Restart SharepointFunctions ---------------------------------------
+                - task: AzureAppServiceManage@0
+                  displayName: 'Restart SharepointFunctions'
+                  inputs:
+                    action: "Restart Azure App Service"
+                    azureSubscription: "${{parameters.deploymentSubscription}}"
+                    webAppName: "PTAS-${{parameters.deploymentEnv}}-SharepointFunctions"
+                    resourceGroupName: "${{parameters.deploymentResourceGroup}}"
+                # ------------------------------------ Restart MediaInfo ---------------------------------------
+                - task: AzureAppServiceManage@0
+                  displayName: 'Restart MediaInfo'
+                  inputs:
+                    action: "Restart Azure App Service"
+                    azureSubscription: "${{parameters.deploymentSubscription}}"
+                    webAppName: "PTAS-${{parameters.deploymentEnv}}-MediaInfo"
+                    resourceGroupName: "${{parameters.deploymentResourceGroup}}"

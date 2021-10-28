@@ -1,0 +1,24 @@
+parameters:
+  - name: forcePreReqDeployment
+    type: boolean
+    default: false
+
+extends:
+  template: fullpipeline.yml
+  parameters:
+    isFullBuild: false
+    deploy: false
+    runItegrationTests: true
+    forcePreReqDeployment: ${{parameters.forcePreReqDeployment}}
+    deploymentResourceGroup: "ptas-dev-resourcegroup"
+    deploymentEnv: "DEV"
+    deploymentEnvLong: "DEV"
+    deploymentLocation: "West US"
+    deploymentSubscription: "Azure-Dev"
+    deploymentKeyVaultName: "ptas-dev-keyvault"
+    deploymentAppRegistration: "vsts-dev-reg"
+    ptasAppRegistration: "ptas-dev-app-seniorexemption"
+    deploymentSslKeyVaultName: sslcert-prod-keyvault
+    deploymentSslCertName: AZURE-Wildcard-KINGCOUNTY-GOV
+    databaseServerName: "kcitazrsqldev01.database.windows.net"
+    databaseName: "PTAS"

@@ -1,0 +1,787 @@
+﻿{
+  "CodeGenerationMode": 1,
+  "ContextClassName": "ValuationDbContext",
+  "ContextNamespace": null,
+  "DefaultDacpacSchema": null,
+  "FilterSchemas": true,
+  "IncludeConnectionString": false,
+  "ModelNamespace": "",
+  "OutputContextPath": ".",
+  "OutputPath": "Model",
+  "ProceduresReturnList": false,
+  "ProjectRootNamespace": "CustomSearchesValuationEFLibrary",
+  "Schemas": [
+    {
+      "Name": "ptas"
+    },
+    {
+      "Name": "dynamics"
+    }
+  ],
+  "SelectedHandlebarsLanguage": 0,
+  "SelectedToBeGenerated": 0,
+  "Tables": [
+    {
+      "Name": "[dynamics].[contact]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_abstractdocument]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_abstractproject]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_abstractprojectresultparcel]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_abstractprojectsourceparcel]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_accessorydetail]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_accessorydetail_ptas_mediarepository]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_agriculturalusetype]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_alternateaddress]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_apartmentregion]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_apartmentsupergroup]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_appraisalhistory]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_area]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_assessmentreviewstatus]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_billingclassification]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_billingcode]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_bookmark]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_bookmarktag]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_buildingdetail]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_buildingdetail_commercialuse]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_buildingdetail_ptas_mediarepository]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_buildingsectionfeature]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_buildingsectionuse]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_camanotes]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_camanotes_ptas_mediarepository]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_caprate]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_city]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_city_county]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_city_stateorprovince]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_city_zipcode]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_commercialaccessorytype]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_condocomplex]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_condocomplex_ptas_mediarepository]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_condounit]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_condounit_ptas_mediarepository]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_country]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_county]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_county_stateorprovince]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_county_zipcode]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_countylevydetails]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_currentuseapplication]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_currentuseapplicationparcel]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_currentusefarmyieldhistory]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_currentusegroup]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_currentuselanduse]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_currentusenote]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_currentuseparcel_currentuseapplication]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_currentusepbrsresource]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_currentusetask]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_designationtype]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_district]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_economicunit]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_economicunit_accessorydetail]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_environmentalrestrictiontype]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_estimatehistory]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_exemption]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_fileattachmentmetadata]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_fund]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_fundallocation]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_fundfactordetail]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_fundtype]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_geoarea]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_geoneighborhood]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_gradestratificationmapping]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_heatingsystem]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_housingprogram]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_incomemodel]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_incomemodelrate]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_incomemodelraw]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_incomevaluation]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_incomevaluationschedule]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_inspectionhistory]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_jurisdiction]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_jurisdictioncontact]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_land]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_land_ptas_mediarepository]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_landschedule]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_landuse]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_landvaluebreakdown]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_landvaluecalculation]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_legaldescriptions]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_levycode]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_levycode_ptas_fund]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_levycoderates]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_levylidliftbond]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_levyordinancerequest]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_levyworksheetdetails]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_levyworksheetdetails_levycoderates]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_lowincomehousingprogram]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_majornumberdetail]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_majornumberindex]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_masspayer]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_mediarepository]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_medicareplan]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_naicscode]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_neighborhood]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_nuisancetype]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_parceldetail]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_parceldetail_ptas_mediarepository]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_parceleconomicunit]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_parkingdistrict]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_paymentreceipt]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_pbrspointlevel]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_pbrsresourcetype]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_permit]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_permitinspectionhistory]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_permitwebsiteconfig]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_personalproperty]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_personalpropertyaccountstatus]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_personalpropertyasset]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_projectdock]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_propertyreview]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_propertytype]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_ptas_bookmark_ptas_bookmarktag]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_ptas_camanotes_ptas_fileattachmentmetad]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_ptas_sales_ptas_fileattachmentmetadata]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_ptas_taxdistrict_ptas_county]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_ptas_taxdistrict_ptas_taxdistrict]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_ptas_year_systemuser]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_ptasconfiguration]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_ptassetting]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_qstr]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_ratesheetdetail]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_recentparcel]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_recordattributechangehistory]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_recordchangehistory]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_refundpetition]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_refundpetitionlevyrate]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_residentialaccessorytype]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_responsibility]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_salepriceadjustment]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_sales]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_sales_parceldetail_parcelsinsale]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_sales_ptas_saleswarningcode]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_salesaccessory]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_salesaggregate]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_salesbuilding]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_salesnote]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_salesparcel]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_saleswarningcode]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_sectionusesqft]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_sketch]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_specialtyarea]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_specialtyneighborhood]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_stateorprovince]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_stateutilityvalue]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_streetname]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_streettype]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_subarea]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_submarket]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_supergroup]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_taxaccount]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_taxbill]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_taxdistrict]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_taxdistrict_levycode]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_taxdistrictcontacts]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_taxrollcorrection]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_taxrollcorrectionvalue]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_taxrollhistory]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_timberusetype]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_unitbreakdown]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_unitbreakdowntype]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_valuehistory]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_viewtype]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_visitedsketch]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_year]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_zipcode]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_zipcode_stateorprovince]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[ptas_zoning]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[role]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[stringmap]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[systemuser]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[systemuserroles]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[team]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[teammembership]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[teamprofiles]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[dynamics].[teamroles]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[ptas].[ptas_appraisalHistory]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[ptas].[ptas_changehistory]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[ptas].[ptas_estimateHistory]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[ptas].[ptas_floatingHomeReplacementCostRate]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[ptas].[ptas_floatingHomeSlipValues]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[ptas].[ptas_floatingHomeValuation]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[ptas].[ptas_incomemodel]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[ptas].[ptas_incomemodeldetail]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[ptas].[ptas_incomevaluation]",
+      "ObjectType": 0
+    },
+    {
+      "Name": "[ptas].[ptas_taxRollHistory]",
+      "ObjectType": 0
+    }
+  ],
+  "UiHint": "kcitazrsqldev01.PTAS.dbo",
+  "UseBoolPropertiesWithoutDefaultSql": false,
+  "UseDatabaseNames": true,
+  "UseDbContextSplitting": false,
+  "UseFluentApiOnly": true,
+  "UseHandleBars": false,
+  "UseInflector": false,
+  "UseLegacyPluralizer": false,
+  "UseNoConstructor": false,
+  "UseNoNavigations": false,
+  "UseNoObjectFilter": false,
+  "UseNodaTime": false,
+  "UseNullableReferences": false,
+  "UseSpatial": false
+}

@@ -1,0 +1,110 @@
+.grid-vertical-spacing {
+  margin-top: 40px;
+}
+
+.sub-title {
+  font-size: 1.4em;
+  font-weight: 300;
+}
+
+.center-panel {
+  max-width: 500px;
+  margin: auto;
+}
+
+.link-arrow-label {
+  display: inline-block;
+  text-decoration: underline;
+  text-align: left;
+  vertical-align: top;
+  color: #6f1f62;
+}
+
+.back-label {
+  display: inline-block;
+  text-align: left;
+  vertical-align: top;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+.box {
+  border-width: 1px;
+  border-color: black;
+  border-style: solid;
+  padding-bottom: 16px;
+  padding-left: 18px;
+  margin-top: 16px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 370px;
+}
+
+.marginTop42 {
+  margin-top: 42px;
+}
+
+.marginTop62 {
+  margin-top: 62px;
+}
+
+.margin-top-16 {
+  margin-top: 16px;
+}
+
+.margin-top-32 {
+  margin-top: 32px;
+}
+
+.year-tab {
+  display: inline-block;
+  width: 124px;
+  padding-top: 10px;
+  border: solid;
+  border-width: 1px;
+}
+
+.year-tab-selected {
+  background-color: #d4e693;
+}
+
+.year-tab-regular {
+  background-color: white;
+}
+
+.HelpTextSubTitle {
+  margin-left: 0px;
+  font-size: 1.5em;
+  margin-top: 30px;
+}
+
+.HelpTextSubTitleZeroMargin {
+  margin-left: 0px;
+  font-size: 1.5em;
+}
+
+.HelpTextAmounts {
+  margin-left: 0px;
+  font-size: 1em;
+  margin-top: 30px;
+}
+
+.ExpensesSubTitle {
+  margin-left: 0px;
+  font-size: 1.5em;
+  margin-top: 100px;
+}
+.marginScheduleExpandLink {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.financialHeader {
+  border-bottom: 5px solid #f7f6f6 !important;
+}
+
+.scheduleBorders {
+  border: 1px solid rgb(158, 148, 148);
+  padding: 0 30px 30px 30px;
+  margin: 0px -50px;
+}

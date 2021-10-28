@@ -1,0 +1,52 @@
+parameters:
+- name: isFullBuild
+  type: boolean
+  default: false
+- name: targetFolderChangePath
+  type: string
+  default: ""
+- name: deploymentEnv
+  type: string
+  default: ""
+- name: deploymentSubscription
+  type: string
+  default: ""
+- name: deploymentResourceGroup
+  type: string
+  default: ""
+- name: filePath
+  type: string
+  default: ""
+
+steps:
+    #Check if a folder changed
+    - task: PowerShell@2
+      condition: ne(${{parameters.isFullBuild}}, True)
+      name: TargetFolderChangedSketchWeb
+      inputs:
+        targetType: 'filePath'
+        filePath: 'AzurePipes/Script/CheckIfFolderModifiedGit.ps1'
+        arguments: -folder '${{parameters.targetFolderChangePath}}'
+
+    #Copy parameters file
+    - script: "copy /D /Y ptas_SketchParams.${{parameters.deploymentEnv}}.js ptas_SketchParams.js"
+      condition: or(eq(variables['TargetFolderChangedSketchWeb.FolderChanged'], 'True'), ${{parameters.isFullBuild}})
+      workingDirectory: "${{parameters.filePath}}"
+
+    #Enable static website
+    - task: AzurePowerShell@4
+      condition: or(eq(variables['TargetFolderChangedSketchWeb.FolderChanged'], 'True'), ${{parameters.isFullBuild}})
+      inputs:
+          azureSubscription: '${{parameters.deploymentSubscription}}'
+          ScriptPath: 'AzurePipes/Script/EnableStaticWebsite.ps1'
+          ScriptArguments: '-DeploymentResourceGroup ${{parameters.deploymentResourceGroup}} -StorageAccountName "ptas${{parameters.deploymentEnv}}storagepremium" -IndexDocumentName "index.html"'
+          azurePowerShellVersion: LatestVersion
+
+    #Copy files to blob storage container
+    - task: AzurePowerShell@4
+      condition: or(eq(variables['TargetFolderChangedSketchWeb.FolderChanged'], 'True'), ${{parameters.isFullBuild}})
+      inputs:
+          azureSubscription: '${{parameters.deploymentSubscription}}'
+          ScriptPath: 'AzurePipes/Script/BlobStorageDeploy.ps1'
+          ScriptArguments: '-DeploymentResourceGroup ${{parameters.deploymentResourceGroup}} -StorageAccountName "ptas${{parameters.deploymentEnv}}storagepremium" -FilePath "${{parameters.filePath}}" -Container "`$web"'
+          azurePowerShellVersion: LatestVersion

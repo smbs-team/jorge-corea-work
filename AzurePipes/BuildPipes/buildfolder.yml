@@ -1,0 +1,81 @@
+parameters:
+- name: folder
+  type: string 
+  default: "Authentication"
+- name: isFullBuild
+  type: boolean
+  default: true
+- name: useNugetRestoreCommand
+  type: boolean
+  default: false
+- name: hasUnitTests
+  type: boolean
+  default: true
+- name: aditionalNugetRestoreSteps
+  type: stepList
+  default: []
+
+steps:
+    - task: PowerShell@2
+      condition: ne(${{parameters.isFullBuild}}, True)
+      name: TargetFolderChanged${{parameters.folder}}
+      inputs:
+        targetType: 'filePath'
+        filePath: 'AzurePipes/Script/CheckIfFolderModifiedGit.ps1'
+        arguments: -folder '${{parameters.folder}}/*'
+    - task: DotNetCoreCLI@2
+      displayName: "DotNetCore Nuget Restore:  ${{parameters.folder}}"
+      condition: and(or(eq(variables['TargetFolderChanged${{parameters.folder}}.FolderChanged'], 'True'),  ${{parameters.isFullBuild}}), not(${{parameters.useNugetRestoreCommand}}))
+      inputs:
+        command: restore
+        projects: '${{parameters.folder}}/**/*.csproj'
+        feedsToUse: "select"
+        vstsFeed: "Stable"
+        includeNuGetOrg: true
+    - task: NuGetCommand@2
+      condition: and(or(eq(variables['TargetFolderChanged${{parameters.folder}}.FolderChanged'], 'True'), ${{parameters.isFullBuild}}), ${{parameters.useNugetRestoreCommand}})
+      displayName: "NuggetCommand2 Nuget Restore:  ${{parameters.folder}}"
+      inputs:
+        command: restore
+        restoreSolution: "${{parameters.folder}}/**/*.sln"
+        feedsToUse: "select"
+        vstsFeed: "Stable"
+    - ${{ each step in parameters.aditionalNugetRestoreSteps }}:
+      - ${{ each pair in step }}:
+          ${{ pair.key }}: ${{ pair.value }}       
+    - task: VSBuild@1
+      displayName: "VSBuild: ${{parameters.folder}}"
+      condition: or(eq(variables['TargetFolderChanged${{parameters.folder}}.FolderChanged'], 'True'), ${{parameters.isFullBuild}})
+      inputs:
+        solution: '${{parameters.folder}}/**/*.sln'
+        msbuildArgs: /p:SkipInvalidConfigurations=true
+        platform: "Any CPU"
+        configuration: "Debug"
+    - task: DotNetCoreCLI@2
+      displayName: "VSTest:  ${{parameters.folder}}"
+      condition: or(eq(variables['TargetFolderChanged${{parameters.folder}}.FolderChanged'], 'True'), ${{parameters.isFullBuild}})
+      inputs:
+        command: test
+        projects: "${{parameters.folder}}/**/*UnitTest*.csproj"
+        arguments: "--verbosity d --no-build --no-restore --configuration Debug /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura"
+        timeoutInMinutes: 10
+        nobuild: true    
+    - task: PowerShell@2
+      condition: or(eq(variables['TargetFolderChanged${{parameters.folder}}.FolderChanged'], 'True'), ${{parameters.isFullBuild}})
+      name: CoberturaGeneratedFor${{parameters.folder}}
+      inputs:
+        targetType: 'filePath'
+        filePath: 'AzurePipes/Script/CheckIfFileExists.ps1'
+        arguments: -path "$(Build.SourcesDirectory)\${{parameters.folder}}" -file "coverage.cobertura.xml"
+    - script: reportgenerator -reports:$(Build.SourcesDirectory)/${{parameters.folder}}/**/coverage.cobertura.xml -targetdir:$(Build.SourcesDirectory)/${{parameters.folder}}/CodeCoverage -reporttypes:HtmlInline_AzurePipelines;Cobertura
+      condition: and(or(eq(variables['TargetFolderChanged${{parameters.folder}}.FolderChanged'], 'True'), ${{parameters.isFullBuild}}), eq(variables['CoberturaGeneratedFor${{parameters.folder}}.FileFound'], 'True'))
+      displayName: "Create Code coverage report:  ${{parameters.folder}}"
+      continueOnError: true
+    - task: PublishCodeCoverageResults@1
+      condition: and(or(eq(variables['TargetFolderChanged${{parameters.folder}}.FolderChanged'], 'True'), ${{parameters.isFullBuild}}), eq(variables['CoberturaGeneratedFor${{parameters.folder}}.FileFound'], 'True'))
+      continueOnError: true
+      displayName: "Publish Code coverage:  ${{parameters.folder}}"
+      inputs:
+        codeCoverageTool: Cobertura
+        summaryFileLocation: "$(Build.SourcesDirectory)/${{parameters.folder}}/CodeCoverage/Cobertura.xml"
+        reportDirectory: "$(Build.SourcesDirectory)/${{parameters.folder}}/CodeCoverage"

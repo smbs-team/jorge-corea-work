@@ -1,0 +1,8 @@
+﻿apiVersion: "aadpodidentity.k8s.io/v1"
+kind: AzureIdentity
+metadata:
+  name: ptas-test-customsearchesworker-identity
+spec:
+  type: 0
+  resourceID: "/subscriptions/e2e5ecc4-5bf0-4dc0-9d85-fdbcaebd8740/resourcegroups/DunphyAKSTest/providers/Microsoft.ManagedIdentity/userAssignedIdentities/ptas-test-customsearchesworker-identity"
+  clientID: "c0f5fc59-fe1c-430a-9e03-09549ff2a3b1"

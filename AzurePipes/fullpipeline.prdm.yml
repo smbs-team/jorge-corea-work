@@ -1,0 +1,44 @@
+trigger:
+  branches:
+    include:
+      - master
+
+parameters:
+  - name: forcePreReqDeployment
+    type: boolean
+    default: false
+  - name: forceFullBuild
+    type: boolean
+    default: false
+  - name: deployData
+    type: boolean
+    default: false
+  - name: deployKubernetes
+    type: boolean
+    default: false
+
+extends:
+  template: fullpipeline.yml
+  parameters:
+    isFullBuild: ${{parameters.forceFullBuild}}
+    deploy: true
+    deployData: ${{parameters.deployData}}
+    deployKubernetes: ${{parameters.deployKubernetes}}
+    forcePreReqDeployment: ${{parameters.forcePreReqDeployment}}
+    deploymentResourceGroup: "ptas-prodmaint-resourcegroup"
+    deploymentEnv: "PRDM"
+    deploymentEnvLong: "PRODMAINT"
+    deploymentLocation: "West US"
+    deploymentSubscription: "Azure-Staging"
+    deploymentKeyVaultName: "ptas-prodmaint-keyvault"
+    deploymentAppRegistration: "vsts-staging-reg"
+    ptasAppRegistration: "ptas-prodmaint-app-seniorexemption"
+    #ptasAppRegistration: ptas-training-app-seniorexemption
+    deploymentSslKeyVaultName: sslcert-prod-keyvault
+    deploymentSslCertName: AZURE-Wildcard-KINGCOUNTY-GOV
+    databaseServerName: "Kcitazrsqluat01.database.windows.net"
+    databaseName: "PTASprodmaint"
+    #databaseName: "PTAStrain"
+    dynamicsUrl: "https://ptas-prodmaint.crm9.dynamics.com"
+    #dynamicsUrl: "https://ptas-training.crm9.dynamics.com"
+    

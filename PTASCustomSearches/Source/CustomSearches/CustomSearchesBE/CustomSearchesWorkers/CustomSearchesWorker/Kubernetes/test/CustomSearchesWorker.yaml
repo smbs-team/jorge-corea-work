@@ -1,0 +1,45 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: ptas-test-customsearches-worker
+    aadpodidbinding: ptas-test-customsearchesworker-identity
+  name: ptas-test-customsearches-worker-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ptas-test-customsearches-worker
+  template:
+    metadata:
+      labels:
+        app: ptas-test-customsearches-worker
+        aadpodidbinding: ptas-test-customsearchesworker-identity
+    spec:
+      containers:
+        - name: ptas-test-customsearches-worker
+          image: dunphyacrtest3.azurecr.io/servercore/customsearchesworker-test:1.10
+          imagePullPolicy: Always
+          volumeMounts:
+            - mountPath: "/mapserver/map-share"
+              name: layers-test-fileshare
+            - mountPath: "/syncmobile"
+              name: syncmobile-test-fileshare
+      nodeSelector:
+        kubernetes.io/os: windows
+      tolerations:
+        - key: "kubernetes.io/os"
+          operator: "Equal"
+          value: "windows"
+          effect: "NoSchedule"
+      volumes:
+        - name: layers-test-fileshare
+          azureFile:
+            secretName: storage-secret-test
+            shareName: layers
+            readOnly: false
+        - name: syncmobile-test-fileshare
+          azureFile:
+            secretName: storage-secret-test
+            shareName: syncdb
+            readOnly: false

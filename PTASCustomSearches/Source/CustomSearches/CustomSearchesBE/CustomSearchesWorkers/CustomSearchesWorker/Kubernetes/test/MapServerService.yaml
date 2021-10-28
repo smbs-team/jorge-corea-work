@@ -1,0 +1,70 @@
+﻿apiVersion: v1
+kind: Service
+metadata:
+  name: ptas-test-mapserver-service
+  labels:
+    app: ptas-test-mapserver-service
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:
+    app: ptas-test-mapserver-service
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app: ptas-test-mapserver-service
+  name: ptas-test-mapserver-service-set
+spec:
+  serviceName: ptas-test-mapserver-service
+  replicas: 2
+  updateStrategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: ptas-test-mapserver-service
+  template:
+    metadata:
+      labels:
+        app: ptas-test-mapserver-service
+    spec:
+      containers:
+        - name: mapserver-service-container
+          image: dunphyacrtest3.azurecr.io/linux/mapserver:1.0
+          lifecycle:
+            postStart:
+              exec:
+                command:
+                  [
+                    "/bin/cp",
+                    "-uvfpR",
+                    "/mapserver/map-share/mapserver/.",
+                    "/mapserver/map-cache/",
+                  ]
+          imagePullPolicy: Always
+          volumeMounts:
+            - mountPath: "/mapserver/map-cache"
+              name: mapserver-persistent-volume
+            - mountPath: "/mapserver/map-share"
+              name: layers-test-fileshare
+      nodeSelector:
+        kubernetes.io/os: linux
+      volumes:
+        - name: layers-test-fileshare
+          azureFile:
+            secretName: storage-secret-test
+            shareName: layers
+            readOnly: true
+  volumeClaimTemplates:
+    - metadata:
+        name: mapserver-persistent-volume
+        annotations:
+          volume.beta.kubernetes.io/storage-class: managed-premium
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 250Gi

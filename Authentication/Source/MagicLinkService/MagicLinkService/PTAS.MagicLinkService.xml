@@ -1,0 +1,640 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PTAS.MagicLinkService</name>
+    </assembly>
+    <members>
+        <member name="T:PTAS.MagicLinkService.Controllers.ADTokenExchangeController">
+            <summary>
+            Controller that emits b2c tokens hints when presented with a QR token.  (QR tokens are validated against last login).
+            </summary>
+            <seealso cref="T:Microsoft.AspNetCore.Mvc.ControllerBase" />
+        </member>
+        <member name="F:PTAS.MagicLinkService.Controllers.ADTokenExchangeController.httpMessageHandler">
+            <summary>
+            The HTTP message handler.  Used for unit testing purposes.
+            </summary>
+        </member>
+        <member name="M:PTAS.MagicLinkService.Controllers.ADTokenExchangeController.#ctor(Microsoft.Extensions.Options.IOptions{PTAS.MagicLinkService.Models.AppSettingsModel},Microsoft.AspNetCore.Hosting.IHostingEnvironment,Microsoft.Extensions.Logging.ILogger{PTAS.MagicLinkService.Controllers.IdentityController})">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTAS.MagicLinkService.Controllers.ADTokenExchangeController" /> class.
+            </summary>
+            <param name="appSettings">The application settings.</param>
+            <param name="hostingEnvironment">The hosting environment.</param>
+            <param name="logger">The logger.</param>
+        </member>
+        <member name="M:PTAS.MagicLinkService.Controllers.ADTokenExchangeController.Get">
+            <summary>
+            Get method for the controller.  Exchanges an AD Token sent as Authorization for B2C Id Token with the user UPN as email.
+            </summary>
+            <returns>The Id Token for the AD User.</returns>
+        </member>
+        <member name="M:PTAS.MagicLinkService.Controllers.ADTokenExchangeController.GetBearerToken(System.String)">
+            <summary>
+            Gets the bearer token from B2C.
+            </summary>
+            <param name="userEmail">The user email.</param>
+            <returns>A Bearer Token.</returns>
+        </member>
+        <member name="M:PTAS.MagicLinkService.Controllers.ADTokenExchangeController.ValidateJWT(System.String[])">
+            <summary>
+            Validates the JWT.
+            </summary>
+            <param name="authHeaderParts">The authentication header parts.</param>
+            <returns>
+            The user email if the token is valid.
+            </returns>
+        </member>
+        <member name="T:PTAS.MagicLinkService.Controllers.IdentityController">
+            <summary>
+            Controller that builds an authenticator (magic) link and sends it by email to the end user.
+            </summary>
+            <seealso cref="T:Microsoft.AspNetCore.Mvc.ControllerBase" />
+        </member>
+        <member name="M:PTAS.MagicLinkService.Controllers.IdentityController.#ctor(Microsoft.Extensions.Options.IOptions{PTAS.MagicLinkService.Models.AppSettingsModel},Microsoft.AspNetCore.Hosting.IHostingEnvironment,Microsoft.Extensions.Logging.ILogger{PTAS.MagicLinkService.Controllers.IdentityController})">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTAS.MagicLinkService.Controllers.IdentityController" /> class.
+            </summary>
+            <param name="appSettings">The application settings.</param>
+            <param name="hostingEnvironment">The hosting environment.</param>
+            <param name="logger">The logger.</param>
+        </member>
+        <member name="M:PTAS.MagicLinkService.Controllers.IdentityController.Post(PTAS.MagicLinkService.Models.InputClaimsModel)">
+            <summary>
+            Post method for the controller.  Handles the sending of the email with the magic link.
+            </summary>
+            <param name="inputClaims">The input claims.</param>
+            <returns>
+            The status code depending on the result of the operation.
+            </returns>
+        </member>
+        <member name="M:PTAS.MagicLinkService.Controllers.IdentityController.BuildQrToken(System.Guid)">
+            <summary>
+            Builds the qr token.
+            </summary>
+            <param name="qrGuid">The guid that identifies the qr token.</param>
+            <returns>The id token hint.</returns>
+        </member>
+        <member name="M:PTAS.MagicLinkService.Controllers.IdentityController.BuildUrl(System.String,System.String,System.String)">
+            <summary>
+            Builds the URL.
+            </summary>
+            <param name="token">The token.</param>
+            <param name="qrToken">The qr token.</param>
+            <param name="redirectUrl">The redirect URL override coming from b2c.</param>
+            <returns>
+            B2c Url.
+            </returns>
+        </member>
+        <member name="M:PTAS.MagicLinkService.Controllers.IdentityController.SaveQrEvidence(System.Guid,System.String)">
+            <summary>
+            Saves the qr evidence for later check during qr token validation.
+            </summary>
+            <param name="qrGuid">The qr unique identifier.</param>
+            <param name="email">The email.</param>
+        </member>
+        <member name="T:PTAS.MagicLinkService.Controllers.IdentityControllerBase">
+            <summary>
+            Base controller that builds id tokens.
+            </summary>
+            <seealso cref="T:Microsoft.AspNetCore.Mvc.ControllerBase" />
+        </member>
+        <member name="F:PTAS.MagicLinkService.Controllers.IdentityControllerBase.signingCredentials">
+            <summary>
+            The signing credentials.
+            </summary>
+        </member>
+        <member name="F:PTAS.MagicLinkService.Controllers.IdentityControllerBase.appSettings">
+            <summary>
+            The application settings.
+            </summary>
+        </member>
+        <member name="F:PTAS.MagicLinkService.Controllers.IdentityControllerBase.hostingEnvironment">
+            <summary>
+            The hosting environment.
+            </summary>
+        </member>
+        <member name="F:PTAS.MagicLinkService.Controllers.IdentityControllerBase.logger">
+            <summary>
+            The logger.
+            </summary>
+        </member>
+        <member name="F:PTAS.MagicLinkService.Controllers.IdentityControllerBase.cloudStorageConfigurationProvider">
+            <summary>
+            The cloud storage configuration provider.
+            </summary>
+        </member>
+        <member name="M:PTAS.MagicLinkService.Controllers.IdentityControllerBase.#ctor(Microsoft.Extensions.Options.IOptions{PTAS.MagicLinkService.Models.AppSettingsModel},Microsoft.AspNetCore.Hosting.IHostingEnvironment,Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTAS.MagicLinkService.Controllers.IdentityControllerBase" /> class.
+            </summary>
+            <param name="appSettings">The application settings.</param>
+            <param name="hostingEnvironment">The hosting environment.</param>
+            <param name="logger">The logger.</param>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Controllers.IdentityControllerBase.SigningCredentials">
+            <summary>
+            Gets the signing credentials.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Controllers.IdentityControllerBase.Logger">
+            <summary>
+            Gets the logger.
+            </summary>
+            <value>
+            The logger.
+            </value>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Controllers.IdentityControllerBase.AppSettings">
+            <summary>
+            Gets the application settings.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Controllers.IdentityControllerBase.HostingEnvironment">
+            <summary>
+            Gets the hosting environment.
+            </summary>
+        </member>
+        <member name="M:PTAS.MagicLinkService.Controllers.IdentityControllerBase.GetTableStorageProvider">
+            <summary>
+            Gets the get table storage provider.
+            </summary>
+            <returns>The storage provider.</returns>
+        </member>
+        <member name="M:PTAS.MagicLinkService.Controllers.IdentityControllerBase.BuildIdToken(System.String)">
+            <summary>
+            Builds the identifier token.
+            </summary>
+            <param name="email">The email.</param>
+            <returns>The id token hint.</returns>
+        </member>
+        <member name="T:PTAS.MagicLinkService.Controllers.OidcController">
+            <summary>
+            The OIDC Controller.
+            </summary>
+            <seealso cref="T:Microsoft.AspNetCore.Mvc.Controller" />
+        </member>
+        <member name="F:PTAS.MagicLinkService.Controllers.OidcController.signingCredentials">
+            <summary>
+            The signing credentials.
+            </summary>
+        </member>
+        <member name="F:PTAS.MagicLinkService.Controllers.OidcController.appSettings">
+            <summary>
+            The application settings.
+            </summary>
+        </member>
+        <member name="F:PTAS.MagicLinkService.Controllers.OidcController.hostingEnvironment">
+            <summary>
+            The hosting environment.
+            </summary>
+        </member>
+        <member name="M:PTAS.MagicLinkService.Controllers.OidcController.#ctor(Microsoft.Extensions.Options.IOptions{PTAS.MagicLinkService.Models.AppSettingsModel},Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTAS.MagicLinkService.Controllers.OidcController"/> class.
+            </summary>
+            <param name="appSettings">The application settings.</param>
+            <param name="hostingEnvironment">The hosting environment.</param>
+        </member>
+        <member name="M:PTAS.MagicLinkService.Controllers.OidcController.Metadata">
+            <summary>
+            Metadata endpoint for the service.
+            </summary>
+            <returns>The metadata of the open id endpoint.</returns>
+        </member>
+        <member name="M:PTAS.MagicLinkService.Controllers.OidcController.JwksDocument">
+            <summary>
+            Creates a serialized JWKSs document.
+            </summary>
+            <returns>The serialized document.</returns>
+        </member>
+        <member name="T:PTAS.MagicLinkService.Controllers.QrTokenController">
+            <summary>
+            Controller that emits b2c tokens hints when presented with a QR token.  (QR tokens are validated against last login).
+            </summary>
+            <seealso cref="T:Microsoft.AspNetCore.Mvc.ControllerBase" />
+        </member>
+        <member name="M:PTAS.MagicLinkService.Controllers.QrTokenController.#ctor(Microsoft.Extensions.Options.IOptions{PTAS.MagicLinkService.Models.AppSettingsModel},Microsoft.AspNetCore.Hosting.IHostingEnvironment,Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTAS.MagicLinkService.Controllers.QrTokenController" /> class.
+            </summary>
+            <param name="appSettings">The application settings.</param>
+            <param name="hostingEnvironment">The hosting environment.</param>
+            <param name="logger">The logger.</param>
+        </member>
+        <member name="M:PTAS.MagicLinkService.Controllers.QrTokenController.Get(System.String,System.String)">
+            <summary>
+            Post method for the controller.  Handles the sending of the email with the magic link.
+            </summary>
+            <param name="userEmail">The email of the user.</param>
+            <param name="qrToken">The qr token.</param>
+            <returns>
+            A token hint.
+            </returns>
+        </member>
+        <member name="M:PTAS.MagicLinkService.Controllers.QrTokenController.ValidateQrToken(System.String,System.String)">
+            <summary>
+            Builds the qr token.
+            </summary>
+            <param name="email">The email.</param>
+            <param name="qrToken">The qr token.</param>
+            <returns>
+            True if the presented token is valid.
+            </returns>
+        </member>
+        <member name="T:PTAS.MagicLinkService.CryptoHelper.AesCtrCryptoHelper">
+            <summary>
+            Helper to encrypt information using AES-CTR.
+            </summary>
+        </member>
+        <member name="F:PTAS.MagicLinkService.CryptoHelper.AesCtrCryptoHelper.mode">
+            <summary>
+            The cypher mode.
+            </summary>
+        </member>
+        <member name="M:PTAS.MagicLinkService.CryptoHelper.AesCtrCryptoHelper.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTAS.MagicLinkService.CryptoHelper.AesCtrCryptoHelper" /> class.
+            </summary>
+        </member>
+        <member name="M:PTAS.MagicLinkService.CryptoHelper.AesCtrCryptoHelper.Encrypt(System.String,System.Byte[],System.Byte[])">
+            <summary>
+            Encrypts the specified string.
+            </summary>
+            <param name="plain">The plain string.</param>
+            <param name="key">The key.</param>
+            <param name="iv">The iv.</param>
+            <returns>The encrypted string.</returns>
+        </member>
+        <member name="M:PTAS.MagicLinkService.CryptoHelper.AesCtrCryptoHelper.Decrypt(System.String,System.Byte[],System.Byte[])">
+            <summary>
+            Decrypts the specified cipher.
+            </summary>
+            <param name="cipher">The cipher.</param>
+            <param name="key">The key.</param>
+            <param name="iv">The iv.</param>
+            <returns>The decrypted cypher.</returns>
+        </member>
+        <member name="T:PTAS.MagicLinkService.Models.AppSettingsModel">
+            <summary>
+            Application Settings Model.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.AppSettingsModel.B2CTenant">
+            <summary>
+            Gets or sets the B2CTenant setting.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.AppSettingsModel.B2CPolicy">
+            <summary>
+            Gets or sets the B2CPolicy setting.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.AppSettingsModel.B2CClientId">
+            <summary>
+            Gets or sets the B2CClientId setting.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.AppSettingsModel.B2CRedirectUri">
+            <summary>
+            Gets or sets the B2CRedirectUri setting.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.AppSettingsModel.B2CSignUpUrl">
+            <summary>
+            Gets or sets the B2CSignUpUrl setting.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.AppSettingsModel.Scope">
+            <summary>
+            Gets or sets the Scope for the app registration.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.AppSettingsModel.SigningCertAlgorithm">
+            <summary>
+            Gets or sets the SigningCertAlgorithm setting.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.AppSettingsModel.SigningCertThumbprint">
+            <summary>
+            Gets or sets the SigningCertThumbprint setting.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.AppSettingsModel.SMTPFromAddress">
+            <summary>
+            Gets or sets the SMTPFromAddress setting.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.AppSettingsModel.FromDisplayName">
+            <summary>
+            Gets or sets the fromDisplayName setting.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.AppSettingsModel.SMTPSubject">
+            <summary>
+            Gets or sets the SMTPSubject setting.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.AppSettingsModel.LinkExpiresAfterMinutes">
+            <summary>
+            Gets or sets the LinkExpiresAfterMinutesc setting.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.AppSettingsModel.ApimEndpoint">
+            <summary>
+            Gets or sets the ApimEndpoint setting.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.AppSettingsModel.ApimSubscriptionKey">
+            <summary>
+            Gets or sets the ApimSubscriptionKey setting.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.AppSettingsModel.NotificatioServiceResourceId">
+            <summary>
+            Gets or sets the NotificatioServiceResourceId setting.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.AppSettingsModel.UndeliverableEmailRecipient">
+            <summary>
+            Gets or sets the UndeliverableEmailRecipient setting.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.AppSettingsModel.MagicLinkServiceClientId">
+            <summary>
+            Gets or sets the MagicLinkServiceClientId setting.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.AppSettingsModel.MagicLinkServiceClientSecret">
+            <summary>
+            Gets or sets the MagicLinkServiceClientSecret setting.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.AppSettingsModel.QrTokenSigningKey">
+            <summary>
+            Gets or sets the QrTokenSigningKey setting.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.AppSettingsModel.QrTokenDurationInSeconds">
+            <summary>
+            Gets or sets the QrTokenDurationInSeconds setting.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.AppSettingsModel.KCTenantId">
+            <summary>
+            Gets or sets the KCTenantId setting.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.AppSettingsModel.KCTenant">
+            <summary>
+            Gets or sets the KicTenant setting.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.AppSettingsModel.PTASAppRegistrationId">
+            <summary>
+            Gets or sets the PTASAppRegistrationId setting.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.AppSettingsModel.StorageConnectionString">
+            <summary>
+            Gets or sets the StorageConnectionString setting.
+            </summary>
+        </member>
+        <member name="T:PTAS.MagicLinkService.Models.B2CResponseModel">
+            <summary>
+            B2C Response Model.
+            </summary>
+        </member>
+        <member name="M:PTAS.MagicLinkService.Models.B2CResponseModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTAS.MagicLinkService.Models.B2CResponseModel"/> class.
+            </summary>
+        </member>
+        <member name="M:PTAS.MagicLinkService.Models.B2CResponseModel.#ctor(System.String,System.Net.HttpStatusCode)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTAS.MagicLinkService.Models.B2CResponseModel"/> class.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="status">The status.</param>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.B2CResponseModel.Version">
+            <summary>
+            Gets or sets the version.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.B2CResponseModel.Status">
+            <summary>
+            Gets or sets the status.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.B2CResponseModel.UserMessage">
+            <summary>
+            Gets or sets the user message.
+            </summary>
+        </member>
+        <member name="T:PTAS.MagicLinkService.Models.ErrorViewModel">
+            <summary>
+            The Error View Model.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.ErrorViewModel.RequestId">
+            <summary>
+            Gets or sets the request identifier.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.ErrorViewModel.ShowRequestId">
+            <summary>
+            Gets a value indicating whether to the show request identifier.
+            </summary>
+        </member>
+        <member name="T:PTAS.MagicLinkService.Models.InputClaimsModel">
+            <summary>
+            Input Claims Model.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.InputClaimsModel.Email">
+            <summary>
+            Gets or sets the email.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.InputClaimsModel.RedirectUrlOverride">
+            <summary>
+            Gets or sets the email.
+            </summary>
+        </member>
+        <member name="M:PTAS.MagicLinkService.Models.InputClaimsModel.Parse(System.String)">
+            <summary>
+            De-serializes the specified json.
+            </summary>
+            <param name="json">The json.</param>
+            <returns>The de-serialized model.</returns>
+        </member>
+        <member name="M:PTAS.MagicLinkService.Models.InputClaimsModel.ToString">
+            <summary>
+            Converts to string (serializes the model).
+            </summary>
+            <returns>The serialized model.</returns>
+        </member>
+        <member name="T:PTAS.MagicLinkService.Models.JwksKeyModel">
+            <summary>
+            The JWKS key model.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.JwksKeyModel.Kid">
+            <summary>
+            Gets or sets the kid.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.JwksKeyModel.Nbf">
+            <summary>
+            Gets or sets the NBF.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.JwksKeyModel.Use">
+            <summary>
+            Gets or sets the use property.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.JwksKeyModel.Kty">
+            <summary>
+            Gets or sets the kty.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.JwksKeyModel.Alg">
+            <summary>
+            Gets or sets the alg.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.JwksKeyModel.X5C">
+            <summary>
+            Gets or sets the x5 c.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.JwksKeyModel.X5T">
+            <summary>
+            Gets or sets the x5 t.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.JwksKeyModel.N">
+            <summary>
+            Gets or sets the n.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.JwksKeyModel.E">
+            <summary>
+            Gets or sets the e.
+            </summary>
+        </member>
+        <member name="M:PTAS.MagicLinkService.Models.JwksKeyModel.FromSigningCredentials(Microsoft.IdentityModel.Tokens.X509SigningCredentials)">
+            <summary>
+            Creates a model from the signing credentials.
+            </summary>
+            <param name="signingCredentials">The signing credentials.</param>
+            <returns>The newly created model.</returns>
+            <exception cref="T:System.Exception">Certificate is not an RSA certificate.</exception>
+        </member>
+        <member name="T:PTAS.MagicLinkService.Models.JwksModel">
+            <summary>
+            JWKS Model.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.JwksModel.Keys">
+            <summary>
+            Gets or sets the keys collection.
+            </summary>
+        </member>
+        <member name="T:PTAS.MagicLinkService.Models.OidcModel">
+            <summary>
+            The OIDC Model.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.OidcModel.Issuer">
+            <summary>
+            Gets or sets the issuer.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.OidcModel.JwksUri">
+            <summary>
+            Gets or sets the JWKS URI.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.OidcModel.IdTokenSigningAlgValuesSupported">
+            <summary>
+            Gets or sets the supported values collection.
+            </summary>
+        </member>
+        <member name="T:PTAS.MagicLinkService.Models.QrTokenEvidenceEntity">
+            <summary>
+            Entity that represents the information about a MagicLinkLogin.
+            </summary>
+            <seealso cref="T:Microsoft.WindowsAzure.Storage.Table.TableEntity" />
+        </member>
+        <member name="F:PTAS.MagicLinkService.Models.QrTokenEvidenceEntity.TableName">
+            <summary>
+            The table name for this entity.
+            </summary>
+        </member>
+        <member name="F:PTAS.MagicLinkService.Models.QrTokenEvidenceEntity.QrTokenEvidencePartitionKey">
+            <summary>
+            The constant partition key for this entity.
+            </summary>
+        </member>
+        <member name="M:PTAS.MagicLinkService.Models.QrTokenEvidenceEntity.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTAS.MagicLinkService.Models.QrTokenEvidenceEntity"/> class.
+            </summary>
+        </member>
+        <member name="P:PTAS.MagicLinkService.Models.QrTokenEvidenceEntity.Email">
+            <summary>
+            Gets or sets the user email.
+            </summary>
+        </member>
+        <member name="T:MagicLinkService.Program">
+            <summary>
+            Main program class.
+            </summary>
+        </member>
+        <member name="M:MagicLinkService.Program.Main(System.String[])">
+            <summary>
+            Defines the entry point of the application.
+            </summary>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:MagicLinkService.Program.CreateWebHostBuilder(System.String[])">
+            <summary>
+            Creates the web host builder.
+            </summary>
+            <param name="args">The arguments.</param>
+            <returns>A web host builder.</returns>
+        </member>
+        <member name="T:MagicLinkService.Startup">
+            <summary>
+            Web project startup class.
+            </summary>
+        </member>
+        <member name="M:MagicLinkService.Startup.#ctor(Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MagicLinkService.Startup" /> class.
+            </summary>
+            <param name="env">The env.</param>
+        </member>
+        <member name="P:MagicLinkService.Startup.Configuration">
+            <summary>
+            Gets the configuration.
+            </summary>
+        </member>
+        <member name="M:MagicLinkService.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            </summary>
+            <param name="services">The services.</param>
+        </member>
+        <member name="M:MagicLinkService.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            </summary>
+            <param name="app">The application.</param>
+            <param name="env">The env.</param>
+        </member>
+    </members>
+</doc>

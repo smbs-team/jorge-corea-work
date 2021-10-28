@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Model\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Json.Net" Version="1.0.33" />
+    <PackageReference Include="Microsoft.Azure.Services.AppAuthentication" Version="1.5.0" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.DurableTask" Version="2.2.0" />
+    <PackageReference Include="PTASConnectorHelper" Version="1.0.48" />
+    <PackageReference Include="PTASConnectorSDK" Version="1.0.10" />
+    <PackageReference Include="PTASCRMHelpers" Version="1.0.8" />
+    <PackageReference Include="PTASServicesCommon" Version="1.0.18" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="System.IO.Abstractions" Version="13.2.33" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\PTASExportConnector\PTASExportConnector.csproj" />
+    <ProjectReference Include="..\BaseWorkerLibrary\BaseWorkerLibrary.csproj" />
+  </ItemGroup>
+
+</Project>

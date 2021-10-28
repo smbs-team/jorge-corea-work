@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/ImageSource.ILINX.ContentStore.Domain" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ImageSource.ILINX.ContentStore.Domain" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://edmsimagingtest2.kingcounty.gov/ILINXCSService/ContentStore.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="https://edmsimagingtest2.kingcounty.gov/ILINXCSService/ContentStore.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="https://edmsimagingtest2.kingcounty.gov/ILINXCSService/ContentStore.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/System" />
+  <xs:complexType name="ArrayOfUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="User" nillable="true" type="tns:User" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUser" nillable="true" type="tns:ArrayOfUser" />
+  <xs:complexType name="User">
+    <xs:sequence>
+      <xs:element name="DataAction" type="tns:DataAction" />
+      <xs:element name="Description" nillable="true" type="xs:string" />
+      <xs:element name="EmailAddress" nillable="true" type="xs:string" />
+      <xs:element name="FullName" nillable="true" type="xs:string" />
+      <xs:element name="LastLogin" type="xs:dateTime" />
+      <xs:element name="SecurityToken" nillable="true" type="xs:string" />
+      <xs:element name="UserGroups" nillable="true" type="tns:ArrayOfUserGroup" />
+      <xs:element name="UserId" type="xs:int" />
+      <xs:element name="UserType" type="tns:UserType" />
+      <xs:element name="Username" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="User" nillable="true" type="tns:User" />
+  <xs:simpleType name="DataAction">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NoAction" />
+      <xs:enumeration value="Add" />
+      <xs:enumeration value="Modify" />
+      <xs:enumeration value="Delete" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DataAction" nillable="true" type="tns:DataAction" />
+  <xs:complexType name="ArrayOfUserGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UserGroup" nillable="true" type="tns:UserGroup" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUserGroup" nillable="true" type="tns:ArrayOfUserGroup" />
+  <xs:complexType name="UserGroup">
+    <xs:sequence>
+      <xs:element name="DataAction" type="tns:DataAction" />
+      <xs:element name="Description" nillable="true" type="xs:string" />
+      <xs:element name="GroupType" type="tns:GroupType" />
+      <xs:element name="IsAdmin" type="xs:boolean" />
+      <xs:element name="UserGroupId" type="xs:int" />
+      <xs:element name="UserGroupName" nillable="true" type="xs:string" />
+      <xs:element name="Users" nillable="true" type="tns:ArrayOfUser" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserGroup" nillable="true" type="tns:UserGroup" />
+  <xs:simpleType name="GroupType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="BuiltIn" />
+      <xs:enumeration value="ActiveDirectory" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="GroupType" nillable="true" type="tns:GroupType" />
+  <xs:simpleType name="UserType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="BuiltIn" />
+      <xs:enumeration value="ActiveDirectory" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="UserType" nillable="true" type="tns:UserType" />
+  <xs:complexType name="Repository">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" name="AssociatedRepositoryNames" nillable="true" type="q1:ArrayOfstring" />
+      <xs:element name="DateCreated" type="xs:dateTime" />
+      <xs:element name="FullTextSearch" type="tns:FullTextSearchType" />
+      <xs:element name="InUseByUserName" nillable="true" type="xs:string" />
+      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" name="IndexFields" nillable="true" type="q2:ArrayOfKeyValueOfstringIndexFieldhbz8N4M8" />
+      <xs:element name="LastModifiedByUserName" nillable="true" type="xs:string" />
+      <xs:element name="LastModifiedDate" type="xs:dateTime" />
+      <xs:element name="LinkedServerQuery" nillable="true" type="xs:string" />
+      <xs:element name="RepositoryId" type="xs:int" />
+      <xs:element name="RepositoryName" nillable="true" type="xs:string" />
+      <xs:element name="SearchRestrictions" nillable="true" type="tns:ArrayOfArrayOfSearchDatum" />
+      <xs:element name="SettingsXml" nillable="true" type="xs:string" />
+      <xs:element name="UgPermission" nillable="true" type="tns:UserGroupPermission" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Repository" nillable="true" type="tns:Repository" />
+  <xs:simpleType name="FullTextSearchType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Disabled" />
+      <xs:enumeration value="IndexOnly" />
+      <xs:enumeration value="IndexAndBinary" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="FullTextSearchType" nillable="true" type="tns:FullTextSearchType" />
+  <xs:complexType name="IndexField">
+    <xs:sequence>
+      <xs:element name="AvailableSearchOperators" nillable="true" type="tns:ArrayOfSearchOperator" />
+      <xs:element name="DataAction" type="tns:DataAction" />
+      <xs:element name="DecimalPrecision" type="xs:int" />
+      <xs:element name="DecimalScale" type="xs:int" />
+      <xs:element name="DefaultValue" nillable="true" type="xs:string" />
+      <xs:element name="DisplayName" nillable="true" type="xs:string" />
+      <xs:element name="FieldName" nillable="true" type="xs:string" />
+      <xs:element name="FieldType" type="tns:IndexFieldType" />
+      <xs:element name="FieldValue" nillable="true" type="xs:string" />
+      <xs:element name="HasLookup" type="xs:boolean" />
+      <xs:element name="Hidden" type="xs:boolean" />
+      <xs:element name="IsLinked" type="xs:boolean" />
+      <xs:element name="IsRestricted" type="xs:boolean" />
+      <xs:element name="IsSystemField" type="xs:boolean" />
+      <xs:element name="LinkedTableAlias" nillable="true" type="xs:string" />
+      <xs:element name="LookupInfoXml" nillable="true" type="xs:string" />
+      <xs:element name="MaxFieldLength" type="xs:int" />
+      <xs:element name="MaxLines" type="xs:int" />
+      <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" name="PickListFieldValues" nillable="true" type="q3:ArrayOfstring" />
+      <xs:element name="Readonly" type="xs:boolean" />
+      <xs:element name="Required" type="xs:boolean" />
+      <xs:element name="SearchOperator" type="tns:SearchOperator" />
+      <xs:element name="TablePrefix" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="IndexField" nillable="true" type="tns:IndexField" />
+  <xs:complexType name="ArrayOfSearchOperator">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SearchOperator" type="tns:SearchOperator" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSearchOperator" nillable="true" type="tns:ArrayOfSearchOperator" />
+  <xs:simpleType name="SearchOperator">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Equal" />
+      <xs:enumeration value="GreaterThan" />
+      <xs:enumeration value="GreaterThanOrEqualTo" />
+      <xs:enumeration value="LessThan" />
+      <xs:enumeration value="LessThanOrEqualTo" />
+      <xs:enumeration value="InBetween" />
+      <xs:enumeration value="Contains" />
+      <xs:enumeration value="NotContains" />
+      <xs:enumeration value="NotEqual" />
+      <xs:enumeration value="StartsWith" />
+      <xs:enumeration value="EndsWith" />
+      <xs:enumeration value="ContainsFullText" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="SearchOperator" nillable="true" type="tns:SearchOperator" />
+  <xs:simpleType name="IndexFieldType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="_int" />
+      <xs:enumeration value="_decimal" />
+      <xs:enumeration value="_string" />
+      <xs:enumeration value="_date" />
+      <xs:enumeration value="_bigint" />
+      <xs:enumeration value="_bool" />
+      <xs:enumeration value="_picklist" />
+      <xs:enumeration value="_table" />
+      <xs:enumeration value="_saveToFile" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="IndexFieldType" nillable="true" type="tns:IndexFieldType" />
+  <xs:complexType name="ArrayOfArrayOfSearchDatum">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ArrayOfSearchDatum" nillable="true" type="tns:ArrayOfSearchDatum" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfArrayOfSearchDatum" nillable="true" type="tns:ArrayOfArrayOfSearchDatum" />
+  <xs:complexType name="ArrayOfSearchDatum">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SearchDatum" nillable="true" type="tns:SearchDatum" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSearchDatum" nillable="true" type="tns:ArrayOfSearchDatum" />
+  <xs:complexType name="SearchDatum">
+    <xs:sequence>
+      <xs:element name="Bottom" nillable="true" type="xs:string" />
+      <xs:element name="Conjunction" type="tns:SearchConjunction" />
+      <xs:element name="FieldName" nillable="true" type="xs:string" />
+      <xs:element name="SearchOperator" type="tns:SearchOperator" />
+      <xs:element name="Top" nillable="true" type="xs:string" />
+      <xs:element name="Value" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SearchDatum" nillable="true" type="tns:SearchDatum" />
+  <xs:simpleType name="SearchConjunction">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="And" />
+      <xs:enumeration value="Or" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="SearchConjunction" nillable="true" type="tns:SearchConjunction" />
+  <xs:complexType name="UserGroupPermission">
+    <xs:sequence>
+      <xs:element name="CanAccess" type="xs:boolean" />
+      <xs:element name="CanAccessOffline" type="xs:boolean" />
+      <xs:element name="CanAddOrReorderPages" type="xs:boolean" />
+      <xs:element name="CanAddToDiscussionThread" type="xs:boolean" />
+      <xs:element name="CanAssignPermissions" type="xs:boolean" />
+      <xs:element name="CanCaptureDocuments" type="xs:boolean" />
+      <xs:element name="CanCaptureIndexLater" type="xs:boolean" />
+      <xs:element name="CanChangeScannerSettings" type="xs:boolean" />
+      <xs:element name="CanDeleteOrReplaceDocument" type="xs:boolean" />
+      <xs:element name="CanEmailDocument" type="xs:boolean" />
+      <xs:element name="CanExportIndexFields" type="xs:boolean" />
+      <xs:element name="CanHideAllNonRedactionAnnotations" type="xs:boolean" />
+      <xs:element name="CanModifyRepository" type="xs:boolean" />
+      <xs:element name="CanPrintDocument" type="xs:boolean" />
+      <xs:element name="CanRotateImages" type="xs:boolean" />
+      <xs:element name="CanSearchForDocuments" type="xs:boolean" />
+      <xs:element name="CanSeeAdminTab" type="xs:boolean" />
+      <xs:element name="CanSeeAllVersions" type="xs:boolean" />
+      <xs:element name="CanSeeDiscussionThread" type="xs:boolean" />
+      <xs:element name="CanSeeReportTab" type="xs:boolean" />
+      <xs:element name="CanSeeRestricted" type="xs:boolean" />
+      <xs:element name="CanUnlockDocument" type="xs:boolean" />
+      <xs:element name="CanUpdateIndexValue" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserGroupPermission" nillable="true" type="tns:UserGroupPermission" />
+  <xs:complexType name="AnnotationPermission">
+    <xs:sequence>
+      <xs:element name="CanCreateHighlights" type="xs:boolean" />
+      <xs:element name="CanCreateLineAnnotation" type="xs:boolean" />
+      <xs:element name="CanCreateRedactions" type="xs:boolean" />
+      <xs:element name="CanCreateTextNotes" type="xs:boolean" />
+      <xs:element name="CanDeleteHighlights" type="xs:boolean" />
+      <xs:element name="CanDeleteLineAnnotation" type="xs:boolean" />
+      <xs:element name="CanDeleteRedactions" type="xs:boolean" />
+      <xs:element name="CanDeleteTextNotes" type="xs:boolean" />
+      <xs:element name="CanHideRedactions" type="xs:boolean" />
+      <xs:element name="CanSeeHighlights" type="xs:boolean" />
+      <xs:element name="CanSeeLineAnnotation" type="xs:boolean" />
+      <xs:element name="CanSeeTextNotes" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AnnotationPermission" nillable="true" type="tns:AnnotationPermission" />
+  <xs:complexType name="ContentStoreDocument">
+    <xs:sequence>
+      <xs:element name="Annotations" nillable="true" type="xs:string" />
+      <xs:element name="DiscussionThreadCount" type="xs:int" />
+      <xs:element name="DocumentID" type="ser:guid" />
+      <xs:element name="Files" nillable="true" type="tns:ArrayOfContentStoreFile" />
+      <xs:element name="MetaData" nillable="true" type="tns:ArrayOfContentStoreDocumentMetaData" />
+      <xs:element name="RepositoryName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ContentStoreDocument" nillable="true" type="tns:ContentStoreDocument" />
+  <xs:complexType name="ArrayOfContentStoreFile">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ContentStoreFile" nillable="true" type="tns:ContentStoreFile" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContentStoreFile" nillable="true" type="tns:ArrayOfContentStoreFile" />
+  <xs:complexType name="ContentStoreFile">
+    <xs:sequence>
+      <xs:element name="ContainsLargeFile" type="xs:boolean" />
+      <xs:element name="DocumentID" type="ser:guid" />
+      <xs:element name="FileBits" nillable="true" type="xs:base64Binary" />
+      <xs:element name="FileExtension" nillable="true" type="xs:string" />
+      <xs:element name="FileHash" nillable="true" type="xs:string" />
+      <xs:element name="FileID" type="ser:guid" />
+      <xs:element name="FileSizeInBytes" type="xs:long" />
+      <xs:element name="IsRejected" type="xs:boolean" />
+      <xs:element name="LargeFileName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ContentStoreFile" nillable="true" type="tns:ContentStoreFile" />
+  <xs:complexType name="ArrayOfContentStoreDocumentMetaData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ContentStoreDocumentMetaData" nillable="true" type="tns:ContentStoreDocumentMetaData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContentStoreDocumentMetaData" nillable="true" type="tns:ArrayOfContentStoreDocumentMetaData" />
+  <xs:complexType name="ContentStoreDocumentMetaData">
+    <xs:sequence>
+      <xs:element name="CheckedOutByUserName" nillable="true" type="xs:string" />
+      <xs:element name="CheckedOutDate" type="xs:dateTime" />
+      <xs:element name="CreatedByUserName" nillable="true" type="xs:string" />
+      <xs:element name="DiscussionThreadCount" type="xs:int" />
+      <xs:element name="DocumentID" type="ser:guid" />
+      <xs:element name="EnteredDate" type="xs:dateTime" />
+      <xs:element name="FileID" type="ser:guid" />
+      <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" name="IndexInfo" nillable="true" type="q4:ArrayOfKeyValueOfstringIndexFieldhbz8N4M8" />
+      <xs:element name="IsInWorkflow" type="xs:boolean" />
+      <xs:element name="ModifiedDate" type="xs:dateTime" />
+      <xs:element name="RepositoryName" nillable="true" type="xs:string" />
+      <xs:element name="RowID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ContentStoreDocumentMetaData" nillable="true" type="tns:ContentStoreDocumentMetaData" />
+  <xs:complexType name="ArrayOfDiscussionMessage">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DiscussionMessage" nillable="true" type="tns:DiscussionMessage" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDiscussionMessage" nillable="true" type="tns:ArrayOfDiscussionMessage" />
+  <xs:complexType name="DiscussionMessage">
+    <xs:sequence>
+      <xs:element name="DateCreated" type="xs:dateTime" />
+      <xs:element name="DocumentID" type="ser:guid" />
+      <xs:element name="Id" type="xs:int" />
+      <xs:element name="Message" nillable="true" type="xs:string" />
+      <xs:element name="OverrideData" type="xs:boolean" />
+      <xs:element name="RepositoryId" type="xs:int" />
+      <xs:element name="UserName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DiscussionMessage" nillable="true" type="tns:DiscussionMessage" />
+  <xs:complexType name="ArrayOfContentStoreDocument">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ContentStoreDocument" nillable="true" type="tns:ContentStoreDocument" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContentStoreDocument" nillable="true" type="tns:ArrayOfContentStoreDocument" />
+  <xs:complexType name="ArrayOfIndexField">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="IndexField" nillable="true" type="tns:IndexField" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfIndexField" nillable="true" type="tns:ArrayOfIndexField" />
+  <xs:complexType name="ArrayOfRepository">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Repository" nillable="true" type="tns:Repository" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRepository" nillable="true" type="tns:ArrayOfRepository" />
+  <xs:complexType name="ArrayOfContentStoreDocumentVersionEntry">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ContentStoreDocumentVersionEntry" nillable="true" type="tns:ContentStoreDocumentVersionEntry" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContentStoreDocumentVersionEntry" nillable="true" type="tns:ArrayOfContentStoreDocumentVersionEntry" />
+  <xs:complexType name="ContentStoreDocumentVersionEntry">
+    <xs:sequence>
+      <xs:element name="Comments" nillable="true" type="xs:string" />
+      <xs:element name="DocumentID" type="ser:guid" />
+      <xs:element name="ModifiedByUserName" nillable="true" type="xs:string" />
+      <xs:element name="ModifiedDate" type="xs:dateTime" />
+      <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/System" name="VersionNumber" nillable="true" type="q5:Version" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ContentStoreDocumentVersionEntry" nillable="true" type="tns:ContentStoreDocumentVersionEntry" />
+  <xs:simpleType name="PicklistSortingType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Ascending" />
+      <xs:enumeration value="Descending" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="PicklistSortingType" nillable="true" type="tns:PicklistSortingType" />
+  <xs:complexType name="ArrayOfRepositoryAssociation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RepositoryAssociation" nillable="true" type="tns:RepositoryAssociation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRepositoryAssociation" nillable="true" type="tns:ArrayOfRepositoryAssociation" />
+  <xs:complexType name="RepositoryAssociation">
+    <xs:sequence>
+      <xs:element name="SourceFieldName" nillable="true" type="xs:string" />
+      <xs:element name="SourceRepositoryID" type="xs:long" />
+      <xs:element name="SourceRepositoryName" nillable="true" type="xs:string" />
+      <xs:element name="TargetFieldName" nillable="true" type="xs:string" />
+      <xs:element name="TargetRepositoryID" type="xs:long" />
+      <xs:element name="TargetRepositoryName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RepositoryAssociation" nillable="true" type="tns:RepositoryAssociation" />
+  <xs:complexType name="ArrayOfLinkedServerTableSettings">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LinkedServerTableSettings" nillable="true" type="tns:LinkedServerTableSettings" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLinkedServerTableSettings" nillable="true" type="tns:ArrayOfLinkedServerTableSettings" />
+  <xs:complexType name="LinkedServerTableSettings">
+    <xs:sequence>
+      <xs:element name="LinkedIndexFields" nillable="true" type="tns:ArrayOfIndexField" />
+      <xs:element name="LinkedServerDatabaseName" nillable="true" type="xs:string" />
+      <xs:element name="LinkedServerFieldSettings" nillable="true" type="tns:ArrayOfLinkedServerFieldSettings" />
+      <xs:element name="LinkedServerJoinType" type="tns:JoinTableType" />
+      <xs:element name="LinkedServerName" nillable="true" type="xs:string" />
+      <xs:element name="LinkedServerTableName" nillable="true" type="xs:string" />
+      <xs:element name="LinkedServerTablePrefix" nillable="true" type="xs:string" />
+      <xs:element name="LinkedServerTableSchema" nillable="true" type="xs:string" />
+      <xs:element name="RepositoryID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LinkedServerTableSettings" nillable="true" type="tns:LinkedServerTableSettings" />
+  <xs:complexType name="ArrayOfLinkedServerFieldSettings">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LinkedServerFieldSettings" nillable="true" type="tns:LinkedServerFieldSettings" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLinkedServerFieldSettings" nillable="true" type="tns:ArrayOfLinkedServerFieldSettings" />
+  <xs:complexType name="LinkedServerFieldSettings">
+    <xs:sequence>
+      <xs:element name="LinkedServerFieldName" nillable="true" type="xs:string" />
+      <xs:element name="RepositoryIndexFieldName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LinkedServerFieldSettings" nillable="true" type="tns:LinkedServerFieldSettings" />
+  <xs:simpleType name="JoinTableType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="InnerJoin" />
+      <xs:enumeration value="LeftJoin" />
+      <xs:enumeration value="RightJoin" />
+      <xs:enumeration value="FullOuterJoin" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="JoinTableType" nillable="true" type="tns:JoinTableType" />
+  <xs:complexType name="ArrayOfView">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="View" nillable="true" type="tns:View" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfView" nillable="true" type="tns:ArrayOfView" />
+  <xs:complexType name="View">
+    <xs:sequence>
+      <xs:element name="CreatedByUserName" nillable="true" type="xs:string" />
+      <xs:element name="DateCreated" type="xs:dateTime" />
+      <xs:element name="IsICSView" type="xs:boolean" />
+      <xs:element name="LastModifiedByUserName" nillable="true" type="xs:string" />
+      <xs:element name="LastModifiedDate" type="xs:dateTime" />
+      <xs:element name="SearchQuery" nillable="true" type="xs:string" />
+      <xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" name="SearchQueryRepositoryIDs" nillable="true" type="q6:ArrayOfint" />
+      <xs:element name="ViewAttibutes" nillable="true" type="tns:ViewAttibutes" />
+      <xs:element name="ViewDescription" nillable="true" type="xs:string" />
+      <xs:element name="ViewID" type="xs:long" />
+      <xs:element name="ViewName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="View" nillable="true" type="tns:View" />
+  <xs:complexType name="ViewAttibutes">
+    <xs:sequence>
+      <xs:element name="LockItemFirst" type="xs:boolean" />
+      <xs:element name="SearchInProcess" type="xs:boolean" />
+      <xs:element name="SearchOutOfProcess" type="xs:boolean" />
+      <xs:element name="SearchUnlockedItemsOnly" type="xs:boolean" />
+      <xs:element name="ShowAllItems" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ViewAttibutes" nillable="true" type="tns:ViewAttibutes" />
+  <xs:complexType name="ViewPermission">
+    <xs:sequence>
+      <xs:element name="AutoOpenFirstItemAfterSearching" type="xs:boolean" />
+      <xs:element name="AutoPromptBeforeSearching" type="xs:boolean" />
+      <xs:element name="CanAccess" type="xs:boolean" />
+      <xs:element name="CanMaintainCheckedOutStatus" type="xs:boolean" />
+      <xs:element name="CanRestartCompletedWorkflowItem" type="xs:boolean" />
+      <xs:element name="CanSeeInProcessItems" type="xs:boolean" />
+      <xs:element name="CanUnlockInUseItems" type="xs:boolean" />
+      <xs:element name="CanViewOnly" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ViewPermission" nillable="true" type="tns:ViewPermission" />
+</xs:schema>

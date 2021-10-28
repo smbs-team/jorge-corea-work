@@ -1,0 +1,38 @@
+FROM mcr.microsoft.com/windows/servercore:ltsc2019 
+
+RUN powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))"
+
+#R Dependencies
+#RUN choco install microsoft-r-open -y
+ADD microsoft-r-open-4.0.2.exe c:/temp/microsoft-r-open-4.0.2.exe
+RUN powershell -command C:/temp/microsoft-r-open-4.0.2.exe /quiet
+RUN choco install pandoc -y
+
+#GDAL Install
+ADD python-3.7.9-amd64-webinstall.exe c:/temp/python-webinstall.exe
+RUN powershell c:\temp\python-webinstall.exe /quiet /log c:\temp\python-install-log.txt
+
+ADD https://ptasdevpipetools.blob.core.windows.net/installer/release-1900-x64-gdal-3-2-0-mapserver-7-6-1.zip?sp=r&st=2021-01-11T22:50:47Z&se=2050-01-12T06:50:47Z&spr=https&sv=2019-12-12&sr=b&sig=L7e%2Bgc0kxWCUknTnkOyShqBU4MEMvfE9AFlK%2FcU%2BjN4%3D c:/temp/mapserver-gdal-bin.zip
+ADD SetupGdal.ps1 C:/temp/SetupGdal.ps1
+ADD sqlncli.msi C:/temp/sqlncli.msi 
+RUN msiexec.exe /qn /i c:\temp\sqlncli.msi IACCEPTSQLNCLILICENSETERMS=YES
+RUN powershell -command C:/temp/SetupGdal.ps1
+ADD vcredist C:/MapServer/bin/gdal/plugins
+
+ADD GDAL-3.2.0.win-amd64-py3.7.msi c:/temp/GDAL-python.7.msi
+RUN powershell c:\temp\GDAL-python.7.msi /quiet /log c:\temp\gdal-python-install-log.txt
+
+#Setp Worker
+ADD SetupWorker.ps1 C:/temp/SetupWorker.ps1
+ADD CustomSearchesWorker.zip c:/temp/CustomSearchesWorker.zip
+RUN powershell -command C:/temp/SetupWorker.ps1
+ADD SDKShell.bat C:/MapServer/SDKShell.bat
+ADD StartWorker.bat C:/CustomSearchesWorker/StartWorker.bat 
+ADD rscriptlibrary C:/RScriptWorker/Libraries
+
+#Entry-point Environment Variable
+ENV SDK_ROOT "C:\\MapServer\\"
+ENTRYPOINT C:\CustomSearchesWorker\StartWorker.bat
+
+
+

@@ -1,0 +1,194 @@
+﻿@page "/"
+@using System.Linq;
+@inject D2SSyncHelpers.Services.DBTablesService TableService;
+@inject D2SSyncHelpers.Services.MetadataFromDynamicsService XMLService;
+@inject D2SSyncHelpers.Interfaces.IDataAccessLibrary Database;
+@inject D2SSyncHelpers.Interfaces.IDynamicsRelationsLoader RelationsLoader;
+<h1>Update Database from Dynamics</h1>
+<h2>SQL Tables</h2>
+
+
+<BSModal @ref="ExecuteQueryModal">
+    <BSModalHeader OnClick="@(() => ExecuteQueryModal.Hide())">Update Tables</BSModalHeader>
+    <BSModalBody>
+        <h2>Tables being modified:</h2>
+        <div>
+            <pre>@this.TablesToModify</pre>
+        </div>
+    </BSModalBody>
+    <BSModalFooter>
+        <BSButton Color="Color.Secondary" OnClick="@(() => ExecuteQueryModal.Hide())">Close</BSButton>
+        <BSButton Color="Color.Primary" OnClick="@(async () => await DoExecuteQuery())">Execute Query</BSButton>
+    </BSModalFooter>
+</BSModal>
+
+<BSModal @ref="RebuildFKsModal">
+    <BSModalHeader OnClick="@(() => RebuildFKsModal.Hide())">Rebuild FK's</BSModalHeader>
+    <BSModalBody>
+        <h1>Updating Foreign Keys.</h1>
+        <p>Checking @(TableBeingChecked).</p>
+    </BSModalBody>
+    <BSModalFooter>
+        <BSButton Color="Color.Secondary" OnClick="@(async () => await StopRebuilding())">Cancel Rebuild</BSButton>
+    </BSModalFooter>
+</BSModal>
+
+<BSModal @ref="CheckTablesModal">
+    <BSModalHeader OnClick="@(() => CheckTablesModal.Hide())">Check Tables</BSModalHeader>
+    @if (CheckingTables)
+    {
+        <BSModalBody>
+            <h1>
+                Checking Tables....
+            </h1>
+            <h2>Checking @TableBeingChecked</h2>
+        </BSModalBody>
+        <BSModalFooter>
+            <BSButton Color="Color.Secondary" OnClick="@(async () => await StopCheck())">Cancel Check</BSButton>
+        </BSModalFooter>
+    }
+    else
+    {
+        <BSModalBody>
+            @if (SelectedTables != null)
+            {
+                <div>
+                    <h2>
+                        Will check <strong>@SelectedTables.Length</strong> tables.
+                    </h2>
+                    <p>
+                        @(string.Join(", ", SelectedTables.Select(t => t.Name))).
+                    </p>
+                </div>
+            }
+        </BSModalBody>
+        <BSModalFooter>
+            <BSButton Color="Color.Secondary" OnClick="@(() => CheckTablesModal.Hide())">Close</BSButton>
+            <BSButton Color="Color.Primary" OnClick="@(async () => await DoCheckTables())">Check Tables...</BSButton>
+        </BSModalFooter>
+    }
+</BSModal>
+
+<BSModal @ref="AddTablesModal">
+    <BSModalHeader OnClick="@(() => AddTablesModal.Hide())">Add Table</BSModalHeader>
+    <BSModalBody>
+        @if (XMLTables != null)
+        {
+
+            <form class="form-inline" @onsubmit="e=>DoSearch(e)">
+                <label class="sr-only" for="inlineFormInputName2" @bind="SearchFilter">Search</label>
+                <input @bind="SearchFilter" type="text" class="form-control mb-2 mr-sm-2" placeholder="Search">
+                <button type="submit" class="btn btn-primary mb-2">Search</button>
+            </form>
+            <div>@SearchFilter</div>
+
+            <div style="max-height:30vh; overflow-y:auto">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                <input type="checkbox" @onchange="e=>SelectAllDynamicsTables(e)" />
+                            </th>
+                            <th>
+                                Entity
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var t in this.GetXMLTables())
+                        {
+                            <tr>
+                                <td>
+
+                                    @if (TablesToAdd.Contains(t.Name))
+                                    {
+                                        <input checked type="checkbox" @onchange="e=>ToggleTable(e,t.Name)" />
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox" @onchange="e=>ToggleTable(e,t.Name)" />
+                                    }
+                                </td>
+                                <td>
+
+                                    @t.Name
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        @if (this.TablesToAdd.Any())
+        {
+            <h2>
+                Entities being added:
+            </h2>
+            <div style="max-height:15em;overflow-y:auto;">
+                @string.Join(", ", TablesToAdd)
+            </div>
+        }
+    </BSModalBody>
+    <BSModalFooter>
+        <BSButton Color="Color.Secondary" OnClick="@(() => AddTablesModal.Hide())">Close</BSButton>
+        <BSButton IsDisabled="!TablesToAdd.Any()" Color="Color.Primary" OnClick="@(() => CreateTable())">Add @TablesToAdd.Count() Table(s)</BSButton>
+    </BSModalFooter>
+</BSModal>
+
+@if (!string.IsNullOrEmpty(this.Message))
+{
+    <div class="alert alert-info">
+        @this.Message
+    </div>
+}
+
+@if (Tables != null)
+{
+
+    <div class="card">
+        <div class="card-body">
+            <BSButton IsDisabled="NoneSelected()" Color="Color.Primary" OnClick="_=>CheckTables()">
+                Check Selected Tables
+            </BSButton>
+            <BSButton Color="Color.Secondary" IsDisabled="LoadingXML" OnClick="async _=> await AddEntity()">
+                Add Dynamics Entity
+            </BSButton>
+            <BSButton Color="Color.Secondary" IsDisabled="LoadingXML" OnClick="async _=> await RebuildFKs()">
+                Rebuild FK's
+            </BSButton>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <input type="checkbox" @onchange="e=>SelectAll(e)" />
+                </th>
+                <th>Table name</th>
+                <th>Created</th>
+                <th>Modified</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var table in Tables)
+            {
+                <tr>
+                    <td>
+                        <input checked="@this.IsChecked(table.Name)" type="checkbox" @onchange="eventArgs => { CheckboxClicked(table, eventArgs.Value); }" />
+                    </td>
+                    <td>
+                        @table.Name
+                    </td>
+                    <td>@table.Created</td>
+                    <td>@table.Modified</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p><em>Not Loaded</em></p>
+}

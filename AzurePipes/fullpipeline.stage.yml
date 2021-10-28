@@ -1,0 +1,37 @@
+trigger:
+  branches:
+    include:
+      - master
+
+parameters:
+  - name: forcePreReqDeployment
+    type: boolean
+    default: false
+  - name: forceFullBuild
+    type: boolean
+    default: false
+  - name: deployData
+    type: boolean
+    default: false
+
+
+extends:
+  template: fullpipeline.yml
+  parameters:
+    isFullBuild: ${{parameters.forceFullBuild}}
+    deploy: true
+    deployData: ${{parameters.deployData}}
+    forcePreReqDeployment: ${{parameters.forcePreReqDeployment}}
+    deploymentResourceGroup: "ptas-staging-resourcegroup"
+    deploymentEnv: "STAGE"
+    deploymentEnvLong: "STAGING"
+    deploymentLocation: "West US"
+    deploymentSubscription: "Azure-Test"
+    deploymentKeyVaultName: "ptas-staging-keyvault"
+    deploymentAppRegistration: "vsts-test-reg"
+    ptasAppRegistration: "ptas-staging-app-seniorexemption"
+    deploymentSslKeyVaultName: sslcert-prod-keyvault
+    deploymentSslCertName: AZURE-Wildcard-KINGCOUNTY-GOV
+    databaseServerName: "Kcitazrsqluat01.database.windows.net"
+    databaseName: "PTASStaging"
+    dynamicsUrl: "https://ptas-staging.crm9.dynamics.com"

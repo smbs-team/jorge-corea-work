@@ -1,0 +1,16 @@
+.text-input-ml {
+  text-align: left;
+  margin-top: 8px;
+}
+
+.info-icon {
+  display: inline-block;
+  vertical-align: bottom;
+  margin-bottom: -12px;
+  margin-left: -8px;
+}
+
+.info-icon-alert {
+  display: inline-block;
+  vertical-align: top;
+}

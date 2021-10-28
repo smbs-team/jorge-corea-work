@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <CodeAnalysisRuleSet>..\CustomSearches.ruleset</CodeAnalysisRuleSet>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <CodeAnalysisRuleSet>..\CustomSearches.ruleset</CodeAnalysisRuleSet>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <AdditionalFiles Include="stylecop.json" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.SignalRService" Version="1.2.2" />
+        <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="3.1.12" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.12" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.12" />
+        <PackageReference Include="PTASServicesCommon" Version="1.0.18" />
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\CustomSearchesEFLibrary\CustomSearchesEFLibrary.csproj" />
+        <ProjectReference Include="..\..\CustomSearchesServices\CustomSearchesServicesLibrary\CustomSearchesServicesLibrary.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="Microsoft.Extensions.Logging.Abstractions">
+            <HintPath>..\RScriptWorkerLibrary\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+
+</Project>

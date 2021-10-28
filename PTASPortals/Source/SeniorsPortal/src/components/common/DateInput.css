@@ -1,0 +1,24 @@
+.date-input {
+  text-align: left;
+  position: relative;
+  text-align: left;
+  top: -10px;
+  min-width: 293px;
+}
+
+.date-info-icon {
+  display: inline-block;
+  vertical-align: top;
+  position: absolute;
+  right: 0;
+}
+
+.info-icon-alert {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.date-picker {
+  max-width: 300px;
+  width: 100%;
+}

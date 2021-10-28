@@ -1,0 +1,31 @@
+{
+  "Name": "GisMapDataWrapper",
+  "Categories": [
+    "Hidden"
+  ],
+  "Description": "Fake custom search that wraps GisMapData view",
+  "StoredProcedureName": "SP_Fake",
+  "ColumnDefinitions": [
+    {
+      "columnName": "bldgGrade",
+      "columnType": "int",
+      "columnTypeLength": 0,
+      "canBeUsedAsLookup": true,
+      "columnCategory": "Editable",
+      "isEditable": true,
+      "forceEditLookupExpression": true,
+      "expressions": [
+        {
+          "ExpressionType": "TSQL",
+          "ExpressionRole": "EditLookupExpression",
+          "Script": "SELECT Grade AS Value FROM [dbo].[ValidGrades]"
+        },
+        {
+          "ExpressionType": "TSQL",
+          "ExpressionRole": "RangedValuesOverrideExpression",
+          "Script": "SELECT Grade AS Value FROM [dbo].[ValidGrades]"
+        } 
+      ]
+    }
+  ]
+}

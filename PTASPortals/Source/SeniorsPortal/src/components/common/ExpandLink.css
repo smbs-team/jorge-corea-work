@@ -1,0 +1,19 @@
+.expand-link {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.expand-link-icon {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.expand-link-label {
+  display: inline-block;
+  margin-left: 10px;
+  max-width: 300px;
+  text-decoration: underline;
+  text-align: left;
+  vertical-align: top;
+  cursor: pointer;
+}

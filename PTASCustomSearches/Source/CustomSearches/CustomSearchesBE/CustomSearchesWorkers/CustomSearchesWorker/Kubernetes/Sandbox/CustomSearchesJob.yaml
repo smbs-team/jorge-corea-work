@@ -1,0 +1,67 @@
+﻿---
+kind: ServiceAccount
+apiVersion: v1
+metadata:
+  name: ptas-sbox-job-service-account
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: ptas-sbox-job-service-account-customsearches-role
+rules:
+  - apiGroups: ["apps", "extensions"]
+    resources: ["deployments"]
+    resourceNames: ["ptas-sbox-customsearches-worker-deployment"]
+    verbs: ["get", "patch", "list", "watch", "delete"] 
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: ptas-sbox-job-service-account-customsearches-role-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: ptas-sbox-job-service-account-customsearches-role
+subjects:
+  - kind: ServiceAccount
+    name: ptas-sbox-job-service-account
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: ptas-sbox-temporary-dataset-handler
+spec:
+  concurrencyPolicy: Forbid
+  schedule: "11 21 */1 * *"
+  jobTemplate:
+    spec:
+      backoffLimit: 2
+      activeDeadlineSeconds: 600
+      template:
+        spec:
+          serviceAccountName: ptas-sbox-job-service-account
+          restartPolicy: Never
+          containers:
+             - name: ptas-sbox-customsearches-worker
+               image: dunphyacrtest3.azurecr.io/servercore/customsearchesworker-sbox:1.70
+               imagePullPolicy: IfNotPresent
+               volumeMounts:
+               - mountPath: "/mapserver/map-share"
+                 name: layers-sbox-fileshare        
+               command:                  
+                 - 'C:/CustomSearchesWorker/StartWorker.bat'
+                 - UnsavedDatasetDeletionJobType
+                 - '3600'
+          nodeSelector:
+            kubernetes.io/os: windows
+          tolerations:
+            - key: "kubernetes.io/os"
+              operator: "Equal"
+              value: "windows"
+              effect: "NoSchedule"
+          volumes:
+          - name: layers-sbox-fileshare
+            azureFile:
+              secretName: storage-secret-sbox
+              shareName: layers
+              readOnly: false

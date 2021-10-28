@@ -1,0 +1,7 @@
+﻿apiVersion: "aadpodidentity.k8s.io/v1"
+kind: AzureIdentityBinding
+metadata:
+  name: ptas-{Env}-customsearchesworker-identity-binding
+spec:
+  azureIdentity: ptas-{Env}-customsearchesworker-identity
+  selector: ptas-{Env}-customsearchesworker-identity

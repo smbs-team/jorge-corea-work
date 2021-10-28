@@ -1,0 +1,5 @@
+{
+  "message": "Test the Format.js library",
+  "invalidFileTypeMessage": "Invalid file type. Allowed types: ...",
+  "dragRejectText": "Invalid file selection. Select one single file of type: ..."
+}

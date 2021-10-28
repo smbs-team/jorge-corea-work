@@ -1,0 +1,5 @@
+﻿CREATE TABLE [cus].[DbLockType]
+(
+    [DbLockType] NVARCHAR(256) PRIMARY KEY NOT NULL,
+)
+GO

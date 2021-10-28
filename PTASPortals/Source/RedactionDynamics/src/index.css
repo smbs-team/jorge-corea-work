@@ -1,0 +1,165 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+/* ------------------------ Colors */
+:root {
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-gray: #7a7a7a;
+  --color-gray-dark: #444444;
+  --color-gray-light: #aaaaaa;
+  --color-accent: #6f1f62;
+  --color-accent-light: #9b6692;
+  --color-accent-inverse: #180d16;
+  --color-accent-2: #264d5e;
+  --color-accent-2-light: #3c7893;
+  --color-accent-2-bright: #2785b0;
+  --color-selection: #a5c727;
+  --color-selection-light: #d4e693;
+  --color-success: #43a047;
+  --color-error: #d20000;
+  --color-warning: #d28e00;
+  --color-warning-dark: #e37548;
+  --color-note: #5c6bc0;
+  --color-note-important: #00a1b5;
+
+  --color-google: #ec3f2a;
+  --color-microsoft: #00a2ed;
+  --color-facebook: #3b5998;
+  --color-amazon: #ff9900;
+}
+
+/* ------------------------  Buttons */
+
+.button {
+  text-transform: none;
+  padding: 0 20px;
+  display: block;
+  align-self: center;
+  border-radius: 5px;
+}
+.button:focus {
+  outline: none;
+}
+.button.large {
+  min-height: 46px;
+}
+.button.small {
+  min-height: 26px;
+}
+.button.short {
+  min-height: 18px;
+}
+.btnForms {
+  border-radius: 9px !important;
+  width: 220px;
+  height: 48px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.btnFinancialInfo {
+  border-radius: 9px !important;
+  width: 220px;
+  height: 30px;
+  margin-bottom: 10px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding: 0px 8px !important;
+}
+
+.btnFinancialInfoWhite {
+  border: 1px #6f1f62 solid !important;
+  border-radius: 0px !important;
+  width: 220px !important;
+  height: 30px !important;
+  font-size: 18px !important;
+  margin-left: auto !important;
+  padding: 0px 8px !important;
+}
+
+.btnLabel {
+  font-size: 18px !important;
+  font-weight: 600;
+  text-transform: none;
+}
+.button.primary {
+  border: 0;
+  background-image: linear-gradient(
+    270deg,
+    var(--color-accent-light),
+    var(--color-accent)
+  );
+  color: var(--color-white);
+  width: 220px;
+}
+.button.primary.flat {
+  border: 0;
+  background-color: var(--color-accent);
+  color: var(--color-white);
+}
+.button.primary:active {
+  background-color: var(--color-accent-light);
+}
+.button.secondary {
+  border: 0;
+  background-image: linear-gradient(to bottom left, #f9f5f8, #e6d7e3);
+  color: var(--color-accent);
+}
+.button.secondary:active {
+  background-color: rgba(156, 104, 148, 0.2);
+}
+.button.secondary.flat {
+  border: 0.1rem solid var(--color-accent);
+  background-color: var(--color-white);
+  color: var(--color-accent);
+}
+.button.secondary.flat:active {
+  background-color: rgba(156, 104, 148, 0.2);
+}
+.button.flat.interactive {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.button.flat.interactive:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+.button.primary.interactive {
+  box-shadow: 0 1px 3px rgba(111, 31, 98, 0.12),
+    0 1px 2px rgba(111, 31, 98, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  font-size: 18px;
+  min-height: 48px;
+  display: block;
+}
+.button.primary.interactive:hover {
+  box-shadow: 0 14px 28px rgba(111, 31, 98, 0.25),
+    0 10px 10px rgba(111, 31, 98, 0.22);
+}
+.button.secondary.interactive {
+  box-shadow: 0 1px 3px rgba(155, 102, 146, 0.5),
+    0 1px 2px rgba(155, 102, 146, 0.75);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  font-size: 18px;
+  min-height: 48px;
+}
+.button.secondary.interactive:hover {
+  box-shadow: 0 14px 28px rgba(155, 102, 146, 0.25),
+    0 10px 10px rgba(179, 137, 172, 0.22), 0 0 1px 1px rgba(155, 102, 146, 0.25);
+}
+
+.continue-summary-panel {
+  justify-content: center;
+  margin-top: 52px;
+}

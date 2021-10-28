@@ -1,0 +1,44 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "DeploymentEnv": {
+      "defaultValue": "SBOX",
+      "type": "String"
+    },
+    "SignalRSkuTier": {
+      "defaultValue": "Free",
+      "type": "String"
+    },
+    "CORSRulesURI": {
+      "defaultValue": "http://",
+      "type": "String"
+    }
+  },
+  "variables": {
+    "servicePlanName": "[replace('PTAS-[Env]-AppServicePlan', '[Env]', parameters('DeploymentEnv'))]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "2016-09-01",
+      "name": "[variables('servicePlanName')]",
+      "location": "[resourceGroup().location]",
+      "sku": {
+        "name": "P2v2",
+        "tier": "PremiumV2",
+        "size": "P2v2",
+        "family": "Pv2",
+        "capacity": 1
+      },
+      "kind": "app",
+      "properties": {
+        "name": "[variables('servicePlanName')]",
+        "perSiteScaling": false,
+        "reserved": false,
+        "targetWorkerCount": 0,
+        "targetWorkerSizeId": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+trigger:
+  branches:
+    include:
+      - uat
+
+parameters:
+  - name: forcePreReqDeployment
+    type: boolean
+    default: false
+  - name: forceFullBuild
+    type: boolean
+    default: false
+  - name: deployData
+    type: boolean
+    default: false
+
+extends:
+  template: fullpipeline.yml
+  parameters:
+    isFullBuild: ${{parameters.forceFullBuild}}
+    deploy: true
+    deployData: ${{parameters.deployData}}
+    forcePreReqDeployment: ${{parameters.forcePreReqDeployment}}
+    deploymentResourceGroup: "ptas-uat-resourcegroup"
+    deploymentEnv: "UAT"
+    deploymentEnvLong: "UAT"
+    deploymentLocation: "West US"
+    deploymentSubscription: "Azure-Test"
+    deploymentKeyVaultName: "ptas-uat-keyvault"
+    deploymentAppRegistration: "vsts-test-reg"
+    ptasAppRegistration: "ptas-uat-app-seniorexemption"
+    deploymentSslKeyVaultName: sslcert-prod-keyvault
+    deploymentSslCertName: AZURE-Wildcard-KINGCOUNTY-GOV
+    databaseServerName: "Kcitazrsqluat01.database.windows.net"
+    databaseName: "PTASuat"
+    dynamicsUrl: "https://ptas-trnuat.crm9.dynamics.com"

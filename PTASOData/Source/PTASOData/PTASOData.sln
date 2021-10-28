@@ -1,0 +1,71 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28922.388
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTest", "UnitTest", "{7DE5AD0C-47B1-46AD-93F2-22E1E94F9304}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PTASODataFunctions", "PTASODataFunctions\PTASODataFunctions.csproj", "{E5689E9F-CA22-4337-8B2C-4597A55D2DAB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{36C2D26C-FA8A-4B7B-9806-F4B5938F1F25} = {36C2D26C-FA8A-4B7B-9806-F4B5938F1F25}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PTASODataLibrary", "PTASODataLibrary\PTASODataLibrary.csproj", "{36C2D26C-FA8A-4B7B-9806-F4B5938F1F25}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PTASODataLibraryUnitTest", "UnitTest\PTASODataLibraryUnitTest\PTASODataLibraryUnitTest.csproj", "{B9CA6361-32EE-4F38-AB76-B9A8F822D80D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PTASODataFunctionsUnitTest", "UnitTest\PTASODataFunctionsUnitTest\PTASODataFunctionsUnitTest.csproj", "{44ABE1F4-5F0F-4607-9364-29390D10B96E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IntegrationTest", "IntegrationTest", "{EF6EEB74-9DB1-412C-BA05-7D03D669147C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PTASODataFunctionsIntegrationTest", "IntegrationTests\PTASODataFunctionsIntegrationTest.csproj", "{D1EED4E4-353A-4E6F-A60B-23BD2ED00D4B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2C2D9DD2-D1BB-4B25-914D-FB656FDDF93E}"
+	ProjectSection(SolutionItems) = preProject
+		IntegrationTests.Dev.RunSettings = IntegrationTests.Dev.RunSettings
+		IntegrationTests.Prdm.RunSettings = IntegrationTests.Prdm.RunSettings
+		IntegrationTests.Prod.RunSettings = IntegrationTests.Prod.RunSettings
+		IntegrationTests.Stage.RunSettings = IntegrationTests.Stage.RunSettings
+		IntegrationTests.Test.RunSettings = IntegrationTests.Test.RunSettings
+		IntegrationTests.Uat.RunSettings = IntegrationTests.Uat.RunSettings
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E5689E9F-CA22-4337-8B2C-4597A55D2DAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5689E9F-CA22-4337-8B2C-4597A55D2DAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5689E9F-CA22-4337-8B2C-4597A55D2DAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5689E9F-CA22-4337-8B2C-4597A55D2DAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36C2D26C-FA8A-4B7B-9806-F4B5938F1F25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36C2D26C-FA8A-4B7B-9806-F4B5938F1F25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36C2D26C-FA8A-4B7B-9806-F4B5938F1F25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36C2D26C-FA8A-4B7B-9806-F4B5938F1F25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9CA6361-32EE-4F38-AB76-B9A8F822D80D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9CA6361-32EE-4F38-AB76-B9A8F822D80D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9CA6361-32EE-4F38-AB76-B9A8F822D80D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9CA6361-32EE-4F38-AB76-B9A8F822D80D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44ABE1F4-5F0F-4607-9364-29390D10B96E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44ABE1F4-5F0F-4607-9364-29390D10B96E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44ABE1F4-5F0F-4607-9364-29390D10B96E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44ABE1F4-5F0F-4607-9364-29390D10B96E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1EED4E4-353A-4E6F-A60B-23BD2ED00D4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1EED4E4-353A-4E6F-A60B-23BD2ED00D4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1EED4E4-353A-4E6F-A60B-23BD2ED00D4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1EED4E4-353A-4E6F-A60B-23BD2ED00D4B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B9CA6361-32EE-4F38-AB76-B9A8F822D80D} = {7DE5AD0C-47B1-46AD-93F2-22E1E94F9304}
+		{44ABE1F4-5F0F-4607-9364-29390D10B96E} = {7DE5AD0C-47B1-46AD-93F2-22E1E94F9304}
+		{D1EED4E4-353A-4E6F-A60B-23BD2ED00D4B} = {EF6EEB74-9DB1-412C-BA05-7D03D669147C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F87C790E-B86F-4BD7-9152-6CDB68DD406C}
+	EndGlobalSection
+EndGlobal

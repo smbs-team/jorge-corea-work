@@ -1,0 +1,62 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "DeploymentEnv": {
+      "defaultValue": "SBOX",
+      "type": "String"
+    },
+    "SignalRSkuTier": {
+      "defaultValue": "Free",
+      "type": "String"
+    },
+    "CORSRulesURI": {
+      "defaultValue": "http://",
+      "type": "String"
+    }
+  },
+  "variables": {
+    "accountName": "[replace('Ptas-[Env]-SignalR', '[Env]', toLower(parameters('DeploymentEnv')))]",
+    "signalRSkuName": "[if(equals(parameters('SignalRSkuTier'), 'Free'), 'Free_F1', 'Standard_S1')]",
+    "signalRSkuSize": "[if(equals(parameters('SignalRSkuTier'), 'Free'), 'F1', 'S1')]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.SignalRService/SignalR",
+      "apiVersion": "2018-10-01",
+      "name": "[variables('accountName')]",
+      "location": "[resourceGroup().location]",
+      "tags": {
+        "application": "PTAS",
+        "CreatedBy": "Daniel Rojas",
+        "displayName": "PTAS SignalR"
+      },
+      "sku": {
+        "name": "[variables('signalRSkuName')]",
+        "tier": "[parameters('SignalRSkuTier')]",
+        "size": "[variables('signalRSkuSize')]",
+        "capacity": 1
+      },
+      "properties": {
+        "hostNamePrefix": "[variables('accountName')]",
+        "features": [
+          {
+            "flag": "ServiceMode",
+            "value": "Serverless",
+            "properties": {}
+          },
+          {
+            "flag": "EnableConnectivityLogs",
+            "value": "True",
+            "properties": {}
+          }
+        ],
+        "cors": {
+          "allowedOrigins": [
+            "*"
+          ]
+        }
+      }
+    }
+  ]
+}

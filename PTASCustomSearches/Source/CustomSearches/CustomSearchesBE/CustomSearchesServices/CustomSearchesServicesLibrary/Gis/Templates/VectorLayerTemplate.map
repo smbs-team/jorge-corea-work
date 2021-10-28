@@ -1,0 +1,32 @@
+﻿    LAYER
+		PROJECTION
+			"+init={LayerProjection}"
+		END
+		
+		METADATA
+			"gml_include_items" "all" ## Optional (serves all attributes for layer)
+			"gml_featureid"     "PIN" ## REQUIRED			
+			"wfs_featureid"     "PIN" ## REQUIRED		
+			"ows_featureid"     "PIN" ## REQUIRED		
+		END
+
+		NAME "{LayerName}"    
+		DEBUG 5
+		STATUS ON
+		TYPE {VectorType}
+		CONNECTIONTYPE OGR
+
+		CONNECTION "{LayerConnectionPath}"
+		DATA "{OgrLayerName}"	  	
+
+		CLASS
+		# START OF THE STYLE DEFINITION
+		STYLE
+			COLOR 0 0 0
+			WIDTH 5
+			LINECAP butt
+			PATTERN 10 5 5 10 END
+		END
+		# END OF THE STYLE DEFINITION
+		END
+    END

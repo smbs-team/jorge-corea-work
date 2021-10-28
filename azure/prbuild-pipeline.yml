@@ -1,0 +1,183 @@
+# Development build pipeline
+
+name: PTAS-IAC-DevelopmentBuild
+
+stages:
+  - stage: Debug
+    jobs:
+      - job: NET_Build_Debug
+        pool:
+          vmImage: "windows-2019"
+        steps:
+          - task: NuGetToolInstaller@1
+            displayName: 'Use NuGet Latest'
+            inputs:
+              versionSpec: '*'
+              checkLatest: true
+          - task: DotNetCoreCLI@2
+            inputs:
+              command: restore
+              projects: "PTASDynamicsToSQLSynchronizer/**/*.csproj"
+              feedsToUse: "select"
+              vstsFeed: "Stable"
+              includeNuGetOrg: true
+          - task: DotNetCoreCLI@2
+            inputs:
+              command: restore
+              projects: "PTASMobileConnectors/**/*.csproj"
+              feedsToUse: "select"
+              vstsFeed: "Stable"
+              includeNuGetOrg: true
+          - task: DotNetCoreCLI@2
+            inputs:
+              command: restore
+              projects: "Authentication/**/*.csproj"
+              feedsToUse: "select"
+              vstsFeed: "Stable"
+              includeNuGetOrg: true
+          - task: DotNetCoreCLI@2
+            inputs:
+              command: restore
+              projects: "WebMapping/**/*.csproj"
+              feedsToUse: "select"
+              vstsFeed: "Stable"
+              includeNuGetOrg: true
+          - task: DotNetCoreCLI@2
+            inputs:
+              command: restore
+              projects: "PTASOData/**/*.csproj"
+              feedsToUse: "select"
+              vstsFeed: "Stable"
+              includeNuGetOrg: true
+          - task: DotNetCoreCLI@2
+            inputs:
+              command: restore
+              projects: "PTASSema/**/*.csproj"
+              feedsToUse: "select"
+              vstsFeed: "Stable"
+              includeNuGetOrg: true
+          - task: DotNetCoreCLI@2
+            inputs:
+              command: restore
+              projects: "PTASDynamicsInterface/**/*.csproj"
+              feedsToUse: "select"
+              vstsFeed: "Stable"
+              includeNuGetOrg: true
+          - task: DotNetCoreCLI@2
+            inputs:
+              command: restore
+              projects: "PTASCustomSearches/**/*.csproj"
+              feedsToUse: "select"
+              vstsFeed: "Stable"
+              includeNuGetOrg: true
+          - task: DotNetCoreCLI@2
+            inputs:
+              command: restore
+              projects: "PTASCommon/**/*.csproj"
+              feedsToUse: "select"
+              vstsFeed: "Stable"
+              includeNuGetOrg: true
+          - task: NuGetCommand@2
+            inputs:
+              restoreSolution: "MediaFolderSync/**/*.sln"
+              feedsToUse: "select"
+              vstsFeed: "Stable"
+          - task: DotNetCoreCLI@2
+            inputs:
+              command: restore
+              projects: "MediaFolderSync/**/PTASFunctionMediaInfo.csproj"
+              feedsToUse: "select"
+              vstsFeed: "Stable"
+              includeNuGetOrg: true
+          - task: NuGetCommand@2
+            inputs:
+              restoreSolution: "ILinxConnector/**/*.sln"
+              feedsToUse: "select"
+              vstsFeed: "Stable"
+          - task: NuGetCommand@2
+            inputs:
+              restoreSolution: "DeploymentHealthService/**/*.sln"
+              feedsToUse: "select"
+              vstsFeed: "Stable"
+          - task: VSBuild@1
+            inputs:
+              solution: "**/*.sln"
+              msbuildArgs: /p:SkipInvalidConfigurations=true
+              platform: "Any CPU"
+              configuration: "Debug"
+          - task: DotNetCoreCLI@2
+            displayName: Test Debug
+            inputs:
+              command: test
+              projects: "**/*UnitTest*.csproj"
+              arguments: "--verbosity d --no-build --no-restore --configuration Debug /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura"
+              timeoutInMinutes: 10
+              nobuild: true
+          - script: dotnet tool install -g dotnet-reportgenerator-globaltool
+            displayName: Install Code Coverage report tool
+          - script: reportgenerator -reports:$(Build.SourcesDirectory)/**/coverage.cobertura.xml -targetdir:$(Build.SourcesDirectory)/CodeCoverage -reporttypes:HtmlInline_AzurePipelines;Cobertura
+            displayName: Create Code coverage report
+          - task: PublishCodeCoverageResults@1
+            displayName: Publish Code coverage
+            inputs:
+              codeCoverageTool: Cobertura
+              summaryFileLocation: "$(Build.SourcesDirectory)/CodeCoverage/Cobertura.xml"
+              reportDirectory: "$(Build.SourcesDirectory)/CodeCoverage"
+          - task: CopyFiles@2
+            displayName: Stage Azure Pipe Sources
+            inputs:
+              contents: "$(Build.SourcesDirectory)/azure/** "
+              targetFolder: "$(Build.ArtifactStagingDirectory)"
+          - task: CopyFiles@2
+            displayName: Stage Build Files
+            inputs:
+              contents: '**\bin\** '
+              targetFolder: $(Build.ArtifactStagingDirectory)
+          - task: PublishBuildArtifacts@1
+            displayName: Publish Net Drop
+            inputs:
+              pathToPublish: $(Build.ArtifactStagingDirectory)
+              artifactName: NetDrop
+      - job: NPM_Build_Debug
+        pool:
+          vmImage: "windows-2019"
+        steps:
+          - task: Npm@1
+            inputs:
+              command: "custom"
+              customCommand: "install copyfiles -g"
+              workingDir: "$(Build.SourcesDirectory)/PTASPortals/Source/SeniorsPortal"
+          - task: Npm@1
+            inputs:
+              command: "custom"
+              customCommand: "run installIESupport"
+              workingDir: "$(Build.SourcesDirectory)/PTASPortals/Source/SeniorsPortal"
+          - task: Npm@1
+            inputs:
+              command: "custom"
+              customCommand: "run build"
+              workingDir: "$(Build.SourcesDirectory)/PTASPortals/Source/SeniorsPortal"
+          - task: Npm@1
+            inputs:
+              command: "install"
+              workingDir: "$(Build.SourcesDirectory)/PTASPortals/Source/RedactionDynamics"
+          - task: Npm@1
+            inputs:
+              command: "custom"
+              customCommand: "run build"
+              workingDir: "$(Build.SourcesDirectory)/PTASPortals/Source/RedactionDynamics"
+          - task: CopyFiles@2
+            displayName: Stage Build Files
+            inputs:
+              contents: "$(Build.SourcesDirectory)/PTASPortals/Source/SeniorsPortal/build/**"
+              targetFolder: "$(Build.ArtifactStagingDirectory)/SeniorsPortal"
+          - task: CopyFiles@2
+            displayName: Stage Build Files
+            inputs:
+              contents: "$(Build.SourcesDirectory)/PTASPortals/Source/RedactionDynamics/build/**"
+              targetFolder: "$(Build.ArtifactStagingDirectory)/RedactionDynamics"
+          - task: PublishBuildArtifacts@1
+            displayName: Publish Binaries
+            inputs:
+              pathToPublish: $(Build.ArtifactStagingDirectory)
+              artifactName: NpmDrop

@@ -1,0 +1,11 @@
+trigger:
+  branches:
+    include:
+      - development
+
+extends:
+  template: maintenancepipeline.yml
+  parameters:
+    deploymentResourceGroup: "ptas-dev-resourcegroup"
+    deploymentSubscription: "Azure-Dev"
+    deploymentEnv: "DEV"

@@ -1,0 +1,287 @@
+[
+  {
+    "layerId": "ca1Layer",
+    "classes": [
+      {
+        "id": "0",
+        "name": "Minor",
+        "color": "rgba(0,0,255,1)"
+      },
+      {
+        "id": "1",
+        "name": "SP_LLA Rec No",
+        "color": "rgba(0,0,0,1)"
+      },
+      {
+        "id": "2",
+        "name": "Lot No_Tract",
+        "color": "rgba(0,0,0,1)"
+      },
+      {
+        "id": "3",
+        "name": "Plat_Condo Major",
+        "color": "rgba(255,0,0,1)"
+      },
+      {
+        "id": "4",
+        "name": "Blk No",
+        "color": "rgba(255,0,0,1)"
+      },
+      {
+        "id": "5",
+        "name": "Govt Lot",
+        "color": "rgba(0,0,0,1)"
+      },
+      {
+        "id": "6",
+        "name": "Plat_Condo Name",
+        "color": "rgba(0,0,0,1)"
+      },
+      {
+        "id": "7",
+        "name": "Plat_Condo Vol Page",
+        "color": "rgba(255,0,0,1)"
+      },
+      {
+        "id": "8",
+        "name": "Street_Hwy Name",
+        "color": "rgba(0,0,0,1)"
+      },
+      {
+        "id": "9",
+        "name": "Refhist_Other",
+        "color": "rgba(0,0,0,1)"
+      },
+      {
+        "id": "10",
+        "name": "Und Int_CP",
+        "color": "rgba(0,0,0,1)"
+      },
+      {
+        "id": "11",
+        "name": "Ldimen",
+        "color": "rgba(0,0,0,1)"
+      },
+      {
+        "id": "12",
+        "name": "Adimen",
+        "color": "rgba(0,0,0,1)"
+      },
+      {
+        "id": "13",
+        "name": "Esmt Rd_Util_Dr_RR",
+        "color": "rgba(0,0,0,1)"
+      },
+      {
+        "id": "14",
+        "name": "Esmt Sens Area",
+        "color": "rgba(0,0,0,1)"
+      },
+      {
+        "id": "15",
+        "name": "Esmt Envs",
+        "color": "rgba(0,0,0,1)"
+      },
+      {
+        "id": "16",
+        "name": "Hydro",
+        "color": "rgba(0,0,0,1)"
+      },
+      {
+        "id": "17",
+        "name": "Hook",
+        "color": "rgba(100,100,100,1)"
+      }
+    ]
+  },
+  {
+    "layerId": "ca2Layer",
+    "classes": [
+      {
+        "id": "0",
+        "name": "Street_Hwy Name",
+        "color": "rgba(0,0,0,1)"
+      },
+      {
+        "id": "1",
+        "name": "Minor",
+        "color": "rgba(0,0,255,1)"
+      },
+      {
+        "id": "2",
+        "name": "Lot No_Tract",
+        "color": "rgba(0,0,0,1)"
+      },
+      {
+        "id": "3",
+        "name": "Plat_Condo Name",
+        "color": "rgba(0,0,0,1)"
+      },
+      {
+        "id": "4",
+        "name": "Plat_Condo_Vol Page",
+        "color": "rgba(255,0,0,1)"
+      },
+      {
+        "id": "5",
+        "name": "SP_LLA Rec No",
+        "color": "rgba(0,0,0,1)"
+      },
+      {
+        "id": "6",
+        "name": "Govt Lot",
+        "color": "rgba(0,0,0,1)"
+      },
+      {
+        "id": "7",
+        "name": "Refhist_Other",
+        "color": "rgba(0,0,0,1)"
+      },
+      {
+        "id": "8",
+        "name": "Blk No",
+        "color": "rgba(255,0,0,1)"
+      },
+      {
+        "id": "9",
+        "name": "Plat_Condo Major",
+        "color": "rgba(255,0,0,1)"
+      },
+      {
+        "id": "10",
+        "name": "Und Int_CP",
+        "color": "rgba(0,0,0,1)"
+      },
+      {
+        "id": "11",
+        "name": "Ldimen",
+        "color": "rgba(0,0,0,1)"
+      },
+      {
+        "id": "12",
+        "name": "Adimen",
+        "color": "rgba(0,0,0,1)"
+      },
+      {
+        "id": "13",
+        "name": "Esmt Rd _Util_Dr_RR",
+        "color": "rgba(0,0,0,1)"
+      },
+      {
+        "id": "14",
+        "name": "Esmt Sens Area",
+        "color": "rgba(0,0,0,1)"
+      },
+      {
+        "id": "15",
+        "name": "Esmt Envs",
+        "color": "rgba(0,0,0,1)"
+      },
+      {
+        "id": "16",
+        "name": "Hydro",
+        "color": "rgba(0,0,0,1)"
+      },
+      {
+        "id": "17",
+        "name": "Hook",
+        "color": "rgba(100,100,100,1)"
+      }
+    ]
+  },
+  {
+    "layerId": "ca3Layer",
+    "classes": [
+      {
+        "id": "0",
+        "name": "Lot No_Tract",
+        "color": "rgba(0,0,0,1)"
+      },
+      {
+        "id": "1",
+        "name": "Minor",
+        "color": "rgba(0,0,255,1)"
+      },
+      {
+        "id": "2",
+        "name": "SP_LLA Rec No",
+        "color": "rgba(0,0,0,1)"
+      },
+      {
+        "id": "3",
+        "name": "Street_Hwy Name",
+        "color": "rgba(0,0,0,1)"
+      },
+      {
+        "id": "4",
+        "name": "Plat_Condo Major",
+        "color": "rgba(255,0,0,1)"
+      },
+      {
+        "id": "5",
+        "name": "Plat_Condo Name",
+        "color": "rgba(0,0,0,1)"
+      },
+      {
+        "id": "6",
+        "name": "Plat_Condo Vol Page",
+        "color": "rgba(255,0,0,1)"
+      },
+      {
+        "id": "7",
+        "name": "Refhist_Other",
+        "color": "rgba(0,0,0,1)"
+      },
+      {
+        "id": "8",
+        "name": "Und Int_CP",
+        "color": "rgba(0,0,0,1)"
+      },
+      {
+        "id": "9",
+        "name": "Govt Lot",
+        "color": "rgba(0,0,0,1)"
+      },
+      {
+        "id": "10",
+        "name": "Blk No",
+        "color": "rgba(255,0,0,1)"
+      },
+      {
+        "id": "11",
+        "name": "Ldimen",
+        "color": "rgba(0,0,0,1)"
+      },
+      {
+        "id": "12",
+        "name": "Adimen",
+        "color": "rgba(0,0,0,1)"
+      },
+      {
+        "id": "13",
+        "name": "Esmt Rd_Util_Dr_RR",
+        "color": "rgba(0,0,0,1)"
+      },
+      {
+        "id": "14",
+        "name": "Esmt Envs",
+        "color": "rgba(0,0,0,1)"
+      },
+      {
+        "id": "15",
+        "name": "Esmt Sens Area",
+        "color": "rgba(0,0,0,1)"
+      },
+      {
+        "id": "16",
+        "name": "Hydro",
+        "color": "rgba(0,0,0,1)"
+      },
+      {
+        "id": "17",
+        "name": "Hook",
+        "color": "rgba(100,100,100,1)"
+      }
+    ]
+  }
+]

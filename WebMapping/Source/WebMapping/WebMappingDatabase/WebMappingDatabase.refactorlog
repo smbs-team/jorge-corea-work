@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="d9e31fb8-0522-4efa-be00-d958f893fc68" ChangeDateTime="07/30/2019 00:47:06">
+    <Property Name="ElementName" Value="[gis].[TileStorageJobType].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[gis].[TileStorageJobType]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="JobTypeId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="70d6ffad-9d48-4a93-a9ae-76ba9e11922e" ChangeDateTime="07/30/2019 00:56:52">
+    <Property Name="ElementName" Value="[Gis].[TileStorageJobQueue].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[Gis].[TileStorageJobQueue]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="JobId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="45e915e1-bb0c-4cc5-9c71-17bd60559ffc" ChangeDateTime="07/30/2019 01:25:02">
+    <Property Name="ElementName" Value="[gis].[TileStorageJobQueue].[Started]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[gis].[TileStorageJobQueue]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="StartedTimestamp" />
+  </Operation>
+</Operations>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>King County sign in</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="minimum-scale=1,initial-scale=1,width=device-width,shrink-to-fit=no"
+    />
+    <script src="https://ptasdevstorage.blob.core.windows.net/portalb2clogintemplates/kingcounty-ptas-b2c.js"></script>
+    <link rel="shortcut icon" href="" />
+    <link
+      href="https://ptasdevstorage.blob.core.windows.net/portalb2clogintemplates/kingcounty-ptas.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://ptasdevstorage.blob.core.windows.net/portalb2clogintemplates/kingcounty-ptas-b2c.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:800,600,400"
+      rel="stylesheet"
+    />
+
+    <style id="common"></style>
+
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root">
+      <div class="header">
+        <img
+          src="https://ptasdevstorage.blob.core.windows.net/portalb2clogintemplates/images/logo-kingcounty-inverse.svg"
+        />
+      </div>
+      <div class="page">
+        <div class="content form-section body">
+          <div class="b2c-wrapper">
+            <div id="api" data-name="Unified">
+              <div class="intro">
+                <h2 class="body-xlarge">
+                  Sign in to exchange information privately with King County
+                  services.
+                </h2>
+              </div>
+
+              <div id="attributeVerification" role="form">
+                <div
+                  class="error pageLevel"
+                  id="passwordEntryMismatch"
+                  style="display: none;"
+                  aria-hidden="true"
+                >
+                  The password entry fields do not match. Please enter the same
+                  password in both fields and try again.
+                </div>
+                <div
+                  class="error pageLevel"
+                  id="requiredFieldMissing"
+                  style="display: none;"
+                  aria-hidden="true"
+                >
+                  A required field is missing. Please fill out all required
+                  fields and try again.
+                </div>
+                <div
+                  class="error pageLevel"
+                  id="fieldIncorrect"
+                  style="display: none;"
+                  aria-hidden="true"
+                >
+                  One or more fields are filled out incorrectly. Please check
+                  your entries and try again.
+                </div>
+                <div
+                  class="error pageLevel"
+                  id="claimVerificationServerError"
+                  style="display: none;"
+                  aria-hidden="true"
+                ></div>
+
+                <div class="attr" id="attributeList">
+                  <ul>
+                    <li class="TextBox">
+                      <div class="attrEntry">
+                        <label for="email">Email</label>
+
+                        <div class="error itemLevel" aria-hidden="true">
+                          <p>Please enter a valid email address.</p>
+                        </div>
+
+                        <input
+                          id="email"
+                          class="textInput"
+                          type="text"
+                          placeholder="Email Address"
+                          pattern="^[a-zA-Z0-9.!#$%&amp;'^_`{}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
+                          title="Email address that can be used to contact you."
+                          required=""
+                          aria-required="true"
+                          aria-label="Please enter a valid email address., Email Address"
+                        />
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="buttons">
+                  <button
+                    id="continue"
+                    class="button primary"
+                    aria-label="Continue"
+                  >
+                    Continue
+                  </button>
+                  <button id="cancel" aria-label="Cancel" formnovalidate="">
+                    Cancel
+                  </button>
+                </div>
+
+                <div class="verifying-modal">
+                  <div id="verifying_blurb"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-right-panel">
+        <div class="info-right-panel-title">
+          <img
+            src="https://ptasdevstorage.blob.core.windows.net/portalb2clogintemplates/images/help-outline.svg"
+          />
+          <h3>How this works</h3>
+        </div>
+
+        <ol>
+          <li>Enter your email address</li>
+          <li>Select <strong>Continue</strong></li>
+          <li>Check your email account</li>
+          <li>Use the sign-in link we emailed to you</li>
+        </ol>
+      </div>
+
+      <div id="confirmed-no-email" class="confirmed-no-email hidden">
+        <p>Didn't get a sign in email?</p>
+        <a href=".">Send again</a>
+      </div>
+
+      <div class="footer center inverse body space-top-62">
+        <div class="footer-inner space-top-42 space-bottom-32">
+          <div class="footer-links flex flex-wide">
+            <ul>
+              <li>
+                <a href="https://www.kingcounty.gov/tools/contact-us"
+                  >Contact us</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.kingcounty.gov/elected/executive/customer-service"
+                  >Customer service</a
+                >
+              </li>
+              <li>206-296-3920</li>
+            </ul>
+            <ul>
+              <li>
+                <a href="https://www.kingcounty.gov/about/website/privacy"
+                  >Privacy policy</a
+                >
+              </li>
+              <li>
+                <a href="https://www.kingcounty.gov/about/website/termsofuse"
+                  >Terms of use</a
+                >
+              </li>
+              <li style="font-size: 12px;">
+                ©
+                <!-- <script>
+                  document.write(new Date().getFullYear());
+                </script> -->
+                King County, WA
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      function getUrlParameter(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+        var results = regex.exec(location.search);
+        return results === null
+          ? ""
+          : decodeURIComponent(results[1].replace(/\+/g, " "));
+      }
+      window._mfq = window._mfq || [];
+      (function() {
+        var mf = document.createElement("script");
+        mf.type = "text/javascript";
+        mf.async = true;
+        comingFromUrl = getUrlParameter("redirect_uri");
+        if (
+          comingFromUrl === "https://taxrelief.kingcounty.gov/" ||
+          comingFromUrl === "https://senior-exemption.kingcounty.gov/"
+        ) {
+          mf.src =
+            "//cdn.mouseflow.com/projects/11ddea09-5cfd-4f5d-92f6-63de24c5b3d0.js";
+        } else {
+          mf.src =
+            "//cdn.mouseflow.com/projects/ccaf8eb5-5974-4725-8f21-69ae22cfde96.js";
+        }
+        document.getElementsByTagName("head")[0].appendChild(mf);
+      })();
+    </script>
+  </body>
+  <script src="https://ptasdevstorage.blob.core.windows.net/portalb2clogintemplates/css-vars-ponyfill.js"></script>
+</html>

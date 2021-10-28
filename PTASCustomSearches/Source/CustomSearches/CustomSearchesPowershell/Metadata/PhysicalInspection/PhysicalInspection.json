@@ -1,0 +1,13 @@
+{
+  "projectTypeName": "Physical Inspection",
+  "projectTypeCustomSearchDefinitions": [
+    {
+      "CustomSearchDefinitionName": "Area Data Filtered by Population",
+      "DatasetRole": "Population"
+    },
+    {
+      "CustomSearchDefinitionName": "Area Data Filtered by Sales",
+      "DatasetRole": "Sales"
+    }
+  ]
+}

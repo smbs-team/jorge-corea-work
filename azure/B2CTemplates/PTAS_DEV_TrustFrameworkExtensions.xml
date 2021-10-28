@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TrustFrameworkPolicy 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+  xmlns="http://schemas.microsoft.com/online/cpim/schemas/2013/06" 
+  PolicySchemaVersion="0.3.0.0" 
+  TenantId="kcb2csandbox.onmicrosoft.com" 
+  PolicyId="B2C_1A_PTAS_DEV_TrustFrameworkExtensions" 
+  PublicPolicyUri="http://kcb2csandbox.onmicrosoft.com/B2C_1A_PTAS_DEV_TrustFrameworkExtensions">
+  
+  <BasePolicy>
+    <TenantId>kcb2csandbox.onmicrosoft.com</TenantId>
+    <PolicyId>B2C_1A_PTAS_DEV_TrustFrameworkBase</PolicyId>
+  </BasePolicy>
+ <BuildingBlocks>
+   <ContentDefinitions>
+
+     <!-- This content definition is to render an error page that displays unhandled errors. -->
+     <ContentDefinition Id="api.error">
+       <LoadUri>~/tenant/templates/AzureBlue/exception.cshtml</LoadUri>
+       <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
+       <DataUri>urn:com:microsoft:aad:b2c:elements:globalexception:1.1.0</DataUri>
+       <Metadata>
+         <Item Key="DisplayName">Error page</Item>
+       </Metadata>
+     </ContentDefinition>
+
+     <ContentDefinition Id="api.idpselections">
+       <LoadUri>~/tenant/templates/AzureBlue/idpSelector.cshtml</LoadUri>
+       <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
+       <DataUri>urn:com:microsoft:aad:b2c:elements:idpselection:1.0.0</DataUri>
+       <Metadata>
+         <Item Key="DisplayName">Idp selection page</Item>
+         <Item Key="language.intro">Sign in</Item>
+       </Metadata>
+     </ContentDefinition>
+
+     <ContentDefinition Id="api.idpselections.signup">
+       <LoadUri>~/tenant/templates/AzureBlue/idpSelector.cshtml</LoadUri>
+       <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
+       <DataUri>urn:com:microsoft:aad:b2c:elements:idpselection:1.0.0</DataUri>
+       <Metadata>
+         <Item Key="DisplayName">Idp selection page</Item>
+         <Item Key="language.intro">Sign up</Item>
+       </Metadata>
+     </ContentDefinition>
+
+     <ContentDefinition Id="api.signuporsignin">
+       <LoadUri>https://kcmaptilestorage.blob.core.windows.net/portalb2clogintemplates/kingcounty-ptas-b2c.html</LoadUri>
+       <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
+       <DataUri>urn:com:microsoft:aad:b2c:elements:unifiedssp:1.0.0</DataUri>
+       <Metadata>
+         <Item Key="DisplayName">Signin and Signup</Item>
+       </Metadata>
+     </ContentDefinition>
+
+     <ContentDefinition Id="api.selfasserted">
+       <LoadUri>~/tenant/templates/AzureBlue/selfAsserted.cshtml</LoadUri>
+       <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
+       <DataUri>urn:com:microsoft:aad:b2c:elements:selfasserted:1.1.0</DataUri>
+       <Metadata>
+         <Item Key="DisplayName">Collect information from user page</Item>
+       </Metadata>
+     </ContentDefinition>
+
+     <ContentDefinition Id="api.selfasserted.profileupdate">
+       <LoadUri>~/tenant/templates/AzureBlue/selfAsserted.cshtml</LoadUri>
+       <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
+       <DataUri>urn:com:microsoft:aad:b2c:elements:selfasserted:1.1.0</DataUri>
+       <Metadata>
+         <Item Key="DisplayName">Collect information from user page</Item>
+       </Metadata>
+     </ContentDefinition>
+
+     <ContentDefinition Id="api.localaccountsignup">
+       <LoadUri>~/tenant/templates/AzureBlue/selfAsserted.cshtml</LoadUri>
+       <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
+       <DataUri>urn:com:microsoft:aad:b2c:elements:selfasserted:1.1.0</DataUri>
+       <Metadata>
+         <Item Key="DisplayName">Local account sign up page</Item>
+       </Metadata>
+     </ContentDefinition>
+
+     <ContentDefinition Id="api.localaccountpasswordreset">
+       <LoadUri>~/tenant/templates/AzureBlue/selfAsserted.cshtml</LoadUri>
+       <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
+       <DataUri>urn:com:microsoft:aad:b2c:elements:selfasserted:1.1.0</DataUri>
+       <Metadata>
+         <Item Key="DisplayName">Local account change password page</Item>
+       </Metadata>
+     </ContentDefinition>
+
+   </ContentDefinitions>
+
+  </BuildingBlocks>
+
+  <ClaimsProviders>
+
+    <ClaimsProvider>
+      <DisplayName>Facebook</DisplayName>
+      <TechnicalProfiles>
+        <TechnicalProfile Id="Facebook-OAUTH">
+          <Metadata>
+            <Item Key="client_id">facebook_clientid</Item>
+            <Item Key="scope">email public_profile</Item>
+            <Item Key="ClaimsEndpoint">https://graph.facebook.com/me?fields=id,first_name,last_name,name,email</Item>
+          </Metadata>
+        </TechnicalProfile>
+      </TechnicalProfiles>
+    </ClaimsProvider>
+
+
+    <ClaimsProvider>
+      <DisplayName>Local Account SignIn</DisplayName>
+      <TechnicalProfiles>
+        <TechnicalProfile Id="login-NonInteractive">
+          <Metadata>
+            <!--Demo action required: Change to your ProxyIdentityExperienceFramework App Id-->
+            <Item Key="client_id">12e41d92-cb66-4d15-bd15-054f51a64fa0</Item>
+            <!--Demo action required: Change to your IdentityExperienceFramework App Id-->
+            <Item Key="IdTokenAudience">9cef7f6c-5b6b-4e3d-a2d7-5f678b234d47</Item>
+          </Metadata>
+          <InputClaims>
+            <!--Demo action required: Change to your ProxyIdentityExperienceFramework App Id-->
+            <InputClaim ClaimTypeReferenceId="client_id" DefaultValue="12e41d92-cb66-4d15-bd15-054f51a64fa0" />
+            <!--Demo action required: Change to your IdentityExperienceFramework App Id-->
+            <InputClaim ClaimTypeReferenceId="resource_id" PartnerClaimType="resource" DefaultValue="9cef7f6c-5b6b-4e3d-a2d7-5f678b234d47" />
+          </InputClaims>
+        </TechnicalProfile>
+      </TechnicalProfiles>
+    </ClaimsProvider>
+
+  </ClaimsProviders>
+
+    <!--UserJourneys>
+	
+	</UserJourneys-->
+
+</TrustFrameworkPolicy>

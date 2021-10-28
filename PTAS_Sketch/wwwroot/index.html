@@ -1,0 +1,2519 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <!-- comment -->
+    <title>Sketch Web</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://fonts.googleapis.com/css?family=Open+Sans"
+    />
+    <link rel="stylesheet" type="text/css" href="ptas_styles.css" />
+    <script src="ptas_axios.min.js"></script>
+    <script src="ptas_jwt_decode.min.js"></script>
+    <script src="ptas_paper_full.min.js"></script>
+    <script src="ptas_SketchConst.js"></script>
+    <script src="ptas_SketchParams.js"></script>
+    <script src="ptas_SketchMode.js"></script>
+    <script src="ptas_SketchTextHorizontalAlign.js"></script>
+    <script src="ptas_SketchTextVerticalAlign.js"></script>
+    <script src="ptas_SketchStyle.js"></script>
+    <script src="ptas_SketchStyleSet.js"></script>
+    <script src="ptas_SketchUtils.js"></script>
+    <script src="ptas_SketchSingleSelectInteraction.js"></script>
+    <script src="ptas_SketchMultipleSelectInteraction.js"></script>
+    <script src="ptas_SketchKeyboardEditAlignment.js"></script>
+    <script src="ptas_SketchDrawInteraction.js"></script>
+    <script src="ptas_SketchTextInteraction.js"></script>
+    <script src="ptas_SketchPanInteraction.js"></script>
+    <script src="ptas_SketchDistance.js"></script>
+    <script src="ptas_SketchCustomText.js"></script>
+    <script src="ptas_SketchPath.js"></script>
+    <script src="ptas_SketchCircle.js"></script>
+    <script src="ptas_SketchObject.js"></script>
+    <script src="ptas_SketchLayer.js"></script>
+    <script src="ptas_SketchControl.js"></script>
+    <script src="ptas_SketchFromJSON.js"></script>
+    <script src="ptas_SketchToJSON.js"></script>
+    <script src="ptas_SketchAPIService.js"></script>
+    <script src="ptas_SketchEntitiesHandler.js"></script>
+    <script src="ptas_SketchWeb.js"></script>
+    <meta
+      name="viewport"
+      content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="date=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta charset="utf-8" />
+  </head>
+
+  <body onload="instantiateSketchControl()">
+    <div
+      id="sketch"
+      style="position: fixed; top: 0; left: 0; right: 0; bottom: 0"
+      onmouseup="rotateUp()"
+    >
+      <canvas
+        id="sketchGridCanvas"
+        style="position: absolute; width: 100%; height: 100%"
+        resize
+      >
+      </canvas>
+      <canvas
+        id="sketchCanvas"
+        style="position: absolute; width: 100%; height: 100%"
+        resize
+      >
+      </canvas>
+      <div id="help-overlay" onclick="collapseOverlay(this)">
+        <img src="ptas_quickHelp.png" />
+      </div>
+      <div
+        id="topMenu"
+        style="
+          position: relative;
+          height: 58px;
+          left: 0;
+          right: 0;
+          border-style: solid;
+          border-width: 1px;
+          border-color: black;
+        "
+      >
+        <div class="top-bar" id="read-only">
+          <div
+            class="read-only-button"
+            onclick="closeClicked()"
+            style="min-width: 8%;"
+          >
+            <img
+              src="ptas_back.png"
+              style="
+                position: absolute;
+                width: 15px;
+                height: 24px;
+                left: 10px;
+                top: 17px;
+              "
+            />
+            <span
+              class="sketchClickableText"
+              style="position: absolute; top: 19px; left: 35px"
+              >Close</span
+            >
+            <span
+              class="topMenuUnderLine"
+              style="
+                position: absolute;
+                width: 37px;
+                height: 4px;
+                top: 42px;
+                left: 35px;
+                background-color: white;
+              "
+            ></span>
+          </div>
+          <div class="read-only-button" onclick="viewTileClicked(event)">
+            <img
+              style="width: 20px; height: 20px; pointer-events: none"
+              src="ptas_tile_white.png"
+            />
+            <span class="sketchClickableText" style="pointer-events: none"
+              >Tile</span
+            >
+            <div
+              class="active-view"
+              name="active-view"
+              style="pointer-events: none; visibility: collapse"
+            ></div>
+          </div>
+          <div class="read-only-button" onclick="viewStackClicked(event)">
+            <img
+              style="width: 20px; height: 20px; pointer-events: none"
+              src="ptas_stack_white.png"
+            />
+            <span class="sketchClickableText" style="pointer-events: none"
+              >Stack</span
+            >
+            <div
+              class="active-view"
+              name="active-view"
+              style="pointer-events: none"
+            ></div>
+          </div>
+          <div class="separator"></div>
+          <div class="read-only-dropdown" onclick="showDropdown(event)">
+            <span
+              class="sketchClickableText"
+              name="zoomLabel"
+              style="pointer-events: none"
+              >100%</span
+            >
+            <img class="view-button-image" src="ptas_expand_down.png" />
+            <div class="read-only-dropdown-menu">
+              <ul>
+                <li name="fit" onclick="autoFitClicked()">
+                  <div class="check"></div>
+                  <span>Fit</span>
+                </li>
+                <li name="zoom" onclick="setZoom(25)">
+                  <div class="check"></div>
+                  <span>25%</span>
+                </li>
+                <li name="zoom" onclick="setZoom(50)">
+                  <div class="check"></div>
+                  <span>50%</span>
+                </li>
+                <li name="zoom" onclick="setZoom(75)">
+                  <div class="check"></div>
+                  <span>75%</span>
+                </li>
+                <li name="zoom" onclick="setZoom(100)">
+                  <div class="check"></div>
+                  <span>100%</span>
+                </li>
+                <li name="zoom" onclick="setZoom(200)">
+                  <div class="check"></div>
+                  <span>200%</span>
+                </li>
+                <li name="zoom" onclick="setZoom(300)">
+                  <div class="check"></div>
+                  <span>300%</span>
+                </li>
+                <li name="zoom" onclick="setZoom(400)">
+                  <div class="check"></div>
+                  <span>400%</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="separator"></div>
+          <div class="read-only-dropdown" onclick="showDropdown(event)">
+            <span class="sketchClickableText" style="pointer-events: none"
+              >Show</span
+            >
+            <img class="view-button-image" src="ptas_expand_down.png" />
+            <div class="read-only-dropdown-menu">
+              <ul>
+                <li
+                  name="show"
+                  id="showDistances"
+                  onclick="showDistances(event)"
+                >
+                  <div class="check" style="visibility: inherit"></div>
+                  <span>Distances</span>
+                </li>
+                <li name="show" id="showSF" onclick="showSF(event)">
+                  <div class="check" style="visibility: inherit"></div>
+                  <span>Square feet</span>
+                </li>
+                <li name="show" id="showGrid" onclick="showGrid(event)">
+                  <div class="check" style="visibility: inherit"></div>
+                  <span>Grid lines</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="separator"></div>
+          <div class="read-only-dropdown" onclick="showDropdown(event)">
+            <span class="sketchClickableText" style="pointer-events: none"
+              >Style</span
+            >
+            <img class="view-button-image" src="ptas_expand_down.png" />
+            <div class="read-only-dropdown-menu">
+              <ul>
+                <li name="style" onclick="styleThick(event)">
+                  <div class="check"></div>
+                  <span>Thick lines</span>
+                </li>
+                <li name="style" onclick="styleThin(event)">
+                  <div class="check"></div>
+                  <span>Thin lines</span>
+                </li>
+                <li name="style" onclick="styleSolid(event)">
+                  <div class="check"></div>
+                  <span>Solid</span>
+                </li>
+                <li name="style" onclick="styleHollow(event)">
+                  <div class="check"></div>
+                  <span>Hollow</span>
+                </li>
+                <li name="style" onclick="styleColor(event)">
+                  <div class="check"></div>
+                  <span>Color</span>
+                </li>
+                <li name="style" onclick="styleGray(event)">
+                  <div class="check"></div>
+                  <span>Gray</span>
+                </li>
+                <li name="style" onclick="styleVCADD(event)">
+                  <div class="check"></div>
+                  <span>VCADD</span>
+                </li>
+                <li name="style" onclick="styleIRP(event)">
+                  <div class="check"></div>
+                  <span>iRP</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <span></span>
+        </div>
+        <div class="top-bar" id="edit-mode">
+          <div class="top-left">
+            <div class="top-item" onclick="saveClicked('saveModal')">
+              <img
+                src="ptas_back.png"
+                style="width: 15px; height: 24px; margin-right: 5px"
+              />
+              <span class="sketchClickableText">Save</span>
+              <span class="topMenuUnderLine"></span>
+            </div>
+            <div class="top-item" onclick="discardClicked()">
+              <span id="discardButtonText" class="sketchClickableText"
+                >Discard</span
+              >
+              <img
+                id="discardButtonImage"
+                src="ptas_expand_down.png"
+                class="expand-arrow"
+              />
+              <span class="topMenuUnderLine"></span>
+            </div>
+            <div class="top-item" onclick="infoClicked()">
+              <span class="sketchClickableText">Info</span>
+              <span class="topMenuUnderLine"></span>
+            </div>
+          </div>
+          <div class="top-center" id="currentSketchInfo"></div>
+          <div class="top-right">
+            <div class="top-item" onclick="viewClicked()">
+              <span id="viewButtonText" class="sketchClickableText">View</span>
+              <img
+                id="viewButtonImage"
+                src="ptas_expand_down.png"
+                class="expand-arrow"
+              />
+              <span class="topMenuUnderLine"></span>
+            </div>
+            <div class="top-item" onclick="importClicked()">
+              <span class="sketchClickableText">Import</span>
+              <span class="topMenuUnderLine"></span>
+            </div>
+            <div class="top-item" onclick="helpClicked()">
+              <span class="sketchClickableText">Help</span>
+              <img
+                id="viewButtonImage"
+                src="ptas_expand_down.png"
+                class="expand-arrow"
+              />
+              <span class="topMenuUnderLine"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="topContextMenu" name="editToolbar">
+        <div
+          style="
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #444;
+            opacity: 0.7;
+          "
+        >
+          <div id="selectToolbar" class="toolbar" style="visibility: collapse">
+            <div class="toolbar-button">
+              <span
+                class="sketchClickableText"
+                onclick="multipleSelectClicked()"
+                >Multiple</span
+              >
+              <span
+                id="multipleSelectOn"
+                class="topContextMenuUnderLine"
+                style="width: 52px;"
+              ></span>
+            </div>
+            <div class="toolbar-button">
+              <span class="sketchClickableText" onclick="singleSelectClicked()"
+                >Single</span
+              >
+              <span
+                id="singleSelectOn"
+                class="topContextMenuUnderLine"
+                style="
+                  width: 42px;
+                  visibility: inherit;
+                "
+              ></span>
+            </div>
+            <div class="toolbar-button">
+              <span
+                style="
+                width: 16px;
+              "
+                class="sketchClickableText"
+                onclick="selectAllClicked()"
+              >
+                All
+              </span>
+              <span
+                class="topContextMenuUnderLine"
+                style="
+                width: 16px;
+              "
+              ></span>
+            </div>
+            <span class="toolbar-separator"></span>
+            <div
+              class="toolbar-button"
+              style="
+                width: 87px;
+                outline: none;
+              "
+              onclick="transformClicked()"
+            >
+              <span id="transformButtonText" class="sketchClickableText"
+                >Transform</span
+              >
+              <img
+                id="transformButtonImage"
+                src="ptas_expand_down.png"
+                style="
+                position: relative;
+                  width: 10px;
+                  height: 6px;
+                  left: 5px;
+                  top: 7px;
+                "
+              />
+              <span class="topContextMenuUnderLine" style="width: 87px;"></span>
+            </div>
+            <span class="toolbar-separator"></span>
+            <span class="sketchClickableText toolbar-button"
+              >Negative
+              <img
+                id="selectNegativeSwitch"
+                src="ptas_switch_off.png"
+                style="
+                  position: relative;
+                  width: 33px;
+                  height: 22px;
+                  left: 8px;
+                "
+                onclick="negativeSwitchClicked('select')"
+              />
+            </span>
+            <div onclick="parent.sketchControl.deleteSelection()">
+              <span
+                class="sketchClickableText"
+                style="position: absolute; top: 9px; right: 200px"
+                >Delete</span
+              >
+              <span
+                class="topContextMenuUnderLine"
+                style="
+                  position: absolute;
+                  width: 44px;
+                  height: 4px;
+                  top: 30px;
+                  right: 199px;
+                  background-color: white;
+                "
+              ></span>
+            </div>
+            <div
+              id="selectMoveToBackground"
+              class="sketchClickableTextBackground"
+              style="width: 85px; right: 85px"
+              onclick="moveToClicked('select')"
+            >
+              <span
+                id="selectMoveToText"
+                class="sketchClickableText"
+                style="position: absolute; top: 9px; left: 15px"
+                >Move to</span
+              >
+              <span
+                class="topContextMenuUnderLine"
+                style="
+                  position: absolute;
+                  width: 54px;
+                  height: 4px;
+                  top: 30px;
+                  left: 15px;
+                  background-color: white;
+                "
+              ></span>
+            </div>
+            <div
+              id="selectCopyToBackground"
+              class="sketchClickableTextBackground"
+              style="width: 85px; right: 0"
+              onclick="copyToClicked('select')"
+            >
+              <span
+                id="selectCopyToText"
+                class="sketchClickableText"
+                style="position: absolute; top: 9px; left: 15px"
+                >Copy to</span
+              >
+              <span
+                class="topContextMenuUnderLine"
+                style="
+                  position: absolute;
+                  width: 51px;
+                  height: 4px;
+                  top: 30px;
+                  left: 15px;
+                  background-color: white;
+                "
+              ></span>
+            </div>
+          </div>
+          <div id="drawToolbar" style="visibility: collapse">
+            <div>
+              <span
+                class="sketchClickableText"
+                style="position: absolute; top: 9px; left: 15px"
+                onclick="penDownClicked()"
+                >Pen down</span
+              >
+              <span
+                id="penDownOn"
+                class="topContextMenuUnderLine"
+                style="
+                  position: absolute;
+                  width: 65px;
+                  height: 4px;
+                  top: 30px;
+                  left: 15px;
+                  background-color: white;
+                "
+              ></span>
+            </div>
+            <div>
+              <span
+                class="sketchClickableText"
+                style="position: absolute; top: 9px; left: 95px"
+                onclick="penUpClicked()"
+                >Pen up</span
+              >
+              <span
+                id="penUpOn"
+                class="topContextMenuUnderLine"
+                style="
+                  position: absolute;
+                  width: 48px;
+                  height: 4px;
+                  top: 30px;
+                  left: 95px;
+                  background-color: white;
+                  visibility: inherit;
+                "
+              ></span>
+            </div>
+            <span
+              class="sketchClickableText"
+              style="position: absolute; top: 9px; left: 175px"
+              >Negative</span
+            >
+            <img
+              id="drawNegativeSwitch"
+              src="ptas_switch_off.png"
+              style="
+                position: absolute;
+                width: 33px;
+                height: 22px;
+                left: 235px;
+                top: 8px;
+              "
+              onclick="negativeSwitchClicked('draw')"
+            />
+            <div
+              id="drawMoveToBackground"
+              class="sketchClickableTextBackground"
+              style="width: 85px; right: 85px"
+              onclick="moveToClicked('draw')"
+            >
+              <span
+                id="drawMoveToText"
+                class="sketchClickableText"
+                style="position: absolute; top: 9px; left: 15px"
+                >Move to</span
+              >
+              <span
+                class="topContextMenuUnderLine"
+                style="
+                  position: absolute;
+                  width: 54px;
+                  height: 4px;
+                  top: 30px;
+                  left: 15px;
+                  background-color: white;
+                "
+              ></span>
+            </div>
+            <div
+              id="drawCopyToBackground"
+              class="sketchClickableTextBackground"
+              style="width: 85px; right: 0"
+              onclick="copyToClicked('draw')"
+            >
+              <span
+                id="drawCopyToText"
+                class="sketchClickableText"
+                style="position: absolute; top: 9px; left: 15px"
+                >Copy to</span
+              >
+              <span
+                class="topContextMenuUnderLine"
+                style="
+                  position: absolute;
+                  width: 51px;
+                  height: 4px;
+                  top: 30px;
+                  left: 15px;
+                  background-color: white;
+                "
+              ></span>
+            </div>
+          </div>
+          <div id="textToolbar" class="toolbar" style="visibility: collapse">
+            <div class="toolbar-button">
+              <span class="sketchClickableText" onclick="largeFontClicked()"
+                >Larger</span
+              >
+              <span class="topContextMenuUnderLine" style="width: 42px;"></span>
+            </div>
+            <div class="toolbar-button">
+              <span class="sketchClickableText" onclick="smallFontClicked()"
+                >Smaller</span
+              >
+              <span class="topContextMenuUnderLine" style="width: 50px;"></span>
+            </div>
+            <div class="toolbar-button">
+              <span class="sketchClickableText" onclick="textArrowClicked()"
+                >Arrow</span
+              >
+              <span class="topContextMenuUnderLine" style="width: 42px;"></span>
+            </div>
+            <div id="distance-buttons" class="distance-buttons">
+              <span
+                class="sketchClickableText"
+                style="position: absolute; top: 9px; left: 276px"
+                onclick="showDistanceClicked()"
+                >Show</span
+              >
+              <span
+                id="showDistance"
+                style="
+                  position: absolute;
+                  width: 37px;
+                  height: 4px;
+                  top: 30px;
+                  left: 276px;
+                  background-color: white;
+                "
+              ></span>
+              <span
+                class="sketchClickableText"
+                style="position: absolute; top: 9px; left: 325px"
+                onclick="hideDistanceClicked()"
+                >Hide</span
+              >
+              <span
+                id="hideDistance"
+                style="
+                  position: absolute;
+                  width: 31px;
+                  height: 4px;
+                  top: 30px;
+                  left: 325px;
+                  background-color: white;
+                  visibility: collapse;
+                "
+              ></span>
+            </div>
+            <div>
+              <span
+                class="sketchClickableText"
+                style="position: absolute; top: 9px; right: 15px"
+                onclick="parent.sketchControl.deleteSelection()"
+                >Delete</span
+              >
+              <span
+                class="topContextMenuUnderLine"
+                style="
+                  position: absolute;
+                  width: 44px;
+                  height: 4px;
+                  top: 30px;
+                  right: 14px;
+                  background-color: white;
+                "
+              ></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="file-info">
+        <div name="file-name">778740-0055</div>
+        <div name="file-date">9/5/2017</div>
+        <div name="file-author">Imer</div>
+        <div name="selected-layer">1st floor</div>
+      </div>
+      <div
+        name="editToolbar"
+        style="
+          position: absolute;
+          width: 40px;
+          height: 152px;
+          left: -0.5px;
+          top: 98.5px;
+        "
+      >
+        <img
+          id="selectButton"
+          src="ptas_select.png"
+          style="position: absolute; width: 40px; height: 40px"
+          onclick="selectClicked()"
+        />
+        <img
+          id="drawButton"
+          src="ptas_draw.png"
+          style="position: absolute; width: 40px; height: 40px; top: 38px"
+          onclick="drawClicked()"
+        />
+        <img
+          id="textButton"
+          src="ptas_text.png"
+          style="position: absolute; width: 40px; height: 40px; top: 76px"
+          onclick="textClicked()"
+        />
+        <img
+          id="panButton"
+          src="ptas_pan_highlighted.png"
+          style="position: absolute; width: 40px; height: 40px; top: 114px"
+          onclick="panClicked()"
+        />
+      </div>
+      <table
+        id="discardMenu"
+        style="
+          position: absolute;
+          width: 170px;
+          left: 90px;
+          top: 60px;
+          background-color: #4d4d4d;
+          visibility: collapse;
+        "
+      >
+        <tbody>
+          <tr>
+            <td
+              class="sketchMenuItem"
+              onclick="discardAllChangesClicked()"
+              onmouseover="menuItemOver(this)"
+              onmouseout="menuItemOut(this)"
+            >
+              All changes
+            </td>
+          </tr>
+          <tr>
+            <td
+              class="sketchMenuItem"
+              onclick="discardAllChangesAndCloseClicked()"
+              onmouseover="menuItemOver(this)"
+              onmouseout="menuItemOut(this)"
+            >
+              All changes and close
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div
+        id="viewMenu"
+        style="
+          position: absolute;
+          width: 253px;
+          top: 60px;
+          right: 65px;
+          border-style: solid;
+          border-width: 1px;
+          border-color: black;
+          visibility: collapse;
+          z-index: 2;
+        "
+      >
+        <div class="menu-header">
+          <div class="read-only-button" onclick="viewTileClicked(event)">
+            <img
+              style="width: 20px; height: 20px; pointer-events: none"
+              src="ptas_tile.png"
+            />
+            <span
+              class="sketchClickableText"
+              style="pointer-events: none; color: black"
+              >Tile</span
+            >
+            <div
+              class="active-view"
+              name="active-view"
+              style="pointer-events: none; visibility: collapse"
+            ></div>
+          </div>
+          <div class="read-only-button" onclick="viewStackClicked(event)">
+            <img
+              style="width: 20px; height: 20px; pointer-events: none"
+              src="ptas_stack.png"
+            />
+            <span
+              class="sketchClickableText"
+              style="pointer-events: none; color: black"
+              >Stack</span
+            >
+            <div
+              class="active-view"
+              name="active-view"
+              id="active-stack"
+              style="pointer-events: none"
+            ></div>
+          </div>
+        </div>
+        <div
+          style="position: relative; height: 34px; background-color: black"
+          class="zoom-menu-bar"
+        >
+          <img
+            style="position: relative; width: 20px; height: 20px"
+            src="ptas_zoom_in.png"
+            onclick="layersZoomInClicked()"
+            class="zoom-button magnifying-glass"
+          />
+          <span
+            id="zoomLabel"
+            name="zoomLabel"
+            class="sketchClickableText"
+            style="position: relative"
+          ></span>
+          <img
+            style="position: relative; width: 20px; height: 20px"
+            src="ptas_zoom_out.png"
+            onclick="layersZoomOutClicked()"
+            class="zoom-button magnifying-glass"
+          />
+          <div
+            style="
+              position: relative;
+              width: 112px;
+              height: 100%;
+              border-left-style: solid;
+              border-left-width: 1px;
+              border-left-color: #4d4d4d;
+              cursor: pointer;
+            "
+            onclick="fitClicked()"
+            class="zoom-button"
+          >
+            <span
+              class="sketchClickableText"
+              style="
+                position: absolute;
+                top: 6px;
+                left: 43px;
+                pointer-events: none;
+              "
+              >Fit</span
+            >
+          </div>
+        </div>
+        <div
+          style="position: relative; height: auto; background-color: #4d4d4d"
+        >
+          <div
+            id="autoFit"
+            class="sketchMenuItem"
+            style="position: relative; height: 43px"
+            onclick="parent.sketchControl.autoFitClicked()"
+            onmouseover="menuItemOver(this)"
+            onmouseout="menuItemOut(this)"
+          >
+            <div
+              id="autoFitImage"
+              class="viewMenuItemCheckmark"
+              style="visibility: collapse"
+            ></div>
+            <span class="menu-item-text">Auto fit</span>
+          </div>
+          <div
+            id="snapToGrid"
+            class="sketchMenuItem"
+            style="position: relative; height: 43px"
+            onclick="snapToGridClicked()"
+            onmouseover="menuItemOver(this)"
+            onmouseout="menuItemOut(this)"
+          >
+            <div id="snapToGridImage" class="viewMenuItemCheckmark"></div>
+            <span class="menu-item-text">Snap to grid</span>
+          </div>
+          <div
+            id="snapToLine"
+            class="sketchMenuItem"
+            style="position: relative; height: 43px"
+            onclick="snapToLineClicked()"
+            onmouseover="menuItemOver(this)"
+            onmouseout="menuItemOut(this)"
+          >
+            <div id="snapToLineImage" class="viewMenuItemCheckmark"></div>
+            <span class="menu-item-text">Snap to line</span>
+          </div>
+          <div
+            id="hideGridlines"
+            class="sketchMenuItem"
+            style="position: relative; height: 43px"
+            onclick="hideGridlinesClicked()"
+            onmouseover="menuItemOver(this)"
+            onmouseout="menuItemOut(this)"
+          >
+            <div
+              id="hideGridlinesImage"
+              class="viewMenuItemCheckmark"
+              style="visibility: collapse"
+            ></div>
+            <span class="menu-item-text">Hide grid lines</span>
+          </div>
+        </div>
+      </div>
+      <div
+        id="helpMenu"
+        style="
+          position: absolute;
+          width: 147px;
+          top: 60px;
+          right: 0px;
+          border-style: solid;
+          border-width: 1px;
+          border-color: black;
+          visibility: collapse;
+          background-color: #4d4d4d;
+          z-index: 2;
+        "
+      >
+        <div
+          id="quickHelp"
+          class="sketchMenuItem"
+          style="position: relative; height: 43px"
+          onclick="quickHelpClicked()"
+          onmouseover="menuItemOver(this)"
+          onmouseout="menuItemOut(this)"
+        >
+          Quick help
+        </div>
+        <div
+          id="referenceManual"
+          class="sketchMenuItem"
+          style="position: relative; height: 43px"
+          onclick="referenceManualClicked()"
+          onmouseover="menuItemOver(this)"
+          onmouseout="menuItemOut(this)"
+        >
+          Reference manual
+        </div>
+      </div>
+      <table
+        id="transformMenu"
+        style="
+          position: absolute;
+          left: 145px;
+          top: 100px;
+          width: 145px;
+          background-color: black;
+          opacity: 0.7;
+          visibility: collapse;
+        "
+        onclick="lastAction('transform')"
+      >
+        <tbody>
+          <tr>
+            <td
+              class="sketchMenuItem"
+              onclick="mirrorClicked()"
+              onmouseover="menuItemOver(this)"
+              onmouseout="menuItemOut(this)"
+            >
+              Mirror
+            </td>
+          </tr>
+          <tr>
+            <td
+              class="sketchMenuItem"
+              onclick="rotateRightClicked()"
+              onmouseover="menuItemOver(this)"
+              onmouseout="menuItemOut(this)"
+            >
+              Rotate right
+            </td>
+          </tr>
+          <tr>
+            <td
+              class="sketchMenuItem"
+              onclick="rotateLeftClicked()"
+              onmouseover="menuItemOver(this)"
+              onmouseout="menuItemOut(this)"
+            >
+              Rotate left
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div id="layersMenu" style="visibility: collapse">
+        <div id="layer-menu" name="editToolbar">
+          <span
+            class="sketchLayerClickableText layer-menu-button"
+            id="layer-button"
+            onclick="addLayer()"
+          >
+            <img
+              style="width: 6px; height: 10px; pointer-events: none"
+              src="ptas_expand_left.png"
+            />
+            <img
+              style="width: 20px; height: 20px; pointer-events: none"
+              src="ptas_new.png"
+            />Layer
+          </span>
+          <span
+            class="sketchLayerClickableText layer-menu-button"
+            id="level-button"
+            onclick="addLevel()"
+          >
+            <img
+              style="width: 20px; height: 20px; pointer-events: none"
+              src="ptas_new.png"
+            />Level
+          </span>
+        </div>
+        <div
+          style="position: relative; height: 14px; background-color: #7a7a7a"
+        >
+          <span
+            class="sketchClickableTextMini"
+            style="position: absolute; top: 1px; left: 3px"
+            >SHOW</span
+          >
+          <span
+            class="sketchClickableTextMini"
+            style="position: absolute; top: 1px; left: 45px"
+            >NAME</span
+          >
+          <span
+            class="sketchClickableTextMini"
+            style="position: absolute; top: 1px; right: 2px"
+            >MORE</span
+          >
+        </div>
+        <div
+          id="sketchLayersLayers"
+          style="
+            position: relative;
+            border-bottom-width: 1px;
+            border-bottom-color: black;
+            border-bottom-style: solid;
+          "
+        ></div>
+        <div
+          id="sketchBackgroundLayer"
+          style="position: relative; height: 34px; background-color: black"
+        >
+          <div class="sketchLayerVisibilityBox">
+            <img
+              src="ptas_visible.png"
+              style="
+                position: absolute;
+                width: 20px;
+                height: 13px;
+                top: 10px;
+                left: 7px;
+              "
+            />
+          </div>
+          <img
+            src="ptas_background.png"
+            style="
+              position: absolute;
+              width: 20px;
+              height: 20px;
+              top: 8px;
+              left: 45px;
+            "
+          />
+          <span
+            class="sketchClickableText"
+            style="position: absolute; top: 8px; left: 75px"
+            >Background</span
+          >
+        </div>
+      </div>
+      <div id="layer-types">
+        <h3>Add a new layer</h3>
+        <div id="menu-columns"></div>
+      </div>
+      <img id="layersButton" src="ptas_layers.png" onclick="layersClicked()" />
+      <span id="layerName" onclick="layersClicked()">No layer selected</span>
+      <div
+        id="copyAndMoveToMenu"
+        style="
+          position: absolute;
+          right: 0;
+          top: 100px;
+          width: 320px;
+          background-color: white;
+          border-width: 0 1px 1px 1px;
+          border-color: black;
+          border-style: solid;
+          visibility: collapse;
+        "
+      >
+        <div style="position: relative; height: 40px">
+          <img
+            style="
+              position: absolute;
+              width: 6px;
+              height: 10px;
+              top: 17px;
+              left: 10px;
+            "
+            src="ptas_expand_left.png"
+            onclick="addLayer()"
+          />
+          <img
+            style="
+              position: absolute;
+              width: 20px;
+              height: 20px;
+              top: 13px;
+              left: 22px;
+            "
+            src="ptas_new.png"
+            onclick="addLayer()"
+          />
+          <span
+            class="sketchLayerClickableText"
+            style="position: absolute; top: 13px; left: 50px"
+            onclick="addLayer()"
+            >Layer</span
+          >
+        </div>
+        <div
+          style="position: relative; height: 14px; background-color: #7a7a7a"
+        >
+          <span
+            class="sketchClickableTextMini"
+            style="position: absolute; top: 1px; left: 3px"
+            >SHOW</span
+          >
+          <span
+            class="sketchClickableTextMini"
+            style="position: absolute; top: 1px; left: 45px"
+            >NAME</span
+          >
+        </div>
+        <div
+          id="copyAndMoveToLayers"
+          class="scrollbar"
+          style="
+            position: relative;
+            border-bottom-width: 1px;
+            border-bottom-color: black;
+            border-bottom-style: solid;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+          "
+        ></div>
+      </div>
+      <div
+        id="keypad"
+        style="visibility: collapse;"
+        onclick="lastAction('keypad')"
+      >
+        <div id="keypadInput">
+          <input
+            id="keypadInputFeet"
+            class="sketchKeypadEditor"
+            type="number"
+            min="-9999"
+            max="9999"
+            style="
+              position: absolute;
+              width: 40px;
+              left: 15px;
+              top: 4px;
+              border: 0;
+              text-align: right;
+              background-color: transparent;
+            "
+            oninput="keypadInputFeetChanged(event)"
+            onkeyup="keypadInputKeyUp(event)"
+          />
+          <span
+            class="sketchKeypadEditor"
+            style="position: absolute; left: 55px; top: 4px"
+            >'</span
+          >
+          <input
+            id="keypadInputInches"
+            class="sketchKeypadEditor"
+            type="number"
+            min="-11"
+            max="11"
+            style="
+              position: absolute;
+              width: 20px;
+              left: 60px;
+              top: 4px;
+              border: 0;
+              text-align: right;
+              background-color: transparent;
+            "
+            oninput="keypadInputInchesChanged(event)"
+            onkeyup="keypadInputKeyUp(event)"
+          />
+          <span
+            class="sketchKeypadEditor"
+            style="position: absolute; left: 80px; top: 4px"
+            >"</span
+          >
+        </div>
+        <div id="keypadMisc" class="keypad-keys">
+          <div onclick="keypadEscClicked()" class="keypadKey">
+            <span class="sketchKeypadText">esc</span>
+          </div>
+          <div onclick="keypadDeleteClicked()" class="keypadKey">
+            <span class="sketchKeypadText">del</span>
+          </div>
+          <div onclick="keypadNumberClicked('-')" class="keypadKey">
+            <span class="sketchKeypadText">-</span>
+          </div>
+          <div onclick="keypadDashClicked(event)" class="keypadKey">
+            <span class="sketchKeypadText">n' n"</span>
+          </div>
+        </div>
+        <div id="keypadNumbers" class="keypad-keys">
+          <div onclick="keypadNumberClicked('7')" class="keypadKey">
+            <span class="sketchKeypadText">7</span>
+          </div>
+          <div onclick="keypadNumberClicked('8')" class="keypadKey">
+            <span class="sketchKeypadText">8</span>
+          </div>
+          <div onclick="keypadNumberClicked('9')" class="keypadKey">
+            <span class="sketchKeypadText">9</span>
+          </div>
+          <div onclick="keypadNumberClicked('4')" class="keypadKey">
+            <span class="sketchKeypadText">4</span>
+          </div>
+          <div onclick="keypadNumberClicked('5')" class="keypadKey">
+            <span class="sketchKeypadText">5</span>
+          </div>
+          <div onclick="keypadNumberClicked('6')" class="keypadKey">
+            <span class="sketchKeypadText">6</span>
+          </div>
+          <div onclick="keypadNumberClicked('1')" class="keypadKey">
+            <span class="sketchKeypadText">1</span>
+          </div>
+          <div onclick="keypadNumberClicked('2')" class="keypadKey">
+            <span class="sketchKeypadText">2</span>
+          </div>
+          <div onclick="keypadNumberClicked('3')" class="keypadKey">
+            <span class="sketchKeypadText">3</span>
+          </div>
+          <div onclick="keypadNumberClicked('0')" class="keypadKey">
+            <span class="sketchKeypadText">0</span>
+          </div>
+          <div onclick="keypadClicked()" class="keypadKey">
+            <span class="sketchKeypadText">close</span>
+          </div>
+        </div>
+        <div id="keypadArrows" class="keypad-keys">
+          <div onclick="keypadTopLeftArrowClicked(event)" class="keypadKey">
+            <img
+              id="keypadTopLeftArrow"
+              class="arrow"
+              src="ptas_keypad_top_left_arrow.png"
+            />
+          </div>
+          <div onclick="keypadUpArrowClicked(event)" class="keypadKey">
+            <img
+              id="keypadUpArrow"
+              class="arrow"
+              src="ptas_keypad_up_arrow.png"
+            />
+          </div>
+          <div onclick="keypadTopRightArrowClicked(event)" class="keypadKey">
+            <img
+              id="keypadTopRightArrow"
+              class="arrow"
+              src="ptas_keypad_top_right_arrow.png"
+            />
+          </div>
+          <div onclick="keypadLeftArrowClicked(event)" class="keypadKey">
+            <img
+              id="keypadLeftArrow"
+              class="arrow"
+              src="ptas_keypad_left_arrow.png"
+            />
+          </div>
+          <div onclick="keypadCenterClicked()" class="keypadKey">
+            <img
+              id="keypadCenter"
+              style="
+                width: 40px;
+                height: 40px;
+              "
+              src="ptas_keypad_center_pen_up.png"
+            />
+          </div>
+          <div onclick="keypadRightArrowClicked(event)" class="keypadKey">
+            <img
+              id="keypadRightArrow"
+              class="arrow"
+              src="ptas_keypad_right_arrow.png"
+            />
+          </div>
+          <div onclick="keypadBottomLeftArrowClicked(event)" class="keypadKey">
+            <img
+              id="keypadBottomLeftArrow"
+              class="arrow"
+              src="ptas_keypad_bottom_left_arrow.png"
+            />
+          </div>
+          <div onclick="keypadDownArrowClicked(event)" class="keypadKey">
+            <img
+              id="keypadDownArrow"
+              class="arrow"
+              src="ptas_keypad_down_arrow.png"
+            />
+          </div>
+          <div onclick="keypadBottomRightArrowClicked(event)" class="keypadKey">
+            <img
+              id="keypadBottomRightArrow"
+              class="arrow"
+              src="ptas_keypad_bottom_right_arrow.png"
+            />
+          </div>
+          <div
+            onclick="keypadEnterClicked()"
+            class="keypadKey"
+            style="margin-left: 37px;"
+          >
+            <span class="sketchKeypadText">enter</span>
+          </div>
+        </div>
+      </div>
+      <div id="saveModal" class="modal">
+        <div class="infoModalDialog scrollbar">
+          <div class="header">
+            <h1>Save</h1>
+            <img
+              class="closeInfoImage"
+              src="ptas_close.png"
+              onclick="closeModal('saveModal')"
+            />
+          </div>
+
+          <div
+            class="save-content"
+            style="display: flex; margin: 10px 0 30px 0"
+          >
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                flex-grow: 1;
+                flex-shrink: 1;
+                flex-basis: 0px;
+                margin-right: 10px;
+                border: 1px black solid;
+              "
+            >
+              <div
+                style="
+                  min-height: 20px;
+                  display: flex;
+                  justify-content: space-between;
+                  background: #c0c0c0;
+                  font-size: 14px;
+                  padding: 4px;
+                "
+              >
+                <span id="saveSketchThumbnailTitle"></span>
+                <span id="saveSketchThumbnailDate"></span>
+              </div>
+
+              <div
+                id="saveSketchThumbnail"
+                width="100%"
+                style="visibility: hidden"
+                alt="Sketch Thumbnail"
+              ></div>
+            </div>
+            <div
+              style="
+                flex-grow: 1;
+                flex-shrink: 1;
+                flex-basis: 0px;
+                margin-left: 10px;
+              "
+            >
+              <div style="display: flex; flex-direction: column">
+                <div style="text-align: center">
+                  <button
+                    style="
+                      width: 300px;
+                      height: 40px;
+                      background: #3d7893;
+                      color: white;
+                      font-size: 18px;
+                      border: none;
+                      border-radius: 3px;
+                      outline: none;
+                      cursor: pointer;
+                    "
+                    onclick="parent.sketchControl.doSaveSketch()"
+                  >
+                    Save
+                  </button>
+                </div>
+                <div
+                  style="display: flex; justify-content: center; margin: 30px 0"
+                >
+                  <div style="margin: 5px 10px">
+                    This is the Official version
+                  </div>
+                  <div>
+                    <div class="switch-container switch-with-bottom-label">
+                      <label class="switch">
+                        <input id="saveSketchIsOfficialInput" type="checkbox" />
+                        <span
+                          class="slider round"
+                          onclick="saveSketchIsOfficial()"
+                        ></span>
+                      </label>
+                      <label class="switch-label"
+                        >No&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div style="display: flex; justify-content: flex-start">
+                  <input
+                    onkeyup="addSketchTag(event, 'saveSketchTags')"
+                    type="text"
+                    placeholder="Add tags, separate with comma"
+                    style="
+                      display: block;
+                      width: 95%;
+                      font-size: 16px;
+                      padding: 10px 10px 10px 5px;
+                      border: none;
+                      border-bottom: 2px solid #757575;
+                      outline: none;
+                    "
+                  />
+                </div>
+                <div
+                  id="saveSketchTags"
+                  style="display: flex; flex-wrap: wrap; margin-top: 15px"
+                ></div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="tabs-bar"
+            style="display: flex; justify-content: center; height: 20px"
+          >
+            <button
+              id="saveTabTotals"
+              class="modal-tab"
+              style="
+                width: 100px;
+                background-color: inherit;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                font-size: 16px;
+                font-weight: bold;
+              "
+              onclick="showModalTab('saveModal', 'saveTabTotals')"
+            >
+              <span style="border-bottom: 3px #a5c727 solid">Info</span>
+            </button>
+            <button
+              id="saveTabVersions"
+              class="modal-tab"
+              style="
+                width: 100px;
+                background-color: inherit;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                font-size: 16px;
+                font-weight: bold;
+              "
+              onclick="showModalTab('saveModal', 'saveTabVersions')"
+            >
+              <span style="color: rgba(0, 0, 0, 0.4)">Versions</span>
+            </button>
+          </div>
+
+          <div
+            id="saveTabTotalsContent"
+            class="modal-tab-content tabTotalsContent"
+            style="padding: 40px 0"
+          ></div>
+          <div
+            id="saveTabVersionsContent"
+            class="modal-tab-content"
+            style="display: none; padding: 40px 0"
+          ></div>
+        </div>
+      </div>
+      <div id="updateModal" class="modal">
+        <div class="infoModalDialog">
+          <div class="header">
+            <h1>Update fields</h1>
+            <div class="note">
+              Important: Totals are rounded to the nearest ten.
+            </div>
+            <img
+              class="closeInfoImage"
+              src="ptas_close.png"
+              onclick="closeModal('updateModal')"
+            />
+          </div>
+
+          <div class="tabTotalsContent"></div>
+          <div class="modal-footer">
+            <div class="modal-buttons">
+              <button
+                type="button"
+                id="updateFieldsButton"
+                onclick="updateEntityFieldValues()"
+              >
+                Update database
+              </button>
+            </div>
+            <div class="modal-buttons">
+              <div style="margin: 6px 0">or</div>
+              <a onclick="closeModal('updateModal')" class="bottom-row-button">
+                Continue without updating
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="importModal" class="modal">
+        <div class="infoModalDialog">
+          <div class="header">
+            <h1>Import</h1>
+            <div class="search">
+              <input
+                type="text"
+                placeholder="Find tag, parcel, address"
+                id="searchField"
+                onkeyup="checkSearch(event)"
+              />
+              <button type="button" onclick="searchClicked()">
+                <img src="ptas_search.png" height="16" width="16" />
+              </button>
+            </div>
+            <img
+              class="closeInfoImage"
+              src="ptas_close.png"
+              onclick="closeModal('importModal')"
+            />
+          </div>
+          <div class="modal-body" id="import-recent">
+            <h2>Recent sketches</h2>
+            <div class="row"></div>
+          </div>
+          <div
+            class="modal-body"
+            id="import-results"
+            style="visibility: collapse"
+          >
+            <h2>Results</h2>
+            <div class="row"></div>
+          </div>
+        </div>
+      </div>
+      <div id="infoModal" class="modal">
+        <div class="infoModalDialog" style="padding: 0">
+          <div
+            style="
+              padding: 5px 15px 1px 15px;
+              border-radius: 10px;
+              background: #f7f6f6;
+            "
+          >
+            <div class="header">
+              <h1>Info</h1>
+              <div>
+                <img
+                  class="closeInfoImage"
+                  src="ptas_close.png"
+                  onclick="closeModal('infoModal')"
+                />
+              </div>
+            </div>
+
+            <div class="tags" style="margin: 20px 0">
+              <div style="display: flex; justify-content: flex-start">
+                <input
+                  onkeyup="addSketchTag(event, 'infoSketchTags')"
+                  type="text"
+                  placeholder="Add tags, separate with comma"
+                  style="
+                    display: block;
+                    width: 40%;
+                    font-size: 16px;
+                    padding: 10px 10px 10px 5px;
+                    background: transparent;
+                    border: none;
+                    border-bottom: 2px solid #757575;
+                    outline: none;
+                  "
+                />
+              </div>
+              <div
+                id="infoSketchTags"
+                style="display: flex; flex-wrap: wrap; margin-top: 15px"
+              ></div>
+            </div>
+
+            <div
+              class="tabs-bar"
+              style="display: flex; justify-content: center; height: 20px"
+            >
+              <button
+                id="infoTabTotals"
+                class="modal-tab"
+                style="
+                  width: 100px;
+                  background-color: inherit;
+                  border: none;
+                  outline: none;
+                  cursor: pointer;
+                  font-size: 16px;
+                  font-weight: bold;
+                "
+                onclick="showModalTab('infoModal', 'infoTabTotals')"
+              >
+                <span style="border-bottom: 3px #a5c727 solid">Totals</span>
+              </button>
+              <button
+                id="infoTabVersions"
+                class="modal-tab"
+                style="
+                  width: 100px;
+                  background-color: inherit;
+                  border: none;
+                  outline: none;
+                  cursor: pointer;
+                  font-size: 16px;
+                  font-weight: bold;
+                "
+                onclick="showModalTab('infoModal', 'infoTabVersions')"
+              >
+                <span style="color: rgba(0, 0, 0, 0.4)">Versions</span>
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="content scrollbar"
+            style="height: 100%; overflow-y: auto; padding: 40px 15px 1px 15px"
+          >
+            <div
+              id="infoTabTotalsContent"
+              class="modal-tab-content tabTotalsContent"
+            ></div>
+            <div
+              id="infoTabVersionsContent"
+              class="modal-tab-content"
+              style="display: none"
+            ></div>
+          </div>
+        </div>
+      </div>
+
+      <template id="areaTotalsTableTemplate">
+        <div class="table-template">
+          <table class="total-table">
+            <tr>
+              <th colspan="3" align="left"></th>
+              <th colspan="2" align="left">
+                <div class="modal-title" style="margin-right: 20px;">
+                  Living area
+                </div>
+              </th>
+              <th colspan="3" align="left"></th>
+              <th colspan="2" align="left">
+                <div class="modal-title">
+                  Non-living area
+                </div>
+              </th>
+            </tr>
+            <tr style="font-size: 12px; color: rgba(0, 0, 0, 0.8)">
+              <td colspan="3" style="padding-top: 15px"></td>
+              <td style="padding-top: 15px">Sq ft ⏍</td>
+              <td style="padding-top: 15px">Change</td>
+              <td colspan="3" style="padding-top: 15px"></td>
+              <td style="padding-top: 15px">Sq ft ⏍</td>
+              <td style="padding-top: 15px">Change</td>
+            </tr>
+            <tr class="areaTotalsSumRow">
+              <td class="modal-title" colspan="3">
+                Totals
+              </td>
+            </tr>
+          </table>
+
+          <div class="list-container">
+            <table class="list-body total-table">
+              <tr style="height: 15px">
+                <td></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </template>
+      <template id="versionsTemplate">
+        <div>
+          <div class="versions-list"></div>
+          <div
+            class="versions-menu"
+            style="display: flex; justify-content: space-between"
+          >
+            <div
+              style="
+                position: relative;
+                height: 50px;
+                display: flex;
+                align-items: center;
+              "
+            >
+              <div
+                class="read-only-button"
+                onclick="versionsTotalsClicked(event)"
+              >
+                <span
+                  style="
+                    margin-top: -8px;
+                    font-size: 20px;
+                    font-weight: bold;
+                    pointer-events: none;
+                  "
+                  >⏍</span
+                >
+                <span
+                  class="sketchClickableText"
+                  style="pointer-events: none; color: black"
+                  >Totals</span
+                >
+                <div
+                  class="active-view"
+                  name="active-view"
+                  id="active-stack"
+                  style="pointer-events: none"
+                ></div>
+              </div>
+              <div
+                class="read-only-button"
+                onclick="versionsStackClicked(event)"
+              >
+                <img
+                  style="width: 20px; height: 20px; pointer-events: none"
+                  src="ptas_stack.png"
+                />
+                <span
+                  class="sketchClickableText"
+                  style="pointer-events: none; color: black"
+                  >Stack</span
+                >
+                <div
+                  class="active-view"
+                  name="active-view"
+                  style="pointer-events: none; visibility: collapse"
+                ></div>
+              </div>
+              <div
+                class="read-only-button"
+                style="display: none"
+                onclick="versionsTileClicked(event)"
+              >
+                <img
+                  style="width: 20px; height: 20px; pointer-events: none"
+                  src="ptas_tile.png"
+                />
+                <span
+                  class="sketchClickableText"
+                  style="pointer-events: none; color: black"
+                  >Tile</span
+                >
+                <div
+                  class="active-view"
+                  name="active-view"
+                  style="pointer-events: none; visibility: collapse"
+                ></div>
+              </div>
+            </div>
+            <div
+              class="versionsLinkButtons"
+              style="
+                position: relative;
+                width: 223px;
+                height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+              "
+            >
+              <button class="link-button" onclick="editSketchVersion()">
+                Edit
+              </button>
+              <button
+                class="link-button"
+                onclick="setSketchVersionAsOfficial()"
+              >
+                Official
+              </button>
+              <div class="delete-version" style="position: relative">
+                <button class="link-button" style="color: #b70f0a">
+                  Delete
+                  <img
+                    src="./ptas_keyboard_arrow_down.png"
+                    style="padding-bottom: 4px"
+                  />
+                </button>
+                <div class="sketchDeletionConfirm popover__content">
+                  <div style="color: white">
+                    <span
+                      >Deletion permanently erases this version from the
+                      list.</span
+                    >
+                  </div>
+                  <div style="text-align: center">
+                    <button onclick="deleteSketchVersion()">
+                      Delete version
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="versions-tab-view"></div>
+          
+          <div class="modal-footer">
+            <div class="modal-buttons">
+              <button
+                type="button"
+                name="updateFieldsButton"
+                onclick="updateEntityFieldValues(event)"
+                style="visibility: collapse;"
+              >
+                Update database
+              </button>
+            </div>
+          </div>
+        </div>
+      </template>
+      <div id="sketchSelectionContainer">
+        <div id="sketchSelection">
+          <span
+            >A draft for a different sketch already exists. Do you want to
+            replace it with the contents of this sketch?</span
+          >
+          <div style="text-align: center">
+            <button
+              onclick="loadSketch(parent.sketchControl.sketchEntityId, true)"
+            >
+              Yes
+            </button>
+            <button
+              onclick="loadSketch(parent.sketchControl.draftData.draftId)"
+            >
+              No
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <footer name="editToolbar">
+        <div class="backgroundFill"></div>
+        <div class="button-group">
+          <div
+            style="
+              position: relative;
+              width: 40px;
+              height: 40px;
+              display: inline-flex;
+            "
+            onclick="undoClicked()"
+          >
+            <svg
+              style="width: 30px; height: 30px; margin: auto"
+              viewBox="0 0 24 24"
+            >
+              <path
+                id="undoButton"
+                fill="#BBB"
+                d="M12.5,8C9.85,8 7.45,9 5.6,10.6L2,7V16H11L7.38,12.38C8.77,11.22 10.54,10.5 12.5,10.5C16.04,10.5 19.05,12.81 20.1,16L22.47,15.22C21.08,11.03 17.15,8 12.5,8Z"
+              />
+            </svg>
+          </div>
+          <div
+            style="
+              position: relative;
+              width: 40px;
+              height: 40px;
+              display: inline-flex;
+            "
+            onclick="redoClicked()"
+          >
+            <svg
+              style="width: 30px; height: 30px; margin: auto"
+              viewBox="0 0 24 24"
+            >
+              <path
+                id="redoButton"
+                fill="#BBB"
+                d="M18.4,10.6C16.55,9 14.15,8 11.5,8C6.85,8 2.92,11.03 1.54,15.22L3.9,16C4.95,12.81 7.95,10.5 11.5,10.5C13.45,10.5 15.23,11.22 16.62,12.38L13,16H22V7L18.4,10.6Z"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          style="
+            position: relative;
+            height: 40px;
+            left: 80px;
+            right: 98px;
+            bottom: 0;
+            display: inline-flex;
+          "
+        >
+          <div
+            id="curveContextArea"
+            class="context-hidden"
+            style="display: flex; justify-content: center"
+          >
+            <div style="position: relative; width: 420px">
+              <div style="position: absolute; width: 80px">
+                <input
+                  id="curveLengthFeet"
+                  class="sketchContextAreaEditor"
+                  type="number"
+                  min="-9999"
+                  max="9999"
+                  maxlength="4"
+                  style="
+                    position: absolute;
+                    width: 40px;
+                    left: 0;
+                    top: 0;
+                    border: 0;
+                    text-align: right;
+                    background-color: transparent;
+                  "
+                  oninput="keypadInputFeetChanged(event)"
+                  onfocus="curveLengthFeetFocused()"
+                  onkeyup="keypadInputKeyUp(event)"
+                />
+                <span
+                  class="sketchContextAreaEditor"
+                  style="position: absolute; left: 40px; top: 0"
+                  >'</span
+                >
+                <input
+                  id="curveLengthInches"
+                  class="sketchContextAreaEditor"
+                  type="number"
+                  min="-11"
+                  max="11"
+                  maxlength="2"
+                  style="
+                    position: absolute;
+                    width: 20px;
+                    left: 45px;
+                    top: 0;
+                    border: 0;
+                    text-align: right;
+                    background-color: transparent;
+                  "
+                  oninput="keypadInputInchesChanged(event)"
+                  onfocus="curveLengthInchesFocused()"
+                  onkeyup="keypadInputKeyUp(event)"
+                />
+                <span
+                  class="sketchContextAreaEditor"
+                  style="position: absolute; left: 65px; top: 0"
+                  >"</span
+                >
+              </div>
+              <span
+                class="sketchClickableText"
+                style="position: absolute; top: 20px; left: 20px"
+                >Length</span
+              >
+              <div style="position: absolute; width: 80px; left: 70px">
+                <input
+                  id="curveRiseFeet"
+                  class="sketchContextAreaEditor"
+                  type="number"
+                  min="-9999"
+                  max="9999"
+                  maxlength="4"
+                  style="
+                    position: absolute;
+                    width: 40px;
+                    left: 0;
+                    top: 0;
+                    border: 0;
+                    text-align: right;
+                    background-color: transparent;
+                  "
+                  oninput="keypadInputFeetChanged(event)"
+                  onfocus="curveRiseFeetFocused()"
+                  onkeyup="keypadInputKeyUp(event)"
+                />
+                <span
+                  class="sketchContextAreaEditor"
+                  style="position: absolute; left: 40px; top: 0"
+                  >'</span
+                >
+                <input
+                  id="curveRiseInches"
+                  class="sketchContextAreaEditor"
+                  type="number"
+                  min="-11"
+                  max="11"
+                  maxlength="2"
+                  style="
+                    position: absolute;
+                    width: 20px;
+                    left: 45px;
+                    top: 0;
+                    border: 0;
+                    text-align: right;
+                    background-color: transparent;
+                  "
+                  oninput="keypadInputInchesChanged(event)"
+                  onfocus="curveRiseInchesFocused()"
+                  onkeyup="keypadInputKeyUp(event)"
+                />
+                <span
+                  class="sketchContextAreaEditor"
+                  style="position: absolute; left: 65px; top: 0"
+                  >"</span
+                >
+              </div>
+              <span
+                class="sketchClickableText"
+                style="position: absolute; top: 20px; left: 100px"
+                >Rise</span
+              >
+              <div style="position: absolute; width: 80px; left: 140px">
+                <input
+                  id="curveRunFeet"
+                  class="sketchContextAreaEditor"
+                  type="number"
+                  min="-9999"
+                  max="9999"
+                  maxlength="4"
+                  style="
+                    position: absolute;
+                    width: 40px;
+                    left: 0;
+                    top: 0;
+                    border: 0;
+                    text-align: right;
+                    background-color: transparent;
+                  "
+                  oninput="keypadInputFeetChanged(event)"
+                  onfocus="curveRunFeetFocused()"
+                  onkeyup="keypadInputKeyUp(event)"
+                />
+                <span
+                  class="sketchContextAreaEditor"
+                  style="position: absolute; left: 40px; top: 0"
+                  >'</span
+                >
+                <input
+                  id="curveRunInches"
+                  class="sketchContextAreaEditor"
+                  type="number"
+                  min="-11"
+                  max="11"
+                  maxlength="2"
+                  style="
+                    position: absolute;
+                    width: 20px;
+                    left: 45px;
+                    top: 0;
+                    border: 0;
+                    text-align: right;
+                    background-color: transparent;
+                  "
+                  oninput="keypadInputInchesChanged(event)"
+                  onfocus="curveRunInchesFocused()"
+                  onkeyup="keypadInputKeyUp(event)"
+                />
+                <span
+                  class="sketchContextAreaEditor"
+                  style="position: absolute; left: 65px; top: 0"
+                  >"</span
+                >
+              </div>
+              <span
+                class="sketchClickableText"
+                style="position: absolute; top: 20px; left: 175px"
+                >Run</span
+              >
+              <input
+                id="curveAngle"
+                class="sketchContextAreaEditor"
+                type="number"
+                min="-180"
+                max="180"
+                style="
+                  position: absolute;
+                  width: 40px;
+                  left: 238px;
+                  top: 0;
+                  border: 0;
+                  text-align: center;
+                  background-color: transparent;
+                "
+                oninput="keypadInputFeetChanged(event)"
+                onfocus="curveAngleFocused()"
+                onkeyup="keypadInputKeyUp(event)"
+              />
+              <span
+                class="sketchClickableText"
+                style="position: absolute; top: 20px; left: 240px"
+                >Angle</span
+              >
+              <div style="position: absolute; width: 80px; left: 290px">
+                <input
+                  id="curveChordFeet"
+                  class="sketchContextAreaEditor"
+                  type="number"
+                  min="-9999"
+                  max="9999"
+                  maxlength="4"
+                  style="
+                    position: absolute;
+                    width: 40px;
+                    left: 0;
+                    top: 0;
+                    border: 0;
+                    text-align: right;
+                    background-color: transparent;
+                  "
+                  oninput="keypadInputFeetChanged(event)"
+                  onfocus="curveChordFeetFocused()"
+                  onkeyup="keypadInputKeyUp(event)"
+                />
+                <span
+                  class="sketchContextAreaEditor"
+                  style="position: absolute; left: 40px; top: 0"
+                  >'</span
+                >
+                <input
+                  id="curveChordInches"
+                  class="sketchContextAreaEditor"
+                  type="number"
+                  min="-11"
+                  max="11"
+                  maxlength="2"
+                  style="
+                    position: absolute;
+                    width: 20px;
+                    left: 45px;
+                    top: 0;
+                    border: 0;
+                    text-align: right;
+                    background-color: transparent;
+                  "
+                  oninput="keypadInputInchesChanged(event)"
+                  onfocus="curveChordInchesFocused()"
+                  onkeyup="keypadInputKeyUp(event)"
+                />
+                <span
+                  class="sketchContextAreaEditor"
+                  style="position: absolute; left: 65px; top: 0"
+                  >"</span
+                >
+              </div>
+              <span
+                class="sketchClickableText"
+                style="position: absolute; top: 20px; left: 310px"
+                >Chord</span
+              >
+              <div style="position: absolute; width: 80px; left: 360px">
+                <input
+                  id="curveHeightFeet"
+                  class="sketchContextAreaEditor"
+                  type="number"
+                  min="-9999"
+                  max="9999"
+                  maxlength="4"
+                  style="
+                    position: absolute;
+                    width: 40px;
+                    left: 0;
+                    top: 0;
+                    border: 0;
+                    text-align: right;
+                    background-color: transparent;
+                  "
+                  oninput="keypadInputFeetChanged(event)"
+                  onfocus="curveHeightFeetFocused()"
+                  onkeyup="keypadInputKeyUp(event)"
+                />
+                <span
+                  class="sketchContextAreaEditor"
+                  style="position: absolute; left: 40px; top: 0"
+                  >'</span
+                >
+                <input
+                  id="curveHeightInches"
+                  class="sketchContextAreaEditor"
+                  type="number"
+                  min="-11"
+                  max="11"
+                  maxlength="2"
+                  style="
+                    position: absolute;
+                    width: 20px;
+                    left: 45px;
+                    top: 0;
+                    border: 0;
+                    text-align: right;
+                    background-color: transparent;
+                  "
+                  oninput="keypadInputInchesChanged(event)"
+                  onfocus="curveHeightInchesFocused()"
+                  onkeyup="keypadInputKeyUp(event)"
+                />
+                <span
+                  class="sketchContextAreaEditor"
+                  style="position: absolute; left: 65px; top: 0"
+                  >"</span
+                >
+              </div>
+              <span
+                class="sketchClickableText"
+                style="position: absolute; top: 20px; left: 380px"
+                >Height</span
+              >
+            </div>
+            <div
+              style="
+                position: absolute;
+                width: 60%;
+                height: 5px;
+                bottom: -6px;
+                background-color: black;
+                border-radius: 3px;
+              "
+            ></div>
+          </div>
+          <div
+            id="lineContextArea"
+            class="context-hidden"
+            style="display: flex; justify-content: center"
+          >
+            <div style="position: relative; width: 215px">
+              <div style="position: absolute; width: 80px">
+                <input
+                  id="lineLengthFeet"
+                  class="sketchContextAreaEditor"
+                  type="number"
+                  min="-9999"
+                  max="9999"
+                  maxlength="4"
+                  style="
+                    position: absolute;
+                    width: 40px;
+                    left: 0;
+                    top: 0;
+                    border: 0;
+                    text-align: right;
+                    background-color: transparent;
+                  "
+                  oninput="keypadInputFeetChanged(event)"
+                  onfocus="lineLengthFeetFocused()"
+                  onkeyup="keypadInputKeyUp(event)"
+                />
+                <span
+                  class="sketchContextAreaEditor"
+                  style="position: absolute; left: 40px; top: 0"
+                  >'</span
+                >
+                <input
+                  id="lineLengthInches"
+                  class="sketchContextAreaEditor"
+                  type="number"
+                  min="-11"
+                  max="11"
+                  maxlength="2"
+                  style="
+                    position: absolute;
+                    width: 20px;
+                    left: 45px;
+                    top: 0;
+                    border: 0;
+                    text-align: right;
+                    background-color: transparent;
+                  "
+                  oninput="keypadInputInchesChanged(event)"
+                  onfocus="lineLengthInchesFocused()"
+                  onkeyup="keypadInputKeyUp(event)"
+                />
+                <span
+                  class="sketchContextAreaEditor"
+                  style="position: absolute; left: 65px; top: 0"
+                  >"</span
+                >
+              </div>
+              <span
+                class="sketchClickableText"
+                style="position: absolute; top: 20px; left: 20px"
+                >Length</span
+              >
+              <div style="position: absolute; width: 80px; left: 70px">
+                <input
+                  id="lineRiseFeet"
+                  class="sketchContextAreaEditor"
+                  type="number"
+                  min="-9999"
+                  max="9999"
+                  maxlength="4"
+                  style="
+                    position: absolute;
+                    width: 40px;
+                    left: 0;
+                    top: 0;
+                    border: 0;
+                    text-align: right;
+                    background-color: transparent;
+                  "
+                  oninput="keypadInputFeetChanged(event)"
+                  onfocus="lineRiseFeetFocused()"
+                  onkeyup="keypadInputKeyUp(event)"
+                />
+                <span
+                  class="sketchContextAreaEditor"
+                  style="position: absolute; left: 40px; top: 0"
+                  >'</span
+                >
+                <input
+                  id="lineRiseInches"
+                  class="sketchContextAreaEditor"
+                  type="number"
+                  min="-11"
+                  max="11"
+                  maxlength="2"
+                  style="
+                    position: absolute;
+                    width: 20px;
+                    left: 45px;
+                    top: 0;
+                    border: 0;
+                    text-align: right;
+                    background-color: transparent;
+                  "
+                  oninput="keypadInputInchesChanged(event)"
+                  onfocus="lineRiseInchesFocused()"
+                  onkeyup="keypadInputKeyUp(event)"
+                />
+                <span
+                  class="sketchContextAreaEditor"
+                  style="position: absolute; left: 65px; top: 0"
+                  >"</span
+                >
+              </div>
+              <span
+                class="sketchClickableText"
+                style="position: absolute; top: 20px; left: 100px"
+                >Rise</span
+              >
+              <div style="position: absolute; width: 80px; left: 140px">
+                <input
+                  id="lineRunFeet"
+                  class="sketchContextAreaEditor"
+                  type="number"
+                  min="-9999"
+                  max="9999"
+                  maxlength="4"
+                  style="
+                    position: absolute;
+                    width: 40px;
+                    left: 0;
+                    top: 0;
+                    border: 0;
+                    text-align: right;
+                    background-color: transparent;
+                  "
+                  oninput="keypadInputFeetChanged(event)"
+                  onfocus="lineRunFeetFocused()"
+                  onkeyup="keypadInputKeyUp(event)"
+                />
+                <span
+                  class="sketchContextAreaEditor"
+                  style="position: absolute; left: 40px; top: 0"
+                  >'</span
+                >
+                <input
+                  id="lineRunInches"
+                  class="sketchContextAreaEditor"
+                  type="number"
+                  min="-11"
+                  max="11"
+                  maxlength="2"
+                  style="
+                    position: absolute;
+                    width: 20px;
+                    left: 45px;
+                    top: 0;
+                    border: 0;
+                    text-align: right;
+                    background-color: transparent;
+                  "
+                  oninput="keypadInputInchesChanged(event)"
+                  onfocus="lineRunInchesFocused()"
+                  onkeyup="keypadInputKeyUp(event)"
+                />
+                <span
+                  class="sketchContextAreaEditor"
+                  style="position: absolute; left: 65px; top: 0"
+                  >"</span
+                >
+              </div>
+              <span
+                class="sketchClickableText"
+                style="position: absolute; top: 20px; left: 175px"
+                >Run</span
+              >
+            </div>
+            <div
+              style="
+                position: absolute;
+                width: 95%;
+                height: 5px;
+                bottom: -6px;
+                background-color: black;
+                border-radius: 3px;
+              "
+            ></div>
+          </div>
+          <div id="perimeterContextArea" class="context-hidden">
+            <div style="position: relative; width: 125px">
+              <div class="sketchContextAreaEditor" id="selected-area">
+                Area: 0 sf - Perimeter: 0' 0"
+              </div>
+              <div class="sketchContextAreaEditor">Area</div>
+            </div>
+            <div style="position: relative; width: 125px">
+              <div class="sketchContextAreaEditor" id="selected-perimeter">
+                0' 0"
+              </div>
+              <div class="sketchContextAreaEditor">Perimeter</div>
+            </div>
+            <div
+              style="
+                position: absolute;
+                width: 80%;
+                height: 5px;
+                bottom: -6px;
+                background-color: black;
+                border-radius: 3px;
+              "
+            ></div>
+          </div>
+        </div>
+        <div class="button-group">
+          <div
+            id="keypadButton"
+            style="position: relative; width: 98px; height: 40px"
+            onclick="keypadClicked()"
+          >
+            <span
+              id="keypadButtonText"
+              class="sketchClickableText"
+              style="position: absolute; top: 12px; left: 10px"
+              >Keypad</span
+            >
+            <img
+              id="keypadButtonImage"
+              src="ptas_expand_down.png"
+              style="
+                position: absolute;
+                width: 11px;
+                height: 7px;
+                left: 70px;
+                top: 18px;
+              "
+            />
+          </div>
+        </div>
+      </footer>
+    </div>
+    <noscript>
+      <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0">
+        <div
+          style="
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: black;
+            opacity: 0.7;
+          "
+        ></div>
+        <div style="display: flex; justify-content: center">
+          <div
+            style="
+              position: relative;
+              width: 400px;
+              top: 100px;
+              background-color: white;
+              padding: 20px;
+              text-align: center;
+            "
+          >
+            <h2>Javascript is disabled</h2>
+            <p>
+              In order to use the sketch tool, please enable Javascript and
+              refresh the page.
+            </p>
+          </div>
+        </div>
+      </div>
+    </noscript>
+    <div id="version">Version 2021102200</div>
+    <div id="dialog"></div>
+    <div id="loading">
+      <div class="content"></div>
+    </div>
+  </body>
+
+</html>

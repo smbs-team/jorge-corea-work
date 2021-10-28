@@ -1,0 +1,29 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AdminRoles": "System Administrator;Assessment Admin",
+    "SQLServerConnectionString": "Server=tcp:Kcitazrsqluat01.database.windows.net,1433;Initial Catalog=PTASuat;Persist Security Info=False;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;",
+    "SQLServerDataConnectionString": "Server=tcp:Kcitazrsqluat01.database.windows.net,1433;Initial Catalog=PTASuat;Persist Security Info=False;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;",
+    "StorageConnectionString": "DefaultEndpointsProtocol=https;AccountName=ptasuatstorage;EndpointSuffix=core.windows.net",
+    "PremiumStorageConnectionString": "DefaultEndpointsProtocol=https;AccountName=ptasuatstoragepremium;EndpointSuffix=core.windows.net",
+    "DynamicsODataUri": "https://ptas-trnuat.crm9.dynamics.com",
+    "DynamicsApiRoute": "/api/data/v9.1/",
+    "DynamicsAuthUri": "https://login.windows.net/KC1.onmicrosoft.com",
+    "DynamicsClientSecret": "",
+    "DynamicsClientId": "451649d7-c795-497b-b7c3-7a1d95e20927",
+    "AzureSignalRConnectionString": "Endpoint=https://ptas-uat-signalr.service.signalr.net;AccessKey=;Version=1.0;",
+    "SignalRHubEndpoint": "https://api-test.kingcounty.gov/ptas-uat-customsearchesfunctions/v2r4/api/workerhub",
+    "MapServerStorageSharePath": "C:\\MapServer\\map-share",
+    "OgrConnectionString": "",
+    "JobQueueSuffix": "",
+    "AllowCoordinatorToExit": true,
+    "APPINSIGHTS_INSTRUMENTATIONKEY": "",
+    "OrganizationId": "8dcf1c09-56fb-4cdd-af75-54b14b04349b",
+    "OrganizationName": "org7ff68ed4",
+    "LogDynamicSqlStatementsInDb": false,
+    "SyncMobileStorageSharePath": "C:\\SyncMobile\\"
+  },
+  "Host": {
+    "CORS": "*"
+  }
+}

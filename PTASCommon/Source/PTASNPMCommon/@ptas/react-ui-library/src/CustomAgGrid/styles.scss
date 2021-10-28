@@ -1,0 +1,19 @@
+@import "~ag-grid-community/src/styles/ag-grid.scss";
+@import "~ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine-mixin";
+
+.ag-theme-alpine {
+  --ag-header-background-color: #d6d6d6;
+  @include ag-theme-alpine(
+    (
+      row-hover-color: #d4e693,
+      cell-horizontal-border: solid #d6d6d6,
+      checkbox-checked-color: #7ea000,
+      selected-row-background-color: transparent,
+      input-focus-box-shadow: #7ea000,
+      font-family: cabin
+    )
+  );
+  .ag-header-row {
+    font-weight: normal;
+  }
+}

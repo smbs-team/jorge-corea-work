@@ -1,0 +1,596 @@
+{
+  "categories": [
+    {
+      "category": "Building",
+      "entityName": "ptas_buildingdetail",
+      "residentialFilterProperty": "ptas_propertytypeid",
+      "residentialFilterValue": "4fc4eb27-4ed3-e911-a987-001dd8009f4b",
+      "residentialView": true,
+      "totalLivingrea": 0,
+      "totalNonLivingArea": 0,
+      "layers": [
+        {
+          "name": "1st floor",
+          "livingArea": "+",
+          "grossArea": "",
+          "index": "15",
+          "entityProperty": "ptas_1stflr_sqft",
+          "style": {
+            "strokeWidth": 4,
+            "strokePattern": [
+              1,
+              0
+            ],
+            "strokeColor": "#000000",
+            "invertedStrokeColor": "#FFFFFF"
+          }
+        },
+        {
+          "name": "2nd floor",
+          "livingArea": "+",
+          "grossArea": "",
+          "index": "16",
+          "entityProperty": "ptas_2ndflr_sqft",
+          "style": {
+            "strokeWidth": 4,
+            "strokePattern": [
+              9,
+              9
+            ],
+            "strokeColor": "#007e8f",
+            "invertedStrokeColor": "#ff8170"
+          }
+        },
+        {
+          "name": "Upper floor",
+          "livingArea": "+",
+          "grossArea": "",
+          "index": "17",
+          "entityProperty": "ptas_upperflr_sqft",
+          "style": {
+            "strokeWidth": 4,
+            "strokePattern": [
+              9,
+              9
+            ],
+            "strokeColor": "#008f06",
+            "invertedStrokeColor": "#ff70f9"
+          }
+        },
+        {
+          "name": "Half floor",
+          "livingArea": "+",
+          "grossArea": "",
+          "index": "18",
+          "entityProperty": "ptas_halfflr_sqft",
+          "style": {
+            "strokeWidth": 4,
+            "strokePattern": [
+              4,
+              4
+            ],
+            "strokeColor": "#008f06",
+            "invertedStrokeColor": "#ff70f9"
+          }
+        },
+        {
+          "name": "Unfinished half floor",
+          "livingArea": "-",
+          "grossArea": "",
+          "index": "19",
+          "entityProperty": "ptas_unfinished_half_sqft",
+          "style": {
+            "strokeWidth": 4,
+            "strokePattern": [
+              9,
+              9
+            ],
+            "strokeColor": "#25008f",
+            "invertedStrokeColor": "#daff70"
+          }
+        },
+        {
+          "name": "Unfinished full floor",
+          "livingArea": "-",
+          "grossArea": "",
+          "index": "20",
+          "entityProperty": "ptas_unfinished_full_sqft",
+          "style": {
+            "strokeWidth": 4,
+            "strokePattern": [
+              9,
+              9
+            ],
+            "strokeColor": "#25008f",
+            "invertedStrokeColor": "#daff70"
+          }
+        },
+        {
+          "name": "Basement - total",
+          "livingArea": "",
+          "grossArea": "+",
+          "index": "1",
+          "entityProperty": "ptas_totalbsmt_sqft",
+          "style": {
+            "strokeWidth": 4,
+            "strokePattern": [
+              4,
+              4
+            ],
+            "strokeColor": "#8f0081",
+            "invertedStrokeColor": "#70ff7e"
+          }
+        },
+        {
+          "name": "Basement - finished",
+          "livingArea": "+",
+          "grossArea": "",
+          "index": "21",
+          "entityProperty": "ptas_finbsmt_sqft",
+          "style": {
+            "strokeWidth": 4,
+            "strokePattern": [
+              4,
+              4
+            ],
+            "strokeColor": "#8f0081",
+            "invertedStrokeColor": "#70ff7e"
+          }
+        },
+        {
+          "name": "Garage - basement",
+          "livingArea": "",
+          "grossArea": "+",
+          "index": "2",
+          "entityProperty": "ptas_basementgarage_sqft",
+          "style": {
+            "strokeWidth": 4,
+            "strokePattern": [
+              4,
+              4
+            ],
+            "strokeColor": "#888888",
+            "invertedStrokeColor": "#777777"
+          }
+        },
+        {
+          "name": "Garage - attached",
+          "livingArea": "",
+          "grossArea": "+",
+          "index": "3",
+          "entityProperty": "ptas_attachedgarage_sqft",
+          "style": {
+            "strokeWidth": 4,
+            "strokePattern": [
+              4,
+              4
+            ],
+            "strokeColor": "#888888",
+            "invertedStrokeColor": "#777777"
+          }
+        },
+        {
+          "name": "Porch - open",
+          "livingArea": "",
+          "grossArea": "+",
+          "index": "4",
+          "entityProperty": "ptas_openporch_sqft",
+          "style": {
+            "strokeWidth": 2,
+            "strokePattern": [
+              4,
+              4
+            ],
+            "strokeColor": "#888888",
+            "invertedStrokeColor": "#777777"
+          }
+        },
+        {
+          "name": "Porch - enclosed",
+          "livingArea": "",
+          "grossArea": "+",
+          "index": "5",
+          "entityProperty": "ptas_enclosedporch_sqft",
+          "style": {
+            "strokeWidth": 2,
+            "strokePattern": [
+              4,
+              4
+            ],
+            "strokeColor": "#888888",
+            "invertedStrokeColor": "#777777"
+          }
+        },
+        {
+          "name": "Deck",
+          "livingArea": "",
+          "grossArea": "+",
+          "index": "6",
+          "entityProperty": "ptas_deck_sqft",
+          "style": {
+            "strokeWidth": 2,
+            "strokePattern": [
+              2,
+              2
+            ],
+            "strokeColor": "#c3c3c3",
+            "invertedStrokeColor": "#3c3c3c"
+          }
+        }
+      ]
+    },
+    {
+      "category": "Accessories",
+      "entityName": "ptas_accessorydetail",
+      "residentialView": true,
+      "layers": [
+        {
+          "name": "Garage - detached",
+          "livingArea": "",
+          "grossArea": "+",
+          "index": "7",
+          "entityProperty": "ptas_size",
+          "style": {
+            "strokeWidth": 2,
+            "strokePattern": [
+              4,
+              4
+            ],
+            "strokeColor": "#888888",
+            "invertedStrokeColor": "#777777"
+          }
+        },
+        {
+          "name": "Carport",
+          "livingArea": "",
+          "grossArea": "+",
+          "index": "8",
+          "entityProperty": "ptas_size",
+          "style": {
+            "strokeWidth": 2,
+            "strokePattern": [
+              4,
+              4
+            ],
+            "strokeColor": "#888888",
+            "invertedStrokeColor": "#777777"
+          }
+        },
+        {
+          "name": "Pavement - concrete",
+          "livingArea": "",
+          "grossArea": "+",
+          "index": "9",
+          "entityProperty": "ptas_size",
+          "__style": {
+            "strokeWidth": 2,
+            "strokePattern": [
+              4,
+              4
+            ],
+            "strokeColor": "#888888",
+            "invertedStrokeColor": "#777777"
+          }
+        },
+        {
+          "name": "Pool - concrete",
+          "livingArea": "",
+          "grossArea": "+",
+          "index": "10",
+          "entityProperty": "ptas_size",
+          "__style": {
+            "strokeWidth": 2,
+            "strokePattern": [
+              4,
+              4
+            ],
+            "strokeColor": "#888888",
+            "invertedStrokeColor": "#777777"
+          }
+        },
+        {
+          "name": "Pool - fiberglass/plastic",
+          "livingArea": "",
+          "grossArea": "+",
+          "index": "11",
+          "entityProperty": "ptas_size",
+          "__style": {
+            "strokeWidth": 2,
+            "strokePattern": [
+              4,
+              4
+            ],
+            "strokeColor": "#888888",
+            "invertedStrokeColor": "#777777"
+          }
+        },
+        {
+          "name": "Misc. Improvement",
+          "livingArea": "",
+          "grossArea": "+",
+          "index": "12",
+          "entityProperty": "ptas_size",
+          "__style": {
+            "strokeWidth": 2,
+            "strokePattern": [
+              4,
+              4
+            ],
+            "strokeColor": "#888888",
+            "invertedStrokeColor": "#777777"
+          }
+        },
+        {
+          "name": "Area over detached garage",
+          "livingArea": "",
+          "grossArea": "+",
+          "index": "27",
+          "entityProperty": "ptas_size",
+          "__style": {
+            "strokeWidth": 2,
+            "strokePattern": [
+              4,
+              4
+            ],
+            "strokeColor": "#888888",
+            "invertedStrokeColor": "#777777"
+          }
+        },
+        {
+          "name": "Barn - steel",
+          "livingArea": "",
+          "grossArea": "+",
+          "index": "28",
+          "entityProperty": "ptas_size",
+          "__style": {
+            "strokeWidth": 2,
+            "strokePattern": [
+              4,
+              4
+            ],
+            "strokeColor": "#888888",
+            "invertedStrokeColor": "#777777"
+          }
+        },
+        {
+          "name": "Barn - wood",
+          "livingArea": "",
+          "grossArea": "+",
+          "index": "29",
+          "entityProperty": "ptas_size",
+          "__style": {
+            "strokeWidth": 2,
+            "strokePattern": [
+              4,
+              4
+            ],
+            "strokeColor": "#888888",
+            "invertedStrokeColor": "#777777"
+          }
+        },
+        {
+          "name": "Barn - loft/2nd floor",
+          "livingArea": "",
+          "grossArea": "+",
+          "index": "30",
+          "entityProperty": "ptas_size",
+          "__style": {
+            "strokeWidth": 2,
+            "strokePattern": [
+              4,
+              4
+            ],
+            "strokeColor": "#888888",
+            "invertedStrokeColor": "#777777"
+          }
+        },
+        {
+          "name": "Sport court",
+          "livingArea": "",
+          "grossArea": "+",
+          "index": "31",
+          "entityProperty": "ptas_size",
+          "__style": {
+            "strokeWidth": 2,
+            "strokePattern": [
+              4,
+              4
+            ],
+            "strokeColor": "#888888",
+            "invertedStrokeColor": "#777777"
+          }
+        },
+        {
+          "name": "Stables",
+          "livingArea": "",
+          "grossArea": "+",
+          "index": "32",
+          "entityProperty": "ptas_size",
+          "__style": {
+            "strokeWidth": 2,
+            "strokePattern": [
+              4,
+              4
+            ],
+            "strokeColor": "#888888",
+            "invertedStrokeColor": "#777777"
+          }
+        }
+      ]
+    },
+    {
+      "category": "Mobile home",
+      "entityName": "ptas_condounit",
+      "residentialView": true,
+      "layers": [
+        {
+          "name": "Living area",
+          "livingArea": "+",
+          "grossArea": "",
+          "index": "22",
+          "entityProperty": "ptas_totalliving",
+          "__style": {
+            "strokeWidth": 2,
+            "strokePattern": [
+              4,
+              4
+            ],
+            "strokeColor": "#888888",
+            "invertedStrokeColor": "#777777"
+          }
+        },
+        {
+          "name": "Room addition",
+          "livingArea": "",
+          "grossArea": "+",
+          "index": "13",
+          "entityProperty": "ptas_roomadditionalsqft",
+          "__style": {
+            "strokeWidth": 2,
+            "strokePattern": [
+              4,
+              4
+            ],
+            "strokeColor": "#888888",
+            "invertedStrokeColor": "#777777"
+          }
+        },
+        {
+          "name": "Tip out area",
+          "livingArea": "",
+          "grossArea": "+",
+          "index": "14",
+          "entityProperty": "ptas_tipoutarea",
+          "__style": {
+            "strokeWidth": 2,
+            "strokePattern": [
+              4,
+              4
+            ],
+            "strokeColor": "#888888",
+            "invertedStrokeColor": "#777777"
+          }
+        },
+        {
+          "name": "Porch - open",
+          "livingArea": "",
+          "grossArea": "+",
+          "index": "4",
+          "entityProperty": "ptas_openporchsqft",
+          "style": {
+            "strokeWidth": 2,
+            "strokePattern": [
+              4,
+              4
+            ],
+            "strokeColor": "#888888",
+            "invertedStrokeColor": "#777777"
+          }
+        },
+        {
+          "name": "Porch - enclosed",
+          "livingArea": "",
+          "grossArea": "+",
+          "index": "5",
+          "entityProperty": "ptas_endporchsqft",
+          "style": {
+            "strokeWidth": 2,
+            "strokePattern": [
+              4,
+              4
+            ],
+            "strokeColor": "#888888",
+            "invertedStrokeColor": "#777777"
+          }
+        },
+        {
+          "name": "Deck",
+          "livingArea": "",
+          "grossArea": "+",
+          "index": "6",
+          "entityProperty": "ptas_decksqft",
+          "style": {
+            "strokeWidth": 2,
+            "strokePattern": [
+              2,
+              2
+            ],
+            "strokeColor": "#c3c3c3",
+            "invertedStrokeColor": "#3c3c3c"
+          }
+        }
+      ]
+    },
+    {
+      "category": "Commercial",
+      "residentialView": false,
+      "entityName": "ptas_buildingdetail",
+      "entityPropertyGross": "ptas_buildinggross_sqft",
+      "entityPropertyNet": "ptas_buildingnet_sqft",
+      "totalNetArea": 0,
+      "totalGrossArea": 0,
+      "layers": [
+        {
+          "name": "Mezzanine - display",
+          "livingArea": "+",
+          "grossArea": "",
+          "index": "23",
+          "style": {
+            "strokeWidth": 4,
+            "strokePattern": [
+              2,
+              2
+            ],
+            "strokeColor": "#008f06",
+            "invertedStrokeColor": "#ff70f9"
+          }
+        },
+        {
+          "name": "Mezzanine - office",
+          "livingArea": "+",
+          "grossArea": "",
+          "index": "24",
+          "style": {
+            "strokeWidth": 4,
+            "strokePattern": [
+              4,
+              4
+            ],
+            "strokeColor": "#008f06",
+            "invertedStrokeColor": "#ff70f9"
+          }
+        },
+        {
+          "name": "Mezzanine - storage",
+          "livingArea": "+",
+          "grossArea": "",
+          "index": "25",
+          "style": {
+            "strokeWidth": 4,
+            "strokePattern": [
+              9,
+              9
+            ],
+            "strokeColor": "#008f06",
+            "invertedStrokeColor": "#ff70f9"
+          }
+        },
+        {
+          "name": "Balcony",
+          "livingArea": "+",
+          "grossArea": "",
+          "index": "26",
+          "style": {
+            "strokeWidth": 2,
+            "strokePattern": [
+              4,
+              4
+            ],
+            "strokeColor": "#888888",
+            "invertedStrokeColor": "#777777"
+          }
+        }
+      ]
+    }
+  ]
+}

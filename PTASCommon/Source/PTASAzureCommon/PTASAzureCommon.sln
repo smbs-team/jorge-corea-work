@@ -1,0 +1,92 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28922.388
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PTASServicesCommon", "PTASServicesCommon\PTASServicesCommon.csproj", "{3BF49DF1-72E9-4E80-9D39-6F04A88AF3DA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PTASServicesCommonUnitTest", "UnitTest\PTASServicesCommonUnitTest\PTASServicesCommonUnitTest.csproj", "{4E05E80B-F8F8-487C-8238-3D6E5D15C1AB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3BF49DF1-72E9-4E80-9D39-6F04A88AF3DA} = {3BF49DF1-72E9-4E80-9D39-6F04A88AF3DA}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTest", "UnitTest", "{7DE5AD0C-47B1-46AD-93F2-22E1E94F9304}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PTASMobileSketch", "PTASMobileSketch\PTASMobileSketch.csproj", "{9EE201C0-D441-4535-A846-ACAD137ED808}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PTASConnectorHelper", "PTASConnectorHelper\PTASConnectorHelper.csproj", "{2B93A2CB-CD89-4307-969F-0BED7797D90D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PTASConnectorSDK", "PTASConnectorSDK\PTASConnectorSDK.csproj", "{8EB4370F-22D7-4448-8F9B-90A10A081BED}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PTASCRMHelpers", "PTASCRMHelpers\PTASCRMHelpers.csproj", "{2E3FF4B5-CD4E-4E8A-89D9-3B4FFA044D0C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PTASSketchFromVCADD", "PTASSketchFromVCADD\PTASSketchFromVCADD.csproj", "{9FD3D4CE-3C60-4AE3-96E1-1029E625506E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DynamicsToSQL", "DynamicsToSQL", "{2A9E575B-1426-4CBD-AB6C-42F4F90C0AD1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "D2SSyncHelpers", "D2SSyncHelpers\D2SSyncHelpers.csproj", "{711022CC-61A0-41A5-8B8D-4B471C98C063}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PTASDynamicsDigesterLibrary", "PTASDynamicsDigesterLibrary\PTASDynamicsDigesterLibrary.csproj", "{C896238B-5A83-4AE7-8DD5-AC0BB422F6CD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PTASDynamicsSyncLibrary", "PTASDynamicsSyncLibrary\PTASDynamicsSyncLibrary.csproj", "{C092D6F1-5F64-4AA6-822B-63B89CC7430D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3BF49DF1-72E9-4E80-9D39-6F04A88AF3DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BF49DF1-72E9-4E80-9D39-6F04A88AF3DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BF49DF1-72E9-4E80-9D39-6F04A88AF3DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BF49DF1-72E9-4E80-9D39-6F04A88AF3DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E05E80B-F8F8-487C-8238-3D6E5D15C1AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E05E80B-F8F8-487C-8238-3D6E5D15C1AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E05E80B-F8F8-487C-8238-3D6E5D15C1AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E05E80B-F8F8-487C-8238-3D6E5D15C1AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EE201C0-D441-4535-A846-ACAD137ED808}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EE201C0-D441-4535-A846-ACAD137ED808}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EE201C0-D441-4535-A846-ACAD137ED808}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EE201C0-D441-4535-A846-ACAD137ED808}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B93A2CB-CD89-4307-969F-0BED7797D90D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B93A2CB-CD89-4307-969F-0BED7797D90D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B93A2CB-CD89-4307-969F-0BED7797D90D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B93A2CB-CD89-4307-969F-0BED7797D90D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EB4370F-22D7-4448-8F9B-90A10A081BED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EB4370F-22D7-4448-8F9B-90A10A081BED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EB4370F-22D7-4448-8F9B-90A10A081BED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EB4370F-22D7-4448-8F9B-90A10A081BED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E3FF4B5-CD4E-4E8A-89D9-3B4FFA044D0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E3FF4B5-CD4E-4E8A-89D9-3B4FFA044D0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E3FF4B5-CD4E-4E8A-89D9-3B4FFA044D0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E3FF4B5-CD4E-4E8A-89D9-3B4FFA044D0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FD3D4CE-3C60-4AE3-96E1-1029E625506E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FD3D4CE-3C60-4AE3-96E1-1029E625506E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FD3D4CE-3C60-4AE3-96E1-1029E625506E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FD3D4CE-3C60-4AE3-96E1-1029E625506E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{711022CC-61A0-41A5-8B8D-4B471C98C063}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{711022CC-61A0-41A5-8B8D-4B471C98C063}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{711022CC-61A0-41A5-8B8D-4B471C98C063}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{711022CC-61A0-41A5-8B8D-4B471C98C063}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C896238B-5A83-4AE7-8DD5-AC0BB422F6CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C896238B-5A83-4AE7-8DD5-AC0BB422F6CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C896238B-5A83-4AE7-8DD5-AC0BB422F6CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C896238B-5A83-4AE7-8DD5-AC0BB422F6CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C092D6F1-5F64-4AA6-822B-63B89CC7430D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C092D6F1-5F64-4AA6-822B-63B89CC7430D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C092D6F1-5F64-4AA6-822B-63B89CC7430D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C092D6F1-5F64-4AA6-822B-63B89CC7430D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4E05E80B-F8F8-487C-8238-3D6E5D15C1AB} = {7DE5AD0C-47B1-46AD-93F2-22E1E94F9304}
+		{711022CC-61A0-41A5-8B8D-4B471C98C063} = {2A9E575B-1426-4CBD-AB6C-42F4F90C0AD1}
+		{C896238B-5A83-4AE7-8DD5-AC0BB422F6CD} = {2A9E575B-1426-4CBD-AB6C-42F4F90C0AD1}
+		{C092D6F1-5F64-4AA6-822B-63B89CC7430D} = {2A9E575B-1426-4CBD-AB6C-42F4F90C0AD1}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F87C790E-B86F-4BD7-9152-6CDB68DD406C}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,929 @@
+{
+  "source": 2,
+  "revision": 9,
+  "description": null,
+  "createdBy": {
+    "displayName": "Eric Esteban Herrera Vado",
+    "url": "https://spsprodeus27.vssps.visualstudio.com/A90364681-6ca4-4180-bf52-cd162afac75c/_apis/Identities/ffdc3a21-d7fa-6f11-9808-47ba46eb2dda",
+    "_links": { "avatar": { "href": "https://kingcounty.visualstudio.com/_apis/GraphProfile/MemberAvatars/aad.ZmZkYzNhMjEtZDdmYS03ZjExLTk4MDgtNDdiYTQ2ZWIyZGRh" } },
+    "id": "ffdc3a21-d7fa-6f11-9808-47ba46eb2dda",
+    "uniqueName": "n-evado@kingcounty.gov",
+    "imageUrl": "https://kingcounty.visualstudio.com/_apis/GraphProfile/MemberAvatars/aad.ZmZkYzNhMjEtZDdmYS03ZjExLTk4MDgtNDdiYTQ2ZWIyZGRh",
+    "descriptor": "aad.ZmZkYzNhMjEtZDdmYS03ZjExLTk4MDgtNDdiYTQ2ZWIyZGRh"
+  },
+  "createdOn": "2019-11-04T21:38:03.010Z",
+  "modifiedBy": {
+    "displayName": "Eric Esteban Herrera Vado",
+    "url": "https://spsprodeus27.vssps.visualstudio.com/A90364681-6ca4-4180-bf52-cd162afac75c/_apis/Identities/ffdc3a21-d7fa-6f11-9808-47ba46eb2dda",
+    "_links": { "avatar": { "href": "https://kingcounty.visualstudio.com/_apis/GraphProfile/MemberAvatars/aad.ZmZkYzNhMjEtZDdmYS03ZjExLTk4MDgtNDdiYTQ2ZWIyZGRh" } },
+    "id": "ffdc3a21-d7fa-6f11-9808-47ba46eb2dda",
+    "uniqueName": "n-evado@kingcounty.gov",
+    "imageUrl": "https://kingcounty.visualstudio.com/_apis/GraphProfile/MemberAvatars/aad.ZmZkYzNhMjEtZDdmYS03ZjExLTk4MDgtNDdiYTQ2ZWIyZGRh",
+    "descriptor": "aad.ZmZkYzNhMjEtZDdmYS03ZjExLTk4MDgtNDdiYTQ2ZWIyZGRh"
+  },
+  "modifiedOn": "2019-11-05T00:51:40.743Z",
+  "isDeleted": false,
+  "lastRelease": {
+    "id": 206,
+    "name": "Release-7",
+    "artifacts": [],
+    "_links": {},
+    "description": "",
+    "releaseDefinition": {
+      "id": 11,
+      "projectReference": null,
+      "_links": {}
+    },
+    "createdOn": "2019-11-05T19:28:57.510Z",
+    "createdBy": {
+      "displayName": "Eric Esteban Herrera Vado",
+      "url": "https://spsprodeus27.vssps.visualstudio.com/A90364681-6ca4-4180-bf52-cd162afac75c/_apis/Identities/ffdc3a21-d7fa-6f11-9808-47ba46eb2dda",
+      "_links": { "avatar": { "href": "https://kingcounty.visualstudio.com/_apis/GraphProfile/MemberAvatars/aad.ZmZkYzNhMjEtZDdmYS03ZjExLTk4MDgtNDdiYTQ2ZWIyZGRh" } },
+      "id": "ffdc3a21-d7fa-6f11-9808-47ba46eb2dda",
+      "uniqueName": "n-evado@kingcounty.gov",
+      "imageUrl": "https://kingcounty.visualstudio.com/_apis/GraphProfile/MemberAvatars/aad.ZmZkYzNhMjEtZDdmYS03ZjExLTk4MDgtNDdiYTQ2ZWIyZGRh",
+      "descriptor": "aad.ZmZkYzNhMjEtZDdmYS03ZjExLTk4MDgtNDdiYTQ2ZWIyZGRh"
+    }
+  },
+  "variables": {
+    "DeploymentEnv": {
+      "value": "DEV",
+      "allowOverride": true
+    },
+    "DeploymentLocation": {
+      "value": "West US",
+      "allowOverride": true
+    },
+    "DeploymentResourceGroup": {
+      "value": "ptas-dev-resourcegroup",
+      "allowOverride": true
+    },
+    "DeploymentSubscription": {
+      "value": "Azure-Dev",
+      "allowOverride": true
+    }
+  },
+  "variableGroups": [],
+  "environments": [
+    {
+      "id": 16,
+      "name": "ARM Deployment Stage",
+      "rank": 1,
+      "owner": {
+        "displayName": "Eric Esteban Herrera Vado",
+        "url": "https://spsprodeus27.vssps.visualstudio.com/A90364681-6ca4-4180-bf52-cd162afac75c/_apis/Identities/ffdc3a21-d7fa-6f11-9808-47ba46eb2dda",
+        "_links": { "avatar": { "href": "https://kingcounty.visualstudio.com/_apis/GraphProfile/MemberAvatars/aad.ZmZkYzNhMjEtZDdmYS03ZjExLTk4MDgtNDdiYTQ2ZWIyZGRh" } },
+        "id": "ffdc3a21-d7fa-6f11-9808-47ba46eb2dda",
+        "uniqueName": "n-evado@kingcounty.gov",
+        "imageUrl": "https://kingcounty.visualstudio.com/_apis/GraphProfile/MemberAvatars/aad.ZmZkYzNhMjEtZDdmYS03ZjExLTk4MDgtNDdiYTQ2ZWIyZGRh",
+        "descriptor": "aad.ZmZkYzNhMjEtZDdmYS03ZjExLTk4MDgtNDdiYTQ2ZWIyZGRh"
+      },
+      "variables": {},
+      "variableGroups": [],
+      "preDeployApprovals": {
+        "approvals": [
+          {
+            "rank": 1,
+            "isAutomated": true,
+            "isNotificationOn": false,
+            "id": 48
+          }
+        ],
+        "approvalOptions": {
+          "requiredApproverCount": null,
+          "releaseCreatorCanBeApprover": false,
+          "autoTriggeredAndPreviousEnvironmentApprovedCanBeSkipped": false,
+          "enforceIdentityRevalidation": false,
+          "timeoutInMinutes": 0,
+          "executionOrder": 1
+        }
+      },
+      "deployStep": { "id": 51 },
+      "postDeployApprovals": {
+        "approvals": [
+          {
+            "rank": 1,
+            "isAutomated": true,
+            "isNotificationOn": false,
+            "id": 52
+          }
+        ],
+        "approvalOptions": {
+          "requiredApproverCount": null,
+          "releaseCreatorCanBeApprover": false,
+          "autoTriggeredAndPreviousEnvironmentApprovedCanBeSkipped": false,
+          "enforceIdentityRevalidation": false,
+          "timeoutInMinutes": 0,
+          "executionOrder": 2
+        }
+      },
+      "deployPhases": [
+        {
+          "deploymentInput": {
+            "parallelExecution": { "parallelExecutionType": 0 },
+            "agentSpecification": { "identifier": "windows-2019" },
+            "skipArtifactsDownload": false,
+            "artifactsDownloadInput": {
+              "downloadInputs": [
+                {
+                  "alias": "_PTAS-DEV-IAC-PRBuild",
+                  "artifactType": "Build",
+                  "artifactDownloadMode": "All",
+                  "artifactItems": []
+                }
+              ]
+            },
+            "queueId": 2176,
+            "demands": [],
+            "enableAccessToken": false,
+            "timeoutInMinutes": 0,
+            "jobCancelTimeoutInMinutes": 1,
+            "condition": "succeeded()",
+            "overrideInputs": {}
+          },
+          "rank": 1,
+          "phaseType": 1,
+          "name": "Agent job",
+          "refName": null,
+          "workflowTasks": [
+            {
+              "environment": {},
+              "taskId": "94a74903-f93f-4075-884f-dc11f34058b4",
+              "version": "2.*",
+              "name": "Deploy WebMapping ARM",
+              "refName": "",
+              "enabled": true,
+              "alwaysRun": false,
+              "continueOnError": false,
+              "timeoutInMinutes": 0,
+              "definitionType": "task",
+              "overrideInputs": {},
+              "condition": "succeeded()",
+              "inputs": {
+                "ConnectedServiceName": "$(DeploymentSubscription)",
+                "action": "Create Or Update Resource Group",
+                "resourceGroupName": "$(DeploymentResourceGroup)",
+                "location": "$(DeploymentLocation)",
+                "templateLocation": "Linked artifact",
+                "csmFileLink": "https://kcmaptilestorage.blob.core.windows.net/other/webmapping.arm?st=2019-08-20T04%3A39%3A47Z&se=2020-08-21T04%3A39%3A00Z&sp=rl&sv=2018-03-28&sr=b&sig=q8QCaYw1CyD9D2A3knM8YgP1Al4UImlrvoOl7XP4%2BZA%3D",
+                "csmParametersFileLink": "",
+                "csmFile": "$(System.DefaultWorkingDirectory)/_PTAS-DEV-IAC-PRBuild/NetDrop/azure/webmapping.arm",
+                "csmParametersFile": "$(System.DefaultWorkingDirectory)/_PTAS-DEV-IAC-PRBuild/NetDrop/azure/ReleasePipes/PTAS-DEV-IAC-Deploy-Parameters.json",
+                "overrideParameters": "",
+                "deploymentMode": "Incremental",
+                "enableDeploymentPrerequisites": "None",
+                "deploymentGroupEndpoint": "",
+                "project": "",
+                "deploymentGroupName": "",
+                "copyAzureVMTags": "true",
+                "runAgentServiceAsUser": "false",
+                "userName": "",
+                "password": "",
+                "outputVariable": "",
+                "deploymentName": "",
+                "deploymentOutputs": "",
+                "addSpnToEnvironment": "false"
+              }
+            },
+            {
+              "environment": {},
+              "taskId": "94a74903-f93f-4075-884f-dc11f34058b4",
+              "version": "2.*",
+              "name": "Deploy Media Info ARM",
+              "refName": "",
+              "enabled": true,
+              "alwaysRun": false,
+              "continueOnError": false,
+              "timeoutInMinutes": 0,
+              "definitionType": "task",
+              "overrideInputs": {},
+              "condition": "succeeded()",
+              "inputs": {
+                "ConnectedServiceName": "$(DeploymentSubscription)",
+                "action": "Create Or Update Resource Group",
+                "resourceGroupName": "$(DeploymentResourceGroup)",
+                "location": "$(DeploymentLocation)",
+                "templateLocation": "Linked artifact",
+                "csmFileLink": "https://kcmaptilestorage.blob.core.windows.net/other/webmapping.arm?st=2019-08-20T04%3A39%3A47Z&se=2020-08-21T04%3A39%3A00Z&sp=rl&sv=2018-03-28&sr=b&sig=q8QCaYw1CyD9D2A3knM8YgP1Al4UImlrvoOl7XP4%2BZA%3D",
+                "csmParametersFileLink": "",
+                "csmFile": "$(System.DefaultWorkingDirectory)/_PTAS-DEV-IAC-PRBuild/NetDrop/azure/mediainfo.arm",
+                "csmParametersFile": "$(System.DefaultWorkingDirectory)/_PTAS-DEV-IAC-PRBuild/NetDrop/azure/ReleasePipes/PTAS-DEV-IAC-Deploy-Parameters.json",
+                "overrideParameters": "",
+                "deploymentMode": "Incremental",
+                "enableDeploymentPrerequisites": "None",
+                "deploymentGroupEndpoint": "",
+                "project": "",
+                "deploymentGroupName": "",
+                "copyAzureVMTags": "true",
+                "runAgentServiceAsUser": "false",
+                "userName": "",
+                "password": "",
+                "outputVariable": "",
+                "deploymentName": "",
+                "deploymentOutputs": "",
+                "addSpnToEnvironment": "false"
+              }
+            },
+            {
+              "environment": {},
+              "taskId": "94a74903-f93f-4075-884f-dc11f34058b4",
+              "version": "2.*",
+              "name": "Deploy Data Services ARM",
+              "refName": "",
+              "enabled": true,
+              "alwaysRun": false,
+              "continueOnError": false,
+              "timeoutInMinutes": 0,
+              "definitionType": "task",
+              "overrideInputs": {},
+              "condition": "succeeded()",
+              "inputs": {
+                "ConnectedServiceName": "$(DeploymentSubscription)",
+                "action": "Create Or Update Resource Group",
+                "resourceGroupName": "$(DeploymentResourceGroup)",
+                "location": "$(DeploymentLocation)",
+                "templateLocation": "Linked artifact",
+                "csmFileLink": "https://kcmaptilestorage.blob.core.windows.net/other/dataservices.arm?st=2019-10-01T23%3A33%3A50Z&se=2080-10-10T23%3A33%3A00Z&sp=rl&sv=2018-03-28&sr=b&sig=ZftpK%2FCZjrSGTQdw2NELM%2FJOB6J9oV3kQlIj4Ft8V0w%3D",
+                "csmParametersFileLink": "",
+                "csmFile": "$(System.DefaultWorkingDirectory)/_PTAS-DEV-IAC-PRBuild/NetDrop/azure/dataservices.arm",
+                "csmParametersFile": "$(System.DefaultWorkingDirectory)/_PTAS-DEV-IAC-PRBuild/NetDrop/azure/ReleasePipes/PTAS-DEV-IAC-Deploy-Parameters.json",
+                "overrideParameters": "",
+                "deploymentMode": "Incremental",
+                "enableDeploymentPrerequisites": "None",
+                "deploymentGroupEndpoint": "",
+                "project": "",
+                "deploymentGroupName": "",
+                "copyAzureVMTags": "true",
+                "runAgentServiceAsUser": "false",
+                "userName": "",
+                "password": "",
+                "outputVariable": "",
+                "deploymentName": "",
+                "deploymentOutputs": "",
+                "addSpnToEnvironment": "false"
+              }
+            },
+            {
+              "environment": {},
+              "taskId": "94a74903-f93f-4075-884f-dc11f34058b4",
+              "version": "2.*",
+              "name": "Deploy Document Storage Services ARM",
+              "refName": "",
+              "enabled": true,
+              "alwaysRun": false,
+              "continueOnError": false,
+              "timeoutInMinutes": 0,
+              "definitionType": "task",
+              "overrideInputs": {},
+              "condition": "succeeded()",
+              "inputs": {
+                "ConnectedServiceName": "$(DeploymentSubscription)",
+                "action": "Create Or Update Resource Group",
+                "resourceGroupName": "$(DeploymentResourceGroup)",
+                "location": "$(DeploymentLocation)",
+                "templateLocation": "Linked artifact",
+                "csmFileLink": "https://kcmaptilestorage.blob.core.windows.net/other/documentstorageservices.arm?st=2019-10-09T02%3A01%3A01Z&se=2040-10-10T02%3A01%3A00Z&sp=rl&sv=2018-03-28&sr=b&sig=T%2B9xZ7N2HlfZ22vvVL90i0bYOpPpOcZVdclpo5WFkD4%3D",
+                "csmParametersFileLink": "",
+                "csmFile": "$(System.DefaultWorkingDirectory)/_PTAS-DEV-IAC-PRBuild/NetDrop/azure/documentstorageservices.arm",
+                "csmParametersFile": "$(System.DefaultWorkingDirectory)/_PTAS-DEV-IAC-PRBuild/NetDrop/azure/ReleasePipes/PTAS-DEV-IAC-Deploy-Parameters.json",
+                "overrideParameters": "",
+                "deploymentMode": "Incremental",
+                "enableDeploymentPrerequisites": "None",
+                "deploymentGroupEndpoint": "",
+                "project": "",
+                "deploymentGroupName": "",
+                "copyAzureVMTags": "true",
+                "runAgentServiceAsUser": "false",
+                "userName": "",
+                "password": "",
+                "outputVariable": "",
+                "deploymentName": "",
+                "deploymentOutputs": "",
+                "addSpnToEnvironment": "false"
+              }
+            },
+            {
+              "environment": {},
+              "taskId": "94a74903-f93f-4075-884f-dc11f34058b4",
+              "version": "2.*",
+              "name": "Deploy Seniors Portal ARM",
+              "refName": "",
+              "enabled": true,
+              "alwaysRun": false,
+              "continueOnError": false,
+              "timeoutInMinutes": 0,
+              "definitionType": "task",
+              "overrideInputs": {},
+              "condition": "succeeded()",
+              "inputs": {
+                "ConnectedServiceName": "$(DeploymentSubscription)",
+                "action": "Create Or Update Resource Group",
+                "resourceGroupName": "$(DeploymentResourceGroup)",
+                "location": "$(DeploymentLocation)",
+                "templateLocation": "Linked artifact",
+                "csmFileLink": "https://kcmaptilestorage.blob.core.windows.net/other/seniorportal.arm?st=2019-10-14T22%3A23%3A19Z&se=2020-10-15T22%3A23%3A00Z&sp=rl&sv=2018-03-28&sr=b&sig=WKYQi9GDXHpgIN3rp1rajrs8VSmB%2FYfeUcNgCDPorJU%3D",
+                "csmParametersFileLink": "",
+                "csmFile": "$(System.DefaultWorkingDirectory)/_PTAS-DEV-IAC-PRBuild/NetDrop/azure/seniorportal.arm",
+                "csmParametersFile": "$(System.DefaultWorkingDirectory)/_PTAS-DEV-IAC-PRBuild/NetDrop/azure/ReleasePipes/PTAS-DEV-IAC-Deploy-Parameters.json",
+                "overrideParameters": "",
+                "deploymentMode": "Incremental",
+                "enableDeploymentPrerequisites": "None",
+                "deploymentGroupEndpoint": "",
+                "project": "",
+                "deploymentGroupName": "",
+                "copyAzureVMTags": "true",
+                "runAgentServiceAsUser": "false",
+                "userName": "",
+                "password": "",
+                "outputVariable": "",
+                "deploymentName": "",
+                "deploymentOutputs": "",
+                "addSpnToEnvironment": "false"
+              }
+            },
+            {
+              "environment": {},
+              "taskId": "94a74903-f93f-4075-884f-dc11f34058b4",
+              "version": "2.*",
+              "name": "Deploy Redaction Dynamics Portal ARM",
+              "refName": "",
+              "enabled": true,
+              "alwaysRun": false,
+              "continueOnError": false,
+              "timeoutInMinutes": 0,
+              "definitionType": "task",
+              "overrideInputs": {},
+              "condition": "succeeded()",
+              "inputs": {
+                "ConnectedServiceName": "$(DeploymentSubscription)",
+                "action": "Create Or Update Resource Group",
+                "resourceGroupName": "$(DeploymentResourceGroup)",
+                "location": "$(DeploymentLocation)",
+                "templateLocation": "Linked artifact",
+                "csmFileLink": "https://kcmaptilestorage.blob.core.windows.net/other/seniorportal.arm?st=2019-10-14T22%3A23%3A19Z&se=2020-10-15T22%3A23%3A00Z&sp=rl&sv=2018-03-28&sr=b&sig=WKYQi9GDXHpgIN3rp1rajrs8VSmB%2FYfeUcNgCDPorJU%3D",
+                "csmParametersFileLink": "",
+                "csmFile": "$(System.DefaultWorkingDirectory)/_PTAS-DEV-IAC-PRBuild/NetDrop/azure/redactiondynamics.arm",
+                "csmParametersFile": "$(System.DefaultWorkingDirectory)/_PTAS-DEV-IAC-PRBuild/NetDrop/azure/ReleasePipes/PTAS-DEV-IAC-Deploy-Parameters.json",
+                "overrideParameters": "",
+                "deploymentMode": "Incremental",
+                "enableDeploymentPrerequisites": "None",
+                "deploymentGroupEndpoint": "",
+                "project": "",
+                "deploymentGroupName": "",
+                "copyAzureVMTags": "true",
+                "runAgentServiceAsUser": "false",
+                "userName": "",
+                "password": "",
+                "outputVariable": "",
+                "deploymentName": "",
+                "deploymentOutputs": "",
+                "addSpnToEnvironment": "false"
+              }
+            },
+            {
+              "environment": {},
+              "taskId": "94a74903-f93f-4075-884f-dc11f34058b4",
+              "version": "2.*",
+              "name": "Deply AppInsights Extensions",
+              "refName": "",
+              "enabled": false,
+              "alwaysRun": false,
+              "continueOnError": false,
+              "timeoutInMinutes": 0,
+              "definitionType": "task",
+              "overrideInputs": {},
+              "condition": "succeeded()",
+              "inputs": {
+                "ConnectedServiceName": "$(DeploymentSubscription)",
+                "action": "Create Or Update Resource Group",
+                "resourceGroupName": "$(DeploymentResourceGroup)",
+                "location": "$(DeploymentLocation)",
+                "templateLocation": "Linked artifact",
+                "csmFileLink": "https://kcmaptilestorage.blob.core.windows.net/other/webmapping.arm?st=2019-08-20T04%3A39%3A47Z&se=2020-08-21T04%3A39%3A00Z&sp=rl&sv=2018-03-28&sr=b&sig=q8QCaYw1CyD9D2A3knM8YgP1Al4UImlrvoOl7XP4%2BZA%3D",
+                "csmParametersFileLink": "",
+                "csmFile": "$(System.DefaultWorkingDirectory)/_PTAS-DEV-IAC-PRBuild/NetDrop/azure/appinsightsexetensions.arm",
+                "csmParametersFile": "$(System.DefaultWorkingDirectory)/_PTAS-DEV-IAC-PRBuild/NetDrop/azure/ReleasePipes/PTAS-DEV-IAC-Deploy-Parameters.json",
+                "overrideParameters": "",
+                "deploymentMode": "Incremental",
+                "enableDeploymentPrerequisites": "None",
+                "deploymentGroupEndpoint": "",
+                "project": "",
+                "deploymentGroupName": "",
+                "copyAzureVMTags": "true",
+                "runAgentServiceAsUser": "false",
+                "userName": "",
+                "password": "",
+                "outputVariable": "",
+                "deploymentName": "",
+                "deploymentOutputs": "",
+                "addSpnToEnvironment": "false"
+              }
+            },
+            {
+              "environment": {},
+              "taskId": "72a1931b-effb-4d2e-8fd8-f8472a07cb62",
+              "version": "4.*",
+              "name": "Role Assignment",
+              "refName": "",
+              "enabled": true,
+              "alwaysRun": false,
+              "continueOnError": false,
+              "timeoutInMinutes": 0,
+              "definitionType": "task",
+              "overrideInputs": {},
+              "condition": "succeeded()",
+              "inputs": {
+                "ConnectedServiceNameARM": "$(DeploymentSubscription)",
+                "ScriptType": "FilePath",
+                "ScriptPath": "$(System.DefaultWorkingDirectory)/_PTAS-DEV-IAC-PRBuild/NetDrop/azure/PipelineScripts/RoleAssignment.ps1",
+                "Inline": "$deployEnv = 'Dev'\n$resGroupName = 'ptas-dev-resourcegroup'\n$vaultName = \"PTAS-$($deployEnv)-KeyVault\"\n\nfunction AssignRole()\n{\n\tparam( $principalName, $roleName, $resourceName, $resourceType, $resourceGroupName)\n\n\twrite-output \"-> Reading $principalName Service Principal\"\n\t\n\t$servicePrincipal = Get-AzADServicePrincipal -SearchString $principalName\n\n\twrite-output \"-> Adding $roleName role for $resourceName ...\"\n\n\t$currentRole = Get-AzRoleAssignment -ObjectId $servicePrincipal.Id -RoleDefinitionName $roleName -ResourceName $resourceName -ResourceType $resourceType -ResourceGroupName $resourceGroupName\n\n\tif ($currentRole -eq $null)\n\t{\n\t   New-AzRoleAssignment -ObjectId $servicePrincipal.Id -RoleDefinitionName $roleName -ResourceName $resourceName -ResourceType $resourceType -ResourceGroupName $resourceGroupName\n\t}\n}\n\nfunction AddVaultAccess()\n{\t\n\tparam( $principalName, $keyvaultName )\n\n\twrite-output \"-> Reading $principalName Service Principal\"\n\t\n\t$servicePrincipal = Get-AzADServicePrincipal -SearchString $principalName\n\n\twrite-output \"-> Adding KeyVault access policy for $principalName\"\n\t\n\tSet-AzKeyVaultAccessPolicy -VaultName  $keyvaultName -ObjectId $servicePrincipal.Id -PermissionsToSecrets Get\n}\n\nfunction AddSqlServerAccess()\n{\n\t#write-output \"--> Adding datareader role for SQL Server...\"\n\t#$readOnlyAdGroup = Get-AzADGroup -SearchString \"Azure-PTAS-[Env]-DBReadOnly\"\n\t#Add-AzADGroupMember -MemberObjectId  $servicePrincipal.Id -TargetGroupObjectId $readOnlyAdGroup.Id\n}\n\n# --- Map Tile Services role assignment ---\n$servicePrincipalName = \"PTAS-$($deployEnv)-MapTileServices\"\nAssignRole -principalName $servicePrincipalName -roleName \"Storage Blob Data Contributor\" -resourceName \"ptas$($deployEnv.ToLower())storagepremium\" -resourceType \"Microsoft.Storage/storageAccounts\" -resourceGroupName $resGroupName\nAddVaultAccess -principalName $servicePrincipalName -keyvaultName $vaultName\nAddSqlServerAccess\n\n# --- Data Services role assignment ---\n$servicePrincipalName = \"PTAS-$($deployEnv)-DataServices\"\nAssignRole -principalName $servicePrincipalName -roleName \"Storage Blob Data Contributor\" -resourceName \"ptas$($deployEnv.ToLower())storage\" -resourceType \"Microsoft.Storage/storageAccounts\" -resourceGroupName $resGroupName\nAddVaultAccess -principalName $servicePrincipalName -keyvaultName $vaultName\n\n# --- Document Storage Services role assignment ---\n$servicePrincipalName = \"PTAS-$($deployEnv)-DocumentStorageServices\"\nAssignRole -principalName $servicePrincipalName -roleName \"Storage Blob Data Contributor\" -resourceName \"ptas$($deployEnv.ToLower())storage\" -resourceType \"Microsoft.Storage/storageAccounts\" -resourceGroupName $resGroupName\nAssignRole -principalName $servicePrincipalName -roleName \"Cognitive Services User\" -resourceName \"PTAS-$($deployEnv)-ComputerVision\" -resourceType \"Microsoft.CognitiveServices/accounts\" -resourceGroupName $resGroupName\nAddVaultAccess -principalName $servicePrincipalName -keyvaultName $vaultName\n\n\n",
+                "ScriptArguments": "-DeploymentEnv $(DeploymentEnv) -DeploymentResourceGroup $(DeploymentResourceGroup)",
+                "errorActionPreference": "stop",
+                "FailOnStandardError": "false",
+                "TargetAzurePs": "LatestVersion",
+                "CustomTargetAzurePs": "",
+                "pwsh": "false",
+                "workingDirectory": ""
+              }
+            }
+          ]
+        }
+      ],
+      "environmentOptions": {
+        "emailNotificationType": "OnlyOnFailure",
+        "emailRecipients": "release.environment.owner;release.creator",
+        "skipArtifactsDownload": false,
+        "timeoutInMinutes": 0,
+        "enableAccessToken": false,
+        "publishDeploymentStatus": true,
+        "badgeEnabled": false,
+        "autoLinkWorkItems": false,
+        "pullRequestDeploymentEnabled": false
+      },
+      "demands": [],
+      "conditions": [
+        {
+          "name": "ReleaseStarted",
+          "conditionType": 1,
+          "value": ""
+        }
+      ],
+      "executionPolicy": {
+        "concurrencyCount": 1,
+        "queueDepthCount": 0
+      },
+      "schedules": [],
+      "currentRelease": {
+        "id": 206,
+        "url": "https://kingcounty.vsrm.visualstudio.com/ecac2c29-2814-451d-85e7-9c3be654fdd9/_apis/Release/releases/206",
+        "_links": {}
+      },
+      "retentionPolicy": {
+        "daysToKeep": 30,
+        "releasesToKeep": 3,
+        "retainBuild": true
+      },
+      "processParameters": {
+        "dataSourceBindings": [
+          {
+            "dataSourceName": "AzureFunctionAppNamesByAppType",
+            "parameters": { "WebAppKind": "$(AppType)" },
+            "endpointId": "$(AzureSubscription)",
+            "target": "AppName"
+          }
+        ]
+      },
+      "properties": {
+        "LinkBoardsWorkItems": {
+          "$type": "System.String",
+          "$value": "False"
+        }
+      },
+      "preDeploymentGates": {
+        "id": 0,
+        "gatesOptions": null,
+        "gates": []
+      },
+      "postDeploymentGates": {
+        "id": 0,
+        "gatesOptions": null,
+        "gates": []
+      },
+      "environmentTriggers": [],
+      "badgeUrl": "https://kingcounty.vsrm.visualstudio.com/_apis/public/Release/badge/ecac2c29-2814-451d-85e7-9c3be654fdd9/11/16"
+    },
+    {
+      "id": 17,
+      "name": "Service Deployment Stage",
+      "rank": 2,
+      "owner": {
+        "displayName": "Eric Esteban Herrera Vado",
+        "url": "https://spsprodeus27.vssps.visualstudio.com/A90364681-6ca4-4180-bf52-cd162afac75c/_apis/Identities/ffdc3a21-d7fa-6f11-9808-47ba46eb2dda",
+        "_links": { "avatar": { "href": "https://kingcounty.visualstudio.com/_apis/GraphProfile/MemberAvatars/aad.ZmZkYzNhMjEtZDdmYS03ZjExLTk4MDgtNDdiYTQ2ZWIyZGRh" } },
+        "id": "ffdc3a21-d7fa-6f11-9808-47ba46eb2dda",
+        "uniqueName": "n-evado@kingcounty.gov",
+        "imageUrl": "https://kingcounty.visualstudio.com/_apis/GraphProfile/MemberAvatars/aad.ZmZkYzNhMjEtZDdmYS03ZjExLTk4MDgtNDdiYTQ2ZWIyZGRh",
+        "descriptor": "aad.ZmZkYzNhMjEtZDdmYS03ZjExLTk4MDgtNDdiYTQ2ZWIyZGRh"
+      },
+      "variables": {},
+      "variableGroups": [],
+      "preDeployApprovals": {
+        "approvals": [
+          {
+            "rank": 1,
+            "isAutomated": true,
+            "isNotificationOn": false,
+            "id": 49
+          }
+        ],
+        "approvalOptions": {
+          "requiredApproverCount": null,
+          "releaseCreatorCanBeApprover": false,
+          "autoTriggeredAndPreviousEnvironmentApprovedCanBeSkipped": false,
+          "enforceIdentityRevalidation": false,
+          "timeoutInMinutes": 0,
+          "executionOrder": 1
+        }
+      },
+      "deployStep": { "id": 50 },
+      "postDeployApprovals": {
+        "approvals": [
+          {
+            "rank": 1,
+            "isAutomated": true,
+            "isNotificationOn": false,
+            "id": 53
+          }
+        ],
+        "approvalOptions": {
+          "requiredApproverCount": null,
+          "releaseCreatorCanBeApprover": false,
+          "autoTriggeredAndPreviousEnvironmentApprovedCanBeSkipped": false,
+          "enforceIdentityRevalidation": false,
+          "timeoutInMinutes": 0,
+          "executionOrder": 2
+        }
+      },
+      "deployPhases": [
+        {
+          "deploymentInput": {
+            "parallelExecution": { "parallelExecutionType": 0 },
+            "agentSpecification": { "identifier": "windows-2019" },
+            "skipArtifactsDownload": false,
+            "artifactsDownloadInput": { "downloadInputs": [] },
+            "queueId": 2176,
+            "demands": [],
+            "enableAccessToken": false,
+            "timeoutInMinutes": 0,
+            "jobCancelTimeoutInMinutes": 1,
+            "condition": "succeeded()",
+            "overrideInputs": {}
+          },
+          "rank": 1,
+          "phaseType": 1,
+          "name": "Agent job",
+          "refName": null,
+          "workflowTasks": [
+            {
+              "environment": {},
+              "taskId": "501dd25d-1785-43e4-b4e5-a5c78ccc0573",
+              "version": "1.*",
+              "name": "Azure Function App Deploy: PTAS MapTileServices",
+              "refName": "",
+              "enabled": true,
+              "alwaysRun": false,
+              "continueOnError": false,
+              "timeoutInMinutes": 0,
+              "definitionType": "task",
+              "overrideInputs": {},
+              "condition": "succeeded()",
+              "inputs": {
+                "azureSubscription": "$(DeploymentSubscription)",
+                "appType": "functionApp",
+                "appName": "PTAS-$(DeploymentEnv)-MapTileServices",
+                "deployToSlotOrASE": "false",
+                "resourceGroupName": "",
+                "slotName": "production",
+                "package": "$(System.DefaultWorkingDirectory)/_PTAS-DEV-IAC-PRBuild/NetDrop/WebMapping/Source/WebMapping/MapTileFunctions/bin/Debug/netcoreapp2.2",
+                "runtimeStack": "",
+                "startUpCommand": "",
+                "customWebConfig": "",
+                "appSettings": "",
+                "configurationStrings": "",
+                "deploymentMethod": "zipDeploy"
+              }
+            },
+            {
+              "environment": {},
+              "taskId": "501dd25d-1785-43e4-b4e5-a5c78ccc0573",
+              "version": "1.*",
+              "name": "Azure Function App Deploy: PTAS Media Info",
+              "refName": "",
+              "enabled": true,
+              "alwaysRun": false,
+              "continueOnError": false,
+              "timeoutInMinutes": 0,
+              "definitionType": "task",
+              "overrideInputs": {},
+              "condition": "succeeded()",
+              "inputs": {
+                "azureSubscription": "$(DeploymentSubscription)",
+                "appType": "functionApp",
+                "appName": "PTAS-$(DeploymentEnv)-MediaInfo",
+                "deployToSlotOrASE": "false",
+                "resourceGroupName": "",
+                "slotName": "production",
+                "package": "$(System.DefaultWorkingDirectory)/_PTAS-DEV-IAC-PRBuild/NetDrop/MediaFolderSync/Source/MediaFolderSync/PTASFunctionMediaInfo/bin/Debug/netcoreapp2.2",
+                "runtimeStack": "",
+                "startUpCommand": "",
+                "customWebConfig": "",
+                "appSettings": "",
+                "configurationStrings": "",
+                "deploymentMethod": "zipDeploy"
+              }
+            },
+            {
+              "environment": {},
+              "taskId": "18bde28a-8172-45cb-b204-5cef1393dbb1",
+              "version": "1.*",
+              "name": "Azure Web App Deploy: PTAS DataServices",
+              "refName": "",
+              "enabled": true,
+              "alwaysRun": false,
+              "continueOnError": false,
+              "timeoutInMinutes": 0,
+              "definitionType": "task",
+              "overrideInputs": {},
+              "condition": "succeeded()",
+              "inputs": {
+                "azureSubscription": "$(DeploymentSubscription)",
+                "appType": "webApp",
+                "appName": "PTAS-$(DeploymentEnv)-DataServices",
+                "deployToSlotOrASE": "false",
+                "resourceGroupName": "",
+                "slotName": "production",
+                "package": "$(System.DefaultWorkingDirectory)/_PTAS-DEV-IAC-PRBuild/NetDrop/PTASDynamicsInterface/source/PTASDynamicsInterface/PTASDynamicsCrudCore/bin/Debug/netcoreapp2.2",
+                "customDeployFolder": "",
+                "runtimeStack": "",
+                "startUpCommand": "",
+                "customWebConfig": "",
+                "appSettings": "",
+                "configurationStrings": "",
+                "deploymentMethod": "zipDeploy"
+              }
+            },
+            {
+              "environment": {},
+              "taskId": "497d490f-eea7-4f2b-ab94-48d9c1acdcb1",
+              "version": "4.*",
+              "name": "Azure App Service Deploy: PTAS Document Services",
+              "refName": "",
+              "enabled": true,
+              "alwaysRun": false,
+              "continueOnError": false,
+              "timeoutInMinutes": 0,
+              "definitionType": "task",
+              "overrideInputs": {},
+              "condition": "succeeded()",
+              "inputs": {
+                "ConnectionType": "AzureRM",
+                "ConnectedServiceName": "$(DeploymentSubscription)",
+                "PublishProfilePath": "$(System.DefaultWorkingDirectory)/**/*.pubxml",
+                "PublishProfilePassword": "",
+                "WebAppKind": "webApp",
+                "WebAppName": "PTAS-$(DeploymentEnv)-DocumentStorageServices",
+                "DeployToSlotOrASEFlag": "false",
+                "ResourceGroupName": "",
+                "SlotName": "production",
+                "DockerNamespace": "",
+                "DockerRepository": "",
+                "DockerImageTag": "",
+                "VirtualApplication": "",
+                "Package": "$(System.DefaultWorkingDirectory)/_PTAS-DEV-IAC-PRBuild/NetDrop/ILinxConnector/Source/ILinxConnector/PTASILinxService/bin",
+                "RuntimeStack": "",
+                "RuntimeStackFunction": "",
+                "StartupCommand": "",
+                "ScriptType": "",
+                "InlineScript": ":: You can provide your deployment commands here. One command per line.",
+                "ScriptPath": "",
+                "WebConfigParameters": "",
+                "AppSettings": "",
+                "ConfigurationSettings": "",
+                "UseWebDeploy": "false",
+                "DeploymentType": "webDeploy",
+                "TakeAppOfflineFlag": "true",
+                "SetParametersFile": "",
+                "RemoveAdditionalFilesFlag": "false",
+                "ExcludeFilesFromAppDataFlag": "true",
+                "AdditionalArguments": "-retryAttempts:6 -retryInterval:10000",
+                "RenameFilesFlag": "true",
+                "XmlTransformation": "false",
+                "XmlVariableSubstitution": "false",
+                "JSONFiles": ""
+              }
+            },
+            {
+              "environment": {},
+              "taskId": "18bde28a-8172-45cb-b204-5cef1393dbb1",
+              "version": "1.*",
+              "name": "Azure Web App Deploy: PTAS Seniors Portal",
+              "refName": "",
+              "enabled": true,
+              "alwaysRun": false,
+              "continueOnError": false,
+              "timeoutInMinutes": 0,
+              "definitionType": "task",
+              "overrideInputs": {},
+              "condition": "succeeded()",
+              "inputs": {
+                "azureSubscription": "$(DeploymentSubscription)",
+                "appType": "webApp",
+                "appName": "PTAS-$(DeploymentEnv)-SeniorsPortal",
+                "deployToSlotOrASE": "false",
+                "resourceGroupName": "",
+                "slotName": "production",
+                "package": "$(System.DefaultWorkingDirectory)/_PTAS-DEV-IAC-PRBuild/NpmDrop/SeniorsPortal/PTASPortals/Source/SeniorsPortal/build",
+                "customDeployFolder": "",
+                "runtimeStack": "",
+                "startUpCommand": "",
+                "customWebConfig": "",
+                "appSettings": "",
+                "configurationStrings": "",
+                "deploymentMethod": "zipDeploy"
+              }
+            },
+            {
+              "environment": {},
+              "taskId": "18bde28a-8172-45cb-b204-5cef1393dbb1",
+              "version": "1.*",
+              "name": "Azure Web App Deploy: PTAS Redaction Dynamics",
+              "refName": "",
+              "enabled": true,
+              "alwaysRun": false,
+              "continueOnError": false,
+              "timeoutInMinutes": 0,
+              "definitionType": "task",
+              "overrideInputs": {},
+              "condition": "succeeded()",
+              "inputs": {
+                "azureSubscription": "$(DeploymentSubscription)",
+                "appType": "webApp",
+                "appName": "PTAS-$(DeploymentEnv)-RedactionDynamics",
+                "deployToSlotOrASE": "false",
+                "resourceGroupName": "",
+                "slotName": "production",
+                "package": "$(System.DefaultWorkingDirectory)/_PTAS-DEV-IAC-PRBuild/NpmDrop/RedactionDynamics/PTASPortals/Source/RedactionDynamics/build",
+                "customDeployFolder": "",
+                "runtimeStack": "",
+                "startUpCommand": "",
+                "customWebConfig": "",
+                "appSettings": "",
+                "configurationStrings": "",
+                "deploymentMethod": "zipDeploy"
+              }
+            }
+          ]
+        }
+      ],
+      "environmentOptions": {
+        "emailNotificationType": "OnlyOnFailure",
+        "emailRecipients": "release.environment.owner;release.creator",
+        "skipArtifactsDownload": false,
+        "timeoutInMinutes": 0,
+        "enableAccessToken": false,
+        "publishDeploymentStatus": true,
+        "badgeEnabled": false,
+        "autoLinkWorkItems": false,
+        "pullRequestDeploymentEnabled": false
+      },
+      "demands": [],
+      "conditions": [
+        {
+          "name": "ARM Deployment Stage",
+          "conditionType": 2,
+          "value": "4"
+        }
+      ],
+      "executionPolicy": {
+        "concurrencyCount": 1,
+        "queueDepthCount": 0
+      },
+      "schedules": [],
+      "currentRelease": {
+        "id": 206,
+        "url": "https://kingcounty.vsrm.visualstudio.com/ecac2c29-2814-451d-85e7-9c3be654fdd9/_apis/Release/releases/206",
+        "_links": {}
+      },
+      "retentionPolicy": {
+        "daysToKeep": 30,
+        "releasesToKeep": 3,
+        "retainBuild": true
+      },
+      "processParameters": {
+        "dataSourceBindings": [
+          {
+            "dataSourceName": "AzureFunctionAppNamesByAppType",
+            "parameters": { "WebAppKind": "$(AppType)" },
+            "endpointId": "$(AzureSubscription)",
+            "target": "AppName"
+          }
+        ]
+      },
+      "properties": {
+        "LinkBoardsWorkItems": {
+          "$type": "System.String",
+          "$value": "False"
+        }
+      },
+      "preDeploymentGates": {
+        "id": 0,
+        "gatesOptions": null,
+        "gates": []
+      },
+      "postDeploymentGates": {
+        "id": 0,
+        "gatesOptions": null,
+        "gates": []
+      },
+      "environmentTriggers": [],
+      "badgeUrl": "https://kingcounty.vsrm.visualstudio.com/_apis/public/Release/badge/ecac2c29-2814-451d-85e7-9c3be654fdd9/11/17"
+    }
+  ],
+  "artifacts": [
+    {
+      "sourceId": "ecac2c29-2814-451d-85e7-9c3be654fdd9:364",
+      "type": "Build",
+      "alias": "_PTAS-DEV-IAC-PRBuild",
+      "definitionReference": {
+        "artifactSourceDefinitionUrl": {
+          "id": "https://kingcounty.visualstudio.com/_permalink/_build/index?collectionId=d668897d-9de0-4d68-af7a-7c33dea83b82&projectId=ecac2c29-2814-451d-85e7-9c3be654fdd9&definitionId=364",
+          "name": ""
+        },
+        "defaultVersionBranch": {
+          "id": "",
+          "name": ""
+        },
+        "defaultVersionSpecific": {
+          "id": "",
+          "name": ""
+        },
+        "defaultVersionTags": {
+          "id": "",
+          "name": ""
+        },
+        "defaultVersionType": {
+          "id": "latestType",
+          "name": "Latest"
+        },
+        "definition": {
+          "id": "364",
+          "name": "PTAS-DEV-IAC-PRBuild"
+        },
+        "definitions": {
+          "id": "",
+          "name": ""
+        },
+        "IsMultiDefinitionType": {
+          "id": "False",
+          "name": "False"
+        },
+        "project": {
+          "id": "ecac2c29-2814-451d-85e7-9c3be654fdd9",
+          "name": "PTAS"
+        },
+        "repository": {
+          "id": "",
+          "name": ""
+        }
+      },
+      "isPrimary": true,
+      "isRetained": false
+    }
+  ],
+  "triggers": [],
+  "releaseNameFormat": "Release-$(rev:r)",
+  "tags": [],
+  "properties": {
+    "DefinitionCreationSource": {
+      "$type": "System.String",
+      "$value": "ReleaseClone"
+    },
+    "IntegrateJiraWorkItems": {
+      "$type": "System.String",
+      "$value": "false"
+    },
+    "IntegrateBoardsWorkItems": {
+      "$type": "System.String",
+      "$value": "False"
+    }
+  },
+  "id": 11,
+  "name": "PTAS-CDTEST-IAC-Deploy",
+  "path": "\\IAC\\Deploy",
+  "projectReference": null,
+  "url": "https://kingcounty.vsrm.visualstudio.com/ecac2c29-2814-451d-85e7-9c3be654fdd9/_apis/Release/definitions/11",
+  "_links": {
+    "self": { "href": "https://kingcounty.vsrm.visualstudio.com/ecac2c29-2814-451d-85e7-9c3be654fdd9/_apis/Release/definitions/11" },
+    "web": { "href": "https://kingcounty.visualstudio.com/ecac2c29-2814-451d-85e7-9c3be654fdd9/_release?definitionId=11" }
+  }
+}

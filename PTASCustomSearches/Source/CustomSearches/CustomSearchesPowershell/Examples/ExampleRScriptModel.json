@@ -1,0 +1,121 @@
+{
+  "rscriptModelName": "LinearRegression_ImportTest3",
+  "description": "We were here.",
+  "rscriptFolderName": "linearRegressionImportTest3",
+  "rscriptFileName": "LinearRegression.r",
+  "rscriptModelRole": "TimeTrendRegression",
+  "PredictedTSqlExpression": "{Intercept} + {Coefficient}*[SaleDay]",
+  "resultsDefinitions": [
+    {
+      "name": "Coefficient",
+      "description": "Regression coefficient result",
+      "type": "Double",
+      "defaultValue": "0"
+    },
+    {
+      "name": "Intercept",
+      "description": "Regression intercept result",
+      "type": "Double",
+      "defaultValue": "0"
+    }
+  ],
+  "parameters": [
+    {
+      "name": "TurningPoint1",
+      "description": "First turning point for the spline",
+      "type": "Int32",
+      "defaultValue": "0",
+      "isRequired": true,
+      "parameterRangeType": "NotRanged",
+      "parameterGroupName": "",
+      "expressions": [
+        {
+          "ExpressionType": "JSonPayload",
+          "ExpressionRole": "LookupExpression",
+          "Script": "[{\"Value\": 100},{\"Value\": 150},{\"Value\": 200}]"
+        }
+      ]
+    },
+    {
+      "name": "TurningPoint2",
+      "description": "Second turning point for the spline",
+      "type": "Int32",
+      "defaultValue": "0",
+      "isRequired": true,
+      "parameterRangeType": "NotRanged",
+      "parameterGroupName": "",
+      "expressions": [
+        {
+          "ExpressionType": "JSonPayload",
+          "ExpressionRole": "LookupExpression",
+          "Script": "[{\"Value\": 100},{\"Value\": 150},{\"Value\": 200}]"
+        }
+      ]
+    }
+  ],
+  "expressions": [
+    {
+      "ExpressionType": "TSQL",
+      "ExpressionRole": "CalculatedColumnPreCommit",
+      "Script": "IIF(SPrice = 0, 1, RollTot/SPrice)",
+      "ColumnName": "AVRatio",
+      "Note": "RollTot/SPrice"
+    },
+    {
+      "ExpressionType": "TSQL",
+      "ExpressionRole": "CalculatedColumnPreCommit",
+      "Script": "IsNull(CAST(DATEDIFF(dd, SaleDate, GetDate()) as decimal(18,2)), 100)",
+      "ColumnName": "SaleDay",
+      "Note": "SaleDate-ValuatioDate"
+    },
+    {
+      "ExpressionType": "TSQL",
+      "ExpressionRole": "CalculatedColumnPostCommit",
+      "Script": "({Intercept}+({Coefficient}*SaleDay))/{Intercept}",
+      "ColumnName": "TimeAdjustment",
+      "Note": "(Intercept+(Coefficient*SaleDay))/Intercept"
+    },
+    {
+      "ExpressionType": "TSQL",
+      "ExpressionRole": "CalculatedColumnPostCommit",
+      "Script": "{TimeAdjustment} * SPrice",
+      "ColumnName": "TrendedSPrice",
+      "Note": "TimeAdjustment*SPrice"
+    },
+    {
+      "ExpressionType": "TSQL",
+      "ExpressionRole": "CalculatedColumnPostCommit",
+      "Script": "IIF({TrendedSPrice} = 0, 0, RollTot/{TrendedSPrice})",
+      "ColumnName": "TrendedRatio",
+      "Note": "RollTot/TrendedSPrice"
+    },
+    {
+      "ExpressionType": "RScript",
+      "ExpressionRole": "CalculatedColumnPreCommit_Dependent",
+      "Script": "AVRatio",
+      "ColumnName": "DependentVariable",
+      "Note": ""
+    },
+    {
+      "ExpressionType": "RScript",
+      "ExpressionRole": "CalculatedColumnPreCommit_Independent",
+      "Script": "SaleDay",
+      "ColumnName": "IndependentVariable",
+      "Note": ""
+    },
+    {
+      "ExpressionType": "RScript",
+      "ExpressionRole": "CalculatedColumn",
+      "Script": "NewColumn1",
+      "ColumnName": "NewColumn1",
+      "Note": ""
+    },
+    {
+      "ExpressionType": "RScript",
+      "ExpressionRole": "CalculatedColumn",
+      "Script": "NewColumn2",
+      "ColumnName": "NewColumn2",
+      "Note": ""
+    }
+  ]
+}

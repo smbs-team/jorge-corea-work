@@ -1,0 +1,24 @@
+---
+title: "Test"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is the result of a linear regression
+
+```{r}
+library(ggplot2)
+
+ggplot(dataset, aes(x = SaleDay, y = AVRatio)) + 
+  geom_point(pch=17, color="blue", size=1) +
+  geom_smooth(method="lm", color = "red", linetype = 1,se = 0.95) +
+  scale_x_continuous(breaks=waiver()) +
+  labs(title="Example of AVRatio", x = "Sale Day", y = "AV Ratio")
+
+
+```

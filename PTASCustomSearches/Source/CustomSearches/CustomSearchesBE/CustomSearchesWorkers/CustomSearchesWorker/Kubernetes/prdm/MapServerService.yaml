@@ -1,0 +1,64 @@
+﻿apiVersion: v1
+kind: Service
+metadata:
+  name: ptas-prdm-mapserver-service
+  labels:
+    app: ptas-prdm-mapserver-service
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: ptas-prdm-mapserver-service
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app: ptas-prdm-mapserver-service
+  name: ptas-prdm-mapserver-service-set
+spec:
+  serviceName: ptas-prdm-mapserver-service
+  replicas: 2
+  updateStrategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: ptas-prdm-mapserver-service
+  template:
+    metadata:
+      labels:
+        app: ptas-prdm-mapserver-service
+    spec:
+      containers:
+      - name: mapserver-service-container
+        image: dunphyacrtest3.azurecr.io/linux/mapserver:1.0
+        lifecycle:
+          postStart:
+            exec:
+              command: ["/bin/cp", "-a", "/mapserver/map-share/mapserver/.", "/mapserver/map-cache/"]
+        imagePullPolicy: Always
+        volumeMounts:
+        - mountPath: "/mapserver/map-cache"
+          name: mapserver-persistent-volume
+        - mountPath: "/mapserver/map-share"
+          name: layers-prdm-fileshare        
+      nodeSelector:
+        kubernetes.io/os: linux
+      volumes:
+      - name: layers-prdm-fileshare
+        azureFile:
+          secretName: storage-secret-prdm
+          shareName: layers
+          readOnly: true
+  volumeClaimTemplates:
+  - metadata:
+      name: mapserver-persistent-volume
+      annotations:
+        volume.beta.kubernetes.io/storage-class: default
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 2Ti

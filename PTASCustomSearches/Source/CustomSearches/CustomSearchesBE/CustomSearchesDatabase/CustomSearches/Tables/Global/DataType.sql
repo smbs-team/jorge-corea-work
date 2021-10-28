@@ -1,0 +1,5 @@
+﻿CREATE TABLE [cus].[DataType]
+(
+    [DataType] NVARCHAR(256) PRIMARY KEY NOT NULL,
+)
+GO

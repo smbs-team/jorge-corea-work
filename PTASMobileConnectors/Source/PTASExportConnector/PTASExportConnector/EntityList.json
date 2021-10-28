@@ -1,0 +1,128 @@
+{
+  "Entities": [
+    {
+      "Name": "Apartment_Region",
+      "SyncOrder": 0
+    },
+    {
+      "Name": "Dock",
+      "SyncOrder": 0
+    },
+    {
+      "Name": "Economic_Unit",
+      "SyncOrder": 0
+    },
+    {
+      "Name": "Housing_Program",
+      "SyncOrder": 0
+    },
+    {
+      "Name": "Land_Waterfront",
+      "SyncOrder": 0
+    },
+    {
+      "Name": "Parking_District",
+      "SyncOrder": 0
+    },
+    {
+      "Name": "Condo_Complex",
+      "SyncOrder": 0
+    },
+    {
+      "Name": "Section_Use_Type",
+      "SyncOrder": 0
+    },
+    {
+      "Name": "Unit",
+      "SyncOrder": 0
+    },
+    {
+      "Name": "Apartment_Super_Group",
+      "SyncOrder": 1
+    },
+    {
+      "Name": "Land",
+      "SyncOrder": 1
+    },
+    {
+      "Name": "Low_Income_Housing_Program",
+      "SyncOrder": 1
+    },
+    {
+      "Name": "Section_Use_Square_Foot",
+      "SyncOrder": 1
+    },
+    {
+      "Name": "Zoning",
+      "SyncOrder": 1
+    },
+    {
+      "Name": "Building",
+      "SyncOrder": 2
+    },
+    {
+      "Name": "Land_Designation",
+      "SyncOrder": 2
+    },
+    {
+      "Name": "Land_Environmental",
+      "SyncOrder": 2
+    },
+    {
+      "Name": "Land_Nuisance",
+      "SyncOrder": 2
+    },
+    {
+      "Name": "Land_Schedule",
+      "SyncOrder": 2
+    },
+    {
+      "Name": "Land_Submerged",
+      "SyncOrder": 2
+    },
+    {
+      "Name": "Land_Value_Calculation",
+      "SyncOrder": 2
+    },
+    {
+      "Name": "Land_View",
+      "SyncOrder": 2
+    },
+    {
+      "Name": "Land_Zoning",
+      "SyncOrder": 2
+    },
+    {
+      "Name": "Parcel_Economic_Unit",
+      "SyncOrder": 2
+    },
+    {
+      "Name": "Tax_account",
+      "SyncOrder": 2
+    },
+    {
+      "Name": "Valuation_Unit",
+      "SyncOrder": 2
+    },
+    {
+      "Name": "Accessory",
+      "SyncOrder": 3
+    },
+    {
+      "Name": "Building_Section_Use",
+      "SyncOrder": 3
+    },
+    {
+      "Name": "Parcel",
+      "SyncOrder": 3
+    },
+    {
+      "Name": "Valuation_Unit_Detail",
+      "SyncOrder": 3
+    },
+    {
+      "Name": "Building_Section_Feature",
+      "SyncOrder": 4
+    }
+  ]
+}

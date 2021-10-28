@@ -1,0 +1,156 @@
+[
+  {
+    "name": "TaxStatus",
+    "format": "string"
+  },
+  {
+    "name": "TaxpayerName",
+    "format": "string"
+  },
+  {
+    "format": "number",
+    "name": "BldgGrade"
+  },
+  {
+    "name": "CondDescr",
+    "format": "string"
+  },
+  {
+    "name": "SqFtTotLiving",
+    "format": "number"
+  },
+  {
+    "name": "CurrentZoning",
+    "format": "string"
+  },
+  {
+    "name": "SqFtLot",
+    "format": "number"
+  },
+  {
+    "name": "WfntLabel",
+    "format": "string"
+  },
+  {
+    "name": "LandProbDescrPart1",
+    "format": "string"
+  },
+  {
+    "name": "LandProbDescrPart2",
+    "format": "string"
+  },
+  {
+    "name": "ViewDescr",
+    "format": "string"
+  },
+  {
+    "name": "BaseLandValTaxYr",
+    "format": "string"
+  },
+
+  {
+    "format": "money",
+    "name": "BaseLandVal"
+  },
+  {
+    "name": "BLVSqFtCalc",
+    "format": "money"
+  },
+  {
+    "name": "LandVal",
+    "format": "money"
+  },
+  {
+    "format": "money",
+    "name": "ImpsVal"
+  },
+  {
+    "name": "TotVal",
+    "format": "money"
+  },
+  {
+    "name": "PrevLandVal",
+    "format": "money"
+  },
+  {
+    "name": "PrevImpsVal",
+    "format": "money"
+  },
+  {
+    "name": "PrevTotVal",
+    "format": "money"
+  },
+  {
+    "name": "PcntChgLand",
+    "format": "number"
+  },
+  {
+    "name": "PcntChgImps",
+    "format": "number"
+  },
+  {
+    "name": "PcntChgTotal",
+    "format": "number"
+  },
+  {
+    "name": "AddrLine",
+    "format": "string"
+  },
+  {
+    "format": "string",
+    "name": "PropType"
+  },
+  {
+    "name": "ApplGroup",
+    "format": "string"
+  },
+  {
+    "name": "ResAreaSub",
+    "format": "string"
+  },
+  {
+    "format": "date",
+    "name": "BaseLandValDate"
+  },
+  {
+    "format": "number",
+    "name": "Condition"
+  },
+
+  {
+    "format": "number",
+    "name": "SqFtLot"
+  },
+  {
+    "name": "NbrResAccys",
+    "format": "number"
+  },
+  {
+    "name": "PropName",
+    "format": "string"
+  },
+  {
+    "name": "PresentUse",
+    "format": "string"
+  },
+  {
+    "name": "CmlPredominantUse",
+    "format": "string"
+  },
+  {
+    "name": "CmlNetSqFtAllBldg",
+    "format": "number"
+  },
+  {
+    "name": "GeoAreaNbhd",
+    "format": "string"
+  },
+  {
+    "name": "SpecAreaNbhd",
+    "format": "string"
+  },
+  {
+    "name": "NbrCmlAccys",
+    "format": "number"
+  }
+]

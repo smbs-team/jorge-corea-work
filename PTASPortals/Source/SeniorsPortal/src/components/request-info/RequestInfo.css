@@ -1,0 +1,101 @@
+/* Missing header */
+.my-info {
+}
+.main {
+}
+.color-red {
+  color: red;
+}
+.color-green {
+  color: green;
+}
+.select-input {
+  width: 80px;
+}
+.center-myage-panel {
+  max-width: 300px;
+  font-size: 12px;
+  margin: auto;
+}
+.center-myage2-panel {
+  max-width: 250px;
+  font-size: 12px;
+}
+.center-myageWarning-panel {
+  max-width: 290px;
+}
+.MuiMenu-list {
+  background: white !important;
+}
+
+.center-dateaquired-panel {
+  max-width: 290px;
+  font-size: 12px;
+  margin: auto;
+}
+.necesarry-docs-text {
+  font-size: 20px;
+  font-weight: normal;
+  color: black;
+}
+.center-propinfo-panel {
+  font-size: 12px;
+  max-width: 300px;
+  margin: auto;
+}
+.center-requestInfo-panel {
+  max-width: 250px;
+  margin: auto;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+.red-border {
+  border: 3px red dotted !important;
+}
+.center-requestInfo2-panel {
+  padding-top: 20px;
+  max-width: 430px;
+  width: 330px;
+}
+.center-myname-panel {
+  max-width: 320px;
+  font-size: 12px;
+}
+.align-left {
+  text-align: left;
+  margin-top: 8px;
+}
+
+.center {
+  margin: auto;
+}
+
+.margin-top-5 {
+  margin-top: 5px;
+}
+.margin-top-14 {
+  margin-top: 14px;
+}
+
+.margin-top-16 {
+  margin-top: 16px;
+}
+
+.margin-top-43 {
+  margin-top: 43px;
+}
+
+.margin-top-59 {
+  margin-top: 59px;
+}
+
+.align-center {
+  text-align: center;
+}
+
+@media (min-width: 600px) {
+  .center-propinfo-panel {
+    font-size: 14px;
+    max-width: 407px;
+  }
+}

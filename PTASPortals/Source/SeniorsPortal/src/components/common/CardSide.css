@@ -1,0 +1,20 @@
+.card-side {
+  position: absolute;
+  right: 16px;
+  width: calc((92% - 631px) / 2);
+  text-align: left;
+  font-size: 16px;
+}
+
+.help-icon {
+  width: 30px !important;
+  height: 30px !important;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.help-header {
+  font-size: 18px;
+  font-weight: 600;
+  vertical-align: middle;
+}

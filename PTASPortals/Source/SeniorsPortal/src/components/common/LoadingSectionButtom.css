@@ -1,0 +1,6 @@
+.loading-button-section {
+  position: fixed;
+  left: 42%;
+  bottom: -2%;
+  z-index: 1;
+}

@@ -1,0 +1,42 @@
+parameters:
+- name: nmpPackageName
+  type: string
+  default: "PTASServicesCommon"
+
+stages:
+  - stage: NugetBuild
+    jobs:
+      - job: NugetBuild
+        pool:
+          vmImage: "windows-2019"
+        steps:
+          - template: ./BuildPipes/installdependencies.yml
+
+          # ------------------------------------ PTASCommon Build ------------------------------------
+          - template: ./BuildPipes/buildfolder.yml  # Template reference
+            parameters:
+              folder: 'PTASCommon'
+              isFullBuild: true
+          - template: ./BuildPipes/stagefolder.yml  # Template reference
+            parameters:
+              folder: 'PTASCommon'
+              isFullBuild: true
+              deploy: true
+
+  - stage: DeployNuget
+    jobs:
+      - deployment: DeployNuget
+        pool:
+          vmImage: "windows-2019"
+        environment: 'WebApps - Dev - No Approval'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                # ------------------------------------ Deploy selected nuget ---------------------------------------
+                - task: DotNetCoreCLI@2
+                  displayName: 'Push nuget packages'
+                  inputs:
+                    command: push
+                    packagesToPush: '$(Pipeline.Workspace)/PTASCommonNetDrop/**/${{parameters.nugetPackageName}}*.nupkg'
+                    publishVstsFeed: 'c60202ca-6470-424f-9919-eca75b4fce63'

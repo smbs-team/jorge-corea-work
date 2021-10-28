@@ -1,0 +1,50 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: ptas-{Env}-customsearches-worker
+    aadpodidbinding: ptas-{Env}-customsearchesworker-identity
+  name: ptas-{Env}-customsearches-worker-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ptas-{Env}-customsearches-worker
+  template:
+    metadata:
+      labels:
+        app: ptas-{Env}-customsearches-worker
+        aadpodidbinding: ptas-{Env}-customsearchesworker-identity
+    spec:
+      containers:
+      - name: ptas-{Env}-customsearches-worker
+        image: dunphyacrtest3.azurecr.io/servercore/customsearchesworker-{Env}:{Version}
+        imagePullPolicy: Always
+        volumeMounts:
+        - mountPath: "/mapserver/shared"
+          name: mapserver-{Env}-shared-volume
+        - mountPath: "/mapserver/sourcelayers"
+          name: layers-{Env}-fileshare
+        - mountPath: "/mapserver/data"
+          name: maps-{Env}-fileshare
+      nodeSelector:
+        kubernetes.io/os: windows
+      tolerations:
+        - key: "kubernetes.io/os"
+          operator: "Equal"
+          value: "windows"
+          effect: "NoSchedule"
+      volumes:
+      - name: mapserver-{Env}-shared-volume
+        persistentVolumeClaim:
+          claimName: mapserver-{Env}-managed-disk
+      - name: layers-{Env}-fileshare
+        azureFile:
+          secretName: storage-secret-{Env}
+          shareName: layers
+          readOnly: true
+      - name: maps-{Env}-fileshare
+        azureFile:
+          secretName: storage-secret-{Env}
+          shareName: mapdefinitions
+          readOnly: true

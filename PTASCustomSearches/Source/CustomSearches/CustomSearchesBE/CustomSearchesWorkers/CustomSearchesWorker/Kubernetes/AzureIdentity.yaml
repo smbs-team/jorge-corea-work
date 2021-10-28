@@ -1,0 +1,8 @@
+﻿apiVersion: "aadpodidentity.k8s.io/v1"
+kind: AzureIdentity
+metadata:
+  name: ptas-{Env}-customsearchesworker-identity
+spec:
+  type: 0
+  resourceID: "/subscriptions/{KubernetesSubscriptionId}/resourcegroups/{KubernetesResourceGroup}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/ptas-{Env}-customsearchesworker-identity"
+  clientID: "{WorkerIdentityClientId}"

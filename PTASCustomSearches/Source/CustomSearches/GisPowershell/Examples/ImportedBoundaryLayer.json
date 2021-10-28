@@ -1,0 +1,33 @@
+{
+  "LayerSourceName": "ImportedBoundarySource",
+  "LayerSourceAlias": "ImportedBoundary",
+  "GisLayerName": "ImportedBoundary",  
+  "EmbeddedDataFields": [
+    {
+      "FieldName": "ELEVATION",
+      "FieldType": "Double"
+    },
+    {
+      "FieldName": "FIPS_CODE",
+      "FieldType": "String"
+    }
+  ],
+  "DefaultMinZoom": 8,
+  "DefaultMaxZoom": 22,
+  "DefaultLabelMinZoom": 8,
+  "DefaultLabelMaxZoom": 22,
+  "IsVectorLayer": true,
+  "Metadata": {
+    "OtherInformation": "Just an example of additional information"
+  },
+  "OgrLayerData": [
+      {
+        "LayerName": "boundary",
+        "OgrLayerName": "boundary",
+        "LayerConnectionPath": "GPKG/boundary.gpkg",
+        "LayerProjection": "epsg:3857",
+        "OgrLayerType": "Polygon"        
+      }
+  ],
+  "ServeFromFileShare": false
+}

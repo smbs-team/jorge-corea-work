@@ -1,0 +1,8 @@
+steps:
+    - task: NuGetToolInstaller@1
+      displayName: 'Use NuGet Latest'
+      inputs:
+        versionSpec: '*'
+        checkLatest: true
+    - script: dotnet tool install -g dotnet-reportgenerator-globaltool
+      displayName: "Download Report Generator"

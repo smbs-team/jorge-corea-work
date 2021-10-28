@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ImageSource.ILINX.CommonILINX.CaptureDomain.Barcode" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ImageSource.ILINX.CommonILINX.CaptureDomain.Barcode" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="BarcodeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CODABAR" />
+      <xs:enumeration value="CODE128" />
+      <xs:enumeration value="CODE25" />
+      <xs:enumeration value="CODE39" />
+      <xs:enumeration value="CODE93" />
+      <xs:enumeration value="DATABAR" />
+      <xs:enumeration value="EAN8" />
+      <xs:enumeration value="DATAMATRIX" />
+      <xs:enumeration value="EAN13" />
+      <xs:enumeration value="PATCH" />
+      <xs:enumeration value="PDF417" />
+      <xs:enumeration value="QRCODE" />
+      <xs:enumeration value="UPCA" />
+      <xs:enumeration value="UPCE" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="BarcodeType" nillable="true" type="tns:BarcodeType" />
+</xs:schema>

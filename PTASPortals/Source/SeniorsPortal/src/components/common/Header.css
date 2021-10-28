@@ -1,0 +1,72 @@
+nav {
+  background: #444444;
+  color: white;
+  justify-self: flex-end;
+}
+
+.menu-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: flex-end;
+  font-size: 1rem;
+  height: 100%;
+  margin-right: 0;
+}
+
+.menu-button .arrow-down {
+  width: 12px;
+  margin-left: var(--space-4);
+}
+
+.menu-button font {
+  text-align: right;
+  cursor: pointer;
+  height: 100%;
+  padding: 9px 24px 9px 36px;
+  width: fit-content;
+}
+
+.menu-button #sign-in {
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 0 32px;
+  cursor: pointer;
+  text-transform: none;
+  height: 100%;
+}
+
+.header-menu {
+  font-weight: bold !important;
+  justify-content: flex-end !important;
+  padding-right: 42px !important;
+  margin: 0 !important;
+}
+
+.dark .MuiMenu-list {
+  background: #444444 !important;
+  color: white !important;
+  margin: 0 !important;
+}
+
+.dark .MuiListItem-button:hover {
+  background: var(--color-selection-light) !important;
+  color: var(--color-black) !important;
+}
+
+#simple-menu ul span {
+  font-weight: bold;
+}
+
+@media (min-width: 768px) {
+  .menu-button font {
+    padding: 18px 24px 18px 24px;
+  }
+
+  .menu-button #sign-in {
+    font-size: 1.25rem;
+  }
+}

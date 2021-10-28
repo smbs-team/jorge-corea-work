@@ -1,0 +1,11 @@
+.input-container {
+  width: 180px;
+}
+
+.select-input {
+  text-align: left;
+}
+.MuiListItem-root.Mui-selected,
+.MuiListItem-root.Mui-selected:hover {
+  background-color: #a5c727;
+}

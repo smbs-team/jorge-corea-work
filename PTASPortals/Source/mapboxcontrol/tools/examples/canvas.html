@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cabin:wght@600&family=Roboto+Condensed&display=swap');
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <canvas width="92" height="17" id="canvas">
+    </div>
+    <script>
+        const canvas = document.getElementById("canvas")
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = 'black';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.font = 'normal 400 14px roboto';
+        ctx.textAlign = "center"
+        ctx.fillStyle = '#fff';
+        ctx.fillText('322490-0010', canvas.width / 2, canvas.height - canvas.height / 4);
+
+
+        // lets save current state as we make a lot of changes
+
+        // const txt = "3224900010"
+        // ctx.save();
+
+        // /// set font
+        // ctx.font = '20pt sans-serif';
+        // /// color for background
+        // ctx.fillStyle = '#f50';
+        // /// get width of text
+        // var width = ctx.measureText(txt).width;
+        // /// draw background rect assuming height of font
+        // ctx.fillRect(0, 0, canvas.width, canvas.height);
+        // /// text color
+        // ctx.fillStyle = '#000';
+        // /// draw text on top
+        // ctx.fillText(txt, canvas.width / 2, canvas.height / 2);
+        // /// restore original state
+        // ctx.restore();
+
+
+        // var data = '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40">' +
+        //     '<foreignObject width="100%" height="100%">' +
+        //     '<div xmlns="http://www.w3.org/1999/xhtml" style="font-size:11px;border:thin solid;border-radius:50%;height:100%;width:100%;box-sizing:border-box">' +
+        //     "" +
+        //     '</div>' +
+        //     '</foreignObject>' +
+        //     '</svg>';
+
+        // var DOMURL = window.URL || window.webkitURL || window;
+
+        // var img = new Image();
+        // var svg = new Blob([data], { type: 'image/svg+xml;charset=utf-8' });
+        // var url = DOMURL.createObjectURL(svg);
+
+        // img.onload = function () {
+        //     // ctx.drawImage(img, 0, 0);
+        //     document.body.innerHTML += `<img src="${url}"/>`
+        //     //  DOMURL.revokeObjectURL(url);
+        // }
+
+        // img.src = url;
+    </script>
+</body>
+
+</html>

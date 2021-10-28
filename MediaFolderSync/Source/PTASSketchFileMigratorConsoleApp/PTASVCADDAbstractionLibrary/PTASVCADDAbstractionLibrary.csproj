@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="VCADD Library\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Interop.VCadd32">
+      <HintPath>VCADD Library\Interop.VCadd32.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

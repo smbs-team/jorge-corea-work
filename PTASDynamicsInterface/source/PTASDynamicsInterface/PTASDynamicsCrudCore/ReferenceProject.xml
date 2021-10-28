@@ -1,0 +1,1688 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PTASDynamicsCrudCore</name>
+    </assembly>
+    <members>
+        <member name="T:PTASDynamicsCrudCore.Controllers.DynamicsTransactionHelper">
+            <summary>
+            Class to execute dynamics transactions.
+            </summary>
+        </member>
+        <member name="F:PTASDynamicsCrudCore.Controllers.DynamicsTransactionHelper.RelatedEntities">
+            <summary>
+            List of related entities.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.DynamicsTransactionHelper.#ctor(PTASDynamicsCrudHelperClasses.Interfaces.IConfigurationParams,Microsoft.Extensions.Caching.Memory.IMemoryCache,Microsoft.AspNetCore.Http.HttpContext,PTASCRMHelpers.ITokenManager)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.DynamicsTransactionHelper"/> class.
+            </summary>
+            <param name="config">Application configuration.</param>
+            <param name="memoryCache">Memory cache manager.</param>
+            <param name="httpContext">Current context.</param>
+            <param name="tokenManager">Token manager.</param>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Controllers.DynamicsTransactionHelper.CrmHelper">
+            <summary>
+            Gets associated CRM helper.
+            </summary>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Controllers.DynamicsTransactionHelper.HttpContext">
+            <summary>
+            Gets current httpcontext.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.DynamicsTransactionHelper.ExecuteQuery(System.String,System.String)">
+            <summary>
+            Executes a CRM query.
+            </summary>
+            <param name="tableName">Name of the table.</param>
+            <param name="query">Query to execute.</param>
+            <returns>String result.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.DynamicsTransactionHelper.GetMetadataAsync(System.String)">
+            <summary>
+            Get metadata for entity.
+            </summary>
+            <param name="entityName">Name of the entity.</param>
+            <returns>Task that yields the metadata.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.DynamicsTransactionHelper.PrepareAndSendBatch(System.Collections.Generic.IEnumerable{PTASDynamicsCrudHelperClasses.Classes.EntityChanges},System.Boolean)">
+            <summary>
+            Prepares and sends a list of batch changes to dynamics atomically.
+            </summary>
+            <param name="changes">Items to post to dynamics.</param>
+            <param name="excludeUserfields">Leave out user related fields.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> representing the result of the asynchronous operation.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.DynamicsTransactionHelper.LinkEntities(PTASDynamicsCrudCore.Classes.LinkEntitiesData,PTASDynamicsCrudHelperClasses.Classes.CRMWrapper)">
+            <summary>
+            Attempt to link 2 entities.
+            </summary>
+            <param name="data">Details of linkage.</param>
+            <param name="wrapper">Crm wrapper.</param>
+            <returns>Nothing.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.DynamicsTransactionHelper.UnlinkEntities(PTASDynamicsCrudCore.Classes.LinkEntitiesData,PTASDynamicsCrudHelperClasses.Classes.CRMWrapper)">
+            <summary>
+            Attempt to link 2 entities.
+            </summary>
+            <param name="data">Details of linkage.</param>
+            <param name="wrapper">Crm wrapper.</param>
+            <returns>Nothing.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.AddressLookupController">
+            <summary>
+            Controller to lookup a address by id or address parts.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.AddressLookupController.#ctor(PTASDynamicsCrudHelperClasses.Interfaces.IParcelManager,AutoMapper.IMapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.AddressLookupController"/> class.
+            </summary>
+            <param name="parcelManager">To get the parcel info.</param>
+            <param name="mapper">Automapper for conversions.</param>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.AddressLookupController.Post(PTASDynamicsCrudHelperClasses.Classes.AddressLookupParam)">
+            <summary>
+            Get a parcel from the search value.
+            </summary>
+            <param name="searchParam">Partial parcel id, or account or address.</param>
+            <returns>List of parcel look up resutls.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.AddressLookupController.Get(System.String)">
+            <summary>
+            Get a parcel from the search value.
+            </summary>
+            <param name="searchvalue">Partial parcel id, or account or address.</param>
+            <returns>List of parcel look up resutls.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.AnnotationsController">
+            <summary>
+            Annotations Controller.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.AnnotationsController.#ctor(PTASDynamicsCrudHelperClasses.Interfaces.IConfigurationParams,Microsoft.Extensions.Caching.Memory.IMemoryCache,PTASCRMHelpers.ITokenManager)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.AnnotationsController"/> class.
+            </summary>
+            <param name="config">Sys config.</param>
+            <param name="memoryCache">Memory cache.</param>
+            <param name="tokenManager">Token.</param>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.AnnotationsController.Post(PTASDynamicsCrudCore.Controllers.AnnotationsController.Payload)">
+            <summary>
+            Attempts to apply json to dynamics.
+            </summary>
+            <param name="changes">Json to apply.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> representing the result of the asynchronous operation.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.AnnotationsController.Payload">
+            <summary>
+            Payload input for the annotiation api.
+            </summary>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Controllers.AnnotationsController.Payload.AnnotationId">
+            <summary>
+            Gets or sets annotation Id. Leave null if new.
+            </summary>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Controllers.AnnotationsController.Payload.File">
+            <summary>
+            Gets or sets file.
+            </summary>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Controllers.AnnotationsController.Payload.NoteText">
+            <summary>
+            Gets or sets note Text.
+            </summary>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Controllers.AnnotationsController.Payload.ObjectId">
+            <summary>
+            Gets or sets object Id.
+            </summary>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Controllers.AnnotationsController.Payload.ObjectIdType">
+            <summary>
+            Gets or sets object Id Type.
+            </summary>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.BlobToIlinxFinalizerController">
+            <summary>
+            Api endpoint to mark a Dynamics ptas_fileattachmentmetadata as moved from blob to ILinx.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.BlobToIlinxFinalizerController.#ctor(PTASDynamicsCrudHelperClasses.Classes.CRMWrapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.BlobToIlinxFinalizerController"/> class.
+            </summary>
+            <param name="dynamicsWrapper">CRM interface wrapper.</param>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.BlobToIlinxFinalizerController.Patch(PTASDynamicsCrudCore.Controllers.BlobToIlinxFinalizerParams,System.Boolean)">
+            <summary>
+            Post action, updates metadata for to ILinx.
+            </summary>
+            <returns>Result of update.</returns>
+            <param name="info">Info to locate and update the metadata record.</param>
+            <param name="isSharepoint">Optional parameter if info was saved in sharepoint.</param>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.BookmarksController">
+            <summary>
+            Controller for handling bookmarks in dynamics.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.BookmarksController.#ctor(PTASDynamicsCrudHelperClasses.Classes.CRMWrapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.BookmarksController"/> class.
+            </summary>
+            <param name="wrapper">CRM.</param>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.BookmarksController.BookmarksForParcelbyMajorAndMinor(System.String,System.String)">
+            <summary>
+            Get the bookmarks a given parcel by Guid.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> representing the result of the asynchronous operation.</returns>
+            <param name="major">Major.</param>
+            <param name="minor">Minor.</param>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.BookmarksController.BookmarksForParcelId(System.String)">
+            <summary>
+            Get the bookmarks a given parcel by Guid.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> representing the result of the asynchronous operation.</returns>
+            <param name="parcelId">Parcel Id.</param>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.BookmarkTagsController">
+            <summary>
+            Controller for handling bookmarks in dynamics.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.BookmarkTagsController.#ctor(PTASDynamicsCrudHelperClasses.Classes.CRMWrapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.BookmarkTagsController"/> class.
+            </summary>
+            <param name="wrapper">CRM.</param>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.BookmarkTagsController.GetAllBookmarTags">
+            <summary>
+            Get the bookmarks for this parcel.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> representing the result of the asynchronous operation.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.CommonAPIController">
+            <summary>
+            Common API controller.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.CommonAPIController.#ctor(PTASDynamicsCrudHelperClasses.Classes.CRMWrapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.CommonAPIController"/> class.
+            </summary>
+            <param name="wrapper">CRM Wrapper.</param>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Controllers.CommonAPIController.Wrapper">
+            <summary>
+            Gets or sets cRM.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.CommonAPIController.ReportError(System.Exception)">
+            <summary>
+            Reports an error.
+            </summary>
+            <param name="ex">Exception to report about.</param>
+            <returns>Object result for http.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.ContactLookupController">
+            <summary>
+            Controller to lookup a contact by email or token.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.ContactLookupController.#ctor(PTASDynamicsCrudHelperClasses.Interfaces.IContactManager,AutoMapper.IMapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.ContactLookupController"/> class.
+            </summary>
+            <param name="contactManager">To get the contact info.</param>
+            <param name="mapper">Automapper for conversions.</param>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.ContactLookupController.Get(System.String)">
+            <summary>
+            Get a contact from the email (id).
+            </summary>
+            <param name="id">Contact email.</param>
+            <returns>The contact id.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.ContactsController">
+            <summary>
+            Api controller for contact crud.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.ContactsController.#ctor(PTASDynamicsCrudHelperClasses.Classes.CRMWrapper,AutoMapper.IMapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.ContactsController"/> class.
+            </summary>
+            <param name="wrapper">CRM wrapper.</param>
+            <param name="mapper">Automapper.</param>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Controllers.ContactsController.TableName">
+            <inheritdoc/>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Controllers.ContactsController.GetOpQuery">
+            <inheritdoc/>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Controllers.ContactsController.KeyField">
+            <inheritdoc/>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.ContactsController.Get(System.String)">
+            <summary>
+            http get action.
+            </summary>
+            <param name="id">Id of the Contact to fetch.</param>
+            <returns>A list of option sets as defined in dynamics.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.ContactsController.Post(PTASDynamicsCrudHelperClasses.JSONMappings.FormContact)">
+            <summary>
+            Tries to create a new entity from body input.
+            </summary>
+            <param name="value">Input information to save.</param>
+            <returns>A FormContact<see cref="T:PTASDynamicsCrudHelperClasses.JSONMappings.FormContact"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.ContactsController.Patch(System.String,PTASDynamicsCrudHelperClasses.JSONMappings.FormContact)">
+            <summary>
+            Updates an entity.
+            </summary>
+            <param name="id">Id of item to update.</param>
+            <param name="value">Form values of entity.</param>
+            <returns>A FormContact<see cref="T:PTASDynamicsCrudHelperClasses.JSONMappings.FormContact"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.ContactsController.Delete(System.String)">
+            <summary>
+            Delete a row in a entity.
+            </summary>
+            <param name="id">the id of the instance to be delete.</param>
+            <returns>true if delete is done, false if not.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.ControllerExtensions`1">
+            <summary>
+            This class has methods to be executed for all the controllers.
+            </summary>
+            <typeparam name="T">Abstract type returned by controllers.</typeparam>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.ControllerExtensions`1.HandleExceptions(System.Func{System.Threading.Tasks.Task{Microsoft.AspNetCore.Mvc.ActionResult{`0}}})">
+            <summary>
+            Execute the CRUD actions and check for standard exceptions.
+            </summary>
+            <param name="actionToExecute">Action to execute.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> representing the result of the asynchronous operation.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.CountiesController">
+            <summary>
+            Controller to return counties from dynamics.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.CountiesController.#ctor(PTASDynamicsCrudHelperClasses.Classes.CRMWrapper,AutoMapper.IMapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.CountiesController"/> class.
+            </summary>
+            <param name="crmWrapper">Injected CRM wrapper.</param>
+            <param name="mapper">Automapper to convert types.</param>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Controllers.CountiesController.TableName">
+            <inheritdoc/>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Controllers.CountiesController.GetOpQuery">
+            <inheritdoc/>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.CountiesController.Get">
+            <summary>
+            http get action.
+            </summary>
+            <returns>A list of option sets as defined in dynamics.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.CountiesController.PostProcess(System.Collections.Generic.IEnumerable{PTASDynamicsCrudHelperClasses.JSONMappings.OutgoingCounty})">
+            <summary>
+            Sort the counties.
+            </summary>
+            <param name="input">Unsorted counties.</param>
+            <returns>Sorted counties.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.CountriesController">
+            <summary>
+            Controller to generate the R in ptas_years.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.CountriesController.#ctor(PTASDynamicsCrudHelperClasses.Classes.CRMWrapper,AutoMapper.IMapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.CountriesController"/> class.
+            </summary>
+            <param name="wrapper">Wrapper for CRM access.</param>
+            <param name="mapper">Automapper to convert types.</param>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Controllers.CountriesController.TableName">
+            <inheritdoc/>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Controllers.CountriesController.GetOpQuery">
+            <inheritdoc/>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.CountriesController.Get">
+            <summary>
+            http get action.
+            </summary>
+            <returns>A list of option sets as defined in dynamics.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.CountriesController.PostProcess(System.Collections.Generic.IEnumerable{PTASDynamicsCrudHelperClasses.JSONMappings.OutgoingCountry})">
+            <summary>
+            Sort the elements.
+            </summary>
+            <param name="input">Elements to be sorted.</param>
+            <returns>Sorted elements.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.ErrorReportingController">
+            <summary>
+            Controller for error reporting.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.ErrorReportingController.#ctor(PTASDynamicsCrudHelperClasses.Interfaces.IConfigurationParams)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.ErrorReportingController"/> class.
+            </summary>
+            <param name="config">Configuration values.</param>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.ErrorReportingController.PostAsync(PTASDynamicsCrudHelperClasses.Classes.ErrorMessage)">
+            <summary>
+            Reports an error.
+            </summary>
+            <param name="message">Message to send.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> representing the result of the asynchronous operation.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.FileAttachamentsMetadataLookupController">
+            <summary>
+            Controller to lookup a File Attachment Metadata by Senior Exemtion Application Id.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.FileAttachamentsMetadataLookupController.#ctor(PTASDynamicsCrudHelperClasses.Interfaces.IFileAttachmentMetadataManager,AutoMapper.IMapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.FileAttachamentsMetadataLookupController"/> class.
+            </summary>
+            <param name="fileAttachamentMetadataManager">To get the FileAttachamentsMetadata info.</param>
+            <param name="mapper">Automapper for conversions.</param>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.FileAttachamentsMetadataLookupController.Get(System.String)">
+            <summary>
+            Get a FileAttachamentsMetadata from the senior exemption application id.
+            </summary>
+            <param name="id">senior exemption application id.</param>
+            <returns>a list of file attachement metadata rows that contains de sEAppId.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.FileAttachmentsMetadataController">
+            <summary>
+            Controller to handle File Attachment Metadata Entity.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.FileAttachmentsMetadataController.#ctor(PTASDynamicsCrudHelperClasses.Classes.CRMWrapper,AutoMapper.IMapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.FileAttachmentsMetadataController"/> class.
+            </summary>
+            <param name="wrapper">Generic wrapper.</param>
+            <param name="mapper">Automapper.</param>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.FileAttachmentsMetadataController.Get(System.String)">
+            <summary>
+            Gets a particular FormFileAttachmentMetadata by FileAttachmentMetadata id.
+            </summary>
+            <param name="id">Id to search for in field FileAttachmentMetadataid.</param>
+            <returns>Found item or null.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.FileAttachmentsMetadataController.Post(PTASDynamicsCrudHelperClasses.JSONMappings.FormFileAttachmentMetadata)">
+            <summary>
+            Tries to create a new entity from body input.
+            </summary>
+            <param name="value">Input information to save.</param>
+            <returns>A FormFileAttachmentMetadata<see cref="T:PTASDynamicsCrudHelperClasses.JSONMappings.FormFileAttachmentMetadata"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.FileAttachmentsMetadataController.Patch(System.String,PTASDynamicsCrudHelperClasses.JSONMappings.FormFileAttachmentMetadata)">
+            <summary>
+            Updates FileAttachmentMetadata.
+            </summary>
+            <param name="id">Id of item to update.</param>
+            <param name="value">Form values of entity.</param>
+            <returns>A FormFileAttachmentMetadata<see cref="T:PTASDynamicsCrudHelperClasses.JSONMappings.FormFileAttachmentMetadata"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.FileAttachmentsMetadataController.Delete(System.String)">
+            <summary>
+            Delete FileAttachmentMetadata.
+            </summary>
+            <param name="id">the id of the instance to be delete.</param>
+            <returns>true if delete is done, false if not.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.FileAttachmentsMetadataController.FixEntityRelations(PTASDynamicsCrudHelperClasses.JSONMappings.FormFileAttachmentMetadata)">
+            <summary>
+            Fix entity relations before create or update.
+            </summary>
+            <param name="value">Entity to fix.</param>
+            <returns>A FormFileAttachmentMetadata<see cref="T:PTASDynamicsCrudHelperClasses.JSONMappings.FormFileAttachmentMetadata"/> with the relations in the proper format.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.FileAttachmentsMetadataController.FixFormerValues(PTASDynamicsCrudHelperClasses.JSONMappings.FormFileAttachmentMetadata)">
+            <summary>
+            Fix former values por navigation properties.
+            </summary>
+            <param name="value">Entity to fix.</param>
+            <returns>A FormFileAttachmentMetadata<see cref="T:PTASDynamicsCrudHelperClasses.JSONMappings.FormFileAttachmentMetadata"/> with the relations in the proper format.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.GenericDynamicsController">
+            <summary>
+            Applies a set of items to dynamics.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.GenericDynamicsController.#ctor(PTASDynamicsCrudHelperClasses.Interfaces.IConfigurationParams,Microsoft.Extensions.Caching.Memory.IMemoryCache,PTASCRMHelpers.ITokenManager,PTASDynamicsCrudHelperClasses.Classes.CRMWrapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.GenericDynamicsController"/> class.
+            </summary>
+            <param name="config">Sys config.</param>
+            <param name="memoryCache">Memory cache.</param>
+            <param name="tokenManager">Token.</param>
+            <param name="wrapper">CRM wrapper.</param>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.GenericDynamicsController.GetItems(PTASDynamicsCrudHelperClasses.Classes.EntitysetRequests)">
+            <summary>
+            Gets a list of items.
+            </summary>
+            <param name="requests">List of items to get.</param>
+            <returns>Got items if found.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.GenericDynamicsController.UpdateItems(PTASDynamicsCrudHelperClasses.Classes.EntitysetChanges)">
+            <summary>
+            Attempts to apply json to dynamics.
+            </summary>
+            <param name="changes">Json to apply.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> representing the result of the asynchronous operation.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.GenericDynamicsController.LinkEntities(PTASDynamicsCrudCore.Classes.LinkEntitiesData)">
+            <summary>
+            Attempts to apply json to dynamics.
+            </summary>
+            <param name="data">Data received.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> representing the result of the asynchronous operation.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.GenericDynamicsController.UnlinkEntities(PTASDynamicsCrudCore.Classes.LinkEntitiesData)">
+            <summary>
+            Attempts to apply json to dynamics.
+            </summary>
+            <param name="data">Data received.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> representing the result of the asynchronous operation.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.GenericDynamicsController.DeleteItems(PTASDynamicsCrudHelperClasses.Classes.EntityDeletions)">
+            <summary>
+            Deletes items by ID from dynamics.
+            Warning: deletions are final.
+            </summary>
+            <param name="deletions">List of deletions.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> representing the result of the asynchronous operation.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.GenericDynamicsControllerBase">
+            <summary>
+            Base for controllers that need to apply dynamics.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.GenericDynamicsControllerBase.#ctor(PTASDynamicsCrudHelperClasses.Interfaces.IConfigurationParams,Microsoft.Extensions.Caching.Memory.IMemoryCache,PTASCRMHelpers.ITokenManager)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.GenericDynamicsControllerBase"/> class.
+            </summary>
+            <param name="config">App config.</param>
+            <param name="memoryCache">Memory Cache.</param>
+            <param name="tokenManager">Token.</param>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Controllers.GenericDynamicsControllerBase.Config">
+            <summary>
+            Gets app config.
+            </summary>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Controllers.GenericDynamicsControllerBase.TransactionHelper">
+            <summary>
+            Gets local transaction helper.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.GenericDynamicsControllerBase.ExecuteQuery(PTASDynamicsCrudHelperClasses.Classes.EntityRequest)">
+            <summary>
+            Executes a query against dynamics.
+            </summary>
+            <param name="entityRequest">Item to executed.</param>
+            <returns>Result of execution of query.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.GenericDynamicsControllerBase.FetchItems(PTASDynamicsCrudHelperClasses.Classes.EntityRequest[],System.Boolean)">
+            <summary>
+            Get a list of items.
+            </summary>
+            <param name="requests">Items to get.</param>
+            <param name="onlyPtas">Only return fields prefixed with ptas_.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> representing the result of the asynchronous operation.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.MediaForParcelController">
+            <summary>
+            Get media for parcel.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.MediaForParcelController.#ctor(PTASDynamicsCrudHelperClasses.Interfaces.IConfigurationParams,Microsoft.Extensions.Caching.Memory.IMemoryCache,PTASCRMHelpers.ITokenManager)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.MediaForParcelController"/> class.
+            </summary>
+            <param name="config">Configuration.</param>
+            <param name="memoryCache">Me cache.</param>
+            <param name="tokenManager">Token Manager.</param>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.MediaForParcelController.GetMediaId(System.String)">
+            <summary>
+            Attempts to get the media id for item.
+            </summary>
+            <param name="parcelId">Parcel id to search for.</param>
+            <returns>ParcelId.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.MedicarePlans1Controller">
+            <summary>
+            Controller for the crud of medicar plans.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.MedicarePlans1Controller.#ctor(PTASDynamicsCrudHelperClasses.Classes.CRMWrapper,AutoMapper.IMapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.MedicarePlans1Controller"/> class.
+            </summary>
+            <param name="wrapper">CRM wrapper for ancestor.</param>
+            <param name="mapper">Automapper for ancestor.</param>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Controllers.MedicarePlans1Controller.TableName">
+            <inheritdoc/>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Controllers.MedicarePlans1Controller.GetOpQuery">
+            <inheritdoc/>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Controllers.MedicarePlans1Controller.KeyField">
+            <inheritdoc/>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.MedicarePlans1Controller.Get(System.String)">
+            <summary>
+            http get action.
+            </summary>
+            <param name="id">Id of the Medicare Plan to fetch.</param>
+            <returns>A list of option sets as defined in dynamics.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.MedicarePlans1Controller.Post(PTASDynamicsCrudHelperClasses.JSONMappings.FormMedicarePlan)">
+            <summary>
+            Tries to create a new entity from body input.
+            </summary>
+            <param name="value">Input information to save.</param>
+            <returns>A FormMedicarePlan<see cref="T:PTASDynamicsCrudHelperClasses.JSONMappings.FormMedicarePlan"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.MedicarePlans1Controller.Patch(System.String,PTASDynamicsCrudHelperClasses.JSONMappings.FormMedicarePlan)">
+            <summary>
+            Updates an entity.
+            </summary>
+            <param name="id">Id of item to update.</param>
+            <param name="value">Form values of entity.</param>
+            <returns>A FormMedicarePlan<see cref="T:PTASDynamicsCrudHelperClasses.JSONMappings.FormMedicarePlan"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.MedicarePlans1Controller.Delete(System.String)">
+            <summary>
+            Delete a row in a entity.
+            </summary>
+            <param name="id">the id of the instance to be delete.</param>
+            <returns>true if delete is done, false if not.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.MedicarePlansController">
+            <summary>
+            Controller to generate the Read of the list of all medicare plans.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.MedicarePlansController.#ctor(PTASDynamicsCrudHelperClasses.Classes.CRMWrapper,AutoMapper.IMapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.MedicarePlansController"/> class.
+            </summary>
+            <param name="wrapper">Wrapper for CRM access.</param>
+            <param name="mapper">Automapper to convert types.</param>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Controllers.MedicarePlansController.TableName">
+            <inheritdoc/>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Controllers.MedicarePlansController.GetOpQuery">
+            <inheritdoc/>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.MedicarePlansController.Get">
+            <summary>
+            http get action.
+            </summary>
+            <returns>A list of option sets as defined in dynamics.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.MedicarePlansController.PostProcess(System.Collections.Generic.IEnumerable{PTASDynamicsCrudHelperClasses.JSONMappings.FormMedicarePlan})">
+            <summary>
+            Sort the elements.
+            </summary>
+            <param name="input">Elements to be sorted.</param>
+            <returns>Sorted elements.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.OptionSetsController">
+            <summary>
+            Controller to handle all option sets.
+            </summary>
+        </member>
+        <member name="F:PTASDynamicsCrudCore.Controllers.OptionSetsController.tableMappings">
+            <summary>
+            mapping of friendly names to PTAS dynamics specific names.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.OptionSetsController.#ctor(PTASDynamicsCrudHelperClasses.Classes.CRMWrapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.OptionSetsController"/> class.
+            </summary>
+            <param name="wrapper">Wrapper to connect to CRM.</param>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.OptionSetsController.GetByObjectAndAttribute(System.String,System.String)">
+            <summary>
+            http get action.
+            </summary>
+            <param name="objectId">Object id.</param>
+            <param name="id">Id of the optionset to fetch.</param>
+            <returns>A list of option sets as defined in dynamics.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.OptionSetsController.Get(System.String)">
+            <summary>
+            http get action.
+            </summary>
+            <param name="id">Id of the optionset to fetch.</param>
+            <returns>A list of option sets as defined in dynamics.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.ParcelDetailController">
+            <summary>
+            Controller to handle Parcel Detail.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.ParcelDetailController.#ctor(PTASDynamicsCrudHelperClasses.Classes.CRMWrapper,AutoMapper.IMapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.ParcelDetailController"/> class.
+            </summary>
+            <param name="wrapper">Generic wrapper.</param>
+            <param name="mapper">Automapper.</param>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Controllers.ParcelDetailController.TableName">
+            <inheritdoc/>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Controllers.ParcelDetailController.GetOpQuery">
+            <inheritdoc/>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Controllers.ParcelDetailController.KeyField">
+            <inheritdoc/>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.ParcelDetailController.Get(System.String)">
+            <summary>
+            http get action.
+            </summary>
+            <param name="id">Id of the Parcel Detail to fetch.</param>
+            <returns>A list of option sets as defined in dynamics.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.ParcelDetailController.Post(PTASDynamicsCrudHelperClasses.JSONMappings.FormParcelDetail)">
+            <summary>
+            Tries to create a new entity from body input.
+            </summary>
+            <param name="value">Input information to save.</param>
+            <returns>A FormParcelDetail<see cref="T:PTASDynamicsCrudHelperClasses.JSONMappings.FormParcelDetail"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.ParcelDetailController.Patch(System.String,PTASDynamicsCrudHelperClasses.JSONMappings.FormParcelDetail)">
+            <summary>
+            Updates an entity.
+            </summary>
+            <param name="id">Id of item to update.</param>
+            <param name="value">Form values of entity.</param>
+            <returns>A FormParcelDetail<see cref="T:PTASDynamicsCrudHelperClasses.JSONMappings.FormParcelDetail"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.ParcelDetailController.Delete(System.String)">
+            <summary>
+            Delete a row in a entity.
+            </summary>
+            <param name="id">the id of the instance to be delete.</param>
+            <returns>true if delete is done, false if not.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.ParcelLookupController">
+            <summary>
+            Controller to lookup a Parcel by id or account.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.ParcelLookupController.#ctor(PTASDynamicsCrudHelperClasses.Interfaces.IParcelManager,AutoMapper.IMapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.ParcelLookupController"/> class.
+            </summary>
+            <param name="parcelManager">To get the parcel info.</param>
+            <param name="mapper">Automapper for conversions.</param>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.ParcelLookupController.Get(System.String)">
+            <summary>
+            Get a parcel from the id, the accunt or the address.
+            </summary>
+            <param name="id">Partial parcel id, or account or address.</param>
+            <returns>List of parcel look up resutls.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.PermitFileController">
+            <summary>
+            Upload a permit file to storage.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.PermitFileController.#ctor(PTASDynamicsCrudHelperClasses.Interfaces.IConfigurationParams,Microsoft.Extensions.Caching.Memory.IMemoryCache,PTASCRMHelpers.ITokenManager,PTASDynamicsCrudHelperClasses.Classes.CRMWrapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.PermitFileController"/> class.
+            </summary>
+            <param name="config">Sys config.</param>
+            <param name="memoryCache">Memory cache.</param>
+            <param name="tokenManager">Token.</param>
+            <param name="crmWrapper">Ze wrapper.</param>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.PermitFileController.SaveFile(System.String,PTASDynamicsCrudCore.Controllers.PermitFileController.Payload)">
+            <summary>
+            Gets a list of items.
+            </summary>
+            <param name="id">id of the contact id to store the permit file under.</param>
+            <param name="form">Form file payload.</param>
+            <returns>Got items if found.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.PermitFileController.UpdatePermitInfo(PTASDynamicsCrudCore.Controllers.PermitFileController.PostPermitInfo)">
+            <summary>
+            Takes info in excel file and saves it to dynamics.
+            </summary>
+            <param name="form">Form data.</param>
+            <returns>Got items if found.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.PermitFileController.Payload">
+            <summary>
+            Payload input for the PermitFile api.
+            </summary>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Controllers.PermitFileController.Payload.File">
+            <summary>
+            Gets or sets file.
+            </summary>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.PermitFileController.PostPermitInfo">
+            <summary>
+            Payload for saving the permit.
+            </summary>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Controllers.PermitFileController.PostPermitInfo.FileUrl">
+            <summary>
+            Gets or sets the url.
+            </summary>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Controllers.PermitFileController.PostPermitInfo.JurisdictionId">
+            <summary>
+            Gets or sets jurisdiction Id.
+            </summary>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.SEAFinancialFormLookupByOccupantIdController">
+            <summary>
+            Controller to get Senior Exemption Application Financial Form for a OccupantId.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEAFinancialFormLookupByOccupantIdController.#ctor(PTASDynamicsCrudHelperClasses.Classes.CRMWrapper,AutoMapper.IMapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.SEAFinancialFormLookupByOccupantIdController"/> class.
+            </summary>
+            <param name="wrapper">CRM wrapper to use.</param>
+            /// <param name="mapper">IMapper mapper to use.</param>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEAFinancialFormLookupByOccupantIdController.Get(System.String)">
+            <summary>
+            Api to get the Senior Exemption Application Financial Form for a given OccupantId.
+            </summary>
+            <param name="id">Id  of the occupant.</param>
+            <returns>The FormSeniorExemptionApplicationFinancial for the given occupant or empty.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.SEAFinancialFormsSEAOpccupantsRelationshipController">
+            <summary>
+            Controller to handle SEAppOccupant entity.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEAFinancialFormsSEAOpccupantsRelationshipController.#ctor(PTASDynamicsCrudHelperClasses.Classes.CRMWrapper,PTASDynamicsCrudHelperClasses.Interfaces.IConfigurationParams)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.SEAFinancialFormsSEAOpccupantsRelationshipController"/> class.
+            </summary>
+            <param name="wrapper">Generic wrapper.</param>
+            <param name="config">Config values.</param>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Controllers.SEAFinancialFormsSEAOpccupantsRelationshipController.Config">
+            <summary>
+            Gets the Global configuration params.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEAFinancialFormsSEAOpccupantsRelationshipController.Post(System.String,PTASDynamicsCrudHelperClasses.JSONMappings.FormSEAFinancialFormsSEAOpccupantsRelationship)">
+            <summary>
+            Tries to create a new entity from body input.
+            </summary>
+            <param name="id">Id on  SEAFinancialForms for the relationship.</param>
+            <param name="value">Input information to save containing the id on SEAOccupants.</param>
+            <returns>A FormSEAFinancialFormsSEAOpccupantsRelationship<see cref="T:PTASDynamicsCrudHelperClasses.JSONMappings.FormSEAFinancialFormsSEAOpccupantsRelationship"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEAFinancialFormsSEAOpccupantsRelationshipController.SaveOccupantRelationship(System.String,PTASDynamicsCrudHelperClasses.JSONMappings.FormSEAFinancialFormsSEAOpccupantsRelationship)">
+            <summary>
+            Saves a financial = occupand relationship.
+            </summary>
+            <param name="id">Id of the financial form.</param>
+            <param name="value">Value to save.</param>
+            <returns>Created object.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.SEAOccupantLookupByFinancialFormIdController">
+            <summary>
+            Controller to get Senior Exemption Application Financial Form for a OccupantId.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEAOccupantLookupByFinancialFormIdController.#ctor(PTASDynamicsCrudHelperClasses.Classes.CRMWrapper,AutoMapper.IMapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.SEAOccupantLookupByFinancialFormIdController"/> class.
+            </summary>
+            <param name="wrapper">CRM wrapper to use.</param>
+            /// <param name="mapper">IMapper mapper to use.</param>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEAOccupantLookupByFinancialFormIdController.Get(System.String)">
+            <summary>
+            Api to get the Senior Exemption Application Financial Form for a given OccupantId.
+            </summary>
+            <param name="id">Id ot the  SEAppFinancialForm.</param>
+            <returns>The occupants  for the given SEAppFinancialForm.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEAOccupantLookupByFinancialFormIdController.GetOccupants(System.String)">
+            <summary>
+            Returns a list of occupants for the financial form.
+            </summary>
+            <param name="id">Financial form Id.</param>
+            <returns>Retrieved objects.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.SEAppDetailLookupController">
+            <summary>
+            Controller to lookup a Senior Exemption Application Detail by Senior Exemtion Application Id.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEAppDetailLookupController.#ctor(PTASDynamicsCrudHelperClasses.Interfaces.ISEAppDetailManager,AutoMapper.IMapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.SEAppDetailLookupController"/> class.
+            </summary>
+            <param name="sEAppDetailManager">To get the SEAppDetailManager info.</param>
+            <param name="mapper">Automapper for conversions.</param>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEAppDetailLookupController.Get(System.String)">
+            <summary>
+            Get a SEAppDetailManager from the senior exemption application id.
+            </summary>
+            <param name="id">senior exemption application id.</param>
+            <returns>a list of SEAppDetailManager rows that contains de sEAppId.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.SEAppFinancialLookupController">
+            <summary>
+            Controller to lookup a Senior Exemption Application Financial by Senior Exemtion Application Detail Id.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEAppFinancialLookupController.#ctor(PTASDynamicsCrudHelperClasses.Interfaces.ISEAppFinancialManager,AutoMapper.IMapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.SEAppFinancialLookupController"/> class.
+            </summary>
+            <param name="sEAppFinancialManager">To get the SEAppFinancial info.</param>
+            <param name="mapper">Automapper for conversions.</param>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEAppFinancialLookupController.Get(System.String)">
+            <summary>
+            Get a SEAppFinancial from the senior exemption application detail id.
+            </summary>
+            <param name="id">senior exemption application detail id.</param>
+            <returns>a list of SEAppFinancial rows that contains de sEAppDetailId.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.SEApplicationDetailsController">
+            <summary>
+            Controller to handle Seniour exemption applications Details.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEApplicationDetailsController.#ctor(PTASDynamicsCrudHelperClasses.Classes.CRMWrapper,AutoMapper.IMapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.SEApplicationDetailsController"/> class.
+            </summary>
+            <param name="wrapper">Generic wrapper.</param>
+            <param name="mapper">Automapper.</param>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEApplicationDetailsController.Get(System.String)">
+            <summary>
+            Gets a particular FormSeniorExemptionApplicationDetail by SeniorExemptionApplicationDetail id.
+            </summary>
+            <param name="id">Id to search for in field SEAppdetailid.</param>
+            <returns>Found item or null.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEApplicationDetailsController.Post(PTASDynamicsCrudHelperClasses.JSONMappings.FormSeniorExemptionApplicationDetail)">
+            <summary>
+            Tries to create a new entity from body input.
+            </summary>
+            <param name="value">Input information to save.</param>
+            <returns>A FormSeniorExemptionApplicationDetail<see cref="T:PTASDynamicsCrudHelperClasses.JSONMappings.FormSeniorExemptionApplicationDetail"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEApplicationDetailsController.Patch(System.String,PTASDynamicsCrudHelperClasses.JSONMappings.FormSeniorExemptionApplicationDetail)">
+            <summary>
+            Updates SeniorExemptionApplicationDetail.
+            </summary>
+            <param name="id">Id of item to update.</param>
+            <param name="value">Form values of entity.</param>
+            <returns>A FormParcelDetail<see cref="T:PTASDynamicsCrudHelperClasses.JSONMappings.FormSeniorExemptionApplicationDetail"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEApplicationDetailsController.Delete(System.String)">
+            <summary>
+            Delete SeniorExemptionApplicationDetail.
+            </summary>
+            <param name="id">the id of the instance to be delete.</param>
+            <returns>true if delete is done, false if not.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEApplicationDetailsController.FixEntityRelations(PTASDynamicsCrudHelperClasses.JSONMappings.FormSeniorExemptionApplicationDetail)">
+            <summary>
+            Fix entity relations before create or update.
+            </summary>
+            <param name="value">Entity to fix.</param>
+            <returns>A FormSeniorExemptionApplicationDetail<see cref="T:PTASDynamicsCrudHelperClasses.JSONMappings.FormSeniorExemptionApplicationDetail"/> with the relations in the proper format.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEApplicationDetailsController.FixFormerValues(PTASDynamicsCrudHelperClasses.JSONMappings.FormSeniorExemptionApplicationDetail)">
+            <summary>
+            Fix former values por navigation properties.
+            </summary>
+            <param name="value">Entity to fix.</param>
+            <returns>A FormSeniorExemptionApplicationDetail<see cref="T:PTASDynamicsCrudHelperClasses.JSONMappings.FormSeniorExemptionApplicationDetail"/> with the relations in the proper format.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.SEApplicationFinancialController">
+            <summary>
+            Controller to handle Seniour exemption applications Details.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEApplicationFinancialController.#ctor(PTASDynamicsCrudHelperClasses.Classes.CRMWrapper,AutoMapper.IMapper,PTASDynamicsCrudHelperClasses.Interfaces.IConfigurationParams)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.SEApplicationFinancialController"/> class.
+            </summary>
+            <param name="wrapper">Generic wrapper.</param>
+            <param name="mapper">Automapper.</param>
+            <param name="config">System params.</param>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEApplicationFinancialController.Delete(System.String)">
+            <summary>
+            Delete FormSeniorExemptionApplicationFinancial.
+            </summary>
+            <param name="id">the id of the instance to be delete.</param>
+            <returns>true if delete is done, false if not.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEApplicationFinancialController.Get(System.String)">
+            <summary>
+            Gets a particular FormSeniorExemptionApplicationDetail by SeniorExemptionApplicationDetail id.
+            </summary>
+            <param name="id">Id to search for in field sefinancialformsid.</param>
+            <returns>Found item or null.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEApplicationFinancialController.Patch(System.String,PTASDynamicsCrudHelperClasses.JSONMappings.FormSeniorExemptionApplicationFinancial)">
+            <summary>
+            Updates SeniorExemptionApplicationFinancial.
+            </summary>
+            <param name="id">Id of item to update.</param>
+            <param name="value">Form values of entity.</param>
+            <returns>A FormSeniorExemptionApplicationFinancial<see cref="T:PTASDynamicsCrudHelperClasses.JSONMappings.FormSeniorExemptionApplicationFinancial"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEApplicationFinancialController.Post(PTASDynamicsCrudHelperClasses.JSONMappings.FormSeniorExemptionApplicationFinancial)">
+            <summary>
+            Tries to create a new entity from body input.
+            </summary>
+            <param name="receivedValues">Input information to save.</param>
+            <returns>A FormSeniorExemptionApplicationFinancial<see cref="T:PTASDynamicsCrudHelperClasses.JSONMappings.FormSeniorExemptionApplicationFinancial"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEApplicationFinancialController.FixEntityRelations(PTASDynamicsCrudHelperClasses.JSONMappings.FormSeniorExemptionApplicationFinancial)">
+            <summary>
+            Fix entity relations before create or update.
+            </summary>
+            <param name="value">Entity to fix.</param>
+            <returns>A FormSeniorExemptionApplicationFinancial<see cref="T:PTASDynamicsCrudHelperClasses.JSONMappings.FormSeniorExemptionApplicationFinancial"/> with the relations in the proper format.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEApplicationFinancialController.FixFormerValues(PTASDynamicsCrudHelperClasses.JSONMappings.FormSeniorExemptionApplicationFinancial)">
+            <summary>
+            Fix former values por navigation properties.
+            </summary>
+            <param name="value">Entity to fix.</param>
+            <returns>A FormSeniorExemptionApplicationFinancial<see cref="T:PTASDynamicsCrudHelperClasses.JSONMappings.FormSeniorExemptionApplicationFinancial"/> with the relations in the proper format.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.SEApplicationsController">
+            <summary>
+            Controller to handle Seniour exemption applications.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEApplicationsController.#ctor(PTASDynamicsCrudHelperClasses.Classes.CRMWrapper,AutoMapper.IMapper,PTASDynamicsCrudHelperClasses.Interfaces.IContactManager)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.SEApplicationsController"/> class.
+            </summary>
+            <param name="wrapper">Generic wrapper.</param>
+            <param name="mapper">Automapper.</param>
+            <param name="contactManager">Contact manager.</param>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEApplicationsController.Get(System.String)">
+            <summary>
+            Gets a particular FormSeniorExemptionApplication by ptas_fileattachmentmetadataid.
+            </summary>
+            <param name="id">Id to search for in field ptas_fileattachmentmetadataid.</param>
+            <returns>Found item or null.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEApplicationsController.Post(PTASDynamicsCrudHelperClasses.JSONMappings.FormSeniorExemptionApplication)">
+            <summary>
+            Tries to create a new entity from body input.
+            </summary>
+            <param name="value">Input information to save.</param>
+            <returns>A FormSeniorExemptionApplication<see cref="T:PTASDynamicsCrudHelperClasses.JSONMappings.FormSeniorExemptionApplication"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEApplicationsController.Patch(System.String,PTASDynamicsCrudHelperClasses.JSONMappings.FormSeniorExemptionApplication)">
+            <summary>
+            Updates file metadata.
+            </summary>
+            <param name="id">Id of item to update.</param>
+            <param name="value">Form values of entity.</param>
+            <returns>A FormSeniorExemptionApplication<see cref="T:PTASDynamicsCrudHelperClasses.JSONMappings.FormSeniorExemptionApplication"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEApplicationsController.Delete(System.String)">
+            <summary>
+            Delete Senior Exemption Application entity.
+            </summary>
+            <param name="id">the id of the instance to be delete.</param>
+            <returns>true if delete is done, false if not.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEApplicationsController.FixEntityRelations(PTASDynamicsCrudHelperClasses.JSONMappings.FormSeniorExemptionApplication)">
+            <summary>
+            Fix entity relations before create or update.
+            </summary>
+            <param name="value">Entity to fix.</param>
+            <returns>A FormSeniorExemptionApplicationa<see cref="T:PTASDynamicsCrudHelperClasses.JSONMappings.FormSeniorExemptionApplication"/> with the relations in the proper format.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEApplicationsController.FixFormerValues(PTASDynamicsCrudHelperClasses.JSONMappings.FormSeniorExemptionApplication)">
+            <summary>
+            Fix former values por navigation properties.
+            </summary>
+            <param name="value">Entity to fix.</param>
+            <returns>A FormSeniorExemptionApplicationDetail<see cref="T:PTASDynamicsCrudHelperClasses.JSONMappings.FormSeniorExemptionApplicationDetail"/> with the relations in the proper format.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.SEAppLookupByContactIdController">
+            <summary>
+            Controller to get Senior Exemption Application for a contact.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEAppLookupByContactIdController.#ctor(PTASDynamicsCrudHelperClasses.Classes.CRMWrapper,AutoMapper.IMapper,PTASDynamicsCrudHelperClasses.Interfaces.IContactManager)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.SEAppLookupByContactIdController"/> class.
+            </summary>
+            <param name="wrapper">CRM wrapper to use.</param>
+            /// <param name="mapper">IMapper mapper to use.</param>
+            <param name="contactManager">Contact manager.</param>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEAppLookupByContactIdController.Get(System.String)">
+            <summary>
+            Api to get the senior application exceptions for a given contact.
+            </summary>
+            <param name="id">Id (currently email) of the contact.</param>
+            <returns>The applications exceptions for the given contact or empty.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.SEAppNoteLookupController">
+            <summary>
+            Controller to lookup a SEAppNote by Senior Exemption Application Id.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEAppNoteLookupController.#ctor(PTASDynamicsCrudHelperClasses.Interfaces.ISEAppNoteManager,AutoMapper.IMapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.SEAppNoteLookupController"/> class.
+            </summary>
+            <param name="sEAppNoteManager">To get the SEAppNote info.</param>
+            <param name="mapper">Automapper for conversions.</param>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEAppNoteLookupController.Get(System.String)">
+            <summary>
+            Get a SEAppNote from the senior exemption application id.
+            </summary>
+            <param name="id">senior exemption application id.</param>
+            <returns>a list of SEAppNote rows that contains de sEAppId.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.SEAppOccupantLookupController">
+            <summary>
+            Controller to lookup a SEAppOccupant by Senior Exemption Application Id.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEAppOccupantLookupController.#ctor(PTASDynamicsCrudHelperClasses.Interfaces.ISEAppOccupantManager,AutoMapper.IMapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.SEAppOccupantLookupController"/> class.
+            </summary>
+            <param name="sEAppOccupantManager">To get the SEAppOccupant info.</param>
+            <param name="mapper">Automapper for conversions.</param>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEAppOccupantLookupController.Get(System.String)">
+            <summary>
+            Get a SEAppOccupant from the senior exemption application id.
+            </summary>
+            <param name="id">senior exemption application id.</param>
+            <returns>a list of SEAppOccupant rows that contains de sEAppId.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.SEAppOccupantsController">
+            <summary>
+            Controller to handle SEAppOccupant entity.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEAppOccupantsController.#ctor(PTASDynamicsCrudHelperClasses.Classes.CRMWrapper,AutoMapper.IMapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.SEAppOccupantsController"/> class.
+            </summary>
+            <param name="wrapper">Generic wrapper.</param>
+            <param name="mapper">Automapper.</param>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEAppOccupantsController.Get(System.String)">
+            <summary>
+            Gets a particular FormSEAppOccupant by SEAppOccupant id.
+            </summary>
+            <param name="id">Id to search for in field SEAppOccupantId.</param>
+            <returns>Found item or null.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEAppOccupantsController.Post(PTASDynamicsCrudHelperClasses.JSONMappings.FormSEAppOccupant)">
+            <summary>
+            Tries to create a new entity from body input.
+            </summary>
+            <param name="value">Input information to save.</param>
+            <returns>A FormSEAppOccupant<see cref="T:PTASDynamicsCrudHelperClasses.JSONMappings.FormSEAppOccupant"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEAppOccupantsController.Patch(System.String,PTASDynamicsCrudHelperClasses.JSONMappings.FormSEAppOccupant)">
+            <summary>
+            Updates SEAppOccupant.
+            </summary>
+            <param name="id">Id of item to update.</param>
+            <param name="value">Form values of entity.</param>
+            <returns>A SEAppOccupant<see cref="T:PTASDynamicsCrudHelperClasses.JSONMappings.FormSEAppOccupant"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEAppOccupantsController.Delete(System.String)">
+            <summary>
+            Delete SEAppOccupant.
+            </summary>
+            <param name="id">the id of the instance to be delete.</param>
+            <returns>true if delete is done, false if not.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEAppOccupantsController.FixEntityRelations(PTASDynamicsCrudHelperClasses.JSONMappings.FormSEAppOccupant)">
+            <summary>
+            Fix entity relations before create or update.
+            </summary>
+            <param name="value">Entity to fix.</param>
+            <returns>A FormSEAppOccupant<see cref="T:PTASDynamicsCrudHelperClasses.JSONMappings.FormSEAppOccupant"/> with the relations in the proper format.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEAppOccupantsController.FixFormerValues(PTASDynamicsCrudHelperClasses.JSONMappings.FormSEAppOccupant)">
+            <summary>
+            Fix former values por navigation properties.
+            </summary>
+            <param name="value">Entity to fix.</param>
+            <returns>A FormFileAttachmentMetadata<see cref="T:PTASDynamicsCrudHelperClasses.JSONMappings.FormFileAttachmentMetadata"/> with the relations in the proper format.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.SEAppOtherPropLookupController">
+            <summary>
+            Controller to lookup a SEAppOtherProp by Senior Exemption Application Id.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEAppOtherPropLookupController.#ctor(PTASDynamicsCrudHelperClasses.Interfaces.ISEAppOtherPropManager,AutoMapper.IMapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.SEAppOtherPropLookupController"/> class.
+            </summary>
+            <param name="sEAppOtherPropManager">To get the SEAppOtherProp info.</param>
+            <param name="mapper">Automapper for conversions.</param>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEAppOtherPropLookupController.Get(System.String)">
+            <summary>
+            Get a SEAppOtherProp from the senior exemption application id.
+            </summary>
+            <param name="id">senior exemption application id.</param>
+            <returns>a list of SEAppOtherPropt rows that contains de sEAppId.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.SEAppOtherPropsController">
+            <summary>
+            Controller to handle SEAppOtherProp Entity.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEAppOtherPropsController.#ctor(PTASDynamicsCrudHelperClasses.Classes.CRMWrapper,AutoMapper.IMapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.SEAppOtherPropsController"/> class.
+            </summary>
+            <param name="wrapper">Generic wrapper.</param>
+            <param name="mapper">Automapper.</param>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEAppOtherPropsController.Get(System.String)">
+            <summary>
+            Gets a particular SEAppOtherProp by SEAppOtherProp id.
+            </summary>
+            <param name="id">Id to search for in field SEAppOtherPropid.</param>
+            <returns>Found item or null.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEAppOtherPropsController.Post(PTASDynamicsCrudHelperClasses.JSONMappings.FormSEAppOtherProp)">
+            <summary>
+            Tries to create a new entity from body input.
+            </summary>
+            <param name="value">Input information to save.</param>
+            <returns>A FormSEAppOtherProp<see cref="T:PTASDynamicsCrudHelperClasses.JSONMappings.FormSEAppOtherProp"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEAppOtherPropsController.Patch(System.String,PTASDynamicsCrudHelperClasses.JSONMappings.FormSEAppOtherProp)">
+            <summary>
+            Updates SEAppOtherProp.
+            </summary>
+            <param name="id">Id of item to update.</param>
+            <param name="value">Form values of entity.</param>
+            <returns>A FormSEAppOtherProp<see cref="T:PTASDynamicsCrudHelperClasses.JSONMappings.FormSEAppOtherProp"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEAppOtherPropsController.Delete(System.String)">
+            <summary>
+            Delete SEAppOtherProp.
+            </summary>
+            <param name="id">the id of the instance to be delete.</param>
+            <returns>true if delete is done, false if not.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEAppOtherPropsController.FixEntityRelations(PTASDynamicsCrudHelperClasses.JSONMappings.FormSEAppOtherProp)">
+            <summary>
+            Fix entity relations before create or update.
+            </summary>
+            <param name="value">Entity to fix.</param>
+            <returns>A FormSEAppOtherProp<see cref="T:PTASDynamicsCrudHelperClasses.JSONMappings.FormSEAppOtherProp"/> with the relations in the proper format.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEAppOtherPropsController.FixFormerValues(PTASDynamicsCrudHelperClasses.JSONMappings.FormSEAppOtherProp)">
+            <summary>
+            Fix former values por navigation properties.
+            </summary>
+            <param name="value">Entity to fix.</param>
+            <returns>A FormFileAttachmentMetadata<see cref="T:PTASDynamicsCrudHelperClasses.JSONMappings.FormFileAttachmentMetadata"/> with the relations in the proper format.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.SEAppPredefNotesController">
+            <summary>
+            Controller to generate the Read of the list of all Senior Exemption Application Predefined Notes.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEAppPredefNotesController.#ctor(PTASDynamicsCrudHelperClasses.Classes.CRMWrapper,AutoMapper.IMapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.SEAppPredefNotesController"/> class.
+            </summary>
+            <param name="wrapper">Wrapper for CRM access.</param>
+            <param name="mapper">Automapper to convert types.</param>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Controllers.SEAppPredefNotesController.TableName">
+            <inheritdoc/>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Controllers.SEAppPredefNotesController.GetOpQuery">
+            <inheritdoc/>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEAppPredefNotesController.Get">
+            <summary>
+            http get action.
+            </summary>
+            <returns>A list of option sets as defined in dynamics.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SEAppPredefNotesController.PostProcess(System.Collections.Generic.IEnumerable{PTASDynamicsCrudHelperClasses.JSONMappings.FormSEAppPredefNote})">
+            <summary>
+            Sort the elements.
+            </summary>
+            <param name="input">Elements to be sorted.</param>
+            <returns>Sorted elements.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.SketchController">
+            <summary>
+            Controller that adds to dynamics and manages sketches too.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SketchController.#ctor(PTASDynamicsCrudHelperClasses.Interfaces.IConfigurationParams,Microsoft.Extensions.Caching.Memory.IMemoryCache,PTASDynamicsCrudHelperClasses.Classes.CRMWrapper,PTASCRMHelpers.ITokenManager)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.SketchController"/> class.
+            </summary>
+            <param name="config">App config.</param>
+            <param name="memoryCache">Memory Cache.</param>
+            <param name="wrapper">CRM Wrapper.</param>
+            <param name="tokenManager">Token.</param>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SketchController.DeleteSketch(System.String)">
+            <summary>
+            Deletes the sketch related files on document storage.
+            </summary>
+            <param name="sketchId">Id of the sketch to delete.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> representing the result of the asynchronous operation.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SketchController.GetItemsAndSketch(PTASDynamicsCrudHelperClasses.Classes.EntitysetRequestsAndSketch)">
+            <summary>
+            Gets a list of entities and the related sketch.
+            </summary>
+            <param name="requests">Requests to process.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> representing the result of the asynchronous operation.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SketchController.GetRecentSketches">
+            <summary>
+            Gets recent sketches for current user.
+            </summary>
+            <returns>List of recent sketches if any.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SketchController.History(System.String)">
+            <summary>
+            History of a sketch.
+            </summary>
+            <param name="sketchId">Sketch Id.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> representing the result of the asynchronous operation.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SketchController.Search(System.String)">
+            <summary>
+            Searches for a string.
+            </summary>
+            <param name="searchFor">string to search for.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> representing the result of the asynchronous operation.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SketchController.SetSketchAsOfficial(PTASDynamicsCrudHelperClasses.Classes.IsOfficialToggle)">
+            <summary>
+            Sets sketch to official.
+            </summary>
+            <param name="officialToggle">
+            Toggle for official setting. Only one of the three related id's must be not null.
+            </param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> representing the result of the asynchronous operation.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SketchController.UpdateItems(PTASDynamicsCrudHelperClasses.Classes.EntitySetChangesAndSketch)">
+            <summary>
+            Attempts to apply json to dynamics.
+            </summary>
+            <param name="changes">Json to apply.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> representing the result of the asynchronous operation.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.StatusCodesController">
+            <summary>
+            Controller to get the combination value of StatusCode and StateCode in diferente dynamics entities.
+            </summary>
+        </member>
+        <member name="F:PTASDynamicsCrudCore.Controllers.StatusCodesController.tableMappings">
+            <summary>
+            mapping of friendly names to PTAS dynamics specific names.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.StatusCodesController.#ctor(PTASDynamicsCrudHelperClasses.Classes.CRMWrapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.StatusCodesController"/> class.
+            </summary>
+            <param name="wrapper">Wrapper to connect to CRM.</param>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.StatusCodesController.Get(System.String)">
+            <summary>
+            http get action.
+            </summary>
+            <param name="id">Id that identifies the entity where the status/state code is required to fetch.</param>
+            <returns>A list of option sets as defined in dynamics.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.SystemUserController">
+            <summary>
+            User information controller.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SystemUserController.#ctor(PTASDynamicsCrudHelperClasses.Classes.CRMWrapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.SystemUserController"/> class.
+            </summary>
+            <param name="wrapper">CRM wrapper.</param>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.SystemUserController.Get">
+            <summary>
+            Get User info.
+            </summary>
+            <returns>User info.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.WhatIfController">
+            <summary>
+            Controller for what if analisys on parcels.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.WhatIfController.#ctor(PTASDynamicsCrudHelperClasses.Interfaces.IConfigurationParams,Microsoft.Extensions.Caching.Memory.IMemoryCache,PTASCRMHelpers.ITokenManager)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.WhatIfController"/> class.
+            </summary>
+            <param name="config">Sys config.</param>
+            <param name="memoryCache">Memory cache.</param>
+            <param name="tokenManager">Token.</param>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Controllers.WhatIfController.Config">
+            <summary>
+            Gets app configuration.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.WhatIfController.Receive(System.String,System.Boolean,System.String,PTASDynamicsCrudHelperClasses.Classes.DynamicsToDynamicsData[])">
+            <summary>
+            Check in parcel for what if.
+            </summary>
+            <param name="id">Parcel Id.</param>
+            <param name="applyChanges">Does it apply the changes.</param>
+            <param name="excludeFields">Fields to exclude.</param>
+            <param name="data">Data to save.</param>
+            <returns>Applied info.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.WhatIfController.Revert(System.String)">
+            <summary>
+            Reverts to previous version. Will send a request to other dynamics to send the record back.
+            </summary>
+            <param name="id">Parcel to revert.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> representing the result of the asynchronous operation.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.WhatIfController.Send(System.String,System.Nullable{System.Boolean},System.String)">
+            <summary>
+            Get what if information.
+            </summary>
+            <param name="id">Parcel Id.</param>
+            <param name="applyChanges">Does it apply the changes.</param>
+            <param name="excludeFields">Comma separated list of fields to exclude.</param>
+            <returns>Object.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Controllers.YearsController">
+            <summary>
+            Controller to generate the R in ptas_years.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.YearsController.#ctor(PTASDynamicsCrudHelperClasses.Classes.CRMWrapper,AutoMapper.IMapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Controllers.YearsController"/> class.
+            </summary>
+            <param name="wrapper">Wrapper for CRM access.</param>
+            <param name="mapper">Automapper to convert types.</param>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Controllers.YearsController.TableName">
+            <inheritdoc/>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Controllers.YearsController.GetOpQuery">
+            <inheritdoc/>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.YearsController.Get">
+            <summary>
+            http get action.
+            </summary>
+            <returns>A list of option sets as defined in dynamics.</returns>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Controllers.YearsController.PostProcess(System.Collections.Generic.IEnumerable{PTASDynamicsCrudHelperClasses.JSONMappings.OutgoingYear})">
+            <summary>
+            Sort the elements.
+            </summary>
+            <param name="input">Elements to be sorted.</param>
+            <returns>Sorted elements.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Classes.LinkEntitiesData">
+            <summary>
+            Data to link 2 dynamics entities.
+            </summary>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Classes.LinkEntitiesData.CounterpartEntityName">
+            <summary>
+            Gets or sets counterpartTableName.
+            </summary>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Classes.LinkEntitiesData.CounterparId">
+            <summary>
+            Gets or sets counterparId.
+            </summary>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Classes.LinkEntitiesData.EntityName">
+            <summary>
+            Gets or sets tableName.
+            </summary>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Classes.LinkEntitiesData.EntityId">
+            <summary>
+            Gets or sets entityId.
+            </summary>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Classes.OfficialSketchInfo">
+            <summary>
+            Infor for the official sketch of the set.
+            </summary>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Classes.OfficialSketchInfo.SketchId">
+            <summary>
+            Gets or sets sketch Id.
+            </summary>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Classes.OfficialSketchInfo.ItemId">
+            <summary>
+            Gets or sets item id.
+            </summary>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Classes.OfficialSketchInfo.Entity">
+            <summary>
+            Gets or sets entity.
+            </summary>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Classes.OfficialSketchInfo.SketchInfo">
+            <summary>
+            Gets or sets sketch info.
+            </summary>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Classes.SecurityChecker">
+            <summary>
+            Class to check contact id matches security header.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Classes.SecurityChecker.#ctor(PTASDynamicsCrudHelperClasses.Interfaces.IContactManager)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Classes.SecurityChecker"/> class.
+            </summary>
+            <param name="contactManager">Current contact manager.</param>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Classes.SecurityChecker.CheckSecurity(Microsoft.AspNetCore.Http.HttpContext,System.String)">
+            <summary>
+            Check if containing string has the contact id in it.
+            </summary>
+            <param name="context">Current http context.</param>
+            <param name="containingString">String that must contain the security id.</param>
+            <returns>True if found.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Classes.SketchSearchResult">
+            <summary>
+            Result for searches.
+            </summary>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Classes.SketchSearchResult.RelatedEntityId">
+            <summary>
+            Gets or sets relatedEntityId.
+            </summary>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Classes.SketchSearchResult.RelatedEntityType">
+            <summary>
+            Gets or sets relatedEntityType.
+            </summary>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Classes.SketchSearchResult.ParcelId">
+            <summary>
+            Gets or sets parcelId.
+            </summary>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Classes.SketchSearchResult.ParcelName">
+            <summary>
+            Gets or sets parcelName.
+            </summary>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Classes.SketchSearchResult.Address">
+            <summary>
+            Gets or sets address.
+            </summary>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Classes.SketchSearchResult.SketchId">
+            <summary>
+            Gets or sets sketchId.
+            </summary>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Classes.SketchSearchResult.IsOfficial">
+            <summary>
+            Gets or sets a value indicating whether isOfficial.
+            </summary>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Classes.SketchSearchResult.IsDraft">
+            <summary>
+            Gets or sets a value indicating whether isDraft.
+            </summary>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Classes.SketchSearchResult.ImageUrl">
+            <summary>
+            Gets or sets imageUrl.
+            </summary>
+        </member>
+        <member name="P:PTASDynamicsCrudCore.Classes.SketchSearchResult.Svg">
+            <summary>
+            Gets or sets svg.
+            </summary>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.LowercaseContractResolver">
+            <summary>
+            This class allows to lower the property name for JSON Mappings.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.LowercaseContractResolver.ResolvePropertyName(System.String)">
+            <summary>
+            This method transform the parameter value to lower the string.
+            </summary>
+            <param name="propertyName">the value to be lower.</param>
+            <returns>the lowercase value.</returns>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Mappings.MappingProfile">
+            <summary>
+            Automapper profile.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Mappings.MappingProfile.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Mappings.MappingProfile"/> class.
+            </summary>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Program">
+            <summary>
+            Main program.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Program.Main(System.String[])">
+            <summary>
+            Main program that gets run on startup. Runs the web host.
+            </summary>
+            <param name="args">Parameters passed by the operating system.</param>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Program.CreateWebHostBuilder(System.String[])">
+            <summary>
+            Creates a web host builder object.
+            </summary>
+            <param name="args">Parameters passed by the operating system.</param>
+        </member>
+        <member name="T:PTASDynamicsCrudCore.Startup">
+            <summary>
+            Startup class to initialize the application.
+            </summary>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Startup.#ctor(Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PTASDynamicsCrudCore.Startup"/> class.
+            </summary>
+            <param name="env">Configuration object to get the params from.</param>
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime to add services to the container.
+            </summary>
+            <param name="services">Services to configure.</param>
+            <seealso cref="T:PTASDynamicsCrudCore.Mappings.MappingProfile"/>
+            <remarks>
+            very important: any type that is read as form values and is stored as json and viceversa
+            must be initialized in class mapping profile.
+            </remarks>l
+        </member>
+        <member name="M:PTASDynamicsCrudCore.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            </summary>
+            <param name="app">This application builder.</param>
+            <param name="env">Environment.</param>
+        </member>
+    </members>
+</doc>

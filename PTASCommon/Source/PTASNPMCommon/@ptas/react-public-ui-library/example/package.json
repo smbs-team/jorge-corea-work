@@ -1,0 +1,49 @@
+{
+  "name": "@ptas/react-public-ui-library-example",
+  "homepage": "https://.github.io/@ptas/react-public-ui-library",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "@devexpress/dx-react-grid-material-ui": "^2.7.0",
+    "@material-ui/core": "file:../node_modules/@material-ui/core",
+    "@material-ui/lab": "^4.0.0-alpha.54",
+    "@ptas/react-public-ui-library": "file:..",
+    "axios": "^0.21.1",
+    "color-convert": "^2.0.1",
+    "react": "file:../node_modules/react",
+    "react-dom": "file:../node_modules/react-dom",
+    "react-intl": "^5.13.5",
+    "react-responsive-carousel": "^3.2.9",
+    "react-scripts": "file:../node_modules/react-scripts",
+    "react-use": "^15.3.3",
+    "typescript": "^3.9.7"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-config-standard-react": "^9.2.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-standard": "^4.0.1",
+    "eslint-plugin-tsdoc": "^0.2.4"
+  },
+  "scripts": {
+    "start": "node ../node_modules/react-scripts/bin/react-scripts.js start",
+    "build": "node ../node_modules/react-scripts/bin/react-scripts.js build",
+    "test": "node ../node_modules/react-scripts/bin/react-scripts.js test",
+    "eject": "node ../node_modules/react-scripts/bin/react-scripts.js eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

@@ -1,0 +1,54 @@
+﻿---
+kind: ServiceAccount
+apiVersion: v1
+metadata:
+  name: ptas-test-job-service-account
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: ptas-test-job-service-account-mapserver-role
+rules:
+  - apiGroups: ["apps", "extensions"]
+    resources: ["statefulsets"]
+    resourceNames: ["ptas-test-mapserver-service-set"]
+    verbs: ["get", "patch", "list", "watch", "delete"] 
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: ptas-test-job-service-account-mapserver-role-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: ptas-test-job-service-account-mapserver-role
+subjects:
+  - kind: ServiceAccount
+    name: ptas-test-job-service-account
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: ptas-test-map-server-restart
+spec:
+  concurrencyPolicy: Forbid
+  schedule: "59 07 */1 * *"
+  jobTemplate:
+    spec:
+      backoffLimit: 2
+      activeDeadlineSeconds: 600
+      template:
+        spec:
+          serviceAccountName: ptas-test-job-service-account
+          restartPolicy: Never
+          containers:
+            - name: kubectl
+              image: bitnami/kubectl
+              command:
+                - 'kubectl'
+                - 'rollout'
+                - 'restart'
+                - 'statefulset'
+                - 'ptas-test-mapserver-service-set'
+                - '--namespace'
+                - 'ptas-test'

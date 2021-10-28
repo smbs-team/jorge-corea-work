@@ -1,0 +1,15 @@
+boot_ci                 Calculate bootstrapped confidence intervals
+cknn                    Find comparable properties using clustered
+                        nearest neighbors
+cod                     Calculate Coefficient of Dispersion (COD)
+detect_chasing          Detect sales chasing in a vector of sales
+                        ratios
+is_outlier              Detect outlier values in a vector using
+                        IQR/quantile method
+prb                     Calculate Coefficient of Price-Related Bias
+                        (PRB)
+prd                     Calculate Price-Related Differential (PRD)
+predict.cknn            Predict clusters and k nearest neighbors for
+                        new properties
+ratios_sample           Sample of ratio and sales data pulled from CCAO
+                        records

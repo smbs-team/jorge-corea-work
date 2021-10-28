@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "CustomSearchesWorker": {
+      "commandName": "Project"
+    }
+  }
+}

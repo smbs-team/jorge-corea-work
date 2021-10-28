@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "PTASDynamicsTranfer": {
+      "commandName": "Project",
+      "commandLineArgs": "-e role -s 2000 -c \"Server=tcp:ptas-sbox-dbserver.database.windows.net,1433;Initial Catalog=ptas-sbox-developmentdb;Persist Security Info=False;User ID=dbadmin;Password=KUTcFrGRYJwS01;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;\" -d \"https://ptas-dev.crm9.dynamics.com\" -b \"\" --registrationid \"404b9b8b-5315-4ef3-859d-37352a12b2da\" --registrationsecret \"LgMtPZBof8RUhZO/Qa0T1r1gR2pKd/sjnOx3wni5Y4I=\" -a \"https://login.windows.net/KC1.onmicrosoft.com\" -u 1"
+    }
+  }
+}

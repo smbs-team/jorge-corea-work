@@ -1,0 +1,39 @@
+Package: assessr
+Type: Package
+Title: Measure Property Assessment Performance
+Version: 0.4.4
+Authors@R: c(
+    person(given = "Dan", family = "Snow", email="dsnow@cookcountyassessor.com", role=c("aut", "cre")),
+    person(given = "Rob", family = "Ross", email="rross@cookcountyassessor.com", role=c("ctb")),
+    person(given = "William", family = "Ridgeway", email="wridgeway@cookcountyassessor.com", role=c("ctb")),
+    person(given = "Nathan", family = "Dignazio", role=c("ctb"))
+    )
+Date: 2021-05-03
+Description: An R package to measure the performance of property assessments
+    using IAAO standard statistics. Also includes a host of utility functions
+    to make common assessment and evaluation tasks easier and more consistent.
+URL: https://ccao-data-science---modeling.gitlab.io/packages/assessr/,
+        https://gitlab.com/ccao-data-science---modeling/packages/assessr/
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Imports: clustMixType, dbscan, stats, utils
+RoxygenNote: 7.1.1
+Suggests: ccao, covr, devtools, dplyr, DT, forcats, ggplot2, jsonlite,
+        knitr, lintr, pkgdown, rmarkdown, scales, sf, testthat, tidyr
+Remotes: gitlab::ccao-data-science---modeling/packages/ccao
+Depends: R (>= 2.10)
+RemoteType: gitlab
+RemoteHost: gitlab.com
+RemoteRepo: packages/assessr
+RemoteUsername: ccao-data-science---modeling
+RemoteRef: master
+RemoteSha: c812be180244cb482ea0b774db8aac6218b5005b
+NeedsCompilation: no
+Packaged: 2021-06-01 22:59:50 UTC; cblac
+Author: Dan Snow [aut, cre],
+  Rob Ross [ctb],
+  William Ridgeway [ctb],
+  Nathan Dignazio [ctb]
+Maintainer: Dan Snow <dsnow@cookcountyassessor.com>
+Built: R 4.0.2; ; 2021-06-01 22:59:51 UTC; windows

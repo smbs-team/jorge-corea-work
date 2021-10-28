@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <canvas width="64" height="64" id="canvas"></canvas>
+    <script>
+      const w = 64;
+      const bgColor = '#fff';
+      const borderColor = 'rgba(0,0,0,1)';
+
+      const canvas = document.getElementById('canvas');
+
+      const context = canvas.getContext('2d');
+
+      const centerX = w / 2;
+      const centerY = w / 2;
+      const radius = w / 2;
+      if (!context) throw new Error('Error getting context');
+      context.beginPath();
+      context.arc(centerX, centerY, radius - 5, 0, 2 * Math.PI, false);
+      context.fillStyle = bgColor;
+      context.fill();
+      context.lineWidth = 1;
+      context.strokeStyle = borderColor;
+      context.stroke();
+
+      // // update this image's data with data from the canvas
+      // const data = context.getImageData(0, 0, w, w);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "PTASExportConnector": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "SqlConnectionString": "Server=tcp:Kcitazrsqluat01.database.windows.net,1433;Initial Catalog=PTASuat;Persist Security Info=False;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=172800"
+      }
+    }
+  }
+}

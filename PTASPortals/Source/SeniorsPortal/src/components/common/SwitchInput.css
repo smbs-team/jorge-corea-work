@@ -1,0 +1,39 @@
+.switch-input {
+  margin-top: 40px;
+  text-align: left;
+}
+
+.switch-input-icon {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 2px;
+}
+
+.switch-input-label {
+  display: inline-block;
+  margin-left: 10px;
+  max-width: 250px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.info-icon {
+  display: inline-block;
+  vertical-align: bottom;
+  margin-bottom: -12px;
+  margin-left: -8px;
+}
+
+.info-icon-alert {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.switch-states {
+  font-size: 14px;
+  margin: 0 5px;
+}
+
+.switch-yes {
+  margin-left: 10px;
+}
